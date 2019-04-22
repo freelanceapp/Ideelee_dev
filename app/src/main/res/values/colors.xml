@@ -8,5 +8,12 @@
     <color name="navyblue">#00389f</color>
     <color name="buttonbg">#006abc</color>
     <color name="gray">#d3d3d3</color>
+    <color name="gray_dark">#B1B0B0</color>
     <color name="black">#000</color>
+    <color name="orange">#f27d00</color>
+    <color name="green">#02ac66</color>
+    <color name="red">#c6041b</color>
+    <color name="light_bg_blue">#f0f8ff</color>
+
+
 </resources>

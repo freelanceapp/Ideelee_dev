@@ -1,123 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="@dimen/margin_24dp"
-    android:background="@drawable/bg1"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/light_bg_blue"
+    android:orientation="vertical"
     tools:context=".Login">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-android:textAlignment="center"
-        android:layout_marginTop="@dimen/margin_30dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/LOGIN"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_23sp"
-        android:textStyle="bold" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-
-        android:layout_marginTop="@dimen/margin_40dp"
+        android:scrollbars="none"
         android:layout_height="wrap_content">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-android:layout_marginLeft="@dimen/margin_24dp"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:text="@string/entermobilenumber"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_17sp"
-      />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/margin_8dp"
-        android:padding="@dimen/margin_8dp"
-        android:background="@drawable/round_corner_edittext"
-        android:layout_height="wrap_content">
-    <com.rilixtech.CountryCodePicker
-        android:id="@+id/ccp"
-        android:layout_width="wrap_content"
-        app:ccp_defaultNameCode="US"
-        android:layout_height="wrap_content" />
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/phone_number_edt"
-        android:layout_width="match_parent"
-        android:drawableTint="@color/white"
-        android:background="@null"
-        android:padding="@dimen/margin_4dp"
-android:backgroundTintMode="screen"
-        android:backgroundTint="@color/white"
-        android:layout_height="wrap_content"
-        android:inputType="phone"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@drawable/top_shape"
+                android:gravity="center">
 
-    </LinearLayout>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_24dp"
-        android:text="@string/CONTINUE"
-        android:id="@+id/ux_btn_continue_loginPage"
-        android:textColor="@color/white"
-android:textAllCaps="true"
-        android:textSize="@dimen/text_size_17sp"
-        android:background="@drawable/round_corner_button"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/margin_10dp"
+                    android:src="@drawable/logo" />
 
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAlignment="center"
-        android:text="@string/OR"
-        android:textColor="@color/white"
-        android:textSize="@dimen/text_size_17sp"
-        />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/logo"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/LOGIN"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_17sp"
+                    android:textStyle="bold" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_16dp"
-        android:text="@string/continuewithfacebook"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:paddingLeft="@dimen/margin_16dp"
-        android:drawablePadding="@dimen/margin_neg_24dp"
-        android:drawableLeft="@drawable/fb"
-        android:textSize="@dimen/text_size_19sp"
-        android:background="@drawable/round_corner_box"
-        android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_marginTop="@dimen/margin_40dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content">
-<TextView
-    android:layout_width="wrap_content"
-    android:textColor="@color/white"
-    android:textSize="@dimen/text_size_17sp"
-    android:text="@string/donthaveanaccount"
-    android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:textColor="@color/yellow"
-            android:layout_marginLeft="@dimen/margin_4dp"
-            android:id="@+id/ux_txt_registernow_loginPage"
-            android:textSize="@dimen/text_size_17sp"
-            android:text="@string/registernow"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/big_margin">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_divider"
+                    android:drawableLeft="@drawable/user_"
+                    android:drawablePadding="@dimen/margin_8dp"
+                    android:hint="@string/user_or_phone"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/gray_dark"
+                    android:textColor="@color/black"
+                    android:padding="@dimen/margin_10dp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blue_divider"
+                    android:drawableLeft="@drawable/pass"
+                    android:drawablePadding="@dimen/margin_8dp"
+                    android:hint="@string/password"
+                    android:textColorHint="@color/gray_dark"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/normal_padding"
+                    android:fontFamily="sans-serif"
+                    android:padding="@dimen/margin_10dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                     android:fontFamily="sans-serif"
+                    android:text="@string/forgot_password"
+                     android:textColor="@color/colorPrimaryDark"
+                    android:padding="@dimen/small_padding"
+                    android:textSize="@dimen/small_txt"
+                    android:gravity="right"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/ux_btn_continue_loginPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    android:background="@drawable/round_corner_button"
+                    android:text="@string/LOGIN"
+                    android:textAllCaps="true"
+                    android:layout_marginLeft="@dimen/big_margin"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_17sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:text="@string/OR"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:background="@drawable/round_corner_box"
+                    android:drawableLeft="@drawable/fb"
+                    android:text="@string/continuewithfacebook"
+                    android:layout_marginLeft="@dimen/big_margin"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:textAllCaps="false"
+                    android:padding="@dimen/small_padding"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/normal_text" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/big_margin"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/donthaveanaccount"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/text_size_17sp" />
+
+                    <TextView
+                        android:id="@+id/ux_txt_registernow_loginPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_4dp"
+                        android:text="@string/registernow"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_size_17sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

@@ -3,12 +3,12 @@
     <string name="welcometoideelee">Welcome to ideelee+</string>
     <string name="LOGIN">LOGIN</string>
     <string name="entermobilenumber">Enter Mobile Number</string>
-    <string name="CONTINUE">CONTINUE</string>
+    <string name="continue_">Continue</string>
     <string name="continuewithfacebook">Continue with facebook</string>
     <string name="donthaveanaccount">Don\'t have an Account?</string>
     <string name="registernow">Register Now</string>
     <string name="OR">OR</string>
-    <string name="REGISTER">REGISTER</string>
+    <string name="register">Register</string>
     <string name="fullname">Full Name</string>
     <string name="email">Email</string>
     <string name="alreadyhaveanaccount">Already have an Account?</string>
@@ -38,7 +38,7 @@
     <string name="more">More</string>
     <string name="OTP">OTP</string>
     <string name="enterotp">Enter OTP</string>
-    <string name="RESENDOTP">RESEND OTP</string>
+    <string name="resend_otp">Resend OTP</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="topratedserviceprovider">Top Rated Service Providers</string>
     <string name="home">HOME</string>
@@ -48,4 +48,22 @@
     <string name="changeloction">Change Location</string>
     <string name="filter">Filter</string>
     <string name="relevance">Relevance</string>
+    <string name="password">Password</string>
+    <string name="user_or_phone">User or Phone</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="type_name_here">Type name here</string>
+    <string name="phone_hint">Type mobile numbere here</string>
+    <string name="address">Address</string>
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="enter_your_address_here">Enter your address here...</string>
+    <string name="manage_address">Manage Address</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="help_support"><![CDATA[Help & Support]]></string>
+    <string name="my_orders">My Orders</string>
+    <string name="manage_cards">Manage Cards</string>
+    <string name="logout">Logout</string>
+    <string name="invite_and_earn">Invite and Earn</string>
+
 </resources>

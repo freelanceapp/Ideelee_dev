@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeScreen.profile.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/med_padding">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:padding="@dimen/med_padding" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignRight="@+id/img"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/camera_profile" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/med_padding"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:padding="@dimen/extra_small"
+                    android:text="@string/name"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/med_padding"
+                    android:background="@drawable/square_border"
+                    android:fontFamily="sans-serif"
+                    android:inputType="textPersonName"
+                    android:hint="@string/type_name_here"
+                    android:padding="@dimen/small_padding" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:padding="@dimen/extra_small"
+                    android:text="@string/phone"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/med_padding"
+                    android:background="@drawable/square_border"
+                    android:fontFamily="sans-serif"
+                    android:hint="@string/phone_hint"
+                    android:inputType="number"
+                    android:padding="@dimen/small_padding" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:padding="@dimen/extra_small"
+                    android:text="@string/address"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/med_padding"
+                    android:background="@drawable/square_border"
+                    android:fontFamily="sans-serif"
+                    android:minLines="2"
+                    android:inputType="textPostalAddress"
+                     android:gravity="top"
+                    android:hint="@string/enter_your_address_here"
+                    android:padding="@dimen/small_padding" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:padding="@dimen/extra_small"
+                    android:text="@string/email"
+                    android:textSize="@dimen/normal_text" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/med_padding"
+                    android:background="@drawable/square_border"
+                    android:fontFamily="sans-serif"
+                    android:hint="johan.doe@example.com"
+                    android:padding="@dimen/small_padding" />
+                <Button
+                    android:id="@+id/ux_btn_continue_loginPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_24dp"
+                    android:background="@drawable/round_corner_button"
+                    android:text="Update"
+                    android:textAllCaps="true"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginLeft="@dimen/big_margin"
+                    android:layout_marginRight="@dimen/big_margin"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_17sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

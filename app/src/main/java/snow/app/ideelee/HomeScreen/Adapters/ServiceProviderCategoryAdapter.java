@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
@@ -22,11 +24,13 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
 
     //we are storing all the products in a list
     private List<ServiceProvider> productList;
+    int width=0;
 
     //getting the context and product list with constructor
-    public ServiceProviderCategoryAdapter(Context mCtx, List<ServiceProvider> productList) {
+    public ServiceProviderCategoryAdapter(Context mCtx, List<ServiceProvider> productList,int width) {
         this.mCtx = mCtx;
         this.productList = productList;
+        this.width = width;
     }
 
     @Override
@@ -41,11 +45,13 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the product of the specified position
         ServiceProvider product = productList.get(position);
-
         //binding the data with the viewholder views
         holder.textViewTitle.setText(product.getTitle());
         holder.ratingBar.setRating((float) product.getRating());
         holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
+        Picasso.with(mCtx).load("https://icon2.kisspng.com/20180419/foq/kisspng-electrician-electrical-contractor-electricity-arch-5ad8e6e9a7cab2.2418352215241643296873.jpg").
+                resize(width/3,width/3).into(holder.imageView);
+
 
 
     }
@@ -67,7 +73,6 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
             super(itemView);
             ratingBar = itemView.findViewById(R.id.ratingbar);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
-
             imageView = itemView.findViewById(R.id.imageView);
         }
     }

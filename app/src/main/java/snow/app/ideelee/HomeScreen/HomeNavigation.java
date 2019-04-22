@@ -1,23 +1,13 @@
 package snow.app.ideelee.HomeScreen;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 
 import android.support.v4.view.ViewPager;
-import android.text.Html;
-import android.util.Log;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,20 +18,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import me.relex.circleindicator.CircleIndicator;
+import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
+import snow.app.ideelee.HomeScreen.invites.InviteActivity;
+import snow.app.ideelee.HomeScreen.orders.MyOrders;
+import snow.app.ideelee.HomeScreen.profile.ProfileFragment;
 import snow.app.ideelee.R;
 
 public class HomeNavigation extends AppCompatActivity
@@ -61,14 +52,23 @@ public class HomeNavigation extends AppCompatActivity
     private int dotscount;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-
+    TextView profile;
+    TextView edit_profile;
+    TextView invite,orders;
+    ImageView img;
+    DrawerLayout drawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        img=(ImageView)findViewById(R.id.img);
+          drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        profile = (TextView) findViewById(R.id.profile);
+        edit_profile = (TextView) findViewById(R.id.edit_profile);
+        orders = (TextView) findViewById(R.id.orders);
+        invite = (TextView) findViewById(R.id.invite);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -82,24 +82,55 @@ public class HomeNavigation extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new HomeFragment(), "Home");
         fragmentTransaction.commit();
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.content_frame, new ProfileFragment(), "Profile");
+                fragmentTransaction.commit();
 
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    //premission granted by user
-                } else {
-                    //permission denied by user
-                }
             }
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
+        });
+
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
+                profile.performClick();
+            }
+        });
+
+        invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
+                 startActivity(new Intent(HomeNavigation.this, InviteActivity.class));
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(GravityCompat.START);
+                 startActivity(new Intent(HomeNavigation.this, MyOrders.class));
+            }
+        });
+
+        WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+        final DisplayMetrics displayMetrics = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        Picasso.with(this)
+                .load("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg")
+                .resize(width / 4, width / 4)
+                .transform(new CircleTransform())
+                .centerCrop()
+                .into(img);
     }
+
+
 
 
     @Override
@@ -130,11 +161,7 @@ public class HomeNavigation extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

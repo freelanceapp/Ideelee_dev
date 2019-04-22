@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -96,7 +97,7 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         //initializing the productlist
         productList = new ArrayList<>();
@@ -154,8 +155,11 @@ public class HomeFragment extends Fragment {
                         4.6,
                         R.drawable.img));
         //
-
-        ServiceProviderCategoryAdapter adapter = new ServiceProviderCategoryAdapter(getActivity(), productList);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        ServiceProviderCategoryAdapter adapter = new ServiceProviderCategoryAdapter(getActivity(), productList,width);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);

@@ -11,14 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookingAppointment"></activity>
+        <activity android:name=".HomeScreen.orders.MyOrders"></activity>
+        <activity android:name=".BookingAppointment" />
         <activity
             android:name=".HomeScreen.HomeNavigation"
             android:label="@string/title_activity_home_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OTP" />
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
+        <activity
+            android:name=".OTP"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Register"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Login"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +34,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeScreen.ServiceActivity" />
+        <activity android:name=".HomeScreen.invites.InviteActivity" />
     </application>
 
 </manifest>

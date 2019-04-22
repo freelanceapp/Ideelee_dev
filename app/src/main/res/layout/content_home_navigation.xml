@@ -40,6 +40,7 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/home"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:text="@string/home"
@@ -48,6 +49,7 @@
             android:drawableTop="@drawable/home"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/bookings"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:text="@string/booking"
@@ -56,6 +58,7 @@
             android:drawableTop="@drawable/booking"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/wallet"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:text="@string/wallet"
@@ -64,6 +67,7 @@
             android:drawableTop="@drawable/wallet"
             android:layout_height="match_parent" />
         <TextView
+            android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:text="@string/profile"

@@ -16,25 +16,17 @@ import com.rilixtech.CountryCodePicker;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 
 public class Login extends Activity {
-    CountryCodePicker ccp;
-    AppCompatEditText edtPhoneNumber;
+
+
     TextView txt_registernow_loginPage;
     Button btn_continue_loginPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ccp = (CountryCodePicker) findViewById(R.id.ccp);
-        txt_registernow_loginPage=findViewById(R.id.ux_txt_registernow_loginPage);
-        edtPhoneNumber = (AppCompatEditText) findViewById(R.id.phone_number_edt);
-        btn_continue_loginPage=findViewById(R.id.ux_btn_continue_loginPage);
-        ccp.registerPhoneNumberTextView(edtPhoneNumber);
-        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
-            @Override
-            public void onCountrySelected(Country selectedCountry) {
-                Toast.makeText(Login.this, "Updated " + selectedCountry.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+         txt_registernow_loginPage=findViewById(R.id.ux_txt_registernow_loginPage);
+         btn_continue_loginPage=findViewById(R.id.ux_btn_continue_loginPage);
+
         txt_registernow_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
