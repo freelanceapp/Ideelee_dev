@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:id="@+id/linearlayout"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_24dp"
+    android:padding="@dimen/margin_8dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="@dimen/margin_4dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/profile_image"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="@dimen/margin_4dp"
+        android:src="@drawable/profile"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/navyblue"/>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4dp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_17sp"
+        android:text="Title"
+        android:gravity="center"
+        android:layout_gravity="center"  />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_17sp"
+        android:text="$ 15.00 per hour"
+        android:gravity="center"
+        android:layout_gravity="center"  />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4dp"
+
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_17sp"
+        android:text="Already Booked Schedule"
+        android:gravity="left"
+        android:layout_gravity="left"  />
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/tag"
+      app:atg_horizontalPadding="@dimen/margin_4dp"
+        app:atg_verticalPadding="@dimen/margin_4dp"
+        app:atg_textColor="@color/white"
+        app:atg_textSize="@dimen/text_size_13sp"
+        app:atg_backgroundColor="@color/colorPrimary"
+        style="@style/TagGroup" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_30dp"
+        android:text="Book Schedule"
+        android:id="@+id/ux_btn"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="@dimen/text_size_19sp"
+        android:background="@drawable/round_corner_button"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</LinearLayout>

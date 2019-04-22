@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".BookingAppointment">
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_13sp"
+        android:text="Select/Make a time slot"
+        android:layout_height="wrap_content" />
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/tag_group_bookingapp"
+        app:atg_textColor="@color/gray"
+        app:atg_borderColor="@color/gray"
+        style="@style/TagGroup" />
+
+</LinearLayout>
