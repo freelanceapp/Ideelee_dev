@@ -54,7 +54,7 @@ public class HomeNavigation extends AppCompatActivity
     private static int NUM_PAGES = 0;
     TextView profile;
     TextView edit_profile;
-    TextView invite,orders;
+    TextView invite,orders,booking;
     ImageView img;
     DrawerLayout drawer;
     @Override
@@ -69,6 +69,7 @@ public class HomeNavigation extends AppCompatActivity
         edit_profile = (TextView) findViewById(R.id.edit_profile);
         orders = (TextView) findViewById(R.id.orders);
         invite = (TextView) findViewById(R.id.invite);
+        booking=findViewById(R.id.bookings);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -116,6 +117,15 @@ public class HomeNavigation extends AppCompatActivity
                  startActivity(new Intent(HomeNavigation.this, MyOrders.class));
             }
         });
+        booking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.content_frame, new CurrentBookingFragment(), "CurrentBookingFragment");
+                fragmentTransaction.commit();
+            }
+        });
 
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -161,7 +171,11 @@ public class HomeNavigation extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

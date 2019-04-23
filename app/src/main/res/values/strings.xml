@@ -56,7 +56,6 @@
     <string name="type_name_here">Type name here</string>
     <string name="phone_hint">Type mobile numbere here</string>
     <string name="address">Address</string>
-    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
     <string name="enter_your_address_here">Enter your address here...</string>
     <string name="manage_address">Manage Address</string>
     <string name="invite_friends">Invite Friends</string>
@@ -65,5 +64,5 @@
     <string name="manage_cards">Manage Cards</string>
     <string name="logout">Logout</string>
     <string name="invite_and_earn">Invite and Earn</string>
-
+    <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 </resources>

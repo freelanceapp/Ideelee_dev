@@ -35,6 +35,7 @@
         </activity>
         <activity android:name=".HomeScreen.ServiceActivity" />
         <activity android:name=".HomeScreen.invites.InviteActivity" />
+        <activity android:name=".BookingActivity"/>
     </application>
 
 </manifest>

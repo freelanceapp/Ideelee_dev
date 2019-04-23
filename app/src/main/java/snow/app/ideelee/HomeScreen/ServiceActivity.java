@@ -29,31 +29,28 @@ public class ServiceActivity extends Activity {
     List<ServiceProviderList> serviceproviderlist;
     TagGroup mTagGroup;
     RecyclerView recyclerView;
+
     public ServiceActivity() {
     }
-ImageView imageView;
+
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.service_fragment);
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-imageView=findViewById(R.id.backbutton);
-imageView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent=new Intent(ServiceActivity.this,HomeNavigation.class);
-        startActivity(intent);
-    }
-});
-        //initializing the productlist
+        imageView = findViewById(R.id.backbutton);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ServiceActivity.this, HomeNavigation.class);
+                startActivity(intent);
+            }
+        });
         serviceproviderlist = new ArrayList<>();
-
         serviceproviderlist.add(
                 new ServiceProviderList(
                         getResources().getString(R.string.electrician),
@@ -76,18 +73,15 @@ imageView.setOnClickListener(new View.OnClickListener() {
                         "67km",
                         4.5,
                         R.drawable.img));
-        //
 
         ServiceProvidersAdapter adapter = new ServiceProvidersAdapter(this, serviceproviderlist);
-
-        //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent=new Intent(ServiceActivity.this,HomeNavigation.class);
+        Intent intent = new Intent(ServiceActivity.this, HomeNavigation.class);
         startActivity(intent);
         finish();
 
