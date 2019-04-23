@@ -65,4 +65,18 @@
     <string name="logout">Logout</string>
     <string name="invite_and_earn">Invite and Earn</string>
     <string name="lipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="enter_registered_email">Enter registered email</string>
+    <string name="forgot">Forgot</string>
+    <string name="login_now">Login Now</string>
+    <string name="your_order">Your Order</string>
+    <string name="coupen">Coupen</string>
+    <string name="online_payment">Online Payment</string>
+    <string name="_121_cresent_avenue_drybeck">121 Cresent Avenue, DRYBECK</string>
+    <string name="submit">Submit</string>
+    <string name="open_now">OPEN NOW</string>
+    <string name="get_5_off_on_order_above_101">Get $5 off on order above $101</string>
+    <string name="ratingvalue">4.1</string>
+    <string name="the_pepper_mockingbird">THE PEPPER MOCKINGBIRD</string>
+    <string name="breakfast">BREAKFAST</string>
 </resources>

@@ -42,7 +42,7 @@ public class ServiceActivity extends Activity {
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
-        imageView = findViewById(R.id.backbutton);
+        imageView = findViewById(R.id.backbutton1);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

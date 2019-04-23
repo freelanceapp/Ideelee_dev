@@ -43,8 +43,8 @@ public class MyOrders extends Activity {
         int width = displayMetrics.widthPixels;
         ordersAdapter = new OrdersAdapter(data, this,width);
         rv_orders.setAdapter(ordersAdapter);
-        title = (TextView) findViewById(R.id.title);
-        backbutton = (ImageView) findViewById(R.id.backbutton);
+        title = (TextView) findViewById(R.id.title_bookingappointement);
+        backbutton = (ImageView) findViewById(R.id.backbutton1);
         title.setText("My Orders");
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override

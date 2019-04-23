@@ -261,15 +261,11 @@ android:layout_marginTop="@dimen/margin_2dp"
                 android:checked="false"
                 android:textSize="@dimen/text_size_15sp" />
         </RadioGroup>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:background="@color/white"
-            android:layout_marginTop="@dimen/margin_2dp"
-            android:layout_height="wrap_content">
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_2dp"
                 android:background="@color/white"
                 android:text="Note:-"
                 android:padding="@dimen/margin_8dp"
@@ -277,7 +273,6 @@ android:layout_marginTop="@dimen/margin_2dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="@dimen/text_size_15sp" />
 
-        </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:background="@color/white"

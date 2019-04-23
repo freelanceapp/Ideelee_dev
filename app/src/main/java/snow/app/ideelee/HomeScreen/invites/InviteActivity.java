@@ -20,8 +20,8 @@ public class InviteActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_invite);
-        title=(TextView)findViewById(R.id.title);
-        backbutton=(ImageView) findViewById(R.id.backbutton);
+        title=(TextView)findViewById(R.id.title_bookingappointement);
+        backbutton=(ImageView) findViewById(R.id.backbutton1);
         title.setText("Invite");
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override

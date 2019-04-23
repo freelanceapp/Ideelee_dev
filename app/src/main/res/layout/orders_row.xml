@@ -2,11 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/parent"
+    android:clickable="true"
     android:background="@drawable/grey_divider"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:paddingTop="@dimen/extra_small"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
@@ -57,7 +60,7 @@
                 android:padding="@dimen/small_padding"
                 android:fontFamily="sans-serif"
                 android:text="1 x Burger, 2 x Burger , 1 x Burger"
-                android:textColor="@color/black"
+                android:textColor="@color/txt_light"
                 android:textSize="@dimen/small_txt" />
 
         </LinearLayout>

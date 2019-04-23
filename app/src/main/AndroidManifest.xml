@@ -11,7 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeScreen.orders.MyOrders"></activity>
+        <activity android:name=".fooddelivery.restdetails.RestDetailsActivity"></activity>
+        <!-- <activity android:name=".fooddelivery.RestaurantsList"></activity> -->
+        <activity
+            android:name=".HomeScreen.help.HelpActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".HomeScreen.orders.OrderDetails.OrderDetailActivity" />
+        <activity
+            android:name=".forgot.ForgotPassword"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".HomeScreen.orders.MyOrders" />
         <activity android:name=".BookingAppointment" />
         <activity
             android:name=".HomeScreen.HomeNavigation"
@@ -26,7 +35,7 @@
         <activity
             android:name=".Login"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".Splash">
+        <activity android:name=".fooddelivery.RestaurantsList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +44,7 @@
         </activity>
         <activity android:name=".HomeScreen.ServiceActivity" />
         <activity android:name=".HomeScreen.invites.InviteActivity" />
-        <activity android:name=".BookingActivity"/>
+        <activity android:name=".BookingActivity" />
     </application>
 
 </manifest>

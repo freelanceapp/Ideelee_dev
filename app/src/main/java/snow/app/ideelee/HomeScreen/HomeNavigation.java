@@ -2,21 +2,20 @@ package snow.app.ideelee.HomeScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.PagerAdapter;
-
-import android.support.v4.view.ViewPager;
-import android.util.DisplayMetrics;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -30,6 +29,7 @@ import java.util.ArrayList;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
+import snow.app.ideelee.HomeScreen.help.HelpActivity;
 import snow.app.ideelee.HomeScreen.invites.InviteActivity;
 import snow.app.ideelee.HomeScreen.orders.MyOrders;
 import snow.app.ideelee.HomeScreen.profile.ProfileFragment;
@@ -37,39 +37,38 @@ import snow.app.ideelee.R;
 
 public class HomeNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
     GridView androidGridView;
     MainCategory adapterViewAndroid;
     ViewPager viewpager;
     PagerAdapter adapter;
-    private ViewPager vp_slider;
-    private LinearLayout ll_dots;
     ViewPagerHome sliderPagerAdapter;
     ArrayList<String> slider_image_list;
-    private TextView[] dots;
     int page_position = 0;
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
-    private int dotscount;
-    private static int currentPage = 0;
-    private static int NUM_PAGES = 0;
-    TextView profile;
     TextView edit_profile;
-    TextView invite,orders,booking;
+    TextView profile;
+    TextView booking;
     ImageView img;
     DrawerLayout drawer;
+    private ViewPager vp_slider;
+    private LinearLayout ll_dots;
+    private TextView[] dots;
+    private int dotscount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        img=(ImageView)findViewById(R.id.img);
-          drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        profile = (TextView) findViewById(R.id.profile);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         edit_profile = (TextView) findViewById(R.id.edit_profile);
-        orders = (TextView) findViewById(R.id.orders);
-        invite = (TextView) findViewById(R.id.invite);
-        booking=findViewById(R.id.bookings);
+        booking = (TextView) findViewById(R.id.bookings);
+        profile = (TextView) findViewById(R.id.profile);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -78,7 +77,8 @@ public class HomeNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        View view = navigationView.getHeaderView(0);
+        img = (ImageView) view.findViewById(R.id.img);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, new HomeFragment(), "Home");
@@ -86,13 +86,14 @@ public class HomeNavigation extends AppCompatActivity
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
                         .replace(R.id.content_frame, new ProfileFragment(), "Profile");
                 fragmentTransaction.commit();
 
             }
         });
+       /*
 
         edit_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +107,7 @@ public class HomeNavigation extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.START);
-                 startActivity(new Intent(HomeNavigation.this, InviteActivity.class));
+
             }
         });
 
@@ -114,9 +115,11 @@ public class HomeNavigation extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.START);
-                 startActivity(new Intent(HomeNavigation.this, MyOrders.class));
+
             }
         });
+      */
+
         booking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,8 +144,6 @@ public class HomeNavigation extends AppCompatActivity
     }
 
 
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -150,12 +151,11 @@ public class HomeNavigation extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-            if (getFragmentManager().getBackStackEntryCount()>0){
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
                 getFragmentManager().popBackStack();
-            }else {
+            } else {
                 super.onBackPressed();
             }
-
 
 
         }
@@ -190,17 +190,21 @@ public class HomeNavigation extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.edit_profile) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.content_frame, new ProfileFragment(), "Profile");
+            fragmentTransaction.commit();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.invite) {
+            startActivity(new Intent(HomeNavigation.this, InviteActivity.class));
+        } else if (id == R.id.manage_address) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.help_support) {
+            startActivity(new Intent(HomeNavigation.this, HelpActivity.class));
+        } else if (id == R.id.orders) {
+            startActivity(new Intent(HomeNavigation.this, MyOrders.class));
+        } else if (id == R.id.logout) {
 
         }
 
@@ -208,7 +212,6 @@ public class HomeNavigation extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

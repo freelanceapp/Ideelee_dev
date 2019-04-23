@@ -16,6 +16,7 @@
     <color name="green">#02ac66</color>
     <color name="red">#c6041b</color>
     <color name="light_bg_blue">#f0f8ff</color>
+    <color name="txt_light">#9E9E9E</color>
 
 
 </resources>
