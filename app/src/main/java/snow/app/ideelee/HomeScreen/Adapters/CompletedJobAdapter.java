@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -34,7 +35,7 @@ public class CompletedJobAdapter extends RecyclerView.Adapter<CompletedJobAdapte
     public CompletedJobAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.completed_job_rowlayout, parent,false);
+        View view = inflater.inflate(R.layout.completed_job_rowlayout, parent, false);
         return new CompletedJobAdapter.ProductViewHolder(view);
     }
 
@@ -45,8 +46,20 @@ public class CompletedJobAdapter extends RecyclerView.Adapter<CompletedJobAdapte
 
         //binding the data with the viewholder views
 
-holder.name.setText(product.getName());
-holder.payment.setText(product.getPayment());
+        holder.name.setText(product.getName());
+        holder.payment.setText(product.getPayment());
+        double rating = productList.get(position).getRating();
+        if (rating == 0) {
+            holder.ratingBar.setVisibility(View.GONE);
+            holder.edit.setVisibility(View.GONE);
+
+            holder.txt_ratenow.setVisibility(View.VISIBLE);
+        } else {
+            holder.txt_ratenow.setVisibility(View.GONE);
+            holder.edit.setVisibility(View.VISIBLE);
+            holder.ratingBar.setVisibility(View.VISIBLE);
+            holder.ratingBar.setRating((float) rating);
+        }
 
     }
 
@@ -59,17 +72,19 @@ holder.payment.setText(product.getPayment());
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, status,address,payment,servicetype;
+        TextView name, status, address, payment, servicetype, edit, txt_ratenow;
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
+            ratingBar = itemView.findViewById(R.id.ratingbar_completed);
             status = itemView.findViewById(R.id.status);
-            name=itemView.findViewById(R.id.name);
-            servicetype=itemView.findViewById(R.id.servicetype);
-            address=itemView.findViewById(R.id.address);
-            payment=itemView.findViewById(R.id.payment);
+            name = itemView.findViewById(R.id.name);
+            edit = itemView.findViewById(R.id.edit);
+            servicetype = itemView.findViewById(R.id.servicetype);
+            address = itemView.findViewById(R.id.address);
+            payment = itemView.findViewById(R.id.payment);
+            txt_ratenow = itemView.findViewById(R.id.ux_txt_ratenow);
 
         }
     }

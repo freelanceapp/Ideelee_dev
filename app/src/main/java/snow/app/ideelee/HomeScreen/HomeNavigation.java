@@ -3,11 +3,17 @@ package snow.app.ideelee.HomeScreen;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -34,6 +40,7 @@ import snow.app.ideelee.HomeScreen.invites.InviteActivity;
 import snow.app.ideelee.HomeScreen.orders.MyOrders;
 import snow.app.ideelee.HomeScreen.profile.ProfileFragment;
 import snow.app.ideelee.R;
+import snow.app.ideelee.WalletFragment;
 
 public class HomeNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -43,20 +50,28 @@ public class HomeNavigation extends AppCompatActivity
     MainCategory adapterViewAndroid;
     ViewPager viewpager;
     PagerAdapter adapter;
+    private ViewPager vp_slider;
+    private LinearLayout ll_dots;
     ViewPagerHome sliderPagerAdapter;
     ArrayList<String> slider_image_list;
+    private TextView[] dots;
     int page_position = 0;
     ViewPager viewPager;
     LinearLayout sliderDotspanel;
+    private int dotscount;
+
+
+    TextView profile,wallet,orders,invite;
     TextView edit_profile;
-    TextView profile;
+
     TextView booking;
     ImageView img;
     DrawerLayout drawer;
-    private ViewPager vp_slider;
-    private LinearLayout ll_dots;
-    private TextView[] dots;
-    private int dotscount;
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +82,10 @@ public class HomeNavigation extends AppCompatActivity
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         edit_profile = (TextView) findViewById(R.id.edit_profile);
+        orders = (TextView) findViewById(R.id.orders);
+        invite = (TextView) findViewById(R.id.invite);
+        wallet=findViewById(R.id.wallet);
+        booking=findViewById(R.id.bookings);
         booking = (TextView) findViewById(R.id.bookings);
         profile = (TextView) findViewById(R.id.profile);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -77,12 +96,24 @@ public class HomeNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Fragment fragment=null;
+            if (getIntent().hasExtra("key")){
+                if (getIntent().getStringExtra("key").equals("wallet")){
+                    fragment= new WalletFragment();
+                }else {
+                    fragment= new HomeFragment();
+                }
+            }else {
+                fragment= new HomeFragment();
+            }
         View view = navigationView.getHeaderView(0);
         img = (ImageView) view.findViewById(R.id.img);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, new HomeFragment(), "Home");
+                .replace(R.id.content_frame,fragment, "Home");
         fragmentTransaction.commit();
+
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +146,7 @@ public class HomeNavigation extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 drawer.closeDrawer(GravityCompat.START);
-
+                 startActivity(new Intent(HomeNavigation.this, MyOrders.class));
             }
         });
       */
@@ -126,6 +157,15 @@ public class HomeNavigation extends AppCompatActivity
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
                         .replace(R.id.content_frame, new CurrentBookingFragment(), "CurrentBookingFragment");
+                fragmentTransaction.commit();
+            }
+        });
+        wallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.content_frame, new WalletFragment(), "WalletFragment");
                 fragmentTransaction.commit();
             }
         });
@@ -156,6 +196,7 @@ public class HomeNavigation extends AppCompatActivity
             } else {
                 super.onBackPressed();
             }
+
 
 
         }
@@ -212,6 +253,7 @@ public class HomeNavigation extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 
 }

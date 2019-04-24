@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/lightbgblue"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_4dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_4dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:id="@+id/servicetype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_4dp"
+                android:text="PLUMBER  -"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15sp" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin_4dp"
+                android:text=" JACK HARRY"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15sp" />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/margin_4dp"
+            android:text="Date: APR 22, 2018 02:22PM"
+
+            android:textSize="@dimen/text_size_13sp" />
+
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="@dimen/margin_4dp">
+
+
+
+            <TextView
+                android:id="@+id/ux_txt_ratenow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+
+                android:gravity="center"
+                android:text="$ 50.00 Paid"
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_19sp" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+              android:layout_alignParentRight="true"
+                android:background="@drawable/round_edittext_blueborder"
+
+                android:padding="@dimen/margin_8dp"
+                android:text="Rate Now"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_19sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

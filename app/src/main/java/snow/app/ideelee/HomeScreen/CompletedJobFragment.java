@@ -31,36 +31,22 @@ public class CompletedJobFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         View v = inflater.inflate(R.layout.fragment_completed_job, container, false);
-
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_completedjob);
-
-
         serviceproviderlist = new ArrayList<>();
-
         recyclerView.setHasFixedSize(true);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true));
         serviceproviderlist.add(
                 new CompletedJobModal(
-                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online Payment",4.5));
-
+                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online Payment",0));
         serviceproviderlist.add(
                 new CompletedJobModal(
                         "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "cash on delivery",4));
-
         serviceproviderlist.add(
                 new CompletedJobModal(
                         "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online payment",5));
-        //
-
         CompletedJobAdapter adapter = new CompletedJobAdapter(getActivity(), serviceproviderlist);
-
-        //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
-
         return v;
     }
 

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/lightbgblue"
+    android:layout_height="match_parent"
+    tools:context=".PaymentSuccessfulActivity">
+    <include layout="@layout/toolbar_child" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+android:layout_marginTop="@dimen/margin_2dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_14dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:padding="@dimen/margin_4dp"
+            android:text="Payment Successful"
+            android:textColor="@android:color/holo_green_dark"
+            android:textSize="@dimen/text_size_21sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+android:layout_marginTop="@dimen/margin_12dp"
+            android:padding="@dimen/margin_4dp"
+            android:text="@string/lipsum"
+
+            android:textSize="@dimen/text_size_17sp" />
+
+
+        <Button
+            android:id="@+id/ux_btn_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_48dp"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:layout_marginRight="@dimen/margin_44dp"
+            android:background="@drawable/round_corner_colorprimary"
+            android:text="Rate Harry"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_19sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="Back"
+            android:textSize="@dimen/text_size_15sp"
+            android:paddingBottom="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"/>
+    </LinearLayout>
+</LinearLayout>

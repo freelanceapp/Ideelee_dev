@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,6 +38,9 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.service_providers_categories_layout, null);
+//        if (view == null) {
+//            view = inflater.inflate(R.layout.bottom_sheet_layout, null);
+//        }
         return new ProductViewHolder(view);
     }
 
@@ -74,6 +77,8 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
             ratingBar = itemView.findViewById(R.id.ratingbar);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             imageView = itemView.findViewById(R.id.imageView);
+
+
         }
     }
 }

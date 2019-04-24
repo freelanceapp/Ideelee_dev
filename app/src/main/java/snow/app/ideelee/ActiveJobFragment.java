@@ -34,8 +34,6 @@ public class ActiveJobFragment extends Fragment {
 
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_activejob);
-
-
         serviceproviderlist = new ArrayList<>();
 
         recyclerView.setHasFixedSize(true);
@@ -43,15 +41,15 @@ public class ActiveJobFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true));
         serviceproviderlist.add(
                 new ActiveJobModal(
-                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online Payment"));
+                        "Pending", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online Payment"));
 
         serviceproviderlist.add(
                 new ActiveJobModal(
-                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "cash on delivery"));
+                        "Accept", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "cash on delivery"));
 
         serviceproviderlist.add(
                 new ActiveJobModal(
-                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online payment"));
+                        "On Going", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online payment"));
         //
 
         ActiveJobAdapter adapter = new ActiveJobAdapter(getActivity(), serviceproviderlist);

@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="left"
+        android:drawablePadding="@dimen/margin_4dp"
+        android:drawableLeft="@drawable/ic_brightness_red_24dp"
         android:padding="@dimen/margin_4dp"
         android:text="Status:"
         android:textColor="@color/black"
@@ -37,8 +39,9 @@
         android:layout_gravity="center"
         android:gravity="left"
         android:padding="@dimen/margin_4dp"
+        android:id="@+id/status"
         android:text="Pending"
-        android:textColor="@color/yellow"
+        android:textColor="@color/orange"
         android:textSize="@dimen/text_size_15sp" />
     </LinearLayout>
 
@@ -82,8 +85,10 @@ android:textColor="@color/black"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:gravity="center"
+android:drawableLeft="@drawable/ic_brightness_1_black_24dp"
         android:padding="@dimen/margin_4dp"
+        android:drawablePadding="@dimen/margin_4dp"
         android:text="Job Location"
         android:textSize="@dimen/text_size_15sp" />
     <TextView
@@ -102,11 +107,27 @@ android:textColor="@color/black"
         android:text="530-225-3426"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_15sp" />
+        <Button
+            android:id="@+id/ux_btnjobdone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:layout_weight="1"
+android:paddingLeft="@dimen/margin_28dp"
+            android:paddingRight="@dimen/margin_28dp"
+            android:background="@drawable/round_edittext_blueborder"
+            android:text="Job Done"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_19sp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/linearlayout_button"
         android:padding="@dimen/margin_10dp">
+
 
         <Button
             android:id="@+id/ux_btn2"
