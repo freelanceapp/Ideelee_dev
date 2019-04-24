@@ -79,4 +79,8 @@
     <string name="ratingvalue">4.1</string>
     <string name="the_pepper_mockingbird">THE PEPPER MOCKINGBIRD</string>
     <string name="breakfast">BREAKFAST</string>
+    <string name="view_cart">View Cart</string>
+    <string name="lunch">Lunch</string>
+    <string name="payment_mode">Payment Mode</string>
+    <string name="plac_order">place order</string>
 </resources>

@@ -1,4 +1,4 @@
-package snow.app.ideelee.fooddelivery.adapter;
+package snow.app.ideelee.fooddelivery.restdetails.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,16 +15,18 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-
+import snow.app.ideelee.HomeScreen.orders.OrderDetails.OrderDetailActivity;
+import snow.app.ideelee.HomeScreen.orders.adapter.OrdersM;
 import snow.app.ideelee.R;
+import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
 
-public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.MyViewHolder> {
+public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyViewHolder> {
 
     Context context;
     private List<String> dataList;
     int  width;
 
-    public RestaurantsAdapter(List<String> dataList, Context context, int width) {
+    public FoodItemAdapter(List<String> dataList, Context context, int width) {
         this.dataList = dataList;
         this.context = context;
         this.width = width;
@@ -34,7 +36,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.food_del_row, parent, false);
+                .inflate(R.layout.food_item_row, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -42,26 +44,27 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
- 
 
     }
         @Override
         public int getItemCount () {
-            return /*dataList.size()*/10;
+            return /*dataList.size()*/5;
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-          
+
+
+        LinearLayout parent;
             public MyViewHolder(View view) {
                 super(view);
-                img=(ImageView)view.findViewById(R.id.img);
-                Picasso.with(context)
-                        .load("https://stmedia.stimg.co/KING6.JPG")
-                        .resize(width / 5, width / 5)
-                        .centerCrop()
-                        .into(img);
-
+               /* parent=(LinearLayout)view.findViewById(R.id.parent);
+                parent.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(new Intent(context, RestDetailsActivity.class));
+                    }
+                });
+*/
             }
         }
     }
