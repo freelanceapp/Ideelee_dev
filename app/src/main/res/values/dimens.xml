@@ -50,6 +50,7 @@
     <dimen name="big_text">25sp</dimen>
     <dimen name="med_text">21sp</dimen>
     <dimen name="small_txt">12sp</dimen>
+    <dimen name="extra_small_txt">9sp</dimen>
     <dimen name="negative_margin_big">-30dp</dimen>
     <!---->
 

@@ -76,19 +76,20 @@ public class HomeFragment extends Fragment {
          final String[] gridViewString = {
                 getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
-                getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.more)
+                getString(R.string.carpentar),
+                getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.homepainting),
+                 getString(R.string.homepainting), getString(R.string.more)
 
         };
         int[] gridViewImageId = {
                 R.drawable.electrician, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
-                R.drawable.carpanter, R.drawable.painting, R.drawable.more
+                R.drawable.carpanter,
+                R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.painting, R.drawable.more
 
         };
 
-        final int[] img = new int[]{R.drawable.home_banner, R.drawable.home_banner,
-                R.drawable.home_banner, R.drawable.home_banner,
-                R.drawable.home_banner};
+
 
         //categories gridview
 
@@ -202,7 +203,6 @@ setDynamicHeight(androidGridView);
         slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/mountain_bongo_animal_mammal_220289.jpg");
         slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/bird_mountain_bird_animal_226401.jpg");
         slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/mountain_bongo_animal_mammal_220289.jpg");
-        slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/bird_mountain_bird_animal_226401.jpg");
 
 
         sliderPagerAdapter = new ViewPagerHome(getActivity(), slider_image_list);
@@ -260,8 +260,8 @@ setDynamicHeight(androidGridView);
         totalHeight = listItem.getMeasuredHeight();
 
         float x = 1;
-        if( items > 4 ){
-            x = items/4;
+        if( items > 5 ){
+            x = items/5;
             rows = (int) (x + 1);
             totalHeight *= rows;
         }

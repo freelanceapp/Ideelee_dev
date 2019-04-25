@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/android_gridview_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_16dp" />
 
     <TextView
@@ -28,6 +28,6 @@
         android:layout_marginTop="@dimen/margin_4dp"
         android:maxLines="1"
         android:ellipsize="end"
-        android:textSize="@dimen/small_txt" />
+        android:textSize="@dimen/extra_small_txt" />
     </LinearLayout>
 </LinearLayout>
