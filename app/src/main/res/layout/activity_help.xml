@@ -22,6 +22,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:fontFamily="@font/regular"
                 android:paddingTop="@dimen/med_padding"
                 android:paddingBottom="@dimen/med_padding"
@@ -89,6 +90,7 @@
                 android:layout_marginTop="@dimen/margin_24dp"
                 android:layout_marginRight="@dimen/big_margin"
                 android:background="@drawable/round_corner_button"
+                android:fontFamily="@font/regular"
                 android:text="@string/submit"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
