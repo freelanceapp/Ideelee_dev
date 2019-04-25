@@ -89,7 +89,7 @@ TagGroup mTagGroup;
             distance=itemView.findViewById(R.id.distance);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
-            mTagGroup.setTags(new String[]{"Plumber", "Tag2", "Tag3","tag4","ytag","ytag","ytag","ytag","ytag","ytag","ytag","ytag","ytag",});
+            mTagGroup.setTags(new String[]{"Plumber", "Electrician", "Carpenter",});
             mTagGroup.submitTag();
             imageView = itemView.findViewById(R.id.ux_img_user);
         }
@@ -104,6 +104,7 @@ TagGroup mTagGroup;
             View layout=inflater.inflate(R.layout.serviceproviderdialog,(ViewGroup) v.findViewById(R.id.linearlayout));
             final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
             pw.showAtLocation(v, Gravity.CENTER,0,0);
+
             View container= (View) pw.getContentView().getRootView();
             WindowManager wm=(WindowManager)mCtx.getSystemService(Context.WINDOW_SERVICE);
             WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
@@ -120,8 +121,12 @@ TagGroup mTagGroup;
                 Intent intent =new Intent(mCtx,BookingAppointment.class);
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
+
             }
         });
 
+        pw.setOutsideTouchable(true);
+        pw.setFocusable(true);
+        pw.showAsDropDown(v, 0, 0);
     }
 }

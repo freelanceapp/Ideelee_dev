@@ -58,7 +58,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="@font/regular"                        android:maxLines="2"
+                        android:fontFamily="@font/regular"
+                        android:maxLines="2"
                         android:paddingLeft="@dimen/small_padding"
                         android:text="@string/lipsum"
                         android:textColor="@color/txt_light"
@@ -71,10 +72,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/grey_divider"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/extra_small"
                 android:paddingRight="@dimen/margin_8dp"
-                android:background="@drawable/grey_divider"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/extra_small"
                 android:paddingBottom="@dimen/extra_small">
 
                 <ImageView
@@ -100,139 +101,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="6.5"
-                            android:gravity="center_vertical"
-                            android:fontFamily="@font/regular"    android:padding="@dimen/extra_small"
-                            android:text="Apple Vipe"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/normal_text" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="3.5"
-                            android:gravity="center">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right"
-                                android:background="@drawable/stroke_round"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:drawableLeft="@drawable/minus"
-                                    android:gravity="center_vertical"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/small_padding"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <View
-                                    android:layout_width=".7dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimaryDark" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/extra_small"
-                                    android:text="02"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <View
-                                    android:layout_width=".7dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimaryDark" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:drawableLeft="@drawable/minus"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:paddingRight="@dimen/small_padding"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:fontFamily="@font/regular"
-                            android:gravity="center_vertical"
-                            android:includeFontPadding="false"
-                            android:paddingLeft="@dimen/extra_small"
-                            android:text="$ 20.00"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/small_txt" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="right"
-                            android:gravity="right"
-                            android:includeFontPadding="false"
-                            android:paddingLeft="@dimen/extra_small"
-                            android:text="$ 40.00"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/small_txt" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/grey_divider"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/extra_small"
-                android:paddingBottom="@dimen/extra_small">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/extra_small"
-                    android:padding="@dimen/small_padding"
-                    android:src="@drawable/ic_brightness_1_black_24dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="@dimen/margin_8dp"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6.5"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Apple Vipe"
@@ -258,6 +127,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
                                     android:drawableLeft="@drawable/minus"
+                                    android:fontFamily="@font/regular"
                                     android:gravity="center_vertical"
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/small_padding"
@@ -274,8 +144,8 @@
 
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
+                                    android:fontFamily="@font/regular"
                                     android:gravity="center"
-
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/extra_small"
                                     android:text="02"
@@ -290,8 +160,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:drawableLeft="@drawable/plus"
-                                android:layout_gravity="center"
+                                    android:layout_gravity="center"
+                                    android:drawableLeft="@drawable/minus"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center"
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/small_padding"
                                     android:textColor="@color/colorPrimaryDark"
@@ -314,6 +186,143 @@
                             android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
+                            android:text="$ 20.00"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_txt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_gravity="right"
+                            android:fontFamily="@font/regular"
+                            android:gravity="right"
+                            android:includeFontPadding="false"
+                            android:paddingLeft="@dimen/extra_small"
+                            android:text="$ 40.00"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_txt" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_divider"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/extra_small"
+                android:paddingBottom="@dimen/extra_small">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/extra_small"
+                    android:padding="@dimen/small_padding"
+                    android:src="@drawable/ic_brightness_1_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingRight="@dimen/margin_8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6.5"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/extra_small"
+                            android:text="Apple Vipe"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3.5"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right"
+                                android:background="@drawable/stroke_round"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:drawableLeft="@drawable/minus"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center_vertical"
+                                    android:paddingLeft="@dimen/small_padding"
+                                    android:paddingRight="@dimen/small_padding"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <View
+                                    android:layout_width=".7dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center"
+                                    android:paddingLeft="@dimen/small_padding"
+                                    android:paddingRight="@dimen/extra_small"
+                                    android:text="02"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <View
+                                    android:layout_width=".7dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawableLeft="@drawable/plus"
+                                    android:fontFamily="@font/regular"
+                                    android:paddingLeft="@dimen/small_padding"
+                                    android:paddingRight="@dimen/small_padding"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/regular"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
                             android:text="$ 20.00"
                             android:textColor="@color/black"
@@ -324,6 +333,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="right"
+                            android:fontFamily="@font/regular"
                             android:gravity="right"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
@@ -339,9 +349,9 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:paddingLeft="@dimen/margin_8dp"
-                android:paddingRight="@dimen/margin_8dp"
-                android:orientation="vertical">
+                android:paddingRight="@dimen/margin_8dp">
 
 
                 <RelativeLayout
@@ -353,6 +363,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
                         android:text="Item Total"
@@ -364,6 +375,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
+                        android:fontFamily="@font/regular"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
                         android:text="$ 80.00"
@@ -394,6 +406,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
                         android:text="Total"
@@ -405,6 +418,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
+                        android:fontFamily="@font/regular"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
                         android:text="$ 80.00"
@@ -421,6 +435,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
                         android:text="Tax"
@@ -432,6 +447,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
+                        android:fontFamily="@font/regular"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
                         android:text="$ 20.00"
@@ -463,6 +479,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
+                        android:fontFamily="@font/regular"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
                         android:text="$ 100.00"
@@ -498,6 +515,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+
                             android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
@@ -564,6 +582,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
                 android:text="@string/payment_mode"
                 android:textColor="@color/white"
                 android:textSize="@dimen/small_txt" />
@@ -571,6 +590,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
                 android:text="Credit Card"
                 android:textColor="@color/white"
                 android:textSize="@dimen/normal_text" />
@@ -578,6 +598,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
                 android:text="Change"
                 android:textAllCaps="true"
                 android:textColor="@color/gray"
@@ -598,6 +619,7 @@
                 android:background="@drawable/white_bg_round"
                 android:drawableRight="@drawable/coupen_ar"
                 android:drawablePadding="@dimen/small_padding"
+                android:fontFamily="@font/regular"
                 android:gravity="center"
                 android:padding="@dimen/small_padding"
                 android:text="@string/plac_order"

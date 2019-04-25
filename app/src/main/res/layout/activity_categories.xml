@@ -38,6 +38,7 @@
                 android:background="@drawable/rectangle_edittext"
                 android:drawableLeft="@drawable/logo_36"
                 android:drawablePadding="@dimen/margin_4dp"
+                android:fontFamily="@font/regular"
                 android:hint="@string/search"
                 android:padding="@dimen/margin_4dp"
                 android:textColor="@color/black"
@@ -69,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:fontFamily="@font/regular"
             android:padding="@dimen/margin_4dp"
             android:text="@string/VastArray"
             android:textColor="@color/black" />
@@ -78,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/vastarray"
+            android:fontFamily="@font/regular"
             android:text="@string/dott"
             android:textColor="@color/colorPrimary" />
 
