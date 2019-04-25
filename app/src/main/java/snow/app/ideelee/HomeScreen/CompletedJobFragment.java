@@ -41,7 +41,7 @@ public class CompletedJobFragment extends Fragment {
                         "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online Payment",0));
         serviceproviderlist.add(
                 new CompletedJobModal(
-                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "cash on delivery",4));
+                        "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Cash Payment",4));
         serviceproviderlist.add(
                 new CompletedJobModal(
                         "completed", "APR 18,2019 02:00PM", "JACK HARRY", "", "", "", "Online payment",5));

@@ -38,8 +38,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="@dimen/med_padding"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/med_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -55,8 +55,8 @@
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
                     android:fontFamily="sans-serif"
-                    android:inputType="textPersonName"
                     android:hint="@string/type_name_here"
+                    android:inputType="textPersonName"
                     android:padding="@dimen/small_padding" />
 
                 <TextView
@@ -77,13 +77,32 @@
                     android:inputType="number"
                     android:padding="@dimen/small_padding" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:padding="@dimen/extra_small"
-                    android:text="@string/address"
-                    android:textSize="@dimen/normal_text" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:padding="@dimen/extra_small"
+                        android:text="@string/address"
+                        android:textSize="@dimen/normal_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:layout_alignParentRight="true"
+                        android:padding="@dimen/extra_small"
+                        android:text="Change"
+                        android:drawableLeft="@drawable/location"
+                        android:drawablePadding="@dimen/extra_small"
+                        android:textSize="@dimen/normal_text" />
+
+                </RelativeLayout>
+
 
                 <EditText
                     android:layout_width="match_parent"
@@ -91,11 +110,12 @@
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
                     android:fontFamily="sans-serif"
-                    android:minLines="2"
-                    android:inputType="textPostalAddress"
-                     android:gravity="top"
+                    android:gravity="top"
                     android:hint="@string/enter_your_address_here"
+                    android:inputType="textPostalAddress"
+                    android:minLines="2"
                     android:padding="@dimen/small_padding" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -112,17 +132,18 @@
                     android:fontFamily="sans-serif"
                     android:hint="johan.doe@example.com"
                     android:padding="@dimen/small_padding" />
+
                 <Button
                     android:id="@+id/ux_btn_continue_loginPage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/big_margin"
                     android:layout_marginTop="@dimen/margin_24dp"
+                    android:layout_marginRight="@dimen/big_margin"
                     android:background="@drawable/round_corner_button"
+                    android:inputType="textEmailAddress"
                     android:text="Update"
                     android:textAllCaps="true"
-                    android:inputType="textEmailAddress"
-                    android:layout_marginLeft="@dimen/big_margin"
-                    android:layout_marginRight="@dimen/big_margin"
                     android:textColor="@color/white"
                     android:textSize="@dimen/text_size_17sp" />
             </LinearLayout>

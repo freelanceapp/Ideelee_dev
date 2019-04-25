@@ -135,10 +135,7 @@ public class RestDetailsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(mypopupWindow.isShowing()) {
-            mypopupWindow.dismiss();
-            return;
-        }
+
         super.onBackPressed();
     }
 }

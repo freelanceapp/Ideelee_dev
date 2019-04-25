@@ -16,23 +16,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import snow.app.ideelee.HomeScreen.CurrentBookingFragment;
 import snow.app.ideelee.HomeScreen.HomeFragment;
+import snow.app.ideelee.HomeScreen.HomeNavigation;
 
 public class BookingActivity extends Activity {
-TextView txt_note;
-Button btn_confirmbooking;
+    TextView txt_note;
+    Button btn_confirmbooking;
+    ImageView backbutton1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking);
-        txt_note=findViewById(R.id.textview_note);
-        btn_confirmbooking=findViewById(R.id.ux_btn_confirmbooking);
+        txt_note = findViewById(R.id.textview_note);
+        backbutton1 = findViewById(R.id.backbutton1);
+        btn_confirmbooking = findViewById(R.id.ux_btn_confirmbooking);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
+        TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Booking");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -46,26 +52,44 @@ Button btn_confirmbooking;
                 initiatePopupwindow(v);
             }
         });
-    }
-    public void initiatePopupwindow(View v){
 
-        LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.booking_successful_dialog,(ViewGroup) v.findViewById(R.id.linearlayout_bookingsuccessful));
-        final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        pw.showAtLocation(v, Gravity.CENTER,0,0);
-        View container= (View) pw.getContentView().getRootView();
-        WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
-        p.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        p.dimAmount=0.6f;
-        wm.updateViewLayout(container,p);
-        Button btn_continue_loginPage= layout.findViewById(R.id.ux_btn_done_bs);
-        btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
+
+        backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
             }
         });
+    }
+
+    public void initiatePopupwindow(View v) {
+
+        try {
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.booking_successful_dialog, (ViewGroup) v.findViewById(R.id.linearlayout_bookingsuccessful));
+            final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+            pw.showAtLocation(v, Gravity.CENTER, 0, 0);
+            View container = (View) pw.getContentView().getRootView();
+            WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+            WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+            p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+            p.dimAmount = 0.6f;
+            wm.updateViewLayout(container, p);
+            Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn_done_bs);
+            btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BookingActivity.this, HomeNavigation.class);
+                    intent.putExtra("key", "wallet");
+                    startActivity(intent);
+                    finish();
+
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(this, "Something went wrong..", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 

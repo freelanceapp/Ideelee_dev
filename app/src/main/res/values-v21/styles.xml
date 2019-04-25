@@ -11,4 +11,9 @@
         <item name="colorAccent">@color/yellow</item>
         <item name="android:colorControlNormal">@color/gray</item>
     </style>
+    <style name="PopupMenuListView" parent="@style/Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">@color/gray</item>
+        <item name="android:dividerHeight">1dp</item>
+
+    </style>
 </resources>

@@ -32,6 +32,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
@@ -61,7 +62,7 @@ public class HomeNavigation extends AppCompatActivity
     private int dotscount;
 
 
-    TextView profile,wallet,orders,invite;
+    TextView profile,wallet,orders,invite,home;
     TextView edit_profile;
 
     TextView booking;
@@ -88,6 +89,7 @@ public class HomeNavigation extends AppCompatActivity
         booking=findViewById(R.id.bookings);
         booking = (TextView) findViewById(R.id.bookings);
         profile = (TextView) findViewById(R.id.profile);
+        home=findViewById(R.id.home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -124,6 +126,16 @@ public class HomeNavigation extends AppCompatActivity
 
             }
         });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction().addToBackStack(null)
+                        .replace(R.id.content_frame, new HomeFragment(), "Home");
+                fragmentTransaction.commit();
+            }
+        });
+
        /*
 
         edit_profile.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +252,7 @@ public class HomeNavigation extends AppCompatActivity
         } else if (id == R.id.invite) {
             startActivity(new Intent(HomeNavigation.this, InviteActivity.class));
         } else if (id == R.id.manage_address) {
+            startActivity(new Intent(HomeNavigation.this, AddAddress.class));
 
         } else if (id == R.id.help_support) {
             startActivity(new Intent(HomeNavigation.this, HelpActivity.class));

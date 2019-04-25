@@ -88,7 +88,7 @@ android:layout_centerInParent="true"
                 android:background="@drawable/round_edittext_blueborder"
 
                 android:padding="@dimen/margin_8dp"
-                android:text="Rate Now"
+                android:text="Pay Now"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_19sp" />

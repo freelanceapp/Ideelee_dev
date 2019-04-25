@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:background="@color/lightbgblue"
@@ -151,10 +152,10 @@ android:paddingLeft="@dimen/margin_28dp"
             android:layout_marginLeft="@dimen/margin_8dp"
             android:layout_weight="1"
 
-            android:background="@drawable/round_edittext_blueborder"
+            android:background="@drawable/round_corner_colorprimary"
             android:text="Cancel Job"
             android:textAllCaps="false"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_19sp" />
     </LinearLayout>
 </LinearLayout>

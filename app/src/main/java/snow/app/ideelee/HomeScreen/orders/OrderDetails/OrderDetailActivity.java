@@ -1,5 +1,6 @@
 package snow.app.ideelee.HomeScreen.orders.OrderDetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import snow.app.ideelee.AddAddress;
+import snow.app.ideelee.LiveTracking;
 import snow.app.ideelee.R;
 
 public class OrderDetailActivity extends AppCompatActivity {
     ImageView img;
     TextView title_bookingappointement;
     ImageView backbutton1;
+    TextView status;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.img);
         backbutton1 = (ImageView) findViewById(R.id.backbutton1);
         title_bookingappointement = (TextView) findViewById(R.id.title_bookingappointement);
+        status = (TextView) findViewById(R.id.status);
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
@@ -42,6 +47,12 @@ public class OrderDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OrderDetailActivity.this, LiveTracking.class));
             }
         });
     }

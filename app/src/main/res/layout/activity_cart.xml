@@ -71,6 +71,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingRight="@dimen/margin_8dp"
                 android:background="@drawable/grey_divider"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/extra_small"
@@ -123,10 +124,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
+                                    android:drawableLeft="@drawable/minus"
                                     android:gravity="center_vertical"
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/small_padding"
-                                    android:text="-"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
 
@@ -140,9 +141,9 @@
 
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-
                                     android:gravity="center"
                                     android:paddingLeft="@dimen/small_padding"
+                                    android:paddingRight="@dimen/extra_small"
                                     android:text="02"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
@@ -155,9 +156,11 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:drawableLeft="@drawable/minus"
                                     android:paddingLeft="@dimen/small_padding"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
                                     android:paddingRight="@dimen/small_padding"
-                                    android:text="+"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
                             </LinearLayout>
@@ -216,6 +219,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/margin_8dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -253,10 +257,10 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
+                                    android:drawableLeft="@drawable/minus"
                                     android:gravity="center_vertical"
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/small_padding"
-                                    android:text="-"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
 
@@ -270,9 +274,10 @@
 
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-
                                     android:gravity="center"
+
                                     android:paddingLeft="@dimen/small_padding"
+                                    android:paddingRight="@dimen/extra_small"
                                     android:text="02"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
@@ -285,9 +290,10 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:drawableLeft="@drawable/plus"
+                                android:layout_gravity="center"
                                     android:paddingLeft="@dimen/small_padding"
                                     android:paddingRight="@dimen/small_padding"
-                                    android:text="+"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
                             </LinearLayout>
@@ -333,6 +339,8 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/margin_8dp"
+                android:paddingRight="@dimen/margin_8dp"
                 android:orientation="vertical">
 
 
@@ -367,8 +375,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:drawableRight="@drawable/ar_circle"
+                    android:drawableLeft="@drawable/offer_red"
+                    android:drawableRight="@drawable/coupen_ar"
+                    android:drawablePadding="@dimen/small_padding"
                     android:fontFamily="sans-serif"
+                    android:gravity="center_vertical"
                     android:padding="@dimen/small_padding"
                     android:text="Promo Code"
                     android:textColor="@color/black"
@@ -518,6 +529,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/small_padding"
                             android:fontFamily="sans-serif"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
@@ -579,11 +591,12 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/place_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/white_bg_round"
-                android:drawableRight="@drawable/ar_circle"
+                android:drawableRight="@drawable/coupen_ar"
                 android:drawablePadding="@dimen/small_padding"
                 android:gravity="center"
                 android:padding="@dimen/small_padding"

@@ -20,7 +20,7 @@
 
 
             <EditText
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_neg_24dp"
                 android:background="@drawable/rectangle_edittext"
@@ -32,15 +32,6 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/gray" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content" />
-            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 

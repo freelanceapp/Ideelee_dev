@@ -1,6 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
 
-</android.support.constraint.ConstraintLayout>
+    android:id="@+id/linearlayout_filter"
+    android:background="@drawable/transparent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginLeft="@dimen/margin_70dp"
+        android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:padding="@dimen/margin_12dp"
+    android:background="@drawable/grey_divider"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/cancel"
+        android:src="@drawable/ic_close_black_24dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     android:gravity="center"
+        android:text="FILTER"
+        android:layout_centerInParent="true"
+        android:textStyle="bold"
+
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_19sp" />
+</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_16dp"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/black"
+        android:padding="@dimen/extra_small"
+        android:text="Price"
+        android:textSize="@dimen/text_size_19sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:padding="@dimen/extra_small"
+        android:text="(Per Hour)"
+        android:textSize="@dimen/text_size_13sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/med_padding"
+        android:background="@drawable/square_border"
+        android:fontFamily="sans-serif"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/margin_8dp"
+        android:inputType="textPersonName"
+        android:padding="@dimen/margin_12dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/med_padding"
+            android:background="@drawable/square_border"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:inputType="textPersonName"
+            android:padding="@dimen/margin_12dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:padding="@dimen/extra_small"
+            android:text="Location"
+            android:textSize="@dimen/text_size_17sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/med_padding"
+            android:background="@drawable/square_border"
+            android:fontFamily="sans-serif"
+            android:inputType="textPersonName"
+            android:padding="@dimen/margin_12dp" />
+    </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:padding="@dimen/extra_small"
+            android:text="Service Type"
+            android:textSize="@dimen/text_size_17sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/square_border"
+            android:padding="@dimen/margin_12dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="Plumber"
+                android:textSize="@dimen/text_size_17sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:padding="@dimen/extra_small"
+            android:text="Rating"
+            android:textSize="@dimen/text_size_17sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/square_border"
+            android:padding="@dimen/margin_12dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:text="4 + Rating"
+                android:textSize="@dimen/text_size_17sp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_arrow_drop_down_black_24dp"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/margin_40dp"
+            android:layout_marginLeft="@dimen/margin_40dp"
+            android:layout_marginTop="@dimen/margin_30dp"
+            android:background="@drawable/round_corner_colorprimary"
+           android:textSize="@dimen/text_size_17sp"
+android:textAllCaps="false"
+
+            android:text="Apply Filter"
+            android:textColor="@color/white" />
+    </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

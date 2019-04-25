@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import snow.app.ideelee.Categories;
 import snow.app.ideelee.HomeScreen.Adapters.BottomGridAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
@@ -103,13 +104,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int i, long id) {
-
+if (i==gridViewString.length-1){
+    startActivity(new Intent(getActivity(), Categories.class));
+}else{
                     startActivity(new Intent(getActivity(), ServiceActivity.class));
 
                     Toast.makeText(getActivity(), "GridView Item: " + gridViewString[+i],
                             Toast.LENGTH_LONG).show();
 
-            }
+            }}
         });
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);

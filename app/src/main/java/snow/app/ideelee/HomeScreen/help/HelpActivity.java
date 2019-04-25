@@ -2,6 +2,7 @@ package snow.app.ideelee.HomeScreen.help;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,5 +22,11 @@ public class HelpActivity extends AppCompatActivity {
         notification=(ImageView)findViewById(R.id.notification);
         title=(TextView) findViewById(R.id.title_bookingappointement);
         title.setText("Help");
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

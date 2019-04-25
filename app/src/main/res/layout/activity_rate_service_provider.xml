@@ -22,7 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
 android:layout_marginTop="@dimen/margin_2dp"
-
+android:clickable="true"
+        android:id="@+id/linearlayout_profile"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical"
@@ -30,7 +31,8 @@ android:layout_marginTop="@dimen/margin_2dp"
 
         android:paddingBottom="@dimen/margin_8dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"

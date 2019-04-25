@@ -5,19 +5,24 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restaurantsmod.adapter.RestaurantsAdapter;
 
 public class RestaurantsList extends AppCompatActivity {
 ImageView backbutton1;
 TextView title_bookingappointement;
+TextView relevance;
 RecyclerView rv_list;
     RestaurantsAdapter restaurantsAdapter;
     @Override
@@ -26,8 +31,8 @@ RecyclerView rv_list;
         setContentView(R.layout.activity_restaurants_list);
         backbutton1=(ImageView)findViewById(R.id.backbutton1);
         title_bookingappointement=(TextView)findViewById(R.id.title_bookingappointement);
+        relevance=(TextView)findViewById(R.id.relevance);
         rv_list=(RecyclerView)findViewById(R.id.rv_list);
-
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,5 +49,22 @@ RecyclerView rv_list;
         ArrayList<String>data= new ArrayList<>();
         restaurantsAdapter= new RestaurantsAdapter(data,this,width);
         rv_list.setAdapter(restaurantsAdapter);
+        relevance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(RestaurantsList.this, relevance);
+                //Inflating the Popup using xml file
+                popup.getMenuInflater().inflate(R.menu.relevance_menu, popup.getMenu());
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(RestaurantsList.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                });
+
+                popup.show();//s
+            }
+        });
     }
 }

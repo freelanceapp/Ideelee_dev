@@ -13,26 +13,38 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:id="@+id/linearlayout"
             android:orientation="horizontal">
 
 
             <TextView
+                android:id="@+id/vastarray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin_4dp"
+                android:layout_alignParentLeft="true"
                 android:text="@string/VastArray"
                 android:textColor="@color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/vastarray"
                 android:text="@string/dott"
                 android:textColor="@color/colorPrimary" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:layout_height="wrap_content" />
 
-        </LinearLayout>
+        </RelativeLayout>
         <GridView
             android:id="@+id/grid_view_image_text"
             android:layout_width="match_parent"

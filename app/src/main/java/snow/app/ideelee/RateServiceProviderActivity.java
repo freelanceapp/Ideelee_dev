@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ RatingBar ratingBar;
 Button btn_submit;
     ImageView backbutton1;
     TextView title_bookingappointement;
+    LinearLayout linearLayout_profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +25,7 @@ Button btn_submit;
         btn_submit=findViewById(R.id.ux_btn_submit);
         ratingBar=findViewById(R.id.ratingbar_rate);
         backbutton1=findViewById(R.id.backbutton1);
+        linearLayout_profile=findViewById(R.id.linearlayout_profile);
         title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
         ratingBar.setRating(4);
         btn_submit.setOnClickListener(new View.OnClickListener() {
@@ -40,5 +43,13 @@ Button btn_submit;
             }
         });
         title_bookingappointement.setText("");
+        linearLayout_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RateServiceProviderActivity.this, ServiceProfile.class);
+
+                startActivity(intent);
+            }
+        });
     }
 }
