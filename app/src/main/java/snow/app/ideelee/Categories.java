@@ -16,7 +16,6 @@ import snow.app.ideelee.HomeScreen.Adapters.CategoriesAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Categories extends AppCompatActivity {
     CategoriesAdapter adapterViewAndroid;

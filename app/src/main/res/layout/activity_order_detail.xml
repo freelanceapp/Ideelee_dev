@@ -47,7 +47,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:padding="@dimen/small_padding"
                             android:text="Burger King"
                             android:textColor="@color/black"
@@ -58,7 +58,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="right"
                             android:padding="@dimen/small_padding"
                             android:text="Live Tracking"
@@ -70,7 +70,7 @@
                         android:id="@+id/summery"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:padding="@dimen/small_padding"
                         android:text="1 x Burger, 2 x Burger , 1 x Burger"
                         android:textColor="@color/txt_light"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:padding="@dimen/small_padding"
                 android:text="@string/your_order"
                 android:textColor="@color/black"
@@ -145,7 +145,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
@@ -224,7 +224,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
@@ -291,7 +291,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
@@ -321,7 +321,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
@@ -352,7 +352,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
                         android:text="Grand Total"
@@ -389,7 +389,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Order Details"
@@ -407,7 +407,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Order Number:"
@@ -417,7 +417,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="124578547"
@@ -435,7 +435,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Payment"
@@ -445,7 +445,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="@string/online_payment"
@@ -463,7 +463,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Date"
@@ -473,7 +473,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif"
+                                android:fontFamily="@font/regular"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="21 Apr, 2019 11:40 am"
@@ -485,7 +485,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Deliever To"
@@ -494,7 +494,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="@string/_121_cresent_avenue_drybeck"

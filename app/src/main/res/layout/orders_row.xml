@@ -37,7 +37,7 @@
                     android:layout_weight="5"
                     android:padding="@dimen/small_padding"
                     android:text="Burger King"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:textColor="@color/black"
                     android:textSize="@dimen/small_txt" />
 
@@ -48,7 +48,7 @@
                     android:layout_weight="5"
                     android:padding="@dimen/small_padding"
                     android:text="Live Tracking"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:gravity="right"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/small_txt" />
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/small_padding"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:text="1 x Burger, 2 x Burger , 1 x Burger"
                 android:textColor="@color/txt_light"
                 android:textSize="@dimen/small_txt" />
@@ -77,7 +77,7 @@
 
             android:id="@+id/time"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:layout_weight="6.5"
             android:padding="@dimen/small_padding"
             android:text="21 Apr, 2019 11:40 am"
@@ -91,7 +91,7 @@
             android:layout_weight="3.5"
             android:padding="@dimen/small_padding"
             android:text="$110.00"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:gravity="right"
             android:textColor="@color/black"
             android:textSize="@dimen/normal_text" />

@@ -178,7 +178,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
@@ -311,7 +311,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
@@ -378,7 +378,7 @@
                     android:drawableLeft="@drawable/offer_red"
                     android:drawableRight="@drawable/coupen_ar"
                     android:drawablePadding="@dimen/small_padding"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:gravity="center_vertical"
                     android:padding="@dimen/small_padding"
                     android:text="Promo Code"
@@ -450,7 +450,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
                         android:text="Grand Total"
@@ -487,7 +487,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Personal Details"
@@ -498,7 +498,7 @@
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Stephen Moore, +4154896578"
@@ -518,7 +518,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Delivering to"
@@ -530,7 +530,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/small_padding"
-                            android:fontFamily="sans-serif"
+                            android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="@string/_121_cresent_avenue_drybeck"

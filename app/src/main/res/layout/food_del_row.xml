@@ -35,7 +35,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:text="Burger King"
                 android:textSize="@dimen/normal_text" />
 
@@ -74,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/gray_stroke"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:padding="@dimen/extra_small"
                 android:text="American"
                 android:textSize="@dimen/small_txt" />
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/small_padding"
                 android:background="@drawable/gray_stroke"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:padding="@dimen/extra_small"
                 android:text="Fast Food"
                 android:textSize="@dimen/small_txt" />
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/small_padding"
                 android:background="@drawable/gray_stroke"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:padding="@dimen/extra_small"
                 android:text="Desserts"
                 android:textSize="@dimen/small_txt" />

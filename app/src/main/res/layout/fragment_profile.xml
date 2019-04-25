@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:padding="@dimen/extra_small"
                     android:text="@string/name"
                     android:textSize="@dimen/normal_text" />
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:hint="@string/type_name_here"
                     android:inputType="textPersonName"
                     android:padding="@dimen/small_padding" />
@@ -62,7 +62,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:padding="@dimen/extra_small"
                     android:text="@string/phone"
                     android:textSize="@dimen/normal_text" />
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:hint="@string/phone_hint"
                     android:inputType="number"
                     android:padding="@dimen/small_padding" />
@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:padding="@dimen/extra_small"
                         android:text="@string/address"
                         android:textSize="@dimen/normal_text" />
@@ -93,7 +93,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:layout_alignParentRight="true"
                         android:padding="@dimen/extra_small"
                         android:text="Change"
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:gravity="top"
                     android:hint="@string/enter_your_address_here"
                     android:inputType="textPostalAddress"
@@ -119,7 +119,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:padding="@dimen/extra_small"
                     android:text="@string/email"
                     android:textSize="@dimen/normal_text" />
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/med_padding"
                     android:background="@drawable/square_border"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:hint="johan.doe@example.com"
                     android:padding="@dimen/small_padding" />
 

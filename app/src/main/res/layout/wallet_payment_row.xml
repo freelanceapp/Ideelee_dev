@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/lightbgblue"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:background="@color/lightbgblue"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,7 +14,6 @@
         android:background="@color/white"
         android:orientation="vertical"
         android:padding="@dimen/margin_4dp">
-
 
 
         <LinearLayout
@@ -41,54 +40,52 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size_15sp" />
         </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_4dp"
+            android:fontFamily="@font/regular"
             android:text="Date: APR 22, 2018 02:22PM"
 
             android:textSize="@dimen/text_size_13sp" />
 
 
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center"
+            android:orientation="horizontal"
             android:padding="@dimen/margin_4dp">
 
 
+            <TextView
+                android:id="@+id/ux_txt_ratenow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/regular"
+                android:text="$ 50.00 Paid"
 
-                <TextView
-                    android:id="@+id/ux_txt_ratenow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-
-                  android:layout_alignParentLeft="true"
-
-                    android:gravity="center"
-                    android:text="$ 50.00 Paid"
-
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_size_19sp" />
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_19sp" />
 
 
-                <TextView
-                    android:id="@+id/payment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="left"
-                    android:layout_alignParentRight="true"
-                    android:padding="@dimen/margin_4dp"
-                    android:text="Online"
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textSize="@dimen/text_size_15sp" />
+            <TextView
+                android:id="@+id/payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:gravity="left"
+                android:fontFamily="@font/regular"
+                android:padding="@dimen/margin_4dp"
+                android:text="Online"
+                android:textColor="@android:color/holo_green_dark"
+                android:textSize="@dimen/text_size_15sp" />
 
         </RelativeLayout>
     </LinearLayout>

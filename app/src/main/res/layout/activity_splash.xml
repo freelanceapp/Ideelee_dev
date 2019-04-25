@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:textSize="@dimen/text_size_27sp"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/regular"
         android:visibility="gone"
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/margin_8dp"

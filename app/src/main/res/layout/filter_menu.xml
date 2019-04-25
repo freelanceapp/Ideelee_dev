@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/regular"
         android:textColor="@color/black"
         android:padding="@dimen/extra_small"
         android:text="Price"
@@ -57,7 +57,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/regular"
         android:padding="@dimen/extra_small"
         android:text="(Per Hour)"
         android:textSize="@dimen/text_size_13sp" />
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/med_padding"
         android:background="@drawable/square_border"
-        android:fontFamily="sans-serif"
+        android:fontFamily="@font/regular"
         android:layout_weight="1"
         android:layout_marginRight="@dimen/margin_8dp"
         android:inputType="textPersonName"
@@ -83,7 +83,7 @@
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/med_padding"
             android:background="@drawable/square_border"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:layout_marginLeft="@dimen/margin_8dp"
             android:inputType="textPersonName"
             android:padding="@dimen/margin_12dp" />
@@ -96,7 +96,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:textColor="@color/black"
             android:padding="@dimen/extra_small"
             android:text="Location"
@@ -107,7 +107,7 @@
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/med_padding"
             android:background="@drawable/square_border"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:inputType="textPersonName"
             android:padding="@dimen/margin_12dp" />
     </LinearLayout>
@@ -116,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:textColor="@color/black"
             android:padding="@dimen/extra_small"
             android:text="Service Type"
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
@@ -146,7 +146,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif"
+            android:fontFamily="@font/regular"
             android:textColor="@color/black"
             android:padding="@dimen/extra_small"
             android:text="Rating"
@@ -160,7 +160,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
+                android:fontFamily="@font/regular"
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"

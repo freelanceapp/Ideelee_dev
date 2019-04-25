@@ -46,7 +46,7 @@
     <dimen name="btn_padding">13dp</dimen>
     <dimen name="extra_small">5dp</dimen>
     <dimen name="normal_padding">8dp</dimen>
-    <dimen name="normal_text">17sp</dimen>
+    <dimen name="normal_text">16sp</dimen>
     <dimen name="big_text">25sp</dimen>
     <dimen name="med_text">21sp</dimen>
     <dimen name="small_txt">12sp</dimen>

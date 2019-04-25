@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/logo"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:text="@string/LOGIN"
                     android:textAlignment="center"
                     android:textColor="@color/white"
@@ -57,7 +57,7 @@
                     android:drawableLeft="@drawable/user_"
                     android:drawablePadding="@dimen/margin_8dp"
                     android:hint="@string/user_or_phone"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:inputType="textEmailAddress"
                     android:textColorHint="@color/gray_dark"
                     android:textColor="@color/black"
@@ -74,12 +74,12 @@
                     android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:layout_marginTop="@dimen/normal_padding"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:padding="@dimen/margin_10dp" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                     android:fontFamily="sans-serif"
+                     android:fontFamily="@font/regular"
                     android:text="@string/forgot_password"
                      android:textColor="@color/colorPrimaryDark"
                     android:padding="@dimen/small_padding"
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/small_padding"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/regular"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:text="@string/OR"
@@ -144,7 +144,7 @@
                         android:text="@string/donthaveanaccount"
                         android:textColor="@color/black"
                         android:textStyle="bold"
-                        android:textSize="@dimen/text_size_17sp" />
+                        android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:id="@+id/ux_txt_registernow_loginPage"
@@ -154,7 +154,7 @@
                         android:text="@string/registernow"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/text_size_17sp" />
+                        android:textSize="@dimen/normal_text" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

@@ -34,6 +34,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_17sp"
         android:text="Jack Harry"
+        android:fontFamily="@font/regular"
         android:gravity="center"
         android:layout_gravity="center"  />
     <TextView
@@ -42,6 +43,7 @@
         android:padding="@dimen/margin_4dp"
         android:textColor="@color/black"
         android:textStyle="bold"
+        android:fontFamily="@font/regular"
         android:textSize="@dimen/text_size_17sp"
         android:text="$ 15.00 Per hour"
         android:gravity="center"
@@ -53,6 +55,7 @@
         android:textSize="@dimen/text_size_17sp"
         android:text="Already Booked Schedule"
         android:gravity="left"
+        android:fontFamily="@font/regular"
         android:layout_gravity="left"  />
     <me.gujun.android.taggroup.TagGroup
         android:id="@+id/tag"
@@ -69,6 +72,7 @@
         android:id="@+id/ux_btn"
         android:textColor="@color/colorPrimary"
         android:textAllCaps="false"
+        android:fontFamily="@font/regular"
         android:textSize="@dimen/text_size_19sp"
         android:background="@drawable/round_edittext_blueborder"
         android:layout_height="wrap_content" />

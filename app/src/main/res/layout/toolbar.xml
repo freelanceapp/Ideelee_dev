@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_4dp"
+            android:fontFamily="@font/regular"
             android:background="@drawable/rectangle_edittext" />
     </RelativeLayout>
 </android.support.v7.widget.Toolbar>
