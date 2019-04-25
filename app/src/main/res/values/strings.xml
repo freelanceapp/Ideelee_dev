@@ -83,4 +83,5 @@
     <string name="lunch">Lunch</string>
     <string name="payment_mode">Payment Mode</string>
     <string name="plac_order">place order</string>
+    <string name="additional_charges_if_any">Additional Charges (If any)</string>
 </resources>

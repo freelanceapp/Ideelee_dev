@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <include layout="@layout/toolbar_child" />
+
+    <include layout="@layout/toolbar_child"
+        android:id="@+id/tool_lay"/>
 
     <RelativeLayout
+        android:id="@+id/lay"
+        android:layout_below="@+id/tool_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/extra_small">
@@ -47,6 +50,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_below="@+id/lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -73,14 +77,26 @@
                     android:layout_height="wrap_content"
                     android:text="Live Order Tracking"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/normal_text" />
+                    android:textSize="@dimen/normal_text"
+                    android:visibility="visible" />
 
             </LinearLayout>
+
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <android.support.v7.widget.RecyclerView
+                   android:id="@+id/rv_list"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" />
+           </RelativeLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/tracker"/>
+                android:src="@drawable/tracker"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

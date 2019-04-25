@@ -5,7 +5,7 @@
     android:orientation="vertical"
 
     android:id="@+id/linearlayout_filter"
-    android:background="@drawable/transparent"
+    android:background="@android:color/transparent"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
