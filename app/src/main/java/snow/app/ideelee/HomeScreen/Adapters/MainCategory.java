@@ -43,10 +43,8 @@ public class MainCategory extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-
             gridViewAndroid = new View(mContext);
             gridViewAndroid = inflater.inflate(R.layout.home_gridlayout, null);
-
             TextView textViewAndroid = (TextView) gridViewAndroid.findViewById(R.id.android_gridview_text);
             ImageView imageViewAndroid = (ImageView) gridViewAndroid.findViewById(R.id.android_gridview_image);
             textViewAndroid.setText(gridViewString[i]);
@@ -54,8 +52,8 @@ public class MainCategory extends BaseAdapter {
         } else {
             gridViewAndroid = (View) convertView;
         }
-
         return gridViewAndroid;
+
     }
 }
 
