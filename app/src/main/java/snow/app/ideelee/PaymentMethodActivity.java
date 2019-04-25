@@ -1,10 +1,13 @@
 package snow.app.ideelee;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PaymentMethodActivity extends AppCompatActivity {
 TextView title_bookingappointement;
@@ -23,4 +26,5 @@ ImageView backbutton1;
         });
         title_bookingappointement.setText("Payment Method");
     }
+
 }

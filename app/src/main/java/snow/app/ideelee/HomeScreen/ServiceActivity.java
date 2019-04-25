@@ -31,6 +31,7 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProvidersAdapter;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 
 public class ServiceActivity extends Activity {
@@ -145,4 +146,5 @@ public class ServiceActivity extends Activity {
         });
 
     }
+
 }

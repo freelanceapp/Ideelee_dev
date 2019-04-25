@@ -1,5 +1,6 @@
 package snow.app.ideelee.HomeScreen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -42,6 +43,7 @@ import snow.app.ideelee.HomeScreen.orders.MyOrders;
 import snow.app.ideelee.HomeScreen.profile.ProfileFragment;
 import snow.app.ideelee.R;
 import snow.app.ideelee.WalletFragment;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HomeNavigation extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -266,7 +268,6 @@ public class HomeNavigation extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
 
 }

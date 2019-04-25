@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 import static android.content.Context.WINDOW_SERVICE;
 

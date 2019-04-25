@@ -1,5 +1,6 @@
 package snow.app.ideelee.fooddelivery.restaurantsmod;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restaurantsmod.adapter.RestaurantsAdapter;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RestaurantsList extends AppCompatActivity {
 ImageView backbutton1;
@@ -67,4 +69,5 @@ RecyclerView rv_list;
             }
         });
     }
+
 }

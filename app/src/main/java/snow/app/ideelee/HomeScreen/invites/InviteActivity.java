@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InviteActivity extends Activity {
     TextView title;

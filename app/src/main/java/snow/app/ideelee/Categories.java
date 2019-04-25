@@ -1,5 +1,6 @@
 package snow.app.ideelee;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import snow.app.ideelee.HomeScreen.Adapters.CategoriesAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Categories extends AppCompatActivity {
     CategoriesAdapter adapterViewAndroid;
@@ -85,4 +87,5 @@ public class Categories extends AppCompatActivity {
             }
         });
     }
+
 }

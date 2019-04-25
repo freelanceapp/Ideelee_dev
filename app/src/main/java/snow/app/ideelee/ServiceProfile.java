@@ -25,6 +25,7 @@ import snow.app.ideelee.HomeScreen.Adapters.CompletedJobAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceJobAdapter;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.HomeScreen.Modals.CompletedJobModal;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ServiceProfile extends AppCompatActivity {
     List<String> serviceproviderlist;
@@ -83,4 +84,5 @@ public class ServiceProfile extends AppCompatActivity {
 
 
     }
+
 }

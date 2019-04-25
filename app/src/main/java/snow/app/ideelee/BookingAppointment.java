@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 
 import me.gujun.android.taggroup.TagGroup;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BookingAppointment extends Activity {
 TagGroup mTagGroup;
@@ -100,4 +101,5 @@ Button makecustomslot;
     public boolean onNavigateUp() {
         return super.onNavigateUp();
     }
+
 }

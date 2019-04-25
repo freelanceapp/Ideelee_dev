@@ -1,5 +1,6 @@
 package snow.app.ideelee.HomeScreen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,6 +36,7 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HomeFragment extends Fragment {
     GridView androidGridView;
@@ -242,4 +244,5 @@ if (i==gridViewString.length-1){
             Log.e("error", "==" + e);
         }
     }
+
 }

@@ -24,6 +24,7 @@ import android.widget.Toast;
 import snow.app.ideelee.HomeScreen.CurrentBookingFragment;
 import snow.app.ideelee.HomeScreen.HomeFragment;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class BookingActivity extends Activity {
     TextView txt_note;
@@ -92,5 +93,6 @@ public class BookingActivity extends Activity {
 
 
     }
+
 
 }

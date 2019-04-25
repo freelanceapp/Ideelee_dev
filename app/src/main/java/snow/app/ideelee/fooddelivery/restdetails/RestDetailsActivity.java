@@ -31,6 +31,7 @@ import snow.app.ideelee.AppUtils.RoundedTransformation;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.cart.CartActivity;
 import snow.app.ideelee.fooddelivery.restdetails.adapters.FoodItemAdapter;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RestDetailsActivity extends AppCompatActivity {
 
@@ -138,4 +139,5 @@ public class RestDetailsActivity extends AppCompatActivity {
 
         super.onBackPressed();
     }
+
 }

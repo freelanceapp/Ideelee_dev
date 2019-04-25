@@ -1,5 +1,6 @@
 package snow.app.ideelee;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import snow.app.ideelee.HomeScreen.HomeNavigation;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RateServiceProviderActivity extends AppCompatActivity {
 RatingBar ratingBar;
@@ -52,4 +54,5 @@ Button btn_submit;
             }
         });
     }
+
 }

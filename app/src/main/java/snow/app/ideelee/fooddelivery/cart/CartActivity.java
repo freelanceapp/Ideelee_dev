@@ -1,5 +1,6 @@
 package snow.app.ideelee.fooddelivery.cart;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import snow.app.ideelee.PaymentMethodActivity;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class CartActivity extends AppCompatActivity {
 ImageView backbutton1;
@@ -51,4 +53,5 @@ TextView place_order;
             .centerCrop()
                 .into(img);
     }
+
 }

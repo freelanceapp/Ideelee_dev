@@ -1,5 +1,6 @@
 package snow.app.ideelee.forgot;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import snow.app.ideelee.Login;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ForgotPassword extends AppCompatActivity {
     TextView login;
@@ -33,4 +35,5 @@ public class ForgotPassword extends AppCompatActivity {
             txt_note.setText(Html.fromHtml("<pre><span style=\"color: #ff0000;\">Note:-</span> <span style=\"color: #000000;\">Lorem Ipsum is simply dummy text of the printing and typesetting industry..</span></pre>"));
         }
     }
+
 }

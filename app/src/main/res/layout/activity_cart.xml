@@ -8,6 +8,7 @@
 
     <include
         android:id="@+id/top"
+
         layout="@layout/toolbar_child" />
 
     <ScrollView
@@ -44,7 +45,7 @@
                         android:id="@+id/res_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/regular"
                         android:padding="@dimen/small_padding"
                         android:text="The Pepper mockingbird"
                         android:textAllCaps="true"
@@ -57,8 +58,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
-                        android:fontFamily="sans-serif"
-                        android:maxLines="2"
+                        android:fontFamily="@font/regular"                        android:maxLines="2"
                         android:paddingLeft="@dimen/small_padding"
                         android:text="@string/lipsum"
                         android:textColor="@color/txt_light"
@@ -101,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="6.5"
                             android:gravity="center_vertical"
-                            android:padding="@dimen/extra_small"
+                            android:fontFamily="@font/regular"    android:padding="@dimen/extra_small"
                             android:text="Apple Vipe"
                             android:textColor="@color/black"
                             android:textSize="@dimen/normal_text" />

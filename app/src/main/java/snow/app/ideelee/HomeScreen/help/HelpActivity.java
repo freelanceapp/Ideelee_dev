@@ -1,5 +1,6 @@
 package snow.app.ideelee.HomeScreen.help;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HelpActivity extends AppCompatActivity {
 
@@ -29,4 +31,5 @@ public class HelpActivity extends AppCompatActivity {
             }
         });
     }
+
 }

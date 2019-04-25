@@ -1,12 +1,15 @@
 package snow.app.ideelee;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
+
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Splash extends Activity {
 
@@ -53,4 +56,5 @@ public class Splash extends Activity {
         startActivity(intent);
         finish();
     }
+
 }

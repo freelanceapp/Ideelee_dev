@@ -1,6 +1,7 @@
 package snow.app.ideelee.HomeScreen.orders;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersAdapter;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersM;
 import snow.app.ideelee.R;
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MyOrders extends Activity {
     RecyclerView rv_orders;
@@ -55,5 +57,9 @@ public class MyOrders extends Activity {
 
 
 
+    }
+    @Override
+    protected  void attachBaseContext(Context newBase){
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 }
