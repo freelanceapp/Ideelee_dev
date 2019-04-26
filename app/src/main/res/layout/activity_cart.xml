@@ -358,6 +358,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:background="@color/white"
                 android:paddingLeft="@dimen/margin_8dp"
                 android:paddingRight="@dimen/margin_8dp">
 
@@ -582,13 +583,14 @@
         android:weightSum="10">
 
         <LinearLayout
-            android:layout_width="@dimen/margin_10dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="6"
+            android:layout_gravity="left|start"
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
                 android:text="@string/payment_mode"
@@ -596,7 +598,7 @@
                 android:textSize="@dimen/small_txt" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
                 android:text="Credit Card"
@@ -604,7 +606,7 @@
                 android:textSize="@dimen/normal_text" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/regular"
                 android:text="Change"
