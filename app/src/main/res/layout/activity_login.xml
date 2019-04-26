@@ -77,12 +77,13 @@
                     android:fontFamily="@font/regular"
                     android:padding="@dimen/margin_10dp" />
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                      android:fontFamily="@font/regular"
                     android:text="@string/forgot_password"
                      android:textColor="@color/colorPrimaryDark"
                     android:padding="@dimen/small_padding"
+                    android:layout_gravity="right|end"
                     android:textSize="@dimen/small_txt"
                     android:id="@+id/forgot"
                     android:gravity="right"
