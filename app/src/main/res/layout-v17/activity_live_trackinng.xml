@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/tool_lay"
+        layout="@layout/toolbar_child" />
+
+    <RelativeLayout
+        android:id="@+id/lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tool_lay"
+        android:padding="@dimen/extra_small">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:padding="@dimen/extra_small"
+                android:text="Katani Sweets and Restaurants"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/regular"
+                android:padding="@dimen/extra_small"
+                android:text="@string/_121_cresent_avenue_drybeck"
+                android:textColor="@color/black"
+                android:textSize="@dimen/small_txt" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/regular"
+            android:padding="@dimen/small_padding"
+            android:text="View order summery"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/small_txt" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/med_padding">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Live Order Tracking"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tracker"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

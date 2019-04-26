@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_child" />
+
+    <TextView
+        android:id="@+id/payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/location"
+        android:drawablePadding="@dimen/margin_8dp"
+        android:fontFamily="@font/regular"
+        android:padding="@dimen/small_padding"
+        android:text="Auto detect my location"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_15sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/regular"
+                    android:text="Set Your Location"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_17sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/regular"
+                    android:text="Location"
+                    android:textSize="@dimen/text_size_15sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/grey_divider"
+                    android:fontFamily="@font/regular"
+                    android:hint="Address"
+                    android:padding="@dimen/small_padding"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/normal_text" />
+
+                <LinearLayout
+                    android:id="@+id/fields"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/housenumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grey_divider"
+                        android:fontFamily="@font/regular"
+                        android:hint="Flat/House Number"
+                        android:padding="@dimen/small_padding"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text" />
+
+                    <EditText
+                        android:id="@+id/landmark"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/grey_divider"
+                        android:fontFamily="@font/regular"
+                        android:hint="Landmark"
+                        android:padding="@dimen/small_padding"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/normal_text" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/buttonlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/margin_10dp">
+
+
+                        <TextView
+                            android:id="@+id/addmoredetails"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/round_edittext_blueborder"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/margin_8dp"
+                            android:paddingTop="@dimen/margin_10dp"
+                            android:paddingBottom="@dimen/margin_10dp"
+                            android:text="Add More Details"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_size_13sp" />
+
+                        <TextView
+                            android:id="@+id/ux_btn1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/round_corner_colorprimary"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/margin_10dp"
+                            android:paddingBottom="@dimen/margin_10dp"
+                            android:text="Confirm Location"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/regular"
+                        android:paddingStart="@dimen/med_padding"
+                        android:text="for more accuracy"
+                        android:textSize="@dimen/text_size_15sp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/txt_confirmlocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_70dp"
+                    android:layout_marginTop="@dimen/med_padding"
+                    android:layout_marginEnd="@dimen/margin_70dp"
+                    android:background="@drawable/round_corner_colorprimary"
+                    android:fontFamily="@font/regular"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/margin_10dp"
+                    android:paddingBottom="@dimen/margin_10dp"
+                    android:text="Confirm Location"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_13sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

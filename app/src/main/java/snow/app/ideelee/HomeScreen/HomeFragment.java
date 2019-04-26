@@ -111,9 +111,9 @@ if (i==gridViewString.length-1){
     startActivity(new Intent(getActivity(), Categories.class));
 }else{
                     startActivity(new Intent(getActivity(), ServiceActivity.class));
-
+/*
                     Toast.makeText(getActivity(), "GridView Item: " + gridViewString[+i],
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
 
             }}
         });

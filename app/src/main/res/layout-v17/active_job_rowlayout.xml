@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/lightbgblue"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:padding="@dimen/margin_4dp"
+        android:layout_margin="@dimen/margin_4dp"
+        android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:drawablePadding="@dimen/margin_4dp"
+        android:drawableStart="@drawable/ic_brightness_red_24dp"
+        android:padding="@dimen/margin_4dp"
+        android:text="Status:"
+        android:fontFamily="@font/regular"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_15sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="start"
+        android:fontFamily="@font/regular"
+        android:padding="@dimen/margin_4dp"
+        android:id="@+id/status"
+        android:text="Pending"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/text_size_15sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:layout_gravity="end"
+        android:gravity="end"
+        android:padding="@dimen/margin_4dp"
+        android:fontFamily="@font/regular"
+        android:text="APR 22, 2018 02:22PM"
+
+        android:textSize="@dimen/text_size_13sp"
+      />
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:padding="@dimen/margin_4dp"
+            android:text="PLUMBER  -"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/regular"
+            android:padding="@dimen/margin_4dp"
+            android:text=" JACK HARRY"
+android:textColor="@color/black"
+            android:textSize="@dimen/text_size_15sp"
+            />
+    </LinearLayout>
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/regular"
+android:drawableStart="@drawable/ic_brightness_1_black_24dp"
+        android:padding="@dimen/margin_4dp"
+        android:drawablePadding="@dimen/margin_4dp"
+        android:text="Job Location"
+        android:textSize="@dimen/text_size_15sp" />
+    <TextView
+        android:fontFamily="@font/regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:textColor="@color/black"
+        android:padding="@dimen/margin_4dp"
+        android:text="District 2 1323 Riverside Drive Redding"
+        android:textSize="@dimen/text_size_15sp" />
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_4dp"
+        android:fontFamily="@font/regular"
+        android:text="530-225-3426"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_15sp" />
+        <Button
+            android:id="@+id/ux_btnjobdone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+android:paddingStart="@dimen/margin_28dp"
+            android:paddingEnd="@dimen/margin_28dp"
+            android:background="@drawable/round_edittext_blueborder"
+            android:text="Job Done"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_19sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearlayout_button"
+        android:padding="@dimen/margin_10dp">
+
+
+        <Button
+            android:id="@+id/ux_btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_10dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+            android:drawableStart="@drawable/call_"
+            android:paddingStart="@dimen/margin_8dp"
+            android:drawablePadding="@dimen/margin_4dp"
+            android:background="@drawable/round_edittext_blueborder"
+            android:text="Call Now"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_19sp" />
+
+        <Button
+            android:id="@+id/ux_btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/regular"
+            android:background="@drawable/round_corner_colorprimary"
+            android:text="Cancel Job"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_19sp" />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>

@@ -8,6 +8,7 @@
 
     <include
         android:id="@+id/top"
+
         layout="@layout/toolbar_child" />
 
     <ScrollView
@@ -59,7 +60,7 @@
                         android:ellipsize="end"
                         android:fontFamily="@font/regular"
                         android:maxLines="2"
-                        android:paddingLeft="@dimen/small_padding"
+                        android:paddingStart="@dimen/small_padding"
                         android:text="@string/lipsum"
                         android:textColor="@color/txt_light"
                         android:textSize="@dimen/small_txt" />
@@ -74,7 +75,7 @@
                 android:background="@drawable/grey_divider"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/extra_small"
-                android:paddingRight="@dimen/margin_8dp"
+                android:paddingEnd="@dimen/margin_8dp"
                 android:paddingBottom="@dimen/extra_small">
 
                 <ImageView
@@ -88,151 +89,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-
-                        android:orientation="horizontal"
-                        android:weightSum="10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="6"
-                            android:fontFamily="@font/regular"
-
-                            android:gravity="center_vertical"
-                            android:padding="@dimen/extra_small"
-                            android:text="Apple Vipe"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/normal_text" />
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-
-                            android:layout_height="match_parent"
-                            android:layout_weight="4"
-                            android:gravity="center|center_vertical"
-                            android:layout_gravity="center_vertical">
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="right|center_vertical"
-                                android:paddingEnd="@dimen/margin_2dp"
-                                android:background="@drawable/stroke_round"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:paddingRight="@dimen/margin_2dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_vertical"
-                                    android:drawableLeft="@drawable/minus"
-                                    android:fontFamily="@font/regular"
-                                    android:gravity="center_vertical"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/small_padding"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <View
-                                    android:layout_width=".7dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimaryDark" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/regular"
-                                    android:gravity="center"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/extra_small"
-                                    android:text="02"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <View
-                                    android:layout_width=".7dp"
-                                    android:layout_height="match_parent"
-                                    android:background="@color/colorPrimaryDark" />
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:drawableLeft="@drawable/plus"
-                                    android:gravity="center"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/small_padding"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:textSize="@dimen/normal_text" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:fontFamily="@font/regular"
-                            android:gravity="center_vertical"
-                            android:includeFontPadding="false"
-                            android:text="$ 20.00"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/small_txt" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="right"
-                            android:fontFamily="@font/regular"
-                            android:gravity="right"
-                            android:includeFontPadding="false"
-                            android:paddingLeft="@dimen/extra_small"
-                            android:text="$ 40.00"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/small_txt" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/grey_divider"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/extra_small"
-                android:paddingBottom="@dimen/extra_small">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/extra_small"
-                    android:padding="@dimen/small_padding"
-                    android:src="@drawable/ic_brightness_1_black_24dp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingRight="@dimen/margin_8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -261,7 +117,7 @@
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_gravity="right|center_vertical"
+                                android:layout_gravity="end|center_vertical"
                                 android:background="@drawable/stroke_round"
                                 android:gravity="center_vertical"
                                 android:orientation="horizontal">
@@ -270,11 +126,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_vertical"
-                                    android:drawableLeft="@drawable/minus"
+                                    android:drawableStart="@drawable/minus"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center_vertical"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/small_padding"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/small_padding"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
 
@@ -290,8 +146,8 @@
                                     android:layout_gravity="center"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/extra_small"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/extra_small"
                                     android:text="02"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
@@ -301,15 +157,15 @@
                                     android:layout_height="match_parent"
                                     android:background="@color/colorPrimaryDark" />
 
-
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:drawableLeft="@drawable/plus"
+                                    android:drawableStart="@drawable/plus"
+                                    android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/small_padding"
-                                    android:paddingRight="@dimen/small_padding"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/small_padding"
                                     android:textColor="@color/colorPrimaryDark"
                                     android:textSize="@dimen/normal_text" />
                             </LinearLayout>
@@ -331,7 +187,6 @@
                             android:fontFamily="@font/regular"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
-                            android:paddingLeft="@dimen/extra_small"
                             android:text="$ 20.00"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
@@ -339,12 +194,150 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_gravity="right"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="end"
                             android:fontFamily="@font/regular"
-                            android:gravity="right"
+                            android:gravity="end"
                             android:includeFontPadding="false"
-                            android:paddingLeft="@dimen/extra_small"
+                            android:paddingStart="@dimen/extra_small"
+                            android:text="$ 40.00"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_txt" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_divider"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/extra_small"
+                android:paddingBottom="@dimen/extra_small">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/extra_small"
+                    android:padding="@dimen/small_padding"
+                    android:src="@drawable/ic_brightness_1_black_24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingEnd="@dimen/margin_8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="6"
+                            android:fontFamily="@font/regular"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/extra_small"
+                            android:text="Apple Vipe"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|center_vertical"
+                                android:background="@drawable/stroke_round"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:drawableStart="@drawable/minus"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center_vertical"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/small_padding"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <View
+                                    android:layout_width=".7dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/regular"
+                                    android:gravity="center"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/extra_small"
+                                    android:text="02"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <View
+                                    android:layout_width=".7dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorPrimaryDark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:drawableStart="@drawable/plus"
+                                    android:fontFamily="@font/regular"
+                                    android:paddingStart="@dimen/small_padding"
+                                    android:paddingEnd="@dimen/small_padding"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:textSize="@dimen/normal_text" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:fontFamily="@font/regular"
+                            android:gravity="center_vertical"
+                            android:includeFontPadding="false"
+                            android:paddingStart="@dimen/extra_small"
+                            android:text="$ 20.00"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/small_txt" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_gravity="end"
+                            android:fontFamily="@font/regular"
+                            android:gravity="end"
+                            android:includeFontPadding="false"
+                            android:paddingStart="@dimen/extra_small"
                             android:text="$ 40.00"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
@@ -358,8 +351,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/margin_8dp"
-                android:paddingRight="@dimen/margin_8dp">
+                android:paddingStart="@dimen/margin_8dp"
+                android:paddingEnd="@dimen/margin_8dp">
 
 
                 <RelativeLayout
@@ -381,10 +374,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:fontFamily="@font/regular"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:padding="@dimen/extra_small"
                         android:text="$ 80.00"
                         android:textColor="@color/black"
@@ -395,8 +388,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:drawableLeft="@drawable/offer_red"
-                    android:drawableRight="@drawable/coupen_ar"
+                    android:drawableStart="@drawable/offer_red"
+                    android:drawableEnd="@drawable/coupen_ar"
                     android:drawablePadding="@dimen/small_padding"
                     android:fontFamily="@font/regular"
                     android:gravity="center_vertical"
@@ -424,10 +417,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:fontFamily="@font/regular"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:padding="@dimen/extra_small"
                         android:text="$ 80.00"
                         android:textColor="@color/black"
@@ -453,10 +446,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:fontFamily="@font/regular"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:padding="@dimen/extra_small"
                         android:text="$ 20.00"
                         android:textColor="@color/txt_light"
@@ -485,10 +478,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_gravity="right"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
                         android:fontFamily="@font/regular"
-                        android:gravity="right"
+                        android:gravity="end"
                         android:padding="@dimen/extra_small"
                         android:text="$ 100.00"
                         android:textColor="@color/green"
@@ -625,7 +618,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/white_bg_round"
-                android:drawableRight="@drawable/coupen_ar"
+                android:drawableEnd="@drawable/coupen_ar"
                 android:drawablePadding="@dimen/small_padding"
                 android:fontFamily="@font/regular"
                 android:gravity="center"

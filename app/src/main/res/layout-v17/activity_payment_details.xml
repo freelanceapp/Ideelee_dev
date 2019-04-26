@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightbgblue"
+    android:orientation="vertical"
+    tools:context=".PaymentDetailsActivity">
+
+    <include layout="@layout/toolbar_child" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/margin_8dp"
+        android:text="Payment Details :-"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_17sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightbgblue"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/lightbgblue"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="Payment"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="$15.00"
+                        android:textSize="@dimen/text_size_15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="@string/additional_charges_if_any"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17sp" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/margin_50dp"
+                        android:layout_marginEnd="@dimen/margin_50dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/square_border"
+                        android:clickable="false"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:padding="@dimen/extra_small"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="@dimen/text_size_15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="Tax"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="$01.00"
+                        android:textSize="@dimen/text_size_15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_2dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="Total amount to be paid"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_15sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text=":"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_17sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:padding="@dimen/margin_8dp"
+                        android:text="$16.00"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/text_size_15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_2dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_30dp">
+
+        <Button
+            android:id="@+id/ux_btn_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_40dp"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:layout_marginEnd="@dimen/margin_40dp"
+            android:background="@drawable/round_corner_colorprimary"
+            android:text="Pay $16.00"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_19sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/margin_20dp"
+            android:text="Back"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_15sp" />
+    </LinearLayout>
+</LinearLayout>

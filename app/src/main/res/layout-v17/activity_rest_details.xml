@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_bg_blue"
+    android:orientation="vertical"
+    tools:context=".fooddelivery.restdetails.RestDetailsActivity">
+
+    <include
+        android:id="@+id/tool_lay"
+        layout="@layout/toolbar_child" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_above="@+id/bottom_lay"
+        android:layout_below="@+id/tool_lay">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/food_placeholder"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="@dimen/margin_2dp"
+                    android:visibility="visible" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/small_padding">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/med_padding"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/extra_small"
+                            android:text="@string/the_pepper_mockingbird"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/normal_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/round_corner_orange"
+                            android:gravity="center_vertical"
+                            android:paddingStart="@dimen/small_padding"
+                            android:paddingEnd="@dimen/small_padding"
+                            android:text="@string/ratingvalue"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_size_13sp" />
+
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/extra_small"
+                        android:text="Delivering food to"
+                        android:textSize="@dimen/text_size_11sp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_brightness_1_black_24dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/small_padding"
+                            android:layout_marginTop="@dimen/margin_4dp"
+                            android:src="@drawable/ic_brightness_1_black_24dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingStart="@dimen/margin_4dp">
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+
+                                android:text="Job Location"
+                                android:textSize="@dimen/text_size_15sp" />
+
+                            <TextView
+
+                                android:id="@+id/address"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/margin_4dp"
+                                android:text="District 2 1323 Riverside Drive Redding"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/small_txt" />
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/margin_4dp"
+                                android:text="530-225-3426"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/small_txt" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/break_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/grey_divider">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:padding="@dimen/extra_small"
+                                    android:text="@string/breakfast"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:src="@drawable/ic_remove_black_24dp"
+                                    android:tint="@color/black" />
+
+
+                            </RelativeLayout>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/breakfast_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/break_title"
+                                android:padding="@dimen/small_padding" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <RelativeLayout
+                                android:id="@+id/lunch_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/grey_divider">
+
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:padding="@dimen/extra_small"
+                                    android:text="Lunch"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/normal_text" />
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:src="@drawable/ic_remove_black_24dp"
+                                    android:tint="@color/black" />
+
+
+                            </RelativeLayout>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/lunch_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/lunch_title"
+                                android:padding="@dimen/small_padding" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_lay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/round_corner_colorprimary"
+            android:paddingStart="@dimen/small_padding"
+            android:paddingTop="@dimen/extra_small"
+            android:drawableEnd="@drawable/menu_"
+            android:gravity="center_vertical"
+            android:drawablePadding="@dimen/small_padding"
+            android:layout_marginTop="@dimen/small_padding"
+            android:paddingEnd="@dimen/small_padding"
+            android:paddingBottom="@dimen/extra_small"
+            android:text="Menu"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_padding"
+            android:background="@color/colorPrimaryDark"
+            android:padding="@dimen/small_padding"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="1 item\n$20.00"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="end"
+                android:layout_gravity="center_vertical|end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/view_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:drawableEnd="@drawable/ar_circle"
+                    android:drawablePadding="@dimen/small_padding"
+                    android:textSize="@dimen/normal_text"
+                    android:textColor="@color/white"
+                    android:layout_gravity="end"
+                    android:text="@string/view_cart" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
