@@ -3,11 +3,13 @@ package snow.app.ideelee.HomeScreen;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -20,6 +22,8 @@ import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +48,7 @@ public class ServiceActivity extends Activity {
     }
 
     ImageView imageView;
+    ImageView img;
     TextView relevance, filter;
 
     @Override
@@ -56,6 +61,7 @@ public class ServiceActivity extends Activity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
         imageView = findViewById(R.id.backbutton1);
+        img = findViewById(R.id.img);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +91,19 @@ public class ServiceActivity extends Activity {
                         "67km",
                         4.5,
                         R.drawable.img));
+        serviceproviderlist.add(
+                new ServiceProviderList(
+                        getResources().getString(R.string.carpentar),
+                        "67km",
+                        4.5,
+                        R.drawable.img));
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+
+        Picasso.with(this).load("https://www.training.com.au/wp-content/uploads/plumbing-courses.png").resize(width,width/2).into(img);
 
         ServiceProvidersAdapter adapter = new ServiceProvidersAdapter(this, serviceproviderlist);
         recyclerView.setAdapter(adapter);
