@@ -25,10 +25,12 @@
             android:id="@+id/orders"
             android:icon="@drawable/cart"
             android:title="Orders" />
+
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
             android:title="Logout" />
+
     </group>
 
 

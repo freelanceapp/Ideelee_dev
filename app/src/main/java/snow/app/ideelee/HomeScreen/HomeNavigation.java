@@ -35,6 +35,7 @@ import java.util.ArrayList;
 
 import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.AppUtils.CircleTransform;
+import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.help.HelpActivity;
@@ -65,7 +66,7 @@ public class HomeNavigation extends AppCompatActivity
 
 
     TextView profile,wallet,orders,invite,home;
-    TextView edit_profile;
+    TextView edit_profile,buycoupons;
 
     TextView booking;
     ImageView img;
@@ -91,6 +92,7 @@ public class HomeNavigation extends AppCompatActivity
         booking=findViewById(R.id.bookings);
         booking = (TextView) findViewById(R.id.bookings);
         profile = (TextView) findViewById(R.id.profile);
+        buycoupons=findViewById(R.id.coupon);
         home=findViewById(R.id.home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -262,7 +264,7 @@ public class HomeNavigation extends AppCompatActivity
             startActivity(new Intent(HomeNavigation.this, MyOrders.class));
         } else if (id == R.id.logout) {
 
-        }
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

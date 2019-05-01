@@ -24,13 +24,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import snow.app.ideelee.Categories;
+import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.HomeScreen.Adapters.BottomGridAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
@@ -40,7 +40,7 @@ import snow.app.ideelee.R;
 
 public class HomeFragment extends Fragment {
     GridView androidGridView;
-     MainCategory adapterViewAndroid;
+    MainCategory adapterViewAndroid;
     BottomGridAdapter bottomGridAdapter;
     ViewPager viewpager;
     PagerAdapter adapter;
@@ -59,10 +59,6 @@ public class HomeFragment extends Fragment {
     List<ServiceProvider> productList;
 
 
-
-
-
-
     //the recyclerview
     RecyclerView recyclerView;
 
@@ -72,23 +68,22 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-
-         final String[] gridViewString = {
-                getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
+        final String[] gridViewString = {
+                getString(R.string.buycoupons), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar),
-                getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.homepainting),
-                 getString(R.string.homepainting), getString(R.string.more)
+                getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.electrician),
+                getString(R.string.homepainting), getString(R.string.more)
 
         };
         int[] gridViewImageId = {
-                R.drawable.electrician, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
+                R.drawable.coupon_24, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter,
-                R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.painting, R.drawable.more
+                R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.electrician,
+                R.drawable.more
 
         };
-
 
 
         //categories gridview
@@ -100,22 +95,25 @@ public class HomeFragment extends Fragment {
         androidGridView.setAdapter(adapterViewAndroid);
 
 
-
         bottomGridAdapter = new BottomGridAdapter(getActivity(), gridViewString, gridViewImageId);
         androidGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int i, long id) {
-if (i==gridViewString.length-1){
-    startActivity(new Intent(getActivity(), Categories.class));
-}else{
+                if (i==0){
+                    startActivity(new Intent(getActivity(), CouponActivity.class));
+                }else
+                if (i == gridViewString.length - 1) {
+                    startActivity(new Intent(getActivity(), Categories.class));
+                } else {
                     startActivity(new Intent(getActivity(), ServiceActivity.class));
 /*
                     Toast.makeText(getActivity(), "GridView Item: " + gridViewString[+i],
                             Toast.LENGTH_LONG).show();*/
 
-            }}
+                }
+            }
         });
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
@@ -188,7 +186,7 @@ if (i==gridViewString.length-1){
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
 
-setDynamicHeight(androidGridView);
+        setDynamicHeight(androidGridView);
         return v;
     }
 
@@ -244,6 +242,7 @@ setDynamicHeight(androidGridView);
             Log.e("error", "==" + e);
         }
     }
+
     private void setDynamicHeight(GridView gridView) {
         ListAdapter gridViewAdapter = gridView.getAdapter();
         if (gridViewAdapter == null) {
@@ -260,8 +259,8 @@ setDynamicHeight(androidGridView);
         totalHeight = listItem.getMeasuredHeight();
 
         float x = 1;
-        if( items > 5 ){
-            x = items/5;
+        if (items > 5) {
+            x = items / 5;
             rows = (int) (x + 1);
             totalHeight *= rows;
         }

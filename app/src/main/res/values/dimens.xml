@@ -52,6 +52,7 @@
     <dimen name="small_txt">12sp</dimen>
     <dimen name="extra_small_txt">9sp</dimen>
     <dimen name="negative_margin_big">-30dp</dimen>
+
     <!---->
 
 </resources>

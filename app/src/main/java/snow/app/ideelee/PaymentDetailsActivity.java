@@ -36,6 +36,7 @@ TextView title_bookingappointement;
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(PaymentDetailsActivity.this,PaymentSuccessfulActivity.class);
+              intent.putExtra("key","Rate Harry");
                 startActivity(intent);
             }
         });

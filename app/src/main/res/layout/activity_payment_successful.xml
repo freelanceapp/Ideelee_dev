@@ -53,15 +53,18 @@ android:layout_marginTop="@dimen/margin_12dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_19sp" />
+
         <TextView
+            android:id="@+id/txt_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:text="Back"
-            android:textSize="@dimen/text_size_15sp"
-            android:paddingBottom="@dimen/margin_20dp"
-            android:layout_marginTop="@dimen/margin_16dp"
             android:layout_gravity="center"
-            android:textColor="@color/colorPrimary"/>
+            android:layout_marginTop="@dimen/margin_16dp"
+
+            android:background="@color/white"
+            android:paddingBottom="@dimen/margin_20dp"
+            android:text="Back"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_15sp" />
     </LinearLayout>
 </LinearLayout>

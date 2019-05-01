@@ -35,6 +35,7 @@
     <string name="carpentar">Carpentar</string>
     <string name="veterinary">Veterinary</string>
     <string name="homepainting">Home Painting</string>
+    <string name="buycoupons">Buy Coupons</string>
     <string name="more">More</string>
     <string name="OTP">OTP</string>
     <string name="enterotp">Enter OTP</string>
@@ -84,4 +85,5 @@
     <string name="payment_mode">Payment Mode</string>
     <string name="plac_order">place order</string>
     <string name="additional_charges_if_any">Additional Charges (If any)</string>
+    <string name="terms_conditions"><![CDATA[TERMS & CONDITIONS]]></string>
 </resources>
