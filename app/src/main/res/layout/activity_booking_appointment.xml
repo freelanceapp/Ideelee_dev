@@ -373,6 +373,9 @@
                         style="?android:attr/ratingBarStyleSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:progress="5"
+                        android:progressTint="@color/orange"
+                        android:rating="5"
                         android:layout_below="@id/textViewTitle"
                         android:layout_marginTop="@dimen/margin_4dp" />
 
@@ -413,11 +416,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/margin_8dp"
                             android:layout_weight="1"
-                            android:background="@drawable/round_edittext_blueborder"
+                            android:background="@drawable/round_corner_colorprimary"
                             android:fontFamily="@font/regular"
                             android:text="View Profile"
                             android:textAllCaps="false"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/white"
                             android:textSize="@dimen/text_size_19sp" />
                     </LinearLayout>
                 </LinearLayout>

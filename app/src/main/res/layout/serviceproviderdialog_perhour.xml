@@ -65,22 +65,18 @@
                 android:gravity="left"
                 android:fontFamily="@font/regular"
                 android:layout_gravity="left"  />
-            <me.gujun.android.taggroup.TagGroup
-                android:id="@+id/tag"
-                app:atg_textColor="@color/white"
-                app:atg_verticalPadding="@dimen/margin_8dp"
-                app:atg_horizontalPadding="@dimen/margin_16dp"
-                android:layout_marginBottom="@dimen/margin_4dp"
-                app:atg_textSize="@dimen/text_size_11sp"
-                app:atg_backgroundColor="@color/colorPrimary"
-                style="@style/TagGroup" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_tagitem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </LinearLayout>
         <Button
             android:layout_width="match_parent"
             android:layout_margin="@dimen/margin_30dp"
             android:text="Book Schedule"
             android:id="@+id/ux_btn"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:textAllCaps="false"
             android:fontFamily="@font/regular"
             android:textSize="@dimen/text_size_19sp"

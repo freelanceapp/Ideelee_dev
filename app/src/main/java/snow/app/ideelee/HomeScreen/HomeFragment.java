@@ -37,6 +37,7 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import snow.app.ideelee.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
     GridView androidGridView;
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
 
 
         final String[] gridViewString = {
-                getString(R.string.buycoupons), getString(R.string.maids), getString(R.string.carwash),
+                getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar),
                 getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.electrician),
@@ -77,7 +78,7 @@ public class HomeFragment extends Fragment {
 
         };
         int[] gridViewImageId = {
-                R.drawable.coupon_24, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
+                R.drawable.coupon_24, R.drawable.car, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter,
                 R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.electrician,
@@ -103,10 +104,13 @@ public class HomeFragment extends Fragment {
                                     int i, long id) {
                 if (i==0){
                     startActivity(new Intent(getActivity(), CouponActivity.class));
-                }else
-                if (i == gridViewString.length - 1) {
+                }else if (i == gridViewString.length - 1) {
                     startActivity(new Intent(getActivity(), Categories.class));
-                } else {
+                }else if (i == 1) {
+                startActivity(new Intent(getActivity(), VehicleCategories.class));
+            }
+
+                else {
                     startActivity(new Intent(getActivity(), ServiceActivity.class));
 /*
                     Toast.makeText(getActivity(), "GridView Item: " + gridViewString[+i],

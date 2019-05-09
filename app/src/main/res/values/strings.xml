@@ -31,6 +31,7 @@
     <string name="babysitting">Baby Sitting</string>
     <string name="plumber">Plumber</string>
     <string name="maids">Maids</string>
+    <string name="vehicle">Vehicle</string>
     <string name="towing">Towing</string>
     <string name="carpentar">Carpentar</string>
     <string name="veterinary">Veterinary</string>
@@ -86,4 +87,6 @@
     <string name="plac_order">place order</string>
     <string name="additional_charges_if_any">Additional Charges (If any)</string>
     <string name="terms_conditions"><![CDATA[TERMS & CONDITIONS]]></string>
+    <string name="car_rental">Car Rental</string>
+    <string name="per_hour">PER HOUR</string>
 </resources>

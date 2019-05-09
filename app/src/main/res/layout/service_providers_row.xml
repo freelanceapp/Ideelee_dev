@@ -2,8 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+android:background="@color/light_bg_blue"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_4dp"
+        android:layout_margin="@dimen/margin_8dp"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,52 +38,90 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/textViewTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/semibold"
+                    android:textSize="@dimen/text_size_17sp"
                     android:textColor="@color/black" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_weight="1"
-                    android:gravity="right">
 
-                    <RatingBar
-                        android:id="@+id/ratingbar"
-                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/margin_8dp"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="right">
+                        <TextView
+                            android:id="@+id/distance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/locationmap"
+                            android:drawablePadding="@dimen/margin_4dp"
+                            android:textColor="@color/black" />
+                        <RatingBar
+                            android:id="@+id/ratingbar"
+                            style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:progress="5"
+                            android:layout_gravity="left"
+                            android:isIndicator="true"
+                            android:progressTint="@color/orange"
+                            android:layout_marginTop="@dimen/margin_4dp"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:progress="5"
-                        android:isIndicator="true"
-                        android:progressTint="@color/yellow"
-                        android:layout_below="@id/textViewTitle"
-                        android:layout_gravity="right|end"
-                        android:layout_marginTop="@dimen/margin_4dp"
-                         />
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="$ 15.00"
+                            android:textSize="@dimen/text_size_17sp"
+                            android:fontFamily="@font/semibold"
+                            android:textColor="@color/colorPrimary" />
 
-                </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/perhour"
+                            android:text="@string/per_hour"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/distance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/locationmap"
-                android:drawablePadding="@dimen/margin_4dp"
-                android:textColor="@color/black" />
+
 
             <me.gujun.android.taggroup.TagGroup
                 android:id="@+id/tag_group"
                 style="@style/TagGroup"
+                android:layout_marginTop="@dimen/margin_8dp"
                 app:atg_borderColor="@color/gray"
-                app:atg_textColor="@color/gray" />
+                app:atg_textColor="@color/orange" />
         </LinearLayout>
     </LinearLayout>
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_13sp"
+        android:layout_margin="@dimen/margin_4dp"
+        android:text="@string/lipsum"
+        />
+</LinearLayout>
 </LinearLayout>

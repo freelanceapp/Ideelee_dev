@@ -1,6 +1,5 @@
-package snow.app.ideelee;
+package snow.app.ideelee.bookings;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,44 +13,23 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import snow.app.ideelee.BookingActivity;
+import snow.app.ideelee.BookingAppointment;
+import snow.app.ideelee.R;
 
-import me.gujun.android.taggroup.TagGroup;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
-
-public class BookingAppointment extends Activity {
-TagGroup mTagGroup;
-Button makecustomslot;
+public class BookingPerDay extends AppCompatActivity {
+    Button makecustomslot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_appointment);
+        setContentView(R.layout.activity_booking_per_day);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        makecustomslot=findViewById(R.id.ux_btn_makecustomslot);
-        makecustomslot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initiatePopupwindow(v);
-            }
-        });
+
 //        setSupportActionBar(toolbar);
 
         TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Jack Vehicle Services");
-
-//        getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        mTagGroup = (TagGroup)findViewById(R.id.tag_group_bookingapp);
-//        mTagGroup.setTags(new String[]{"12-01 AM", "12-01 AM", "12-01 AM",
-//                "01-02 AM","01-02 AM","01-02 AM",
-//                "02-03 AM","02-03 AM","02-03 AM"});
-//
-//    mTagGroup.setOnTagClickListener(new TagGroup.OnTagClickListener() {
-//        @Override
-//        public void onTagClick(String tag) {
-//            mTagGroup.
-//        }
-//    });
     }
     public void initiatePopupwindow(View v){
 
@@ -90,16 +68,11 @@ Button makecustomslot;
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(BookingAppointment.this,BookingActivity.class);
+                Intent intent =new Intent(BookingPerDay.this, BookingActivity.class);
 
                 startActivity(intent);
             }
         });
 
     }
-    @Override
-    public boolean onNavigateUp() {
-        return super.onNavigateUp();
-    }
-
 }

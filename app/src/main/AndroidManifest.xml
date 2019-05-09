@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CouponDetails"></activity>
+        <activity android:name=".bookings.BookingPerDay"></activity>
+        <activity android:name=".vehicle.VehicleCategories" />
+        <activity android:name=".CouponDetails" />
         <activity android:name=".CouponActivity" />
         <activity android:name=".Categories" />
         <activity android:name=".PaymentMethodActivity" />
