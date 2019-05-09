@@ -26,23 +26,20 @@ public class ViewPagerHome extends PagerAdapter {
         this.activity = activity;
         this.image_arraylist = image_arraylist;
     }
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View view = layoutInflater.inflate(R.layout.viewpager_item_home, container, false);
-        ImageView im_slider = (ImageView) view.findViewById(R.id.im_slider);
+     /* ImageView im_slider = (ImageView) view.findViewById(R.id.im_slider);
         Picasso.with(activity.getApplicationContext())
-                .load(image_arraylist.get(position))
-                .placeholder(R.mipmap.ic_launcher) // optional
-                .error(R.mipmap.ic_launcher)         // optional
+                .load(R.drawable.home_banner)
+                .placeholder(R.drawable.home_banner) // optional
+                .error(R.drawable.home_banner)         // optional
                 .into(im_slider);
-
-
+                */
         container.addView(view);
-
         return view;
+
     }
 
     @Override

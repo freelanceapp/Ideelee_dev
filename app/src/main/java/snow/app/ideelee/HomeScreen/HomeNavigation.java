@@ -66,16 +66,11 @@ public class HomeNavigation extends AppCompatActivity
 
 
     TextView profile,wallet,orders,invite,home;
-    TextView edit_profile,buycoupons;
+    TextView edit_profile;
 
     TextView booking;
     ImageView img;
     DrawerLayout drawer;
-
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +87,7 @@ public class HomeNavigation extends AppCompatActivity
         booking=findViewById(R.id.bookings);
         booking = (TextView) findViewById(R.id.bookings);
         profile = (TextView) findViewById(R.id.profile);
-        buycoupons=findViewById(R.id.coupon);
+
         home=findViewById(R.id.home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

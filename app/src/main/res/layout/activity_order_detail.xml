@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -25,7 +25,6 @@
 
                 <ImageView
                     android:id="@+id/img"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_padding"
@@ -34,101 +33,93 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@+id/img"
-                    android:layout_alignParentLeft="true"
                     android:orientation="vertical"
                     android:padding="@dimen/extra_small">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal"
-                      >
+                        android:weightSum="10">
 
                         <TextView
                             android:id="@+id/res_name"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:fontFamily="@font/regular"
+                            android:fontFamily="sans-serif"
                             android:padding="@dimen/small_padding"
-                            android:layout_alignParentRight="true"
-                            android:gravity="right"
-                            android:layout_gravity="right"
                             android:text="Burger King"
                             android:textColor="@color/black"
                             android:textSize="@dimen/normal_text" />
 
                         <TextView
                             android:id="@+id/status"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="5"
-                            android:fontFamily="@font/regular"
-                            android:layout_alignParentRight="true"
+                            android:fontFamily="sans-serif"
+                            android:gravity="right"
                             android:padding="@dimen/small_padding"
                             android:text="Live Tracking"
                             android:textColor="@color/orange"
                             android:textSize="@dimen/normal_text" />
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/summery"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
+                        android:fontFamily="sans-serif"
                         android:padding="@dimen/small_padding"
                         android:text="1 x Burger, 2 x Burger , 1 x Burger"
                         android:textColor="@color/txt_light"
                         android:textSize="@dimen/small_txt" />
 
                 </LinearLayout>
-            </RelativeLayout>
+            </LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:fontFamily="@font/regular"
+                android:fontFamily="sans-serif"
                 android:padding="@dimen/small_padding"
                 android:text="@string/your_order"
-                android:layout_marginLeft="@dimen/margin_8dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/small_txt" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:paddingTop="@dimen/extra_small"
-                android:paddingBottom="@dimen/extra_small"
                 android:layout_height="wrap_content"
                 android:background="@drawable/grey_divider"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/extra_small"
+                android:paddingBottom="@dimen/extra_small">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/extra_small"
-                    android:id="@+id/imagedot1"
-                    android:layout_alignParentRight="true"
                     android:padding="@dimen/small_padding"
                     android:src="@drawable/ic_brightness_1_black_24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_toLeftOf="@+id/imagedot1"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:layout_alignParentLeft="true"
+                            android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Apple Vipe"
                             android:textColor="@color/black"
@@ -137,31 +128,31 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="right"
                             android:gravity="right"
                             android:padding="@dimen/extra_small"
-                            android:visibility="gone"
                             android:text="x 2"
                             android:textColor="@color/black"
                             android:textSize="@dimen/normal_text" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
-                            android:gravity="right"
+                            android:layout_alignParentLeft="true"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
                             android:text="$ 20.00"
-                            android:visibility="gone"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
 
@@ -176,42 +167,42 @@
                             android:text="$ 40.00"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
-                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
-            </RelativeLayout>
-            <RelativeLayout
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:paddingTop="@dimen/extra_small"
-                android:paddingBottom="@dimen/extra_small"
                 android:layout_height="wrap_content"
                 android:background="@drawable/grey_divider"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/extra_small"
+                android:paddingBottom="@dimen/extra_small">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/extra_small"
-                    android:id="@+id/imagedot"
-                    android:layout_alignParentRight="true"
                     android:padding="@dimen/small_padding"
                     android:src="@drawable/ic_brightness_1_black_24dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_toLeftOf="@+id/imagedot"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="right"
+                            android:layout_alignParentLeft="true"
+                            android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Apple Vipe"
                             android:textColor="@color/black"
@@ -220,31 +211,31 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
                             android:layout_alignParentRight="true"
                             android:layout_gravity="right"
                             android:gravity="right"
                             android:padding="@dimen/extra_small"
-                            android:visibility="gone"
                             android:text="x 2"
                             android:textColor="@color/black"
                             android:textSize="@dimen/normal_text" />
-                    </LinearLayout>
+                    </RelativeLayout>
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
-                            android:gravity="right"
+                            android:layout_alignParentLeft="true"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
                             android:includeFontPadding="false"
                             android:paddingLeft="@dimen/extra_small"
                             android:text="$ 20.00"
-                            android:visibility="gone"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
 
@@ -259,17 +250,15 @@
                             android:text="$ 40.00"
                             android:textColor="@color/black"
                             android:textSize="@dimen/small_txt" />
-                    </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
-            </RelativeLayout>
-
+            </LinearLayout>
 
 
             <LinearLayout
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical"
                 android:padding="@dimen/small_padding">
 
@@ -283,20 +272,22 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                      android:layout_toLeftOf="@+id/itemtotal"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
-                        android:text="Item Total"
+                        android:text="@string/item_total"
                         android:textColor="@color/black"
                         android:textSize="@dimen/normal_text" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
-                        android:id="@+id/itemtotal"
                         android:text="$ 80.00"
                         android:textColor="@color/black"
                         android:textSize="@dimen/normal_text" />
@@ -311,8 +302,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-android:layout_toLeftOf="@+id/coupon"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
                         android:text="@string/coupen"
@@ -322,10 +315,10 @@ android:layout_toLeftOf="@+id/coupon"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
                         android:gravity="right"
-                        android:id="@+id/coupon"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
                         android:text="$-02.00"
@@ -342,8 +335,10 @@ android:layout_toLeftOf="@+id/coupon"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
-                       android:layout_toLeftOf="@+id/taxvalue"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
                         android:text="Tax"
@@ -353,10 +348,10 @@ android:layout_toLeftOf="@+id/coupon"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
                         android:gravity="right"
-                        android:id="@+id/taxvalue"
                         android:includeFontPadding="false"
                         android:paddingLeft="@dimen/extra_small"
                         android:text="$20.00"
@@ -374,9 +369,11 @@ android:layout_toLeftOf="@+id/coupon"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/regular"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
                         android:padding="@dimen/extra_small"
-                        android:layout_toLeftOf="@+id/totalvalue"
                         android:text="Grand Total"
                         android:textColor="@color/black"
                         android:textSize="@dimen/normal_text"
@@ -385,11 +382,11 @@ android:layout_toLeftOf="@+id/coupon"
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_gravity="right"
                         android:gravity="right"
                         android:padding="@dimen/extra_small"
-                        android:id="@+id/totalvalue"
                         android:text="$ 98.00"
                         android:textColor="@color/green"
                         android:textSize="@dimen/normal_text"
@@ -405,17 +402,15 @@ android:layout_toLeftOf="@+id/coupon"
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:gravity="right"
+                        android:layout_gravity="center_vertical"
                         android:orientation="vertical"
                         android:paddingTop="@dimen/small_padding">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
-                            android:gravity="right"
-
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Order Details"
                             android:textColor="@color/black"
@@ -425,16 +420,14 @@ android:layout_toLeftOf="@+id/coupon"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/grey_divider"
+                            android:orientation="horizontal"
                             android:paddingTop="@dimen/extra_small"
-                            android:layout_gravity="right"
-                            android:gravity="right"
-                            android:paddingBottom="@dimen/extra_small"
-                            android:orientation="horizontal">.
+                            android:paddingBottom="@dimen/extra_small">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Order Number:"
@@ -444,26 +437,26 @@ android:layout_toLeftOf="@+id/coupon"
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="124578547"
                                 android:textColor="@color/txt_light"
                                 android:textSize="@dimen/normal_text" />
                         </LinearLayout>
-                           <LinearLayout
-                               android:paddingTop="@dimen/extra_small"
-                               android:gravity="right"
-                               android:paddingBottom="@dimen/extra_small"
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/grey_divider"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/extra_small"
+                            android:paddingBottom="@dimen/extra_small">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Payment"
@@ -473,26 +466,26 @@ android:layout_toLeftOf="@+id/coupon"
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="@string/online_payment"
                                 android:textColor="@color/green"
                                 android:textSize="@dimen/normal_text" />
                         </LinearLayout>
+
                         <LinearLayout
-                            android:paddingTop="@dimen/extra_small"
-                            android:paddingBottom="@dimen/extra_small"
-                            android:gravity="right"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/grey_divider"
-                            android:orientation="horizontal">.
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/extra_small"
+                            android:paddingBottom="@dimen/extra_small">.
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="Date"
@@ -502,7 +495,7 @@ android:layout_toLeftOf="@+id/coupon"
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/regular"
+                                android:fontFamily="sans-serif"
                                 android:gravity="center_vertical"
                                 android:padding="@dimen/extra_small"
                                 android:text="21 Apr, 2019 11:40 am"
@@ -510,20 +503,22 @@ android:layout_toLeftOf="@+id/coupon"
                                 android:textSize="@dimen/normal_text" />
 
                         </LinearLayout>
+
                         <TextView
 
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
+                            android:fontFamily="sans-serif"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="Deliever To"
                             android:textColor="@color/black"
                             android:textSize="@dimen/normal_text" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/regular"
+                            android:fontFamily="sans-serif"
                             android:gravity="center_vertical"
                             android:padding="@dimen/extra_small"
                             android:text="@string/_121_cresent_avenue_drybeck"

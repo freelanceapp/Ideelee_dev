@@ -37,7 +37,7 @@
                 android:layout_marginBottom="@dimen/small_padding"
                 android:background="@drawable/bg_grey"
                 android:drawableRight="@drawable/key_drop_24dp"
-                android:fontFamily="@font/regular"
+                android:fontFamily="@font/semibold"
                 android:gravity="center_vertical"
                 android:padding="@dimen/small_padding"
                 android:text="About Food"
