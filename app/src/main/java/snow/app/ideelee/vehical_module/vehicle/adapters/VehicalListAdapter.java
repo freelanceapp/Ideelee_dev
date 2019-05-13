@@ -1,4 +1,4 @@
-package snow.app.ideelee.HomeScreen.Adapters;
+package snow.app.ideelee.vehical_module.vehicle.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,7 +30,7 @@ import snow.app.ideelee.R;
 import snow.app.ideelee.bookings.BookingPerDay;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
 
-public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvidersAdapter.ProductViewHolder> {
+public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.ProductViewHolder> {
 
 
     //this context we will use to inflate the layout
@@ -40,16 +40,16 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
     private List<ServiceProviderList> productList;
 
     //getting the context and product list with constructor
-    public ServiceProvidersAdapter(Context mCtx, List<ServiceProviderList> productList) {
+    public VehicalListAdapter(Context mCtx, List<ServiceProviderList> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
     @Override
-    public ServiceProvidersAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VehicalListAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        final View view = inflater.inflate(R.layout.service_providers_row, null);
+        final View view = inflater.inflate(R.layout.vehical_list_row, null);
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +59,14 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
 //                Intent intent=new Intent(mCtx, BookingAppointment.class);
 
 
+
             }
         });
-        return new ServiceProvidersAdapter.ProductViewHolder(view);
+        return new VehicalListAdapter.ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ServiceProvidersAdapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(VehicalListAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
         ServiceProviderList product = productList.get(position);
 
@@ -74,7 +75,9 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
         holder.ratingBar.setRating((float) product.getRating());
         holder.distance.setText(product.getDistance());
         holder.imageView.setImageDrawable(ContextCompat.getDrawable(mCtx, product.getImage()));
-
+        if (position == 1) {
+            holder.perhour.setText("PER DAY");
+        }
 
     }
 
@@ -87,7 +90,7 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         TagGroup mTagGroup;
-        TextView textViewTitle, distance;
+        TextView textViewTitle, distance, perhour;
         ImageView imageView;
         RatingBar ratingBar;
 
@@ -95,29 +98,34 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
             super(itemView);
             ratingBar = itemView.findViewById(R.id.ratingbar);
             distance = itemView.findViewById(R.id.distance);
-
+            perhour = itemView.findViewById(R.id.perhour);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
-            mTagGroup.setTags(new String[]{"Plumber", "Electrician", "Carpenter",});
+            mTagGroup.setTags(new String[]{"Car Rental", "Truck Rental", "Car Rental",});
             mTagGroup.submitTag();
             imageView = itemView.findViewById(R.id.ux_img_user);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @RequiresApi(api = Build.VERSION_CODES.N)
-                @Override
-                public void onClick(View v) {
-                    perHourPopup(v);
+itemView.setOnClickListener(new View.OnClickListener() {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onClick(View v) {
 
-                }
-            });
+        if (perhour.getText().equals("PER DAY")){
+            initiatePopupwindowperday(v);
+        }else {
+            initiatePopupwindow(v);
+        }
+    }
+});
         }
     }
 
 
-     public void perHourPopup(View v) {
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void initiatePopupwindow(View v) {
 
         LayoutInflater inflater = (LayoutInflater) mCtx.getSystemService(mCtx.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.serviceproviderdialog, (ViewGroup) v.findViewById(R.id.linearlayout));
+        View layout = inflater.inflate(R.layout.vehical_popup, (ViewGroup) v.findViewById(R.id.linearlayout));
         final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         pw.showAtLocation(v, Gravity.CENTER, 0, 0);
 
@@ -128,7 +136,6 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
         Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
-        Button lay_bg = layout.findViewById(R.id.lay_bg);
         TagGroup mTagGroup = (TagGroup) layout.findViewById(R.id.tag);
         mTagGroup.setTags(new String[]{"08-10 AM", "08-10 AM", "08-10 AM"});
         mTagGroup.submitTag();
@@ -141,11 +148,60 @@ public class ServiceProvidersAdapter extends RecyclerView.Adapter<ServiceProvide
 
             }
         });
-
-         pw.setOutsideTouchable(true);
+        TextView txt = layout.findViewById(R.id.book_txt);
+        txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Hour</span></strong>", Html.FROM_HTML_MODE_COMPACT));
+        pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         pw.showAsDropDown(v, 0, 0);
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void initiatePopupwindowperday(View v) {
+
+        LayoutInflater inflater = (LayoutInflater) mCtx.getSystemService(mCtx.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.serviceproviderdialog_perhour, (ViewGroup) v.findViewById(R.id.linearlayout));
+        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        pw.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+        View container = (View) pw.getContentView().getRootView();
+        WindowManager wm = (WindowManager) mCtx.getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
+      RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
+        ArrayList<String>list_tag = new ArrayList<>();
+        list_tag.add("01 May");
+        list_tag.add("02 May");
+        list_tag.add("03 May");
+        list_tag.add("04 May");
+        list_tag.add("05 May");
+        list_tag.add("06 May");
+        list_tag.add("07 May");
+        TagItemAdapter adapter = new TagItemAdapter(mCtx, list_tag);
+
+        //setting adapter to recyclerview
+        recyclerView.setAdapter(adapter);
+        Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
+        btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent intent = new Intent(mCtx, BookingPerDay.class);
+                Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
+                mCtx.startActivity(intent);
+
+            }
+        });
+        TextView txt = layout.findViewById(R.id.book_txt);
+        txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Day</span></strong>", Html.FROM_HTML_MODE_COMPACT));
+        pw.setOutsideTouchable(true);
+        pw.setFocusable(true);
+        pw.showAsDropDown(v, 0, 0);
+    }
 
 }

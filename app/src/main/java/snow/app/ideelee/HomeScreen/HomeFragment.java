@@ -1,10 +1,8 @@
 package snow.app.ideelee.HomeScreen;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -21,7 +19,6 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import java.util.ArrayList;
@@ -37,7 +34,7 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
-import snow.app.ideelee.vehicle.VehicleCategories;
+import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
     GridView androidGridView;
@@ -78,7 +75,7 @@ public class HomeFragment extends Fragment {
 
         };
         int[] gridViewImageId = {
-                R.drawable.coupon_24, R.drawable.car, R.drawable.car_wash, R.drawable.massage,
+                R.drawable.coupon_24, R.drawable.car_24, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter,
                 R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.electrician,
@@ -107,6 +104,7 @@ public class HomeFragment extends Fragment {
                 }else if (i == gridViewString.length - 1) {
                     startActivity(new Intent(getActivity(), Categories.class));
                 }else if (i == 1) {
+
                 startActivity(new Intent(getActivity(), VehicleCategories.class));
             }
 

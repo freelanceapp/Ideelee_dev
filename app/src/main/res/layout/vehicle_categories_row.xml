@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingLeft="@dimen/margin_4dp"
     android:paddingBottom="@dimen/margin_8dp"
-    android:paddingTop="@dimen/margin_8dp">
+    android:paddingTop="@dimen/margin_8dp"
+    android:paddingStart="@dimen/margin_4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,10 +24,12 @@
             android:gravity="center"
             android:id="@+id/txt_vehicle_cat"
             android:padding="@dimen/margin_8dp"
+            android:layout_marginLeft="@dimen/margin_10dp"
             android:text="@string/car_rental"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_19sp"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_size_17sp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/margin_10dp" />
 
         <ImageView
             android:id="@+id/cancel"
@@ -36,6 +39,8 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/margin_30dp"
 
-            android:src="@drawable/sub_arrow" />
+            android:src="@drawable/sub_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/margin_30dp" />
     </RelativeLayout>
 </LinearLayout>

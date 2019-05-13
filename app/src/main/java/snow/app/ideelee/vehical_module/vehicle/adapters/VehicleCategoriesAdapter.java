@@ -1,28 +1,18 @@
-package snow.app.ideelee.vehicle.adapters;
+package snow.app.ideelee.vehical_module.vehicle.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import me.gujun.android.taggroup.TagGroup;
-import snow.app.ideelee.BookingAppointment;
-import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
+import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 
 public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCategoriesAdapter.ProductViewHolder> {
 
@@ -44,12 +34,10 @@ public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCatego
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.vehicle_categories_row, null);
-
-
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(mCtx, ServiceActivity.class);
+              Intent intent=new Intent(mCtx, VehicalListing.class);
               mCtx.startActivity(intent);
             }
         });

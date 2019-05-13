@@ -41,8 +41,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/margin_16dp"
-                    android:layout_marginRight="@dimen/margin_16dp"
+                    android:layout_marginStart="@dimen/margin_16dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"
                     android:background="@color/white"
                     android:orientation="vertical">
 
@@ -56,7 +56,7 @@
                         <ImageView
                             android:layout_width="@dimen/margin_40dp"
                             android:layout_height="@dimen/margin_40dp"
-                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
                             android:src="@drawable/ic_chevron_left_black_24dp" />
 
                         <TextView
@@ -71,7 +71,7 @@
                         <ImageView
                             android:layout_width="@dimen/margin_40dp"
                             android:layout_height="@dimen/margin_40dp"
-                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"
                             android:src="@drawable/ic_chevron_right_black_24dp" />
                     </RelativeLayout>
 
@@ -110,9 +110,9 @@
                                 android:background="@drawable/round_corner_graystroke"
                                 android:fontFamily="@font/regular"
                                 android:gravity="center"
-                                android:paddingLeft="@dimen/margin_10dp"
+                                android:paddingStart="@dimen/margin_10dp"
                                 android:paddingTop="@dimen/margin_4dp"
-                                android:paddingRight="@dimen/margin_10dp"
+                                android:paddingEnd="@dimen/margin_10dp"
                                 android:paddingBottom="@dimen/margin_4dp"
                                 android:text="12-01 AM" />
 
@@ -124,10 +124,10 @@
                                 android:background="@drawable/round_corner_graystroke"
                                 android:fontFamily="@font/regular"
                                 android:gravity="center"
-                                android:paddingLeft="@dimen/margin_10dp"
+                                android:paddingStart="@dimen/margin_10dp"
                                 android:paddingTop="@dimen/margin_4dp"
 
-                                android:paddingRight="@dimen/margin_10dp"
+                                android:paddingEnd="@dimen/margin_10dp"
                                 android:paddingBottom="@dimen/margin_4dp"
                                 android:text="12-01 AM" />
 
@@ -139,10 +139,10 @@
                                 android:background="@drawable/round_corner_graystroke"
                                 android:fontFamily="@font/regular"
                                 android:gravity="center"
-                                android:paddingLeft="@dimen/margin_10dp"
+                                android:paddingStart="@dimen/margin_10dp"
                                 android:paddingTop="@dimen/margin_4dp"
 
-                                android:paddingRight="@dimen/margin_10dp"
+                                android:paddingEnd="@dimen/margin_10dp"
                                 android:paddingBottom="@dimen/margin_4dp"
                                 android:text="12-01 AM" />
 
@@ -154,9 +154,9 @@
                                 android:background="@drawable/round_corner_colorprimary"
                                 android:fontFamily="@font/regular"
                                 android:gravity="center"
-                                android:paddingLeft="@dimen/margin_10dp"
+                                android:paddingStart="@dimen/margin_10dp"
                                 android:paddingTop="@dimen/margin_4dp"
-                                android:paddingRight="@dimen/margin_10dp"
+                                android:paddingEnd="@dimen/margin_10dp"
                                 android:paddingBottom="@dimen/margin_4dp"
                                 android:text="12-01 AM"
                                 android:textColor="@color/white" />
@@ -180,9 +180,9 @@
                                     android:background="@drawable/round_corner_graystroke"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
 
@@ -194,9 +194,9 @@
                                     android:background="@drawable/round_corner_colorprimary"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM"
                                     android:textColor="@color/white" />
@@ -209,10 +209,10 @@
                                     android:background="@drawable/round_corner_graystroke"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
 
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
 
@@ -224,9 +224,9 @@
                                     android:background="@drawable/round_corner_graystroke"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
                             </LinearLayout>
@@ -252,9 +252,9 @@
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
 
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
 
@@ -267,10 +267,10 @@
                                     android:fontFamily="@font/regular"
 
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
 
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
 
@@ -282,9 +282,9 @@
                                     android:background="@drawable/round_corner_colorprimary"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM"
                                     android:textColor="@color/white" />
@@ -297,9 +297,9 @@
                                     android:background="@drawable/round_corner_graystroke"
                                     android:fontFamily="@font/regular"
                                     android:gravity="center"
-                                    android:paddingLeft="@dimen/margin_10dp"
+                                    android:paddingStart="@dimen/margin_10dp"
                                     android:paddingTop="@dimen/margin_4dp"
-                                    android:paddingRight="@dimen/margin_10dp"
+                                    android:paddingEnd="@dimen/margin_10dp"
                                     android:paddingBottom="@dimen/margin_4dp"
                                     android:text="12-01 AM" />
                             </LinearLayout>
@@ -326,9 +326,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/margin_16dp"
+                    android:layout_marginStart="@dimen/margin_16dp"
                     android:layout_marginTop="@dimen/margin_4dp"
-                    android:layout_marginRight="@dimen/margin_16dp"
+                    android:layout_marginEnd="@dimen/margin_16dp"
                     android:background="@color/white"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -398,13 +398,13 @@
                             android:id="@+id/ux_btn2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="@dimen/margin_10dp"
+                            android:layout_marginEnd="@dimen/margin_10dp"
                             android:layout_weight="1"
                             android:background="@drawable/round_edittext_blueborder"
-                            android:drawableLeft="@drawable/call_"
+                            android:drawableStart="@drawable/call_"
                             android:drawablePadding="@dimen/margin_4dp"
                             android:fontFamily="@font/regular"
-                            android:paddingLeft="@dimen/margin_8dp"
+                            android:paddingStart="@dimen/margin_8dp"
                             android:text="Call Now"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimary"
@@ -414,7 +414,7 @@
                             android:id="@+id/ux_btn1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/margin_8dp"
+                            android:layout_marginStart="@dimen/margin_8dp"
                             android:layout_weight="1"
                             android:background="@drawable/round_corner_colorprimary"
                             android:fontFamily="@font/regular"

@@ -1,101 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
     android:id="@+id/linearlayout"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
 
-    android:layout_height="wrap_content">
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="center"
         android:layout_margin="@dimen/margin_24dp"
-        android:padding="@dimen/margin_14dp"
         android:background="@drawable/round_corner_dialog"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_14dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/profile_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="@dimen/margin_4dp"
             android:src="@drawable/img"
-            app:civ_border_width="2dp"
-            app:civ_border_color="@android:color/transparent"/>
+            app:civ_border_color="@android:color/transparent"
+            app:civ_border_width="2dp" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_4dp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_17sp"
-            android:text="Jack Vehicle Service"
+            android:layout_gravity="center"
             android:fontFamily="@font/regular"
             android:gravity="center"
-            android:layout_gravity="center"  />
+            android:padding="@dimen/margin_4dp"
+            android:text="Jack Vehicle Service"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_17sp" />
+
         <LinearLayout
+            android:id="@+id/lay_bg"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/margin_8dp"
-            android:background="@drawable/gray_rectangle_stroke"
-            android:layout_height="wrap_content">
+            android:padding="@dimen/margin_8dp">
 
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/margin_2dp"
                 android:id="@+id/book_txt"
-                android:textColor="@color/black"
-                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:fontFamily="@font/regular"
+                android:gravity="left"
+                android:padding="@dimen/margin_2dp"
+                android:text="$ 15.00 Per hour"
+                android:textColor="@color/black"
                 android:textSize="@dimen/text_size_17sp"
-                android:text="Lim$ 15.00 Per hour"
-                android:gravity="left" />
+                android:textStyle="bold" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_4dp"
-                android:textSize="@dimen/text_size_13sp"
-                android:text="Already Booked Schedule"
-                android:gravity="left"
+                android:layout_gravity="left"
                 android:fontFamily="@font/regular"
-                android:layout_gravity="left"  />
+                android:gravity="left"
+                android:padding="@dimen/margin_4dp"
+                android:text="Already Booked Schedule"
+                android:textSize="@dimen/text_size_13sp" />
+
             <me.gujun.android.taggroup.TagGroup
                 android:id="@+id/tag"
-                app:atg_textColor="@color/white"
-                app:atg_verticalPadding="@dimen/margin_8dp"
-                app:atg_horizontalPadding="@dimen/margin_16dp"
+                style="@style/TagGroup"
                 android:layout_marginBottom="@dimen/margin_4dp"
-                app:atg_textSize="@dimen/text_size_11sp"
                 app:atg_backgroundColor="@color/colorPrimary"
-                style="@style/TagGroup" />
+                app:atg_horizontalPadding="@dimen/margin_16dp"
+                app:atg_textColor="@color/white"
+                app:atg_textSize="@dimen/text_size_11sp"
+                app:atg_verticalPadding="@dimen/margin_8dp" />
         </LinearLayout>
+
         <Button
-            android:layout_width="match_parent"
-            android:layout_margin="@dimen/margin_30dp"
-            android:text="Book Schedule"
             android:id="@+id/ux_btn"
-            android:textColor="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:fontFamily="@font/regular"
-            android:textSize="@dimen/text_size_19sp"
-            android:background="@drawable/round_edittext_blueborder"
-            android:layout_height="wrap_content" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/margin_4dp"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/text_size_15sp"
-            android:text="View Other Service By Jack"
+            android:layout_margin="@dimen/margin_30dp"
+            android:background="@drawable/round_edittext_blueborder"
             android:fontFamily="@font/regular"
-            android:layout_gravity="center"  />
+            android:text="Book Schedule"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_size_19sp" />
+
+
     </LinearLayout>
 </LinearLayout>

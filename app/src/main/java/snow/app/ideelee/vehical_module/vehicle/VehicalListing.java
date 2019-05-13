@@ -1,12 +1,9 @@
-package snow.app.ideelee.HomeScreen;
+package snow.app.ideelee.vehical_module.vehicle;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -17,35 +14,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import me.gujun.android.taggroup.TagGroup;
-import snow.app.ideelee.BookingAppointment;
-import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceProvidersAdapter;
-import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import snow.app.ideelee.vehical_module.vehicle.adapters.VehicalListAdapter;
 
 
-public class ServiceActivity extends Activity {
+public class VehicalListing extends Activity {
 
     List<ServiceProviderList> serviceproviderlist;
     TagGroup mTagGroup;
     RecyclerView recyclerView;
 
-    public ServiceActivity() {
+    public VehicalListing() {
     }
 
     ImageView imageView;
@@ -57,11 +48,9 @@ public class ServiceActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.service_fragment);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
 //        setSupportActionBar(toolbar);
-
-        TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
-        textView.setText("Plumber");
+        TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
+        textView.setText("Car Rental");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         relevance = findViewById(R.id.relevance);
         filter = findViewById(R.id.filter);
@@ -72,13 +61,13 @@ public class ServiceActivity extends Activity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               finish();
+                finish();
             }
         });
         serviceproviderlist = new ArrayList<>();
         serviceproviderlist.add(
                 new ServiceProviderList(
-                        "Plumber",
+                        "Limousine By Jack",
                         "1 KM",
                         4.5,
                         R.drawable.img
@@ -86,7 +75,7 @@ public class ServiceActivity extends Activity {
 
         serviceproviderlist.add(
                 new ServiceProviderList(
-                       "Electrician",
+                        "Station Wagon By Jack",
                         "25km",
                         4.5,
                         R.drawable.img
@@ -94,13 +83,13 @@ public class ServiceActivity extends Activity {
 
         serviceproviderlist.add(
                 new ServiceProviderList(
-                        "Plumber",
+                        "Limousine By Jack",
                         "67km",
                         4.5,
                         R.drawable.img));
         serviceproviderlist.add(
                 new ServiceProviderList(
-                        "Electrician",
+                        "Limousine By Jack",
                         "67km",
                         4.5,
                         R.drawable.img));
@@ -112,33 +101,33 @@ public class ServiceActivity extends Activity {
 
 //        Picasso.with(this).load("https://www.training.com.au/wp-content/uploads/plumbing-courses.png").resize(width,width/2).into(img);
 
-        ServiceProvidersAdapter adapter = new ServiceProvidersAdapter(this, serviceproviderlist);
+        VehicalListAdapter adapter = new VehicalListAdapter(this, serviceproviderlist);
         recyclerView.setAdapter(adapter);
         relevance.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(ServiceActivity.this, relevance);
+/*                //Creating the instance of PopupMenu
+                PopupMenu popup = new PopupMenu(VehicalListing.this, relevance);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.relevance_menu, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(ServiceActivity.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(VehicalListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
 
-                popup.show();//showing popup menu
+                popup.show();//showing popup menu*/
             }
         });
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initiatePopupwindow(v);
+                //initiatePopupwindow(v);
             }
         });
 

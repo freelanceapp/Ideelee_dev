@@ -1,4 +1,4 @@
-package snow.app.ideelee.vehicle;
+package snow.app.ideelee.vehical_module.vehicle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,9 +9,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.R;
-import snow.app.ideelee.vehicle.adapters.VehicleCategoriesAdapter;
+import snow.app.ideelee.vehical_module.vehicle.adapters.VehicleCategoriesAdapter;
 
 public class VehicleCategories extends AppCompatActivity {
 RecyclerView recyclerView;
@@ -30,16 +29,15 @@ ArrayList<String> vehicle_cat;
                 onBackPressed();
             }
         });
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
-                true));
+                false));
+
+        vehicle_cat.add("Car Rental");
         vehicle_cat.add("Aircrafts & Flying Vehicles");
         vehicle_cat.add("Vessels Rental");
         vehicle_cat.add("Motorcycle Rental");
         vehicle_cat.add("Truck Rental");
-        vehicle_cat.add("Car Rental");
-
-
 
         VehicleCategoriesAdapter adapter = new VehicleCategoriesAdapter(VehicleCategories.this, vehicle_cat);
 

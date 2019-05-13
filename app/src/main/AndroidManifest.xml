@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
          <activity android:name=".bookings.BookingPerDay"></activity>
-        <activity android:name=".vehicle.VehicleCategories" />
+        <activity android:name=".vehical_module.vehicle.VehicleCategories" />
         <activity android:name=".CouponDetails" />
         <activity android:name=".CouponActivity" />
         <activity android:name=".Categories" />
@@ -56,11 +56,13 @@
         </activity>
         <activity android:name=".HomeScreen.ServiceActivity" />
         <activity android:name=".HomeScreen.invites.InviteActivity" />
-        <activity android:name=".BookingActivity" />
+        <activity android:name=".BookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".AddAddress"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LiveTracking" />
+        <activity android:name=".vehical_module.vehicle.VehicalListing" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
