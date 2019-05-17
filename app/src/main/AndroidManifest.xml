@@ -20,11 +20,20 @@
         </activity>
         <activity android:name=".bookings.BookingPerDay" />
         <activity android:name=".vehical_module.vehicle.VehicleCategories" />
+        <activity android:name=".fixedpricemodule.VehicleWashSubCat"/>
+        <activity android:name=".fixedpricemodule.VehicleWashBookingAppointment"/>
+        <activity android:name=".fixedpricemodule.VehicleWashBookingActivity"/>
+        <activity android:name=".perday_fixedpricemodule.RentalCategories"/>
+        <activity android:name=".perday_fixedpricemodule.RentalSubCat"/>
+        <activity android:name=".perhour_fixpricemodule.TeachingCategories"/>
         <activity android:name=".CouponDetails" />
         <activity android:name=".CouponActivity" />
+        <activity android:name=".perhour_fixpricemodule.TeachingBookingAppointment"/>
+        <activity android:name=".perhour_fixpricemodule.TeachingSubCat"/>
         <activity android:name=".Categories" />
         <activity android:name=".PaymentMethodActivity" />
         <activity android:name=".ServiceProfile" />
+        <activity android:name=".fixedpricemodule.VehiclewashCategories"/>
         <activity android:name=".RateServiceProviderActivity" />
         <activity android:name=".fooddelivery.cart.CartActivity" />
         <activity android:name=".PaymentSuccessfulActivity" />
@@ -70,6 +79,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LiveTracking" />
         <activity android:name=".vehical_module.vehicle.VehicalListing" />
+        <activity android:name=".perhour_fixpricemodule.TeachingBookingActivity" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

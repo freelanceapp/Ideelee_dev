@@ -34,6 +34,9 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import snow.app.ideelee.fixedpricemodule.VehiclewashCategories;
+import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
+import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
@@ -67,15 +70,15 @@ public class HomeFragment extends Fragment {
 
 
         final String[] gridViewString = {
-                getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.carwash),
-                getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
+                getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.vehiclewash),
+                getString(R.string.rentals), getString(R.string.teaching), getString(R.string.towing),
                 getString(R.string.carpentar),
                 getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.electrician),
                 getString(R.string.homepainting), getString(R.string.more)
 
         };
         int[] gridViewImageId = {
-                R.drawable.coupon_24, R.drawable.car_24, R.drawable.car_wash, R.drawable.massage,
+                R.drawable.coupon_24, R.drawable.car_24, R.drawable.car_wash, R.drawable.rent_24,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter,
                 R.drawable.carpanter, R.drawable.painting, R.drawable.painting, R.drawable.electrician,
@@ -106,7 +109,16 @@ public class HomeFragment extends Fragment {
                 }else if (i == 1) {
 
                 startActivity(new Intent(getActivity(), VehicleCategories.class));
-            }
+            } else if (i == 2) {
+
+                startActivity(new Intent(getActivity(), VehiclewashCategories.class));
+            }else if (i == 3) {
+
+                    startActivity(new Intent(getActivity(), RentalCategories.class));
+                }else if (i == 4) {
+
+                    startActivity(new Intent(getActivity(), TeachingCategories.class));
+                }
 
                 else {
                     startActivity(new Intent(getActivity(), ServiceActivity.class));
