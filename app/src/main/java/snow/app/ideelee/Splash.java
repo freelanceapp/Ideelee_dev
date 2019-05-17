@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
+import snow.app.ideelee.extrafiles.PermissionsActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Splash extends Activity {

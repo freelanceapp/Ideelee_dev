@@ -130,6 +130,7 @@
                         android:background="@color/white"
                         android:fontFamily="@font/regular"
                         android:padding="@dimen/margin_8dp"
+                        android:id="@+id/timeslot"
                         android:text="Time Slot"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_15sp" />
@@ -148,6 +149,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:id="@+id/timeslotvalue"
                         android:background="@color/white"
                         android:fontFamily="@font/regular"
                         android:padding="@dimen/margin_8dp"
@@ -313,6 +315,30 @@
                     android:text="Cash Payment"
                     android:textSize="@dimen/text_size_15sp" />
             </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:fontFamily="@font/regular"
+                android:paddingLeft="@dimen/margin_8dp"
+                android:paddingRight="@dimen/margin_8dp"
+                android:paddingTop="@dimen/margin_4dp"
+                android:paddingBottom="@dimen/margin_4dp"
+                android:text="Number of Persons Required"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_8dp"
+                android:layout_marginRight="@dimen/margin_8dp"
+                android:background="@drawable/gray_rectangle_stroke"
+                android:gravity="top"
+
+                android:minLines="2"
+                android:padding="@dimen/margin_4dp" />
 
             <EditText
                 android:layout_width="match_parent"

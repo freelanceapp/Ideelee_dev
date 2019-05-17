@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".extrafiles.PermissionsActivity">
+
+    <TextView
+        android:id="@+id/forgot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:padding="@dimen/small_padding"
+        android:text="Permissions Required"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_19sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/forgot"
+        android:layout_gravity="center"
+        android:fontFamily="@font/semibold"
+        android:gravity="center"
+        android:padding="@dimen/small_padding"
+        android:text="Dear User, This app requires below permissions."
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_17sp" />
+
+    <TextView
+        android:id="@+id/htmltext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_gravity="center"
+        android:fontFamily="@font/regular"
+        android:gravity="left"
+        android:padding="@dimen/small_padding"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_15sp" />
+
+    <Button
+        android:id="@+id/allowaccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/opensetting"
+
+        android:layout_marginLeft="@dimen/big_margin"
+        android:layout_marginRight="@dimen/big_margin"
+        android:background="@drawable/round_corner_button"
+        android:text="Allow Access"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_17sp" />
+
+    <TextView
+
+        android:id="@+id/opensetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:padding="@dimen/small_padding"
+        android:text="Click here to open Mobile Settings"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/text_size_13sp" />
+</RelativeLayout>

@@ -88,6 +88,6 @@
     <string name="additional_charges_if_any">Additional Charges (If any)</string>
     <string name="terms_conditions"><![CDATA[TERMS & CONDITIONS]]></string>
     <string name="item_total">Item Total</string>
-     <string name="per_hour">PER HOUR</string>
+    <string name="per_hour">PER HOUR</string>
     <string name="car_rental">Car Rental</string>
 </resources>

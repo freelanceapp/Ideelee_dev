@@ -21,6 +21,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import snow.app.ideelee.HomeScreen.CurrentBookingFragment;
 import snow.app.ideelee.HomeScreen.HomeFragment;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
@@ -30,6 +34,8 @@ public class BookingActivity extends Activity {
     TextView txt_note;
     Button btn_confirmbooking;
     ImageView backbutton1;
+    TextView timeslot,timeslotvalue;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,24 @@ public class BookingActivity extends Activity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Booking");
+        timeslot=findViewById(R.id.timeslot);
+        timeslotvalue=findViewById(R.id.timeslotvalue);
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+        String formattedDate = df.format(c);
+        System.out.println("date in intent ---"+getIntent().getStringExtra("key"));
+//        setSupportActionBar(toolbar);
+        if (getIntent().hasExtra("key")){
+
+    timeslot.setText("Day");
+    timeslotvalue.setText(getIntent().getStringExtra("key"));
+
+
+  }else {
+
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             txt_note.setText(Html.fromHtml("<pre><span style=\"color: #ff0000;\">Note:-</span> <span style=\"color: #000000;\">You will get a notification/SMS when Service provider accept your job.</span></pre>", Html.FROM_HTML_MODE_COMPACT));

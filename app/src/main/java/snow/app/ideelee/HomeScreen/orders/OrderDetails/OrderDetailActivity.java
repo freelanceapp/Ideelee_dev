@@ -1,7 +1,10 @@
 package snow.app.ideelee.HomeScreen.orders.OrderDetails;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -22,6 +25,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     TextView title_bookingappointement;
     ImageView backbutton1;
     TextView status;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,12 @@ public class OrderDetailActivity extends AppCompatActivity {
         title_bookingappointement = (TextView) findViewById(R.id.title_bookingappointement);
         status = (TextView) findViewById(R.id.status);
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
+ progressDialog=new ProgressDialog(OrderDetailActivity.this);
+        progressDialog.getWindow()
+                .setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setContentView(R.layout.progressdialoglayout);
+
+
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -59,4 +69,11 @@ public class OrderDetailActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+
+        super.onBackPressed();
+     //   progressDialog.dismiss();
+
+    }
 }
