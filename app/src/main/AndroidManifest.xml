@@ -80,6 +80,10 @@
         <activity android:name=".LiveTracking" />
         <activity android:name=".vehical_module.vehicle.VehicalListing" />
         <activity android:name=".perhour_fixpricemodule.TeachingBookingActivity" />
+   <activity android:name=".perday_fixedpricemodule.RentalBookingPerDay"/>
+        <activity android:name=".perday_fixedpricemodule.RentalBookingActivity" />
+        <activity android:name=".perperson_permealmodule.EventServicesCategories" />
+        <activity android:name=".perperson_permealmodule.EventSubCat" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

@@ -28,6 +28,8 @@ import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
 import snow.app.ideelee.bookings.BookingPerDay;
 import snow.app.ideelee.fixedpricemodule.VehicleWashBookingAppointment;
+
+import snow.app.ideelee.perday_fixedpricemodule.RentalBookingPerDay;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
 
 public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapter.ProductViewHolder> {
@@ -150,7 +152,7 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(mCtx, BookingPerDay.class);
+                Intent intent = new Intent(mCtx, RentalBookingPerDay.class);
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

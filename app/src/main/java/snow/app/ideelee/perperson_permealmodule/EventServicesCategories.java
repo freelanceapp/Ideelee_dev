@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import snow.app.ideelee.R;
 import snow.app.ideelee.perday_fixedpricemodule.adapters.RentalCatAdapter;
+import snow.app.ideelee.perperson_permealmodule.adapters.EventCatAdapter;
 
 public class EventServicesCategories extends AppCompatActivity {
 RecyclerView recyclerView;
@@ -18,7 +19,7 @@ ArrayList<String> vehicle_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rental_cat);
+        setContentView(R.layout.activity_event_categories);
         recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
         vehicle_cat=new ArrayList<>();
         TextView tv=findViewById(R.id.title_bookingappointement);
@@ -33,11 +34,12 @@ ArrayList<String> vehicle_cat;
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false));
 
-        vehicle_cat.add("Working Vehicles and Heavy Tools");
+        vehicle_cat.add("Home Cooks & Chefs");
+        vehicle_cat.add("Special Events Chefs & Cooks");
+        vehicle_cat.add("Catering");
 
-        RentalCatAdapter adapter = new RentalCatAdapter(EventServicesCategories.this, vehicle_cat);
 
-        //setting adapter to recyclerview
+        EventCatAdapter adapter = new EventCatAdapter(EventServicesCategories.this, vehicle_cat);
         recyclerView.setAdapter(adapter);
 
     }

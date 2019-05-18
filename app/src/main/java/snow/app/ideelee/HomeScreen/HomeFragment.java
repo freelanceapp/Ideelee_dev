@@ -37,6 +37,7 @@ import snow.app.ideelee.R;
 import snow.app.ideelee.fixedpricemodule.VehiclewashCategories;
 import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
+import snow.app.ideelee.perperson_permealmodule.EventServicesCategories;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
@@ -71,7 +72,7 @@ public class HomeFragment extends Fragment {
 
         final String[] gridViewString = {
                 getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.vehiclewash),
-                getString(R.string.rentals), getString(R.string.teaching), getString(R.string.towing),
+                getString(R.string.rentals), getString(R.string.teaching), getString(R.string.eventservices),
                 getString(R.string.carpentar),
                 getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.electrician),
                 getString(R.string.homepainting), getString(R.string.more)
@@ -118,6 +119,9 @@ public class HomeFragment extends Fragment {
                 }else if (i == 4) {
 
                     startActivity(new Intent(getActivity(), TeachingCategories.class));
+                }else if (i == 5) {
+
+                    startActivity(new Intent(getActivity(), EventServicesCategories.class));
                 }
 
                 else {
