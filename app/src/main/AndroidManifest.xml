@@ -3,10 +3,10 @@
     package="snow.app.ideelee">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -15,29 +15,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".extrafiles.PermissionsActivity">
-
-        </activity>
+        <activity android:name=".perperson_permealmodule.BookingRequirements"></activity>
+        <activity android:name=".extrafiles.PermissionsActivity"></activity>
         <activity android:name=".bookings.BookingPerDay" />
         <activity android:name=".vehical_module.vehicle.VehicleCategories" />
-        <activity android:name=".fixedpricemodule.VehicleWashSubCat"/>
-        <activity android:name=".fixedpricemodule.VehicleWashBookingAppointment"/>
-        <activity android:name=".fixedpricemodule.VehicleWashBookingActivity"/>
-        <activity android:name=".perday_fixedpricemodule.RentalCategories"/>
-        <activity android:name=".perday_fixedpricemodule.RentalSubCat"/>
-        <activity android:name=".perhour_fixpricemodule.TeachingCategories"/>
+        <activity android:name=".fixedpricemodule.VehicleWashSubCat" />
+        <activity android:name=".fixedpricemodule.VehicleWashBookingAppointment" />
+        <activity android:name=".fixedpricemodule.VehicleWashBookingActivity" />
+        <activity android:name=".perday_fixedpricemodule.RentalCategories" />
+        <activity android:name=".perday_fixedpricemodule.RentalSubCat" />
+        <activity android:name=".perhour_fixpricemodule.TeachingCategories" />
         <activity android:name=".CouponDetails" />
         <activity android:name=".CouponActivity" />
-        <activity android:name=".perhour_fixpricemodule.TeachingBookingAppointment"/>
-        <activity android:name=".perhour_fixpricemodule.TeachingSubCat"/>
+        <activity android:name=".perhour_fixpricemodule.TeachingBookingAppointment" />
+        <activity android:name=".perhour_fixpricemodule.TeachingSubCat" />
         <activity android:name=".Categories" />
         <activity android:name=".PaymentMethodActivity" />
         <activity android:name=".ServiceProfile" />
-        <activity android:name=".fixedpricemodule.VehiclewashCategories"/>
+        <activity android:name=".fixedpricemodule.VehiclewashCategories" />
         <activity android:name=".RateServiceProviderActivity" />
         <activity android:name=".fooddelivery.cart.CartActivity" />
         <activity android:name=".PaymentSuccessfulActivity" />
         <activity android:name=".PaymentDetailsActivity" />
+        <activity android:name=".perperson_permealmodule.EventBookingAppointment"/>
+        <activity android:name=".perperson_permealmodule.EventBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".fooddelivery.restdetails.RestDetailsActivity" />
         <activity android:name=".fooddelivery.restaurantsmod.RestaurantsList" />
         <activity
@@ -80,10 +82,21 @@
         <activity android:name=".LiveTracking" />
         <activity android:name=".vehical_module.vehicle.VehicalListing" />
         <activity android:name=".perhour_fixpricemodule.TeachingBookingActivity" />
-   <activity android:name=".perday_fixedpricemodule.RentalBookingPerDay"/>
+        <activity android:name=".perday_fixedpricemodule.RentalBookingPerDay" />
         <activity android:name=".perday_fixedpricemodule.RentalBookingActivity" />
         <activity android:name=".perperson_permealmodule.EventServicesCategories" />
         <activity android:name=".perperson_permealmodule.EventSubCat" />
+        <activity android:name=".coupons.SelectCouponCat" />
+        <activity android:name=".metre_square_module.HandymanCategories" />
+        <activity android:name=".metre_square_module.HandyManListing" />
+        <activity android:name=".metre_square_module.HandymanBookingPerDay" />
+        <activity android:name=".metre_square_module.HandymanBookingRequirements" />
+        <activity android:name=".metre_square_module.HandymanBookingActivity" />
+        <activity android:name=".carriers.CarriersCategories" />
+        <activity android:name=".carriers.CarriersListing" />
+        <activity android:name=".carriers.CarrierBookingRequirements" />
+        <activity android:name=".carriers.CarrierBookingActivity" />
+        <activity android:name=".carriers.CarrierBookingPerDay" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

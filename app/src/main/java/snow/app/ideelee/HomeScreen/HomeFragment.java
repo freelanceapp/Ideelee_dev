@@ -34,7 +34,10 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import snow.app.ideelee.carriers.CarriersCategories;
+import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.fixedpricemodule.VehiclewashCategories;
+import snow.app.ideelee.metre_square_module.HandymanCategories;
 import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
 import snow.app.ideelee.perperson_permealmodule.EventServicesCategories;
@@ -73,8 +76,8 @@ public class HomeFragment extends Fragment {
         final String[] gridViewString = {
                 getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.vehiclewash),
                 getString(R.string.rentals), getString(R.string.teaching), getString(R.string.eventservices),
-                getString(R.string.carpentar),
-                getString(R.string.carpentar), getString(R.string.homepainting), getString(R.string.electrician),
+                getString(R.string.handymanservices),
+                getString(R.string.carriers), getString(R.string.homepainting), getString(R.string.electrician),
                 getString(R.string.homepainting), getString(R.string.more)
 
         };
@@ -104,7 +107,7 @@ public class HomeFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int i, long id) {
                 if (i==0){
-                    startActivity(new Intent(getActivity(), CouponActivity.class));
+                    startActivity(new Intent(getActivity(), SelectCouponCat.class));
                 }else if (i == gridViewString.length - 1) {
                     startActivity(new Intent(getActivity(), Categories.class));
                 }else if (i == 1) {
@@ -122,6 +125,13 @@ public class HomeFragment extends Fragment {
                 }else if (i == 5) {
 
                     startActivity(new Intent(getActivity(), EventServicesCategories.class));
+                }else if (i == 6) {
+
+                    startActivity(new Intent(getActivity(), HandymanCategories.class));
+                }
+                else if (i == 7) {
+
+                    startActivity(new Intent(getActivity(), CarriersCategories.class));
                 }
 
                 else {

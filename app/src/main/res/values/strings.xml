@@ -38,6 +38,8 @@
     <string name="towing">Towing</string>
     <string name="teaching">Teaching and Courses Services</string>
     <string name="carpentar">Carpentar</string>
+    <string name="carriers">Carrier</string>
+    <string name="handymanservices">Handyman Services</string>
     <string name="veterinary">Veterinary</string>
     <string name="homepainting">Home Painting</string>
     <string name="buycoupons">Buy Coupons</string>
@@ -81,6 +83,8 @@
     <string name="_121_cresent_avenue_drybeck">121 Cresent Avenue, DRYBECK</string>
     <string name="submit">Submit</string>
     <string name="open_now">OPEN NOW</string>
+    <string name="perperson">Per Person</string>
+    <string name="permeal">Per Meal</string>
     <string name="get_5_off_on_order_above_101">Get $5 off on order above $101</string>
     <string name="ratingvalue">4.1</string>
     <string name="the_pepper_mockingbird">THE PEPPER MOCKINGBIRD</string>

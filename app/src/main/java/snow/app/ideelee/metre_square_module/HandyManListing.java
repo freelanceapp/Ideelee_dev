@@ -1,4 +1,4 @@
-package snow.app.ideelee.perperson_permealmodule;
+package snow.app.ideelee.metre_square_module;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,17 +26,17 @@ import java.util.List;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
+import snow.app.ideelee.metre_square_module.adapters.HandymanlistingAdapter;
 import snow.app.ideelee.perday_fixedpricemodule.adapters.RentalSubCatAdapter;
-import snow.app.ideelee.perperson_permealmodule.adapters.EventsSubCatAdapter;
 
 
-public class EventSubCat extends Activity {
+public class HandyManListing extends Activity {
 
     List<ServiceProviderList> serviceproviderlist;
     TagGroup mTagGroup;
     RecyclerView recyclerView;
 
-    public EventSubCat() {
+    public HandyManListing() {
     }
 
     ImageView imageView;
@@ -50,7 +50,7 @@ public class EventSubCat extends Activity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //        setSupportActionBar(toolbar);
         TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
-        textView.setText("Event Services");
+        textView.setText("Handyman Services");
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         relevance = findViewById(R.id.relevance);
         filter = findViewById(R.id.filter);
@@ -75,7 +75,7 @@ public class EventSubCat extends Activity {
 
         serviceproviderlist.add(
                 new ServiceProviderList(
-                       "Alex",
+                        "Alex",
                         "5 KM",
                         4.5,
                         R.drawable.img
@@ -124,7 +124,6 @@ public class EventSubCat extends Activity {
                         4.5,
                         R.drawable.img));
 
-
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
@@ -133,21 +132,21 @@ public class EventSubCat extends Activity {
 
 //        Picasso.with(this).load("https://www.training.com.au/wp-content/uploads/plumbing-courses.png").resize(width,width/2).into(img);
 
-        EventsSubCatAdapter adapter = new EventsSubCatAdapter(this, serviceproviderlist);
+        HandymanlistingAdapter adapter = new HandymanlistingAdapter(this, serviceproviderlist);
         recyclerView.setAdapter(adapter);
         relevance.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(EventSubCat.this, relevance);
+                PopupMenu popup = new PopupMenu(HandyManListing.this, relevance);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.relevance_menu, popup.getMenu());
 
                 //registering popup with OnMenuItemClickListener
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(EventSubCat.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(HandyManListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
