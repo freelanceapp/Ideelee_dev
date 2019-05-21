@@ -1,6 +1,8 @@
 package snow.app.ideelee.HomeScreen.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,14 @@ public class BottomGridAdapter extends BaseAdapter {
             ImageView imageViewAndroid = (ImageView) gridViewAndroid.findViewById(R.id.android_gridview_image);
             textViewAndroid.setText(gridViewString[i]);
             imageViewAndroid.setImageResource(gridViewImageId[i]);
+
+
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = displayMetrics.widthPixels;
+            textViewAndroid.getLayoutParams().width = width / 1;
+            imageViewAndroid.getLayoutParams().width=width/1;
         } else {
             gridViewAndroid = (View) convertView;
         }

@@ -26,6 +26,7 @@ import java.util.List;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
+import snow.app.ideelee.camping.CampingBookingPerDay;
 import snow.app.ideelee.carriers.CarrierBookingPerDay;
 import snow.app.ideelee.metre_square_module.HandymanBookingPerDay;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
@@ -154,7 +155,7 @@ txt_person=itemView.findViewById(R.id.perhour);
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(mCtx, CarrierBookingPerDay.class);
+                Intent intent = new Intent(mCtx, CampingBookingPerDay.class);
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

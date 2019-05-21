@@ -28,8 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_4dp"
 
-
             android:maxLines="2"
+            android:minLines="2"
+            android:singleLine="false"
             android:textColor="@color/black"
             android:textSize="@dimen/margin_12dp" />
     </LinearLayout>

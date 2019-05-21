@@ -1,4 +1,4 @@
-package snow.app.ideelee.metre_square_module;
+package snow.app.ideelee.perquantity_fixprice;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,16 +10,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import snow.app.ideelee.R;
-import snow.app.ideelee.metre_square_module.adapters.HandymanCatAdapter;
-import snow.app.ideelee.perday_fixedpricemodule.adapters.RentalCatAdapter;
+import snow.app.ideelee.perperson_permealmodule.adapters.EventCatAdapter;
+import snow.app.ideelee.perquantity_fixprice.adapter.ElectricworkCatAdapter;
 
-public class HandymanCategories extends AppCompatActivity {
+public class ElectricworkCategories extends AppCompatActivity {
 RecyclerView recyclerView;
 ArrayList<String> vehicle_cat;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rental_cat);
+        setContentView(R.layout.activity_event_categories);
         recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
         vehicle_cat=new ArrayList<>();
         TextView tv=findViewById(R.id.title_bookingappointement);
@@ -34,14 +34,16 @@ ArrayList<String> vehicle_cat;
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false));
 
-        vehicle_cat.add("Painting");
-        vehicle_cat.add("Carpentry");
-        vehicle_cat.add("Electrical Work");
+        vehicle_cat.add("Parking lot lights");
+        vehicle_cat.add("Neon Lightning");
+        vehicle_cat.add("Security Lightning");
+        vehicle_cat.add("Rewire lamps/lights");
+        vehicle_cat.add("Rewire wall switches");
+        vehicle_cat.add("Rewire chandeliers");
+        vehicle_cat.add("Emergency Electric Services");
 
 
-        HandymanCatAdapter adapter = new HandymanCatAdapter(HandymanCategories.this, vehicle_cat);
-
-        //setting adapter to recyclerview
+        ElectricworkCatAdapter adapter = new ElectricworkCatAdapter(ElectricworkCategories.this, vehicle_cat);
         recyclerView.setAdapter(adapter);
 
     }

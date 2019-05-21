@@ -26,6 +26,7 @@
     <string name="VastArray">Vast Array of services just with a single app</string>
     <string name="dott">....</string>
     <string name="electrician">Electrician</string>
+    <string name="gardening">Gardening</string>
     <string name="carwash">Car Wash</string>
     <string name="vehiclewash">Vehicle Wash</string>
     <string name="massage">Massage</string>
@@ -39,9 +40,11 @@
     <string name="teaching">Teaching and Courses Services</string>
     <string name="carpentar">Carpentar</string>
     <string name="carriers">Carrier</string>
+    <string name="moving">Moving and Lifting Services</string>
     <string name="handymanservices">Handyman Services</string>
     <string name="veterinary">Veterinary</string>
     <string name="homepainting">Home Painting</string>
+    <string name="camping">Camping and Equipments For Rent</string>
     <string name="buycoupons">Buy Coupons</string>
     <string name="more">More</string>
     <string name="OTP">OTP</string>

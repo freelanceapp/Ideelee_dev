@@ -1,4 +1,4 @@
-package snow.app.ideelee.metre_square_module;
+package snow.app.ideelee.camping;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +10,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import snow.app.ideelee.R;
-import snow.app.ideelee.metre_square_module.adapters.HandymanCatAdapter;
-import snow.app.ideelee.perday_fixedpricemodule.adapters.RentalCatAdapter;
+import snow.app.ideelee.camping.adapters.CampingCatAdapter;
+import snow.app.ideelee.carriers.adapters.CarriersCatAdapter;
 
-public class HandymanCategories extends AppCompatActivity {
+public class CampingCategories extends AppCompatActivity {
 RecyclerView recyclerView;
 ArrayList<String> vehicle_cat;
     @Override
@@ -23,7 +23,7 @@ ArrayList<String> vehicle_cat;
         recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
         vehicle_cat=new ArrayList<>();
         TextView tv=findViewById(R.id.title_bookingappointement);
-        tv.setText("Handyman Services");
+        tv.setText("Camping and Equipments For Rent");
         findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,15 +33,13 @@ ArrayList<String> vehicle_cat;
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,
                 false));
-
-        vehicle_cat.add("Painting");
-        vehicle_cat.add("Carpentry");
-        vehicle_cat.add("Electrical Work");
-
-
-        HandymanCatAdapter adapter = new HandymanCatAdapter(HandymanCategories.this, vehicle_cat);
-
-        //setting adapter to recyclerview
+        vehicle_cat.add("Rental of wooden tables and for camping");
+        vehicle_cat.add("Rental of plastic chairs");
+        vehicle_cat.add("Folding wooden chair for Rent");
+        vehicle_cat.add("Wooden chair for Rent");
+        vehicle_cat.add("Plastic chair for Rent");
+        vehicle_cat.add("Decorative chair");
+        CampingCatAdapter adapter = new CampingCatAdapter(CampingCategories.this, vehicle_cat);
         recyclerView.setAdapter(adapter);
 
     }

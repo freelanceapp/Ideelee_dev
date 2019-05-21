@@ -1,4 +1,4 @@
-package snow.app.ideelee.metre_square_module.adapters;
+package snow.app.ideelee.perquantityperfloor.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,10 +12,9 @@ import java.util.List;
 
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.HandyManListing;
-import snow.app.ideelee.perday_fixedpricemodule.RentalSubCat;
-import snow.app.ideelee.perquantity_fixprice.ElectricworkCategories;
+import snow.app.ideelee.perquantityperfloor.MovingLiftingListing;
 
-public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.ProductViewHolder> {
+public class MovingliftingCatAdapter extends RecyclerView.Adapter<MovingliftingCatAdapter.ProductViewHolder> {
 
 
     //this context we will use to inflate the layout
@@ -25,22 +24,28 @@ public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.
     private List<String> productList;
 
     //getting the context and product list with constructor
-    public HandymanCatAdapter(Context mCtx, List<String> productList) {
+    public MovingliftingCatAdapter(Context mCtx, List<String> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
     @Override
-    public HandymanCatAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MovingliftingCatAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.vehicle_categories_row, null);
-
-        return new HandymanCatAdapter.ProductViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent=new Intent(mCtx, MovingLiftingListing.class);
+              mCtx.startActivity(intent);
+            }
+        });
+        return new MovingliftingCatAdapter.ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HandymanCatAdapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(MovingliftingCatAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
 
         //binding the data with the viewholder views
@@ -65,19 +70,6 @@ public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.
 
             txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
 
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (txt_vehicle_cat.getText().toString().equals("Electrical Work")) {
-                        Intent intent = new Intent(mCtx, ElectricworkCategories.class);
-                        mCtx.startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(mCtx, HandyManListing.class);
-                        mCtx.startActivity(intent);
-                    }
-                }
-            });
         }
     }
 

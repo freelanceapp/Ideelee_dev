@@ -1,4 +1,4 @@
-package snow.app.ideelee.metre_square_module.adapters;
+package snow.app.ideelee.perday_perweek_permonthmodule.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,11 +25,11 @@ import java.util.List;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
-import snow.app.ideelee.metre_square_module.HandymanBookingPerDay;
-import snow.app.ideelee.perday_fixedpricemodule.RentalBookingPerDay;
+import snow.app.ideelee.carriers.CarrierBookingPerDay;
+import snow.app.ideelee.perday_perweek_permonthmodule.GardeningBookingPerDay;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
 
-public class HandymanlistingAdapter extends RecyclerView.Adapter<HandymanlistingAdapter.ProductViewHolder> {
+public class GardeninglistingAdapter extends RecyclerView.Adapter<GardeninglistingAdapter.ProductViewHolder> {
 
 
     //this context we will use to inflate the layout
@@ -40,16 +39,16 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
     private List<ServiceProviderList> productList;
 
     //getting the context and product list with constructor
-    public HandymanlistingAdapter(Context mCtx, List<ServiceProviderList> productList) {
+    public GardeninglistingAdapter(Context mCtx, List<ServiceProviderList> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
     @Override
-    public HandymanlistingAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GardeninglistingAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        final View view = inflater.inflate(R.layout.metresquare_row, null);
+        final View view = inflater.inflate(R.layout.gardening_row, null);
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +60,11 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
 
             }
         });
-        return new HandymanlistingAdapter.ProductViewHolder(view);
+        return new GardeninglistingAdapter.ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HandymanlistingAdapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(GardeninglistingAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
         ServiceProviderList product = productList.get(position);
 
@@ -75,7 +74,13 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
         holder.distance.setText(product.getDistance());
         holder.imageView.setImageDrawable(ContextCompat.getDrawable(mCtx, product.getImage()));
 
-
+        if (position == 1) {
+            holder.txt_person.setText("Per Week");
+        } else if (position == 2) {
+            holder.txt_person.setText("Per Month");
+        } else {
+            holder.txt_person.setText("Per Day");
+        }
     }
 
 
@@ -87,7 +92,7 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         TagGroup mTagGroup;
-        TextView textViewTitle, distance;
+        TextView textViewTitle, distance, txt_person;
         ImageView imageView;
         RatingBar ratingBar;
 
@@ -95,7 +100,7 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
             super(itemView);
             ratingBar = itemView.findViewById(R.id.ratingbar);
             distance = itemView.findViewById(R.id.distance);
-
+            txt_person = itemView.findViewById(R.id.perhour);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
             mTagGroup.setTags(new String[]{"Plumber", "Electrician", "Carpenter",});
@@ -106,7 +111,7 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View v) {
-                    initiatePopupwindowperday(v);
+                    initiatePopupwindowperday(v, txt_person);
 
                 }
             });
@@ -114,12 +119,11 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void initiatePopupwindowperday(View v) {
+    public void initiatePopupwindowperday(View v, TextView txt_person) {
 
         LayoutInflater inflater = (LayoutInflater) mCtx.getSystemService(mCtx.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.squaremetre_dialog, (ViewGroup) v.findViewById(R.id.linearlayout));
+        View layout = inflater.inflate(R.layout.perkmperperson_dialog, (ViewGroup) v.findViewById(R.id.linearlayout));
         final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         pw.showAtLocation(v, Gravity.CENTER, 0, 0);
 
@@ -129,7 +133,7 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
-        RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
         ArrayList<String> list_tag = new ArrayList<>();
@@ -150,19 +154,26 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(mCtx, HandymanBookingPerDay.class);
+                Intent intent = new Intent(mCtx, GardeningBookingPerDay.class);
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
             }
         });
         TextView txt = layout.findViewById(R.id.book_txt);
-        txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\"></span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
+        if (txt_person.getText().toString().equals("Per Day")) {
+            txt.setText("$ 15.00 Per Day");
+        } else if(txt_person.getText().toString().equals("Per Week")){
+            txt.setText("$ 15.00 Per Week");
+        }else {
+            txt.setText("$ 15.00 Per Month");
+        }
+
+        // txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         pw.showAsDropDown(v, 0, 0);
     }
-
 
 
 }

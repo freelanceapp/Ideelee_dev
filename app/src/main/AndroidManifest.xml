@@ -97,6 +97,29 @@
         <activity android:name=".carriers.CarrierBookingRequirements" />
         <activity android:name=".carriers.CarrierBookingActivity" />
         <activity android:name=".carriers.CarrierBookingPerDay" />
+        <activity android:name=".perquantityperfloor.MovingliftingCategories" />
+        <activity android:name=".perquantityperfloor.MovingLiftingListing" />
+        <activity android:name=".perquantityperfloor.MovingLiftingBookingPerDay" />
+        <activity android:name=".perquantityperfloor.MovingBookingRequirements" />
+        <activity android:name=".perquantityperfloor.MovingBookingActivity" />
+        <activity android:name=".perday_perweek_permonthmodule.GardeningListing" />
+        <activity android:name=".perday_perweek_permonthmodule.GardeningCategories" />
+        <activity android:name=".perday_perweek_permonthmodule.GardeningBookingPerDay"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".perday_perweek_permonthmodule.GardeningBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".camping.CampingCategories" />
+        <activity android:name=".camping.CampingListing" />
+        <activity android:name=".camping.CampingBookingPerDay" />
+        <activity android:name=".camping.CampingBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".camping.CampingBookingRequirements" />
+        <activity android:name=".perquantity_fixprice.ElectricworkCategories" />
+        <activity android:name=".perquantity_fixprice.ElectricListing" />
+        <activity android:name=".perquantity_fixprice.ElectricBookingPerDay" />
+        <activity android:name=".perquantity_fixprice.ElectricBookingRequirements" />
+        <activity android:name=".perquantity_fixprice.ElectricBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

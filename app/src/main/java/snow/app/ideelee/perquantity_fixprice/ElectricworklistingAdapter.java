@@ -1,4 +1,4 @@
-package snow.app.ideelee.metre_square_module.adapters;
+package snow.app.ideelee.perquantity_fixprice;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,10 +27,9 @@ import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.HandymanBookingPerDay;
-import snow.app.ideelee.perday_fixedpricemodule.RentalBookingPerDay;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
 
-public class HandymanlistingAdapter extends RecyclerView.Adapter<HandymanlistingAdapter.ProductViewHolder> {
+public class ElectricworklistingAdapter extends RecyclerView.Adapter<ElectricworklistingAdapter.ProductViewHolder> {
 
 
     //this context we will use to inflate the layout
@@ -40,16 +39,16 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
     private List<ServiceProviderList> productList;
 
     //getting the context and product list with constructor
-    public HandymanlistingAdapter(Context mCtx, List<ServiceProviderList> productList) {
+    public ElectricworklistingAdapter(Context mCtx, List<ServiceProviderList> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
 
     @Override
-    public HandymanlistingAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ElectricworklistingAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        final View view = inflater.inflate(R.layout.metresquare_row, null);
+        final View view = inflater.inflate(R.layout.perquantity_row, null);
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -61,11 +60,11 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
 
             }
         });
-        return new HandymanlistingAdapter.ProductViewHolder(view);
+        return new ElectricworklistingAdapter.ProductViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(HandymanlistingAdapter.ProductViewHolder holder, int position) {
+    public void onBindViewHolder(ElectricworklistingAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
         ServiceProviderList product = productList.get(position);
 
@@ -119,7 +118,7 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
     public void initiatePopupwindowperday(View v) {
 
         LayoutInflater inflater = (LayoutInflater) mCtx.getSystemService(mCtx.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.squaremetre_dialog, (ViewGroup) v.findViewById(R.id.linearlayout));
+        View layout = inflater.inflate(R.layout.perquanity_dialog, (ViewGroup) v.findViewById(R.id.linearlayout));
         final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         pw.showAtLocation(v, Gravity.CENTER, 0, 0);
 
@@ -150,14 +149,14 @@ public class HandymanlistingAdapter extends RecyclerView.Adapter<Handymanlisting
             public void onClick(View v) {
 
 
-                Intent intent = new Intent(mCtx, HandymanBookingPerDay.class);
+                Intent intent = new Intent(mCtx, ElectricBookingPerDay.class);
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
             }
         });
         TextView txt = layout.findViewById(R.id.book_txt);
-        txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\"></span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
+        //txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         pw.showAsDropDown(v, 0, 0);

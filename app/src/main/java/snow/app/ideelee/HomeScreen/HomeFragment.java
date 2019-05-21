@@ -34,13 +34,16 @@ import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import snow.app.ideelee.camping.CampingCategories;
 import snow.app.ideelee.carriers.CarriersCategories;
 import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.fixedpricemodule.VehiclewashCategories;
 import snow.app.ideelee.metre_square_module.HandymanCategories;
 import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
+import snow.app.ideelee.perday_perweek_permonthmodule.GardeningCategories;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
 import snow.app.ideelee.perperson_permealmodule.EventServicesCategories;
+import snow.app.ideelee.perquantityperfloor.MovingliftingCategories;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
@@ -77,8 +80,8 @@ public class HomeFragment extends Fragment {
                 getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.vehiclewash),
                 getString(R.string.rentals), getString(R.string.teaching), getString(R.string.eventservices),
                 getString(R.string.handymanservices),
-                getString(R.string.carriers), getString(R.string.homepainting), getString(R.string.electrician),
-                getString(R.string.homepainting), getString(R.string.more)
+                getString(R.string.carriers), getString(R.string.moving), getString(R.string.gardening),
+                getString(R.string.camping), getString(R.string.more)
 
         };
         int[] gridViewImageId = {
@@ -132,6 +135,16 @@ public class HomeFragment extends Fragment {
                 else if (i == 7) {
 
                     startActivity(new Intent(getActivity(), CarriersCategories.class));
+                }else if (i == 8) {
+
+                    startActivity(new Intent(getActivity(), MovingliftingCategories.class));
+                }else if (i == 9) {
+
+                    startActivity(new Intent(getActivity(), GardeningCategories.class));
+                }
+                else if (i == 10) {
+
+                    startActivity(new Intent(getActivity(), CampingCategories.class));
                 }
 
                 else {
