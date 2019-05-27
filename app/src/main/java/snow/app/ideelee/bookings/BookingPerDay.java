@@ -118,9 +118,10 @@ public class BookingPerDay extends AppCompatActivity {
         });
 
     }
+
     private void initializeCalendar() {
-       // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
-simpleCalendarView.setMaxDate(3);
+        // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
+        simpleCalendarView.setMaxDate(3);
 //        simpleCalendarView.add(Calendar.DATE, -1);
 //        calendarView.setDateSelected(cal.getTime(), true);
 //        calendarView.setDateSelected(CalendarDay.today(), true);

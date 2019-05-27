@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -35,13 +36,14 @@ public class MovingLiftingBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-
+TextView txt;
+ImageView backbutton1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moving_booking_day);
         ButterKnife.bind(this);
-
+txt=findViewById(R.id.txt);
         textView.setText("Moving and Lifting Services");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
         selecteddate = sdf.format(new Date(simpleCalendarView.getDate()));
@@ -61,6 +63,14 @@ public class MovingLiftingBookingPerDay extends AppCompatActivity {
                 Intent intent = new Intent(MovingLiftingBookingPerDay.this, MovingBookingRequirements.class);
                 intent.putExtra("key", selecteddate);
                 startActivity(intent);
+            }
+        });
+        txt.setText(getIntent().getStringExtra("key"));
+        backbutton1=findViewById(R.id.backbutton1);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

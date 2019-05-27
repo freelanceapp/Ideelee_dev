@@ -112,7 +112,7 @@
                         android:fontFamily="@font/regular"
                         android:gravity="center"
                         android:padding="@dimen/margin_4dp"
-                        android:text="$ 15.00 Per Sq m"
+                        android:text="$ 15.00 Per Day"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_17sp"
                         android:textStyle="bold" />

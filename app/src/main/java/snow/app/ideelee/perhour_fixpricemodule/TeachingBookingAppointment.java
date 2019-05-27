@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ import snow.app.ideelee.fixedpricemodule.VehicleWashBookingActivity;
 public class TeachingBookingAppointment extends Activity {
 TagGroup mTagGroup;
 Button makecustomslot;
+ImageView backbutton1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +39,13 @@ Button makecustomslot;
 
         TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Primary School");
+        backbutton1=findViewById(R.id.backbutton1);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        mTagGroup = (TagGroup)findViewById(R.id.tag_group_bookingapp);

@@ -149,6 +149,7 @@ perperson=itemView.findViewById(R.id.perhour);
         wm.updateViewLayout(container, p);
         Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
         Button lay_bg = layout.findViewById(R.id.lay_bg);
+        final TextView book_txt=layout.findViewById(R.id.book_txt);
         TagGroup mTagGroup = (TagGroup) layout.findViewById(R.id.tag);
         mTagGroup.setTags(new String[]{"08-10 AM", "08-10 AM", "08-10 AM"});
         mTagGroup.submitTag();
@@ -156,6 +157,7 @@ perperson=itemView.findViewById(R.id.perhour);
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx, EventBookingAppointment.class);
+                intent.putExtra("key",book_txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
@@ -179,6 +181,7 @@ perperson=itemView.findViewById(R.id.perhour);
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
+        final TextView book_txt=layout.findViewById(R.id.book_txt);
         Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
         Button lay_bg = layout.findViewById(R.id.lay_bg);
         TagGroup mTagGroup = (TagGroup) layout.findViewById(R.id.tag);
@@ -188,6 +191,7 @@ perperson=itemView.findViewById(R.id.perhour);
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx, EventBookingAppointment.class);
+                intent.putExtra("key",book_txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

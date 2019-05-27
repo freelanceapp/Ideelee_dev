@@ -111,6 +111,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/regular"
                         android:gravity="center"
+                        android:id="@+id/txt"
                         android:padding="@dimen/margin_4dp"
                         android:text="$ 15.00 Per KM"
                         android:textColor="@color/black"

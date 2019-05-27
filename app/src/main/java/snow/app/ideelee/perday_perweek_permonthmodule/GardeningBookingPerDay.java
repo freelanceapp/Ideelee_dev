@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -35,14 +36,23 @@ public class GardeningBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-
+    ImageView backbutton1;
+    TextView txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gardening_bookingperday);
         ButterKnife.bind(this);
-
+        backbutton1=(ImageView)findViewById(R.id.backbutton1);
         textView.setText("Gardening Services");
+        txt=findViewById(R.id.txt);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
         selecteddate = sdf.format(new Date(simpleCalendarView.getDate()));
         // System.out.println("seleted date ---"+selectedDate);
@@ -63,6 +73,7 @@ public class GardeningBookingPerDay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        txt.setText(getIntent().getStringExtra("key"));
     }
 
     public void initiatePopupwindow(View v) {

@@ -153,6 +153,7 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
 
 
                 Intent intent = new Intent(mCtx, RentalBookingPerDay.class);
+
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

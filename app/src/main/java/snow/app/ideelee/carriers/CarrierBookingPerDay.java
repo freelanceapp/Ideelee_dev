@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -35,12 +36,17 @@ public class CarrierBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
+    @BindView(R.id.txt)
+    TextView txt;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrier_booking_day);
         ButterKnife.bind(this);
+
 
         textView.setText("Carrier Services");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
@@ -54,13 +60,19 @@ public class CarrierBookingPerDay extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Selected Date:\n" + "Day = " + i2 + "\n" + "Month = " + i1 + "\n" + "Year = " + i, Toast.LENGTH_LONG).show();
             }
         });
-
+        txt.setText(getIntent().getStringExtra("key"));
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CarrierBookingPerDay.this, CarrierBookingRequirements.class);
                 intent.putExtra("key", selecteddate);
                 startActivity(intent);
+            }
+        });
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
@@ -103,7 +115,7 @@ public class CarrierBookingPerDay extends AppCompatActivity {
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CarrierBookingPerDay.this, RentalBookingActivity.class);
+                Intent intent = new Intent(CarrierBookingPerDay.this, CarrierBookingRequirements.class);
 
                 startActivity(intent);
             }

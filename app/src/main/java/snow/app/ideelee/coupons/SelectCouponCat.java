@@ -10,23 +10,28 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.coupons.adapters.CouponCatAdapter;
 
 
 public class SelectCouponCat extends Activity {
+    @BindView
+            (R.id.recyclerview)
     RecyclerView recyclerView;
     ArrayList<String> serviceproviderlist;
+    @BindView(R.id.backbutton1)
     ImageView backbutton1;
-    ImageView notification;
+
+    @BindView(R.id.title_bookingappointement)
     TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_coupon_cat);
-
-        backbutton1=(ImageView)findViewById(R.id.backbutton1);
-        title=(TextView) findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
         title.setText("Select Coupon Category");
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,11 +39,7 @@ public class SelectCouponCat extends Activity {
                 onBackPressed();
             }
         });
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerview);
         serviceproviderlist = new ArrayList<>();
-
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(SelectCouponCat.this, LinearLayoutManager.VERTICAL, false));
 //        serviceproviderlist.add(
 //                new ActiveJobModal(

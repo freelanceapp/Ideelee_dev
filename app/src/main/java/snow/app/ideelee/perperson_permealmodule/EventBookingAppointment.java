@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -20,7 +21,9 @@ import snow.app.ideelee.perhour_fixpricemodule.TeachingBookingActivity;
 
 public class EventBookingAppointment extends Activity {
 TagGroup mTagGroup;
+TextView txt;
 Button makecustomslot;
+ImageView backbutton1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +36,19 @@ Button makecustomslot;
                 initiatePopupwindow(v);
             }
         });
-//        setSupportActionBar(toolbar);
+        backbutton1=findViewById(R.id.backbutton1);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
+//        setSupportActionBar(toolbar);
+txt=findViewById(R.id.txt);
         TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Event Services");
-
+        txt.setText(getIntent().getStringExtra("key"));
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        mTagGroup = (TagGroup)findViewById(R.id.tag_group_bookingapp);
 //        mTagGroup.setTags(new String[]{"12-01 AM", "12-01 AM", "12-01 AM",

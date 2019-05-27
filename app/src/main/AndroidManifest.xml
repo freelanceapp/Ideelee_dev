@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="snow.app.ideelee">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -15,19 +17,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDGSUyF6f1Q4IaAMNmLjyAQrJ8UQ1b9Of8" />
         <activity android:name=".perperson_permealmodule.BookingRequirements"></activity>
         <activity android:name=".extrafiles.PermissionsActivity"></activity>
-        <activity android:name=".bookings.BookingPerDay" />
+        <activity
+            android:name=".bookings.BookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".vehical_module.vehicle.VehicleCategories" />
         <activity android:name=".fixedpricemodule.VehicleWashSubCat" />
-        <activity android:name=".fixedpricemodule.VehicleWashBookingAppointment" />
-        <activity android:name=".fixedpricemodule.VehicleWashBookingActivity" />
+        <activity
+            android:name=".fixedpricemodule.VehicleWashBookingAppointment"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".fixedpricemodule.VehicleWashBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perday_fixedpricemodule.RentalCategories" />
         <activity android:name=".perday_fixedpricemodule.RentalSubCat" />
         <activity android:name=".perhour_fixpricemodule.TeachingCategories" />
         <activity android:name=".CouponDetails" />
         <activity android:name=".CouponActivity" />
-        <activity android:name=".perhour_fixpricemodule.TeachingBookingAppointment" />
+        <activity
+            android:name=".perhour_fixpricemodule.TeachingBookingAppointment"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perhour_fixpricemodule.TeachingSubCat" />
         <activity android:name=".Categories" />
         <activity android:name=".PaymentMethodActivity" />
@@ -37,9 +50,10 @@
         <activity android:name=".fooddelivery.cart.CartActivity" />
         <activity android:name=".PaymentSuccessfulActivity" />
         <activity android:name=".PaymentDetailsActivity" />
-        <activity android:name=".perperson_permealmodule.EventBookingAppointment"/>
-        <activity android:name=".perperson_permealmodule.EventBookingActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".perperson_permealmodule.EventBookingAppointment" />
+        <activity
+            android:name=".perperson_permealmodule.EventBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".fooddelivery.restdetails.RestDetailsActivity" />
         <activity android:name=".fooddelivery.restaurantsmod.RestaurantsList" />
         <activity
@@ -81,9 +95,12 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LiveTracking" />
         <activity android:name=".vehical_module.vehicle.VehicalListing" />
-        <activity android:name=".perhour_fixpricemodule.TeachingBookingActivity" />
+        <activity android:name=".perhour_fixpricemodule.TeachingBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".perday_fixedpricemodule.RentalBookingPerDay" />
-        <activity android:name=".perday_fixedpricemodule.RentalBookingActivity" />
+        <activity
+            android:name=".perday_fixedpricemodule.RentalBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perperson_permealmodule.EventServicesCategories" />
         <activity android:name=".perperson_permealmodule.EventSubCat" />
         <activity android:name=".coupons.SelectCouponCat" />
@@ -91,39 +108,53 @@
         <activity android:name=".metre_square_module.HandyManListing" />
         <activity android:name=".metre_square_module.HandymanBookingPerDay" />
         <activity android:name=".metre_square_module.HandymanBookingRequirements" />
-        <activity android:name=".metre_square_module.HandymanBookingActivity" />
+        <activity
+            android:name=".metre_square_module.HandymanBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".carriers.CarriersCategories" />
         <activity android:name=".carriers.CarriersListing" />
         <activity android:name=".carriers.CarrierBookingRequirements" />
-        <activity android:name=".carriers.CarrierBookingActivity" />
-        <activity android:name=".carriers.CarrierBookingPerDay" />
+        <activity android:name=".carriers.CarrierBookingActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".carriers.CarrierBookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perquantityperfloor.MovingliftingCategories" />
         <activity android:name=".perquantityperfloor.MovingLiftingListing" />
-        <activity android:name=".perquantityperfloor.MovingLiftingBookingPerDay" />
+        <activity
+            android:name=".perquantityperfloor.MovingLiftingBookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perquantityperfloor.MovingBookingRequirements" />
-        <activity android:name=".perquantityperfloor.MovingBookingActivity" />
+        <activity
+            android:name=".perquantityperfloor.MovingBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perday_perweek_permonthmodule.GardeningListing" />
         <activity android:name=".perday_perweek_permonthmodule.GardeningCategories" />
-        <activity android:name=".perday_perweek_permonthmodule.GardeningBookingPerDay"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".perday_perweek_permonthmodule.GardeningBookingActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".perday_perweek_permonthmodule.GardeningBookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".perday_perweek_permonthmodule.GardeningBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".camping.CampingCategories" />
         <activity android:name=".camping.CampingListing" />
-        <activity android:name=".camping.CampingBookingPerDay" />
-        <activity android:name=".camping.CampingBookingActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".camping.CampingBookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".camping.CampingBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".camping.CampingBookingRequirements" />
         <activity android:name=".perquantity_fixprice.ElectricworkCategories" />
         <activity android:name=".perquantity_fixprice.ElectricListing" />
-        <activity android:name=".perquantity_fixprice.ElectricBookingPerDay" />
+        <activity
+            android:name=".perquantity_fixprice.ElectricBookingPerDay"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".perquantity_fixprice.ElectricBookingRequirements" />
-        <activity android:name=".perquantity_fixprice.ElectricBookingActivity"
-            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".perquantity_fixprice.ElectricBookingActivity"
+            android:windowSoftInputMode="adjustPan" />
 
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDGSUyF6f1Q4IaAMNmLjyAQrJ8UQ1b9Of8" />
     </application>
 
 </manifest>

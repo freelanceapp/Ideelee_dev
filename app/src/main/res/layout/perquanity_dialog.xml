@@ -54,7 +54,7 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/regular"
                 android:textSize="@dimen/text_size_17sp"
-                android:text="15.00 Per Item"
+                android:text="$ 15.00 Per Item"
                 android:gravity="left" />
             <TextView
                 android:layout_width="wrap_content"

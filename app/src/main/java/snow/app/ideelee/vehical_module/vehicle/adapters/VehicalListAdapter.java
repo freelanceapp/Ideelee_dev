@@ -76,7 +76,7 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
         holder.distance.setText(product.getDistance());
         holder.imageView.setImageDrawable(ContextCompat.getDrawable(mCtx, product.getImage()));
         if (position == 1) {
-            holder.perhour.setText("PER DAY");
+            holder.perhour.setText("Per Day");
         }
 
     }
@@ -110,7 +110,7 @@ itemView.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
-        if (perhour.getText().equals("PER DAY")){
+        if (perhour.getText().equals("Per Day")){
             initiatePopupwindowperday(v);
         }else {
             initiatePopupwindow(v);

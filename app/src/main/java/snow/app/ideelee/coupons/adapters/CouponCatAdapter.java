@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.R;
 
@@ -41,7 +43,7 @@ public class CouponCatAdapter extends RecyclerView.Adapter<CouponCatAdapter.Prod
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the product of the specified position
 
-holder.cat.setText(productList.get(position));
+        holder.cat.setText(productList.get(position));
     }
 
 
@@ -52,18 +54,18 @@ holder.cat.setText(productList.get(position));
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
-TextView cat;
+        @BindView(R.id.cat)
+        TextView cat;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-
-cat=itemView.findViewById(R.id.cat);
-itemView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        mCtx.startActivity(new Intent(mCtx, CouponActivity.class));
-    }
-});
+            ButterKnife.bind(this,itemView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mCtx.startActivity(new Intent(mCtx, CouponActivity.class));
+                }
+            });
 
         }
     }

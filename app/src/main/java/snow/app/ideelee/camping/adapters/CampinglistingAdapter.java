@@ -22,6 +22,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
@@ -89,27 +91,30 @@ public class CampinglistingAdapter extends RecyclerView.Adapter<CampinglistingAd
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.tag_group)
         TagGroup mTagGroup;
-        TextView textViewTitle, distance,txt_person;
+        @BindView(R.id.textViewTitle)
+        TextView textViewTitle;
+        @BindView(R.id.distance)
+        TextView distance;
+        @BindView(R.id.perhour)
+        TextView txt_person;
+        @BindView(R.id.ux_img_user)
         ImageView imageView;
+        @BindView(R.id.ratingbar)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            distance = itemView.findViewById(R.id.distance);
-txt_person=itemView.findViewById(R.id.perhour);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
+            ButterKnife.bind(this,itemView);
             mTagGroup.setTags(new String[]{"Plumber", "Electrician", "Carpenter",});
             mTagGroup.submitTag();
-            imageView = itemView.findViewById(R.id.ux_img_user);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View v) {
-                    initiatePopupwindowperday(v,txt_person);
+                    initiatePopupwindowperday(v, txt_person);
 
                 }
             });
@@ -117,9 +122,8 @@ txt_person=itemView.findViewById(R.id.perhour);
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void initiatePopupwindowperday(View v,TextView txt_person) {
+    public void initiatePopupwindowperday(View v, TextView txt_person) {
 
         LayoutInflater inflater = (LayoutInflater) mCtx.getSystemService(mCtx.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.perquanity_dialog, (ViewGroup) v.findViewById(R.id.linearlayout));
@@ -132,7 +136,7 @@ txt_person=itemView.findViewById(R.id.perhour);
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
-        RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
         ArrayList<String> list_tag = new ArrayList<>();
@@ -166,12 +170,11 @@ txt_person=itemView.findViewById(R.id.perhour);
 //            txt.setText("$ 15.00 Per Person");
 //        }
 
-       // txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
+        // txt.setText(Html.fromHtml("<strong><span style=\"color: #ff9900;\">Limousine :-</span> <span style=\"color: #000000;\">$15.00 Per Sq m</span></strong>", Html.FROM_HTML_MODE_COMPACT));
         pw.setOutsideTouchable(true);
         pw.setFocusable(true);
         pw.showAsDropDown(v, 0, 0);
     }
-
 
 
 }

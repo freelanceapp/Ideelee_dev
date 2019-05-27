@@ -112,6 +112,7 @@
                         android:fontFamily="@font/regular"
                         android:gravity="center"
                         android:padding="@dimen/margin_4dp"
+                        android:id="@+id/txt"
                         android:text="$ 15.00 Per Quantity"
                         android:textColor="@color/black"
                         android:textSize="@dimen/text_size_17sp"

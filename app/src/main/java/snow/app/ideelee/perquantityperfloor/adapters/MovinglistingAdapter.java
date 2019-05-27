@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -133,6 +134,7 @@ txt_person=itemView.findViewById(R.id.perhour);
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
         RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        final TextView book_txt = layout.findViewById(R.id.book_txt);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
         ArrayList<String> list_tag = new ArrayList<>();
@@ -154,6 +156,7 @@ txt_person=itemView.findViewById(R.id.perhour);
 
 
                 Intent intent = new Intent(mCtx, MovingLiftingBookingPerDay.class);
+                intent.putExtra("key",book_txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

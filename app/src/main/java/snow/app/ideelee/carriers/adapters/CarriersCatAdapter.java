@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.carriers.CarriersListing;
 import snow.app.ideelee.metre_square_module.HandyManListing;
@@ -37,8 +39,8 @@ public class CarriersCatAdapter extends RecyclerView.Adapter<CarriersCatAdapter.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(mCtx, CarriersListing.class);
-              mCtx.startActivity(intent);
+                Intent intent = new Intent(mCtx, CarriersListing.class);
+                mCtx.startActivity(intent);
             }
         });
         return new CarriersCatAdapter.ProductViewHolder(view);
@@ -49,7 +51,7 @@ public class CarriersCatAdapter extends RecyclerView.Adapter<CarriersCatAdapter.
         //getting the product of the specified positionHandyManListing
 
         //binding the data with the viewholder views
-    holder.txt_vehicle_cat.setText(productList.get(position));
+        holder.txt_vehicle_cat.setText(productList.get(position));
 
 
     }
@@ -62,19 +64,18 @@ public class CarriersCatAdapter extends RecyclerView.Adapter<CarriersCatAdapter.
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.txt_vehicle_cat)
         TextView txt_vehicle_cat;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
 
-            txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
 
         }
     }
-
-
-
 
 
 }

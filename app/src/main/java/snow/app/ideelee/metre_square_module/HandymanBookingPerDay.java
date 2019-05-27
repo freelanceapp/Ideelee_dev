@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class HandymanBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-
+ImageView backbutton1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,13 @@ public class HandymanBookingPerDay extends AppCompatActivity {
                 Intent intent = new Intent(HandymanBookingPerDay.this, HandymanBookingRequirements.class);
                 intent.putExtra("key", selecteddate);
                 startActivity(intent);
+            }
+        });
+        backbutton1=findViewById(R.id.backbutton1);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }

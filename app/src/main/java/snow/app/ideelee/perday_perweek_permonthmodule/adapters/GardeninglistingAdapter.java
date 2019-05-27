@@ -134,6 +134,7 @@ public class GardeninglistingAdapter extends RecyclerView.Adapter<Gardeninglisti
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
         RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        final TextView txt = layout.findViewById(R.id.book_txt);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
         ArrayList<String> list_tag = new ArrayList<>();
@@ -155,12 +156,13 @@ public class GardeninglistingAdapter extends RecyclerView.Adapter<Gardeninglisti
 
 
                 Intent intent = new Intent(mCtx, GardeningBookingPerDay.class);
+                intent.putExtra("key",txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
             }
         });
-        TextView txt = layout.findViewById(R.id.book_txt);
+
         if (txt_person.getText().toString().equals("Per Day")) {
             txt.setText("$ 15.00 Per Day");
         } else if(txt_person.getText().toString().equals("Per Week")){
