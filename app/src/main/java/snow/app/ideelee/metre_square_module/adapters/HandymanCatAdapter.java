@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.HandyManListing;
 import snow.app.ideelee.perday_fixedpricemodule.RentalSubCat;
@@ -57,13 +59,13 @@ public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_vehicle_cat;
+       @BindView
+      (R.id.txt_vehicle_cat) TextView txt_vehicle_cat;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-
-            txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
+            ButterKnife.bind(this,itemView);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

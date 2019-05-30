@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -23,9 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.carriers.CarrierBookingRequirements;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 
-public class MovingLiftingBookingPerDay extends AppCompatActivity {
+public class MovingLiftingBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -36,14 +38,18 @@ public class MovingLiftingBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-TextView txt;
-ImageView backbutton1;
+    @BindView(R.id.txt)
+    TextView txt;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moving_booking_day);
         ButterKnife.bind(this);
-txt=findViewById(R.id.txt);
+
         textView.setText("Moving and Lifting Services");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
         selecteddate = sdf.format(new Date(simpleCalendarView.getDate()));
@@ -66,13 +72,14 @@ txt=findViewById(R.id.txt);
             }
         });
         txt.setText(getIntent().getStringExtra("key"));
-        backbutton1=findViewById(R.id.backbutton1);
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {

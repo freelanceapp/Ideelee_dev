@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
@@ -77,20 +79,19 @@ public class EventsSubCatAdapter extends RecyclerView.Adapter<EventsSubCatAdapte
         holder.distance.setText(product.getDistance());
         holder.imageView.setImageDrawable(ContextCompat.getDrawable(mCtx, product.getImage()));
 
-if (position==0){
-    holder.mTagGroup.setTags(new String[]{"Cook"});
-    holder.mTagGroup.submitTag();
-    holder.perperson.setText("Per Person");
-} else if (position==1){
-    holder.mTagGroup.setTags(new String[]{"Chef"});
-    holder.mTagGroup.submitTag();
-    holder.perperson.setText("Per Person");
-}else {
-    holder.mTagGroup.setTags(new String[]{"Cook"});
-    holder.mTagGroup.submitTag();
-    holder.perperson.setText("Per Meal");
-}
-
+        if (position == 0) {
+            holder.mTagGroup.setTags(new String[]{"Cook"});
+            holder.mTagGroup.submitTag();
+            holder.perperson.setText("Per Person");
+        } else if (position == 1) {
+            holder.mTagGroup.setTags(new String[]{"Chef"});
+            holder.mTagGroup.submitTag();
+            holder.perperson.setText("Per Person");
+        } else {
+            holder.mTagGroup.setTags(new String[]{"Cook"});
+            holder.mTagGroup.submitTag();
+            holder.perperson.setText("Per Meal");
+        }
 
 
     }
@@ -103,36 +104,41 @@ if (position==0){
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.tag_group)
         TagGroup mTagGroup;
-        TextView textViewTitle, distance,perperson;
+        @BindView(R.id.textViewTitle)
+        TextView textViewTitle;
+        @BindView(R.id.distance)
+        TextView distance;
+        @BindView(R.id.perhour)
+        TextView perperson;
+        @BindView(R.id.ux_img_user)
         ImageView imageView;
+        @BindView(R.id.ratingbar)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            distance = itemView.findViewById(R.id.distance);
-perperson=itemView.findViewById(R.id.perhour);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
+            ButterKnife.bind(this, itemView);
             mTagGroup.setTags(new String[]{"Cook"});
             mTagGroup.submitTag();
-            imageView = itemView.findViewById(R.id.ux_img_user);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 public void onClick(View v) {
-                    if (perperson.getText().toString().equals("Per Meal")){
-                    perMealPopup(v);
+                    if (perperson.getText().toString().equals("Per Meal")) {
+                        perMealPopup(v);
 
-                }else{
-                    perPersonPopup(v);
-                }}
+                    } else {
+                        perPersonPopup(v);
+                    }
+                }
             });
         }
     }
-
 
 
     public void perPersonPopup(View v) {
@@ -149,7 +155,7 @@ perperson=itemView.findViewById(R.id.perhour);
         wm.updateViewLayout(container, p);
         Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
         Button lay_bg = layout.findViewById(R.id.lay_bg);
-        final TextView book_txt=layout.findViewById(R.id.book_txt);
+        final TextView book_txt = layout.findViewById(R.id.book_txt);
         TagGroup mTagGroup = (TagGroup) layout.findViewById(R.id.tag);
         mTagGroup.setTags(new String[]{"08-10 AM", "08-10 AM", "08-10 AM"});
         mTagGroup.submitTag();
@@ -157,7 +163,7 @@ perperson=itemView.findViewById(R.id.perhour);
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx, EventBookingAppointment.class);
-                intent.putExtra("key",book_txt.getText().toString());
+                intent.putExtra("key", book_txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
@@ -181,7 +187,7 @@ perperson=itemView.findViewById(R.id.perhour);
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
-        final TextView book_txt=layout.findViewById(R.id.book_txt);
+        final TextView book_txt = layout.findViewById(R.id.book_txt);
         Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn);
         Button lay_bg = layout.findViewById(R.id.lay_bg);
         TagGroup mTagGroup = (TagGroup) layout.findViewById(R.id.tag);
@@ -191,7 +197,7 @@ perperson=itemView.findViewById(R.id.perhour);
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mCtx, EventBookingAppointment.class);
-                intent.putExtra("key",book_txt.getText().toString());
+                intent.putExtra("key", book_txt.getText().toString());
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 

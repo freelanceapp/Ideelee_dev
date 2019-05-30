@@ -11,24 +11,22 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RateServiceProviderActivity extends AppCompatActivity {
-RatingBar ratingBar;
-Button btn_submit;
-    ImageView backbutton1;
-    TextView title_bookingappointement;
-    LinearLayout linearLayout_profile;
+@BindView(R.id.ratingbar_rate) RatingBar ratingBar;
+@BindView(R.id.ux_btn_submit) Button btn_submit;
+   @BindView(R.id.backbutton1) ImageView backbutton1;
+    @BindView(R.id.title_bookingappointement) TextView title_bookingappointement;
+    @BindView(R.id.linearlayout_profile) LinearLayout linearLayout_profile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_service_provider);
-        btn_submit=findViewById(R.id.ux_btn_submit);
-        ratingBar=findViewById(R.id.ratingbar_rate);
-        backbutton1=findViewById(R.id.backbutton1);
-        linearLayout_profile=findViewById(R.id.linearlayout_profile);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
         ratingBar.setRating(4);
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override

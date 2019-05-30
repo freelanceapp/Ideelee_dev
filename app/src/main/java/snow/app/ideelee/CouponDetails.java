@@ -11,33 +11,42 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class CouponDetails extends AppCompatActivity {
+    @BindView(R.id.backbutton1)
     ImageView backbutton1;
+    @BindView(R.id.btn_buycoupon)
     Button btn_buycoupon;
-    TextView title_bookingappointement,coupondetail;
+    @BindView(R.id.title_bookingappointement)
+    TextView title_bookingappointement;
+    @BindView(R.id.coupondetails)
+    TextView coupondetail;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_coupon_details);
-        backbutton1=findViewById(R.id.backbutton1);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
-        coupondetail=findViewById(R.id.coupondetails);
+
+        ButterKnife.bind(this);
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-btn_buycoupon=findViewById(R.id.btn_buycoupon);
-btn_buycoupon.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Intent intent=new Intent(CouponDetails.this,PaymentSuccessfulActivity.class);
-        intent.putExtra("key","Done");
-        startActivity(intent);
-    }
-});
+
+        btn_buycoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CouponDetails.this, PaymentSuccessfulActivity.class);
+                intent.putExtra("key", "Done");
+                startActivity(intent);
+            }
+        });
         btn_buycoupon.setText(Html.fromHtml("<span style=\"color: #ffcc00;\">$ 10.00</span> <span style=\"color: #ffffff;\">Buy Now</span>", Html.FROM_HTML_MODE_COMPACT));
         title_bookingappointement.setText("Coupon Details");
 

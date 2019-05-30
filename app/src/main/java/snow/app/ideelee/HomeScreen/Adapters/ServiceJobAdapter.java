@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Modals.CompletedJobModal;
 import snow.app.ideelee.R;
 
@@ -39,11 +41,11 @@ public class ServiceJobAdapter extends RecyclerView.Adapter<ServiceJobAdapter.Pr
     @Override
     public void onBindViewHolder(ServiceJobAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
-       // CompletedJobModal product = productList.get(position);
+        // CompletedJobModal product = productList.get(position);
 
         //binding the data with the viewholder views
 
-holder.ratingBar.setRating(4);
+        holder.ratingBar.setRating(4);
     }
 
 
@@ -56,11 +58,13 @@ holder.ratingBar.setRating(4);
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
         TextView name, status, address, payment, servicetype, edit, txt_ratenow;
+        @BindView
+                (R.id.ratingbar_serviceprofile)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-ratingBar=itemView.findViewById(R.id.ratingbar_serviceprofile);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

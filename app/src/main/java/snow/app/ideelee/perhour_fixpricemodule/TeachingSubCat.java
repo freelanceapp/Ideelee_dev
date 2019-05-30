@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
@@ -34,34 +36,38 @@ public class TeachingSubCat extends Activity {
 
     List<ServiceProviderList> serviceproviderlist;
     TagGroup mTagGroup;
+    @BindView
+            (R.id.recyclerView)
     RecyclerView recyclerView;
 
     public TeachingSubCat() {
     }
 
+    @BindView(R.id.backbutton1)
     ImageView imageView;
+    @BindView(R.id.img)
     ImageView img;
-    TextView relevance, filter;
+    @BindView(R.id.relevance)
+    TextView relevance;
+    @BindView(R.id.filter)
+    TextView filter;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaching_subcat);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         //        setSupportActionBar(toolbar);
-        TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
+        TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Teaching and Courses Services");
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        relevance = findViewById(R.id.relevance);
-        filter = findViewById(R.id.filter);
-        recyclerView.setHasFixedSize(true);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        imageView = findViewById(R.id.backbutton1);
-        img = findViewById(R.id.img);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               finish();
+                finish();
             }
         });
         serviceproviderlist = new ArrayList<>();
@@ -75,7 +81,7 @@ public class TeachingSubCat extends Activity {
 
         serviceproviderlist.add(
                 new ServiceProviderList(
-                       "Middle School",
+                        "Middle School",
                         "5 KM",
                         4.5,
                         R.drawable.img

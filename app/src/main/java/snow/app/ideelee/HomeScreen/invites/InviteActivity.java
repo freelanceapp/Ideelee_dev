@@ -11,18 +11,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class InviteActivity extends Activity {
-    TextView title;
-    ImageView backbutton;
+   @BindView
+  (R.id.title_bookingappointement) TextView title;
+    @BindView(R.id.backbutton1) ImageView backbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_invite);
-        title=(TextView)findViewById(R.id.title_bookingappointement);
-        backbutton=(ImageView) findViewById(R.id.backbutton1);
+        ButterKnife.bind(this);
         title.setText("Invite");
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override

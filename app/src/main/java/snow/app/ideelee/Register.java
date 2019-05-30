@@ -8,15 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class Register extends Activity {
-TextView txt_loginnow_registerPage;
+@BindView(R.id.ux_txt_loginnow_registerPage) TextView txt_loginnow_registerPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        txt_loginnow_registerPage=findViewById(R.id.ux_txt_loginnow_registerPage);
+        ButterKnife.bind(this);
+
         txt_loginnow_registerPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -9,20 +9,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.adapters.HandymanCatAdapter;
 import snow.app.ideelee.perquantityperfloor.adapters.MovingliftingCatAdapter;
 
 public class MovingliftingCategories extends AppCompatActivity {
-RecyclerView recyclerView;
-ArrayList<String> vehicle_cat;
+    @BindView(R.id.rv_vehicle_cat)
+    RecyclerView recyclerView;
+    ArrayList<String> vehicle_cat;
+    @BindView(R.id.title_bookingappointement)
+    TextView tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental_cat);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
-        vehicle_cat=new ArrayList<>();
-        TextView tv=findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
+        vehicle_cat = new ArrayList<>();
         tv.setText("Moving & Lifting Services");
         findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
             @Override

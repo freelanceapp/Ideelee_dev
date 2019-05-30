@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -21,10 +22,11 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.metre_square_module.HandymanBookingRequirements;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 
-public class ElectricBookingPerDay extends AppCompatActivity {
+public class ElectricBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -35,7 +37,8 @@ public class ElectricBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,7 @@ public class ElectricBookingPerDay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {

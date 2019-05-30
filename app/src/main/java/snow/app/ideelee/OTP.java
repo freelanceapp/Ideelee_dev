@@ -15,16 +15,18 @@ import android.widget.Button;
 import com.chaos.view.PinView;
 
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class OTP extends Activity {
-Button btn_continue_otpPage;
+   @BindView(R.id.ux_btn_continue_otpPage) Button btn_continue_otpPage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
-        btn_continue_otpPage=findViewById(R.id.ux_btn_continue_otpPage);
+        ButterKnife.bind(this);
         btn_continue_otpPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +34,7 @@ Button btn_continue_otpPage;
                 startActivity(intent_continue);
             }
         });
-        final PinView pinView = findViewById(R.id.firstPinView);
+      //  final PinView pinView = findViewById(R.id.firstPinView);
 //        pinView.setTextColor(
 //                ResourcesCompat.getColor(getResources(), R.color.black, getTheme()));
 //        pinView.setTextColor(

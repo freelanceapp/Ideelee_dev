@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
 
@@ -68,15 +70,17 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle, textViewRating;
-        ImageView imageView;
-        RatingBar ratingBar;
+       @BindView
+      (R.id.textViewTitle) TextView textViewTitle;
+        TextView textViewRating;
+       @BindView(R.id.imageView) ImageView imageView;
+       @BindView(R.id.ratingbar) RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            imageView = itemView.findViewById(R.id.imageView);
+            ButterKnife.bind(this,itemView);
+
+
 
 
         }

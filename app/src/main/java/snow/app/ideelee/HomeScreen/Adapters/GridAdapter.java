@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.Categories;
 import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
@@ -27,6 +29,7 @@ import snow.app.ideelee.perday_perweek_permonthmodule.GardeningCategories;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
 import snow.app.ideelee.perperson_permealmodule.EventServicesCategories;
 import snow.app.ideelee.perquantityperfloor.MovingliftingCategories;
+import snow.app.ideelee.shoppingservices.ShoppingCategories;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 
@@ -87,7 +90,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
                     mContext.startActivity(new Intent(mContext, EventServicesCategories.class));
                 }else if (position == 6) {
 
-                    mContext.startActivity(new Intent(mContext, CarriersCategories.class));
+                    mContext.startActivity(new Intent(mContext, ShoppingCategories.class));
                 }
                 else if (position == 7) {
 
@@ -112,6 +115,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
                 }
             }
         });
+
+
+
     }
 
 
@@ -122,16 +128,15 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewAndroid;
-        ImageView imageViewAndroid ;
-        LinearLayout parent ;
+      @BindView
+    (R.id.android_gridview_text)  TextView textViewAndroid;
+      @BindView(R.id.android_gridview_image)  ImageView imageViewAndroid ;
+      @BindView(R.id.parent)  LinearLayout parent ;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
 
-             textViewAndroid = (TextView) itemView.findViewById(R.id.android_gridview_text);
-             imageViewAndroid = (ImageView) itemView.findViewById(R.id.android_gridview_image);
-            parent = (LinearLayout) itemView.findViewById(R.id.parent);
 
 
 

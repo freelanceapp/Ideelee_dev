@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.rilixtech.Country;
 import com.rilixtech.CountryCodePicker;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.forgot.ForgotPassword;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -20,17 +22,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 public class Login extends Activity {
 
 
-    TextView txt_registernow_loginPage;
-    Button btn_continue_loginPage;
-    TextView forgot;
+   @BindView
+  (R.id.ux_txt_registernow_loginPage) TextView txt_registernow_loginPage;
+  @BindView(R.id.ux_btn_continue_loginPage)  Button btn_continue_loginPage;
+  @BindView(R.id.forgot)  TextView forgot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-         txt_registernow_loginPage=findViewById(R.id.ux_txt_registernow_loginPage);
-         btn_continue_loginPage=findViewById(R.id.ux_btn_continue_loginPage);
-        forgot=(TextView) findViewById(R.id.forgot);
-
+        ButterKnife.bind(this);
         txt_registernow_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

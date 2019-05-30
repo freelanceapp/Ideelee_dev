@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -22,10 +23,11 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 import snow.app.ideelee.perperson_permealmodule.BookingRequirements;
 
-public class HandymanBookingPerDay extends AppCompatActivity {
+public class HandymanBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -36,7 +38,12 @@ public class HandymanBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-ImageView backbutton1;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,13 +71,13 @@ ImageView backbutton1;
                 startActivity(intent);
             }
         });
-        backbutton1=findViewById(R.id.backbutton1);
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {
@@ -118,9 +125,10 @@ ImageView backbutton1;
         });
 
     }
+
     private void initializeCalendar() {
-       // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
-simpleCalendarView.setMaxDate(3);
+        // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
+        simpleCalendarView.setMaxDate(3);
 //        simpleCalendarView.add(Calendar.DATE, -1);
 //        calendarView.setDateSelected(cal.getTime(), true);
 //        calendarView.setDateSelected(CalendarDay.today(), true);

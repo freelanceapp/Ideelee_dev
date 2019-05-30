@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import snow.app.ideelee.HomeScreen.Adapters.CurrentBookingAdapter;
 import snow.app.ideelee.R;
 
@@ -19,20 +22,22 @@ public class CurrentBookingFragment extends Fragment {
 
 
     CurrentBookingAdapter adapter;
+    @BindView
+            (R.id.pager)
     ViewPager viewPager;
+    @
+            BindView(R.id.tab_layout)
+    TabLayout tabLayout;
+    private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_current_booking, container, false);
-
-
-        TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tab_layout);
+        unbinder = ButterKnife.bind(this, v);
         tabLayout.addTab(tabLayout.newTab().setText("ACTIVE JOB"));
         tabLayout.addTab(tabLayout.newTab().setText("COMPLETED JOB"));
 //        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-
-        viewPager = (ViewPager) v.findViewById(R.id.pager);
         adapter = new CurrentBookingAdapter
                 (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -56,7 +61,11 @@ public class CurrentBookingFragment extends Fragment {
         return v;
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }
 
 

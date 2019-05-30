@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.perday_fixedpricemodule.RentalSubCat;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingSubCat;
@@ -37,8 +39,8 @@ public class TeachingCatAdapter extends RecyclerView.Adapter<TeachingCatAdapter.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(mCtx, TeachingSubCat.class);
-              mCtx.startActivity(intent);
+                Intent intent = new Intent(mCtx, TeachingSubCat.class);
+                mCtx.startActivity(intent);
             }
         });
         return new TeachingCatAdapter.ProductViewHolder(view);
@@ -49,7 +51,7 @@ public class TeachingCatAdapter extends RecyclerView.Adapter<TeachingCatAdapter.
         //getting the product of the specified position
 
         //binding the data with the viewholder views
-    holder.txt_vehicle_cat.setText(productList.get(position));
+        holder.txt_vehicle_cat.setText(productList.get(position));
 
 
     }
@@ -62,19 +64,18 @@ public class TeachingCatAdapter extends RecyclerView.Adapter<TeachingCatAdapter.
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.txt_vehicle_cat)
         TextView txt_vehicle_cat;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
 
-            txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
+            ButterKnife.bind(this, itemView);
 
         }
     }
-
-
-
 
 
 }

@@ -15,20 +15,22 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fixedpricemodule.VehicleWashBookingActivity;
 
 public class TeachingBookingAppointment extends Activity {
 TagGroup mTagGroup;
-Button makecustomslot;
-ImageView backbutton1;
+@BindView(R.id.ux_btn_makecustomslot) Button makecustomslot;
+@BindView(R.id.backbutton1) ImageView backbutton1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaching_bookingappointment);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        makecustomslot=findViewById(R.id.ux_btn_makecustomslot);
         makecustomslot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,7 +41,6 @@ ImageView backbutton1;
 
         TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Primary School");
-        backbutton1=findViewById(R.id.backbutton1);
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

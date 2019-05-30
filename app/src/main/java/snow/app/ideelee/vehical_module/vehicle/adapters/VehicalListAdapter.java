@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.BookingAppointment;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
@@ -59,7 +61,6 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
 //                Intent intent=new Intent(mCtx, BookingAppointment.class);
 
 
-
             }
         });
         return new VehicalListAdapter.ProductViewHolder(view);
@@ -89,34 +90,39 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.tag_group)
         TagGroup mTagGroup;
-        TextView textViewTitle, distance, perhour;
+        @BindView(R.id.textViewTitle)
+        TextView textViewTitle;
+        @BindView(R.id.distance)
+        TextView distance;
+        @BindView(R.id.perhour)
+        TextView perhour;
+        @BindView(R.id.ux_img_user)
         ImageView imageView;
+        @BindView(R.id.ratingbar)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            distance = itemView.findViewById(R.id.distance);
-            perhour = itemView.findViewById(R.id.perhour);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
+            ButterKnife.bind(this, itemView);
             mTagGroup.setTags(new String[]{"Car Rental", "Truck Rental", "Car Rental",});
             mTagGroup.submitTag();
-            imageView = itemView.findViewById(R.id.ux_img_user);
 
-itemView.setOnClickListener(new View.OnClickListener() {
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onClick(View v) {
 
-        if (perhour.getText().equals("Per Day")){
-            initiatePopupwindowperday(v);
-        }else {
-            initiatePopupwindow(v);
-        }
-    }
-});
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.N)
+                @Override
+                public void onClick(View v) {
+
+                    if (perhour.getText().equals("Per Day")) {
+                        initiatePopupwindowperday(v);
+                    } else {
+                        initiatePopupwindow(v);
+                    }
+                }
+            });
         }
     }
 
@@ -170,10 +176,10 @@ itemView.setOnClickListener(new View.OnClickListener() {
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
-      RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
-        ArrayList<String>list_tag = new ArrayList<>();
+        ArrayList<String> list_tag = new ArrayList<>();
         list_tag.add("01 May");
         list_tag.add("02 May");
         list_tag.add("03 May");

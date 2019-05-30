@@ -41,12 +41,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_16dp"
                     android:layout_marginRight="@dimen/margin_16dp"
+                    android:id="@+id/parentView"
                     android:background="@color/white"
                     android:orientation="vertical">
 
                     <CalendarView
                         android:id="@+id/calendarView"
                         android:layout_width="wrap_content"
+                        android:visibility="gone"
                         style="@style/CalenderViewCustom"
                         android:backgroundTint="@color/colorPrimary"
                         android:layout_height="wrap_content"/>

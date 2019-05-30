@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_child" />
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:drawableStart="@drawable/location"
+        android:drawableLeft="@drawable/location"
         android:drawablePadding="@dimen/margin_8dp"
         android:fontFamily="@font/regular"
         android:padding="@dimen/small_padding"
@@ -58,13 +59,28 @@
                     android:fontFamily="@font/regular"
                     android:text="Location"
                     android:textSize="@dimen/text_size_15sp" />
-
+                <!--<android.support.v7.widget.CardView-->
+                <!--android:id="@+id/idCardView"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_margin="5dp"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--app:cardCornerRadius="4dp">-->
+                <!--<fragment-->
+                <!--android:id="@+id/place_autocomplete_fragment"-->
+                <!--android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content" />-->
+                <!--</android.support.v7.widget.CardView>-->
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/grey_divider"
                     android:fontFamily="@font/regular"
+                    android:id="@+id/address"
                     android:hint="Address"
+                    android:editable="false"
+                    android:clickable="true"
                     android:padding="@dimen/small_padding"
                     android:textColor="@color/black"
                     android:textSize="@dimen/normal_text" />
@@ -118,12 +134,12 @@
                             android:id="@+id/addmoredetails"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/margin_10dp"
+                            android:layout_marginRight="@dimen/margin_10dp"
                             android:layout_weight="1"
                             android:background="@drawable/round_edittext_blueborder"
                             android:fontFamily="@font/regular"
                             android:gravity="center"
-                            android:paddingStart="@dimen/margin_8dp"
+                            android:paddingLeft="@dimen/margin_8dp"
                             android:paddingTop="@dimen/margin_10dp"
                             android:paddingBottom="@dimen/margin_10dp"
                             android:text="Add More Details"
@@ -135,7 +151,7 @@
                             android:id="@+id/ux_btn1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/margin_8dp"
+                            android:layout_marginLeft="@dimen/margin_8dp"
                             android:layout_weight="1"
                             android:background="@drawable/round_corner_colorprimary"
                             android:fontFamily="@font/regular"
@@ -153,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/regular"
-                        android:paddingStart="@dimen/med_padding"
+                        android:paddingLeft="@dimen/med_padding"
                         android:text="for more accuracy"
                         android:textSize="@dimen/text_size_15sp" />
                 </LinearLayout>
@@ -163,9 +179,9 @@
                     android:id="@+id/txt_confirmlocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_70dp"
+                    android:layout_marginLeft="@dimen/margin_70dp"
                     android:layout_marginTop="@dimen/med_padding"
-                    android:layout_marginEnd="@dimen/margin_70dp"
+                    android:layout_marginRight="@dimen/margin_70dp"
                     android:background="@drawable/round_corner_colorprimary"
                     android:fontFamily="@font/regular"
                     android:gravity="center"

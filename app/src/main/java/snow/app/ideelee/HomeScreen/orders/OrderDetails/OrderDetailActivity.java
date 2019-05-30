@@ -15,27 +15,32 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.LiveTracking;
 import snow.app.ideelee.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class OrderDetailActivity extends AppCompatActivity {
+    @BindView
+            (R.id.img)
     ImageView img;
+    @BindView(R.id.title_bookingappointement)
     TextView title_bookingappointement;
+    @BindView(R.id.backbutton1)
     ImageView backbutton1;
+    @BindView(R.id.status)
     TextView status;
     ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        img = (ImageView) findViewById(R.id.img);
-        backbutton1 = (ImageView) findViewById(R.id.backbutton1);
-        title_bookingappointement = (TextView) findViewById(R.id.title_bookingappointement);
-        status = (TextView) findViewById(R.id.status);
+        ButterKnife.bind(this);
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
- progressDialog=new ProgressDialog(OrderDetailActivity.this);
+        progressDialog = new ProgressDialog(OrderDetailActivity.this);
         progressDialog.getWindow()
                 .setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         progressDialog.setContentView(R.layout.progressdialoglayout);
@@ -55,7 +60,7 @@ public class OrderDetailActivity extends AppCompatActivity {
                 .centerCrop()
                 .into(img);
 
-          backbutton1.setOnClickListener(new View.OnClickListener() {
+        backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -73,7 +78,7 @@ public class OrderDetailActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         super.onBackPressed();
-     //   progressDialog.dismiss();
+        //   progressDialog.dismiss();
 
     }
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.perperson_permealmodule.EventSubCat;
 import snow.app.ideelee.perquantity_fixprice.ElectricListing;
@@ -43,7 +45,7 @@ public class ElectricworkCatAdapter extends RecyclerView.Adapter<ElectricworkCat
         //getting the product of the specified position
 
         //binding the data with the viewholder views
-    holder.txt_vehicle_cat.setText(productList.get(position));
+        holder.txt_vehicle_cat.setText(productList.get(position));
 
 
     }
@@ -56,25 +58,23 @@ public class ElectricworkCatAdapter extends RecyclerView.Adapter<ElectricworkCat
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.txt_vehicle_cat)
         TextView txt_vehicle_cat;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-
-            txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(mCtx, ElectricListing.class);
+                    Intent intent = new Intent(mCtx, ElectricListing.class);
                     mCtx.startActivity(intent);
                 }
             });
         }
     }
-
-
-
 
 
 }

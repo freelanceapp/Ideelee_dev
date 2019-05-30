@@ -33,6 +33,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.CouponActivity;
@@ -65,30 +67,31 @@ public class HomeNavigation extends AppCompatActivity
     private int dotscount;
 
 
-    TextView profile,wallet,orders,invite,home;
-    TextView edit_profile;
+    @BindView(R.id.profile)
+    TextView profile;
+    @BindView(R.id.wallet)
+    TextView wallet;
 
+    @BindView(R.id.home)
+    TextView home;
+
+
+    @BindView(R.id.bookings)
     TextView booking;
-    ImageView img;
-    DrawerLayout drawer;
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+ImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_navigation);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this);
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        edit_profile = (TextView) findViewById(R.id.edit_profile);
-        orders = (TextView) findViewById(R.id.orders);
-        invite = (TextView) findViewById(R.id.invite);
-        wallet=findViewById(R.id.wallet);
-        booking=findViewById(R.id.bookings);
-        booking = (TextView) findViewById(R.id.bookings);
-        profile = (TextView) findViewById(R.id.profile);
-
-        home=findViewById(R.id.home);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -97,21 +100,21 @@ public class HomeNavigation extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Fragment fragment=null;
-            if (getIntent().hasExtra("key")){
-                if (getIntent().getStringExtra("key").equals("wallet")){
-                    fragment= new WalletFragment();
-                }else {
-                    fragment= new HomeFragment();
-                }
-            }else {
-                fragment= new HomeFragment();
+        Fragment fragment = null;
+        if (getIntent().hasExtra("key")) {
+            if (getIntent().getStringExtra("key").equals("wallet")) {
+                fragment = new WalletFragment();
+            } else {
+                fragment = new HomeFragment();
             }
+        } else {
+            fragment = new HomeFragment();
+        }
         View view = navigationView.getHeaderView(0);
         img = (ImageView) view.findViewById(R.id.img);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
-                .replace(R.id.content_frame,fragment, "Home");
+                .replace(R.id.content_frame, fragment, "Home");
         fragmentTransaction.commit();
 
 
@@ -209,7 +212,6 @@ public class HomeNavigation extends AppCompatActivity
             }
 
 
-
         }
         finish();
     }
@@ -259,7 +261,7 @@ public class HomeNavigation extends AppCompatActivity
             startActivity(new Intent(HomeNavigation.this, MyOrders.class));
         } else if (id == R.id.logout) {
 
-    }
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

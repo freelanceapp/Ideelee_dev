@@ -12,20 +12,28 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.metre_square_module.HandymanBookingRequirements;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 
-public class CarrierBookingPerDay extends AppCompatActivity {
+public class CarrierBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -37,9 +45,14 @@ public class CarrierBookingPerDay extends AppCompatActivity {
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
     @BindView(R.id.txt)
+
     TextView txt;
+
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
     @BindView(R.id.backbutton1)
     ImageView backbutton1;
+    CalendarPickerView calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +88,8 @@ public class CarrierBookingPerDay extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {
@@ -131,4 +146,5 @@ public class CarrierBookingPerDay extends AppCompatActivity {
 //        calendarView.setDateSelected(CalendarDay.today(), true);
 //        calendarView.setDateSelected(CalendarDay.from(2017, 3, 19), true);
     }
+
 }

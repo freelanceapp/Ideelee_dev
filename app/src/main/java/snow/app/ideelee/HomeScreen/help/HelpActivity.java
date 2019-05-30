@@ -7,21 +7,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HelpActivity extends AppCompatActivity {
 
-    ImageView backbutton1;
+   @BindView
+  (R.id.backbutton1) ImageView backbutton1;
     ImageView notification;
-    TextView title;
+  @BindView(R.id.title_bookingappointement)  TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-        backbutton1=(ImageView)findViewById(R.id.backbutton1);
-        title=(TextView) findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
         title.setText("Help");
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override

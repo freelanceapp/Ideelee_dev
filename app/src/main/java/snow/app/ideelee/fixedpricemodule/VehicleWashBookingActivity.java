@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.R;
 
@@ -46,6 +47,7 @@ public class VehicleWashBookingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehiclewash_booking);
+        ButterKnife.bind(this);
         textView.setText("Booking");
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);

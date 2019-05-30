@@ -30,7 +30,8 @@
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_4dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray" />
+                android:textColorHint="@color/gray"
+                android:layout_marginStart="@dimen/margin_neg_24dp" />
 
 
         </android.support.v7.widget.Toolbar>

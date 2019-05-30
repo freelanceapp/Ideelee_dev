@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Modals.ActiveJobModal;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.PaymentDetailsActivity;
@@ -85,20 +87,22 @@ public class ActiveJobAdapter extends RecyclerView.Adapter<ActiveJobAdapter.Prod
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.linearlayout_button)
         LinearLayout linearLayout;
-        TextView name, status, address, number, payment, servicetype;
-        ImageView imageView;
-        RatingBar ratingBar;
+
+        @BindView(R.id.status)
+        TextView status;
+        TextView address, number, payment, servicetype;
+
+
+        @BindView(R.id.ux_btnjobdone)
         Button jobdone;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            name = itemView.findViewById(R.id.name);
-            jobdone = itemView.findViewById(R.id.ux_btnjobdone);
-            linearLayout = itemView.findViewById(R.id.linearlayout_button);
-            status = itemView.findViewById(R.id.status);
-            imageView = itemView.findViewById(R.id.imageView);
+            ButterKnife.bind(this, itemView);
+
         }
     }
 

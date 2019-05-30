@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.HomeScreen.orders.OrderDetails.OrderDetailActivity;
 import snow.app.ideelee.R;
@@ -78,23 +80,18 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.MyViewHold
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
-            TextView status;
-            TextView res_name;
-            TextView summery;
-            TextView time;
-            TextView price;
-            ImageView img;
-            LinearLayout parent;
+           @BindView
+          (R.id.status) TextView status;
+           @BindView(R.id.res_name) TextView res_name;
+           @BindView(R.id.summery) TextView summery;
+          @BindView(R.id.time)  TextView time;
+           @BindView(R.id.price) TextView price;
+           @BindView(R.id.img) ImageView img;
+           @BindView(R.id.parent) LinearLayout parent;
 
             public MyViewHolder(View view) {
                 super(view);
-                status = (TextView) view.findViewById(R.id.status);
-                res_name = (TextView) view.findViewById(R.id.res_name);
-                summery = (TextView) view.findViewById(R.id.summery);
-                time = (TextView) view.findViewById(R.id.time);
-                price = (TextView) view.findViewById(R.id.price);
-                img = (ImageView) view.findViewById(R.id.img);
-                parent = (LinearLayout) view.findViewById(R.id.parent);
+                ButterKnife.bind(this,itemView);
 
 
             }

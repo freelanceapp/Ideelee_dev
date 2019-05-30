@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import snow.app.ideelee.Categories;
 import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.HomeScreen.Adapters.BottomGridAdapter;
@@ -49,13 +52,14 @@ import snow.app.ideelee.perquantityperfloor.MovingliftingCategories;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 public class HomeFragment extends Fragment {
-    GridView androidGridView;
+   @BindView
+  (R.id.grid_view_image_text) GridView androidGridView;
     MainCategory adapterViewAndroid;
     BottomGridAdapter bottomGridAdapter;
     ViewPager viewpager;
     PagerAdapter adapter;
-    private ViewPager vp_slider;
-    private LinearLayout ll_dots;
+  private ViewPager vp_slider;
+private LinearLayout ll_dots;
     ViewPagerHome sliderPagerAdapter;
     ArrayList<String> slider_image_list;
     private TextView[] dots;
@@ -68,20 +72,21 @@ public class HomeFragment extends Fragment {
 
     List<ServiceProvider> productList;
 
-
+private Unbinder unbinder;
     //the recyclerview
-    RecyclerView recyclerView,recyclerView_grid;
+   @BindView(R.id.recyclerView) RecyclerView recyclerView;
+   @BindView(R.id.recyclerView_grid) RecyclerView recyclerView_grid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-
+unbinder= ButterKnife.bind(this,v);
 
         final String[] gridViewString = {
                 getString(R.string.buycoupons), getString(R.string.vehicle), getString(R.string.vehiclewash),
                 getString(R.string.rentals), getString(R.string.gardening), getString(R.string.eventservices),
-                getString(R.string.carriers),
+               getString(R.string.shoppingdelivery),
                 getString(R.string.handymanservices), getString(R.string.moving), getString(R.string.teaching),
                 getString(R.string.camping), getString(R.string.more)
 
@@ -95,17 +100,14 @@ public class HomeFragment extends Fragment {
 
         };
 
-
-        //categories gridview
-
         vp_slider = (ViewPager) v.findViewById(R.id.vp_slider);
         ll_dots = (LinearLayout) v.findViewById(R.id.ll_dots);
+        //categories gridview
         adapterViewAndroid = new MainCategory(getActivity(), gridViewString, gridViewImageId);
-        androidGridView = (GridView) v.findViewById(R.id.grid_view_image_text);
         androidGridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         androidGridView.setAdapter(adapterViewAndroid);
         // get the reference of RecyclerView
-         recyclerView_grid = (RecyclerView) v.findViewById(R.id.recyclerView_grid);
+
 // set a GridLayoutManager with default vertical orientation and 3 number of columns
         recyclerView_grid.setHasFixedSize(true);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),4,LinearLayoutManager.VERTICAL,false);
@@ -113,10 +115,6 @@ public class HomeFragment extends Fragment {
         GridAdapter customAdapter = new GridAdapter(getActivity(), gridViewString,gridViewImageId);
         recyclerView_grid.setAdapter(customAdapter);
         bottomGridAdapter = new BottomGridAdapter(getActivity(), gridViewString, gridViewImageId);
-
-
-
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
@@ -273,5 +271,11 @@ public class HomeFragment extends Fragment {
         ViewGroup.LayoutParams params = gridView.getLayoutParams();
         params.height = totalHeight;
         gridView.setLayoutParams(params);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

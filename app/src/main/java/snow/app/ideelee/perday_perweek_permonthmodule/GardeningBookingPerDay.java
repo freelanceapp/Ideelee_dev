@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -23,9 +24,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.carriers.CarrierBookingRequirements;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 
-public class GardeningBookingPerDay extends AppCompatActivity {
+public class GardeningBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -36,16 +38,18 @@ public class GardeningBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
+    @BindView(R.id.backbutton1)
     ImageView backbutton1;
+    @BindView(R.id.txt)
     TextView txt;
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gardening_bookingperday);
         ButterKnife.bind(this);
-        backbutton1=(ImageView)findViewById(R.id.backbutton1);
         textView.setText("Gardening Services");
-        txt=findViewById(R.id.txt);
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +78,7 @@ public class GardeningBookingPerDay extends AppCompatActivity {
             }
         });
         txt.setText(getIntent().getStringExtra("key"));
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {
