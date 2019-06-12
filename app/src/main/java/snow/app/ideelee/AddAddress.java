@@ -34,6 +34,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -55,7 +56,7 @@ import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class AddAddress extends AppCompatActivity implements OnMapReadyCallback ,GoogleApiClient.ConnectionCallbacks,
+public class AddAddress extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     SupportMapFragment mapFragment;
@@ -73,14 +74,15 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
 
     List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
     GoogleApiClient mGoogleApiClient;
-
+    Boolean mTimerIsRunning;
 
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
     LocationRequest mLocationRequest;
-
+    MarkerOptions markerOptions;
     Location mLastLocation;
     Marker mCurrLocationMarker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,8 +185,9 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mGoogleMap=googleMap;
+        mGoogleMap = googleMap;
         mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
 
         //Initialize Google Play Services
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -199,8 +202,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
                 //Request Location Permission
                 checkLocationPermission();
             }
-        }
-        else {
+        } else {
             buildGoogleApiClient();
             mGoogleMap.setMyLocationEnabled(true);
         }
@@ -210,6 +212,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
@@ -233,6 +236,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
     }
+
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -254,11 +258,14 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
     }
-    @Override
-    public void onConnectionSuspended(int i) {}
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {}
+    public void onConnectionSuspended(int i) {
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+    }
 
     @Override
     public void onLocationChanged(Location location) {
@@ -269,20 +276,58 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
 
         //Place current location marker
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-      //  markerOptions.position(latLng);
-       // markerOptions.title();
-       // markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-      //  mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+        markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        //  markerOptions.position(latLng);
+        // markerOptions.title();
+        // markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+        //  mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 
         //move map camera
-     //   mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
+        //   mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 11));
 ///////////////////////
 
 
 //Showing Current Location Marker on Map
 
-        markerOptions.position(latLng);
+        /**
+         * moving marker
+         *
+         */
+
+
+        mGoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+
+            @Override
+            public void onMarkerDrag(Marker arg0) {
+                // TODO Auto-generated method stub
+
+
+                Log.d("Marker", "Dragging");
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker arg0) {
+                // TODO Auto-generated method stub
+//                LatLng markerLocation = mCurrLocationMarker.getPosition();
+////                mCurrLocationMarker.setTitle(markerLocation.toString());
+////
+////                double latitude=markerLocation.latitude
+//                getaddressfromlat(markerLocation.latitude, markerLocation.longitude);
+//                Toast.makeText(AddAddress.this, markerLocation.toString(), Toast.LENGTH_LONG).show();
+//                Log.d("Marker", "finished");
+            }
+
+            @Override
+            public void onMarkerDragStart(Marker arg0) {
+                // TODO Auto-generated method stub
+                Log.d("Marker", "Started");
+                LatLng markerLocation = mCurrLocationMarker.getPosition();
+                getaddressfromlat(markerLocation.latitude, markerLocation.longitude);
+            }
+        });
+
+
         LocationManager locationManager = (LocationManager)
                 getSystemService(Context.LOCATION_SERVICE);
         String provider = locationManager.getBestProvider(new Criteria(), true);
@@ -298,29 +343,32 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
         if (null != locations && null != providerList && providerList.size() > 0) {
             double longitude = locations.getLongitude();
             double latitude = locations.getLatitude();
-            Geocoder geocoder = new Geocoder(getApplicationContext(),
-                    Locale.getDefault());
-            try {
-                List<Address> listAddresses = geocoder.getFromLocation(latitude,
-                        longitude, 1);
-                if (null != listAddresses && listAddresses.size() > 0) {
-// Here we are finding , whatever we want our marker to show when
-                    //
-                    String state = listAddresses.get(0).getAdminArea();
-                    String country = listAddresses.get(0).getCountryName();
-                    String subLocality = listAddresses.get(0).getSubLocality();
-                    markerOptions.title(""+ subLocality + "," + state
-                            + "," + country);
-                    System.out.println(subLocality + "," + state
-                            + "," + country);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            Geocoder geocoder = new Geocoder(getApplicationContext(),
+//                    Locale.getDefault());
+//            try {
+//                List<Address> listAddresses = geocoder.getFromLocation(latitude,
+//                        longitude, 1);
+//                if (null != listAddresses && listAddresses.size() > 0) {
+//// Here we are finding , whatever we want our marker to show when
+//                    //
+//                    String state = listAddresses.get(0).getAdminArea();
+//                    String country = listAddresses.get(0).getCountryName();
+//                    String subLocality = listAddresses.get(0).getSubLocality();
+//                    markerOptions.title(""+ subLocality + "," + state
+//                            + "," + country);
+//                    System.out.println(subLocality + "," + state
+//                            + "," + country);
+//                 //   address.setText(listAddresses.get(0).getAddressLine(0));
+//                }
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+            getaddressfromlat1(latitude, longitude);
         }
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
         mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
 //move map camera
+        mCurrLocationMarker.setDraggable(true);
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(11));
 //this code stops location updates
@@ -332,7 +380,9 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
             /////////////////////////////////
         }
     }
+
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -353,7 +403,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
                                 //Prompt the user once explanation has been shown
                                 ActivityCompat.requestPermissions(AddAddress.this,
                                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                        MY_PERMISSIONS_REQUEST_LOCATION );
+                                        MY_PERMISSIONS_REQUEST_LOCATION);
                             }
                         })
                         .create()
@@ -364,7 +414,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
                 // No explanation needed, we can request the permission.
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_LOCATION );
+                        MY_PERMISSIONS_REQUEST_LOCATION);
             }
         }
     }
@@ -404,5 +454,61 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
         }
     }
 
+    public void getaddressfromlat(double lat, double lng) {
+        Geocoder geocoder = new Geocoder(getApplicationContext(),
+                Locale.getDefault());
+        try {
+
+            List<Address> listAddresses = geocoder.getFromLocation(lat,
+                    lng, 1);
+            if (null != listAddresses && listAddresses.size() > 0) {
+// Here we are finding , whatever we want our marker to show when
+                //
+                String state = listAddresses.get(0).getAdminArea();
+                String country = listAddresses.get(0).getCountryName();
+                String subLocality = listAddresses.get(0).getSubLocality();
+                markerOptions.title("" + subLocality + "," + state
+                        + "," + country);
+//                    System.out.println(subLocality + "," + state
+//                            + "," + country);
+
+                mCurrLocationMarker.setTitle(listAddresses.get(0).getAddressLine(0));
+//            mCurrLocationMarker.setTitle(""+ subLocality + "," + state
+//                    + "," + country);
+                address.setText(listAddresses.get(0).getAddressLine(0));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getaddressfromlat1(double lat, double lng) {
+        Geocoder geocoder = new Geocoder(getApplicationContext(),
+                Locale.getDefault());
+        try {
+
+            List<Address> listAddresses = geocoder.getFromLocation(lat,
+                    lng, 1);
+            if (null != listAddresses && listAddresses.size() > 0) {
+// Here we are finding , whatever we want our marker to show when
+                //
+                String state = listAddresses.get(0).getAdminArea();
+                String country = listAddresses.get(0).getCountryName();
+                String subLocality = listAddresses.get(0).getSubLocality();
+                markerOptions.title("" + subLocality + "," + state
+                        + "," + country);
+//                    System.out.println(subLocality + "," + state
+//                            + "," + country);
+
+                //   mCurrLocationMarker.setTitle(listAddresses.get(0).getAddressLine(0));
+//            mCurrLocationMarker.setTitle(""+ subLocality + "," + state
+//                    + "," + country);
+                address.setText("" + subLocality + "," + state
+                        + "," + country);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

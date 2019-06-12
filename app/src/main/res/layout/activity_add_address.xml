@@ -21,6 +21,14 @@
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_15sp" />
 
+
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_gravity="center" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,14 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_gravity="center" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,8 +82,8 @@
                     android:editable="false"
                     android:clickable="true"
                     android:padding="@dimen/small_padding"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/normal_text" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_size_13sp" />
 
                 <LinearLayout
                     android:id="@+id/fields"

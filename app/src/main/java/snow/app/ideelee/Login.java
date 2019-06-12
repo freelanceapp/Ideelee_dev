@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,13 +92,9 @@ public class Login extends Activity {
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                map = new HashMap<>();
-                map.put("email", et_email.getText().toString());
-                map.put("password", et_pass.getText().toString());
-                map.put("device_token", device_token);
-                Log.e("params login", et_email.getText().toString() + et_pass.getText().toString() + device_token);
-                loginUser(map);
-
+//                handleSignup();
+                Intent intent_continue = new Intent(Login.this, OTP.class);
+                startActivity(intent_continue);
             }
         });
 
@@ -195,8 +192,8 @@ public class Login extends Activity {
                         Log.e("company data", res.getData().getCompanyData().getCompanyAddress() +
                                 res.getData().getFirstName() + res.getData().getLastName());
 
-//                        Intent intent_continue = new Intent(Login.this, OTP.class);
-//                        startActivity(intent_continue);
+                        Intent intent_continue = new Intent(Login.this, OTP.class);
+                        startActivity(intent_continue);
                     }
 
                     @Override
@@ -252,8 +249,34 @@ public class Login extends Activity {
 
     }
 
+    private void handleSignup() {
+        String email = et_email.getText().toString();
+        //  String l_name = edt_last_name.getText().toString();
 
 
+        String pass = et_pass.getText().toString();
+        if (email.isEmpty()) {
+            et_email.setError("Enter email");
+        } else if (pass.isEmpty()) {
+            et_pass.setError("Enter password");
+        } else {
+//            HashMap<String, String> map = new HashMap<>();
+//            map.put("first_name", f_name);
+//            map.put("last_name", l_name);
+//            map.put("email", email);
+//            map.put("phone_number", String.valueOf(ccp.getSelectedCountryCode()) + "" + phone_);
+//            map.put("op_type", SELECTED_ROLE);
+//            map.put("password", pass);
+
+            //  registerCall(map);
+            map = new HashMap<>();
+            map.put("email", et_email.getText().toString());
+            map.put("password", et_pass.getText().toString());
+            map.put("device_token", device_token);
+            Log.e("params login", et_email.getText().toString() + et_pass.getText().toString() + device_token);
+            loginUser(map);
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);

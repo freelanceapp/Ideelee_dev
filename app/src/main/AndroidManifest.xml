@@ -102,6 +102,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AddAddress"
+            android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".LiveTracking" />
         <activity android:name=".vehical_module.vehicle.VehicalListing" />
