@@ -111,6 +111,14 @@ ImageView img;
             fragment = new HomeFragment();
         }
         View view = navigationView.getHeaderView(0);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFragment(new ProfileFragment(), "Edit Profile");
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        });
         img = (ImageView) view.findViewById(R.id.img);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
@@ -268,7 +276,13 @@ ImageView img;
         return true;
     }
 
+    public void setFragment(Fragment fragment, String title) {
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment, title);
+        fragmentTransaction.commit();
+    }
 }
 
 

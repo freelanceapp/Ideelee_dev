@@ -115,20 +115,39 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/normal_text" />
 
-                <Button
+                <FrameLayout
+                    android:id="@+id/FrameLayout1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_16dp"
-                    android:background="@drawable/round_corner_box"
-                    android:drawableLeft="@drawable/fb"
-                    android:text="@string/continuewithfacebook"
-                    android:layout_marginLeft="@dimen/big_margin"
-                    android:layout_marginRight="@dimen/big_margin"
-                    android:textAllCaps="false"
-                    android:padding="@dimen/small_padding"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/normal_text" />
+                    android:layout_height="wrap_content" >
+                    <com.facebook.login.widget.LoginButton
+                        android:id="@+id/login_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="30dp" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        android:background="@drawable/round_corner_box"
+                        android:drawableStart="@drawable/fb"
+                        android:text="@string/continuewithfacebook"
+                        android:layout_marginStart="@dimen/big_margin"
+                        android:id="@+id/fblogin"
+                        android:onClick="onClick"
+                        android:layout_marginEnd="@dimen/big_margin"
+                        android:textAllCaps="false"
+                        android:padding="@dimen/small_padding"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/normal_text"
+                        android:drawableLeft="@drawable/fb" />
+
+
+                </FrameLayout>
+
 
 
                 <LinearLayout

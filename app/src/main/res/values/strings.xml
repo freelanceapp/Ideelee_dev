@@ -107,4 +107,14 @@
     <string name="lbl_take_camera_picture">Take a picture</string>
     <string name="lbl_choose_from_gallery">Choose from gallery</string>
     <string name="toast_image_intent_null">Image picker option is missing!</string>
+    <string name="facebook_app_id">371329030394186</string>
+    <string name="fb_login_protocol_scheme">fb371329030394186</string>
+
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thu</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
 </resources>

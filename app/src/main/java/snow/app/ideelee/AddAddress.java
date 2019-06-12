@@ -311,6 +311,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback 
                     String subLocality = listAddresses.get(0).getSubLocality();
                     markerOptions.title(""+ subLocality + "," + state
                             + "," + country);
+                    System.out.println(subLocality + "," + state
+                            + "," + country);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

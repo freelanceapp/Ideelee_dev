@@ -124,7 +124,7 @@
 
                 </LinearLayout>
                 <com.chaos.view.PinView
-                    android:id="@+id/firstPinView"
+                    android:id="@+id/pinview_otp"
                     style="@style/PinWidget.PinView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,6 +177,7 @@
                         android:layout_marginStart="@dimen/small_padding"
                         android:gravity="end"
                         android:text="@string/resend_otp"
+                        android:id="@+id/txt_Resend"
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="@dimen/small_txt" />
                 </LinearLayout>

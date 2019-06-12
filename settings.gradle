@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':sinch-android-verification-1.6.0'
 
