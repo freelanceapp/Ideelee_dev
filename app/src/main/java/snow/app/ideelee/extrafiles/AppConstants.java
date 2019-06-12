@@ -1,7 +1,10 @@
 package snow.app.ideelee.extrafiles;
 
 public class AppConstants {
-
+    public static final String BASE_URL = "http://112.196.5.115/";
+    public static final String PATH = "bestprice/api/auth/";
+    public static final String LOGIN = PATH + "login";
+    public static final String OPERATORTYPE = PATH + "get-operator-type";
     public static class LoginProcess {
         public static String mDeviceType = "android";
         public static String mMobileNumber = "";
