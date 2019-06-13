@@ -78,7 +78,7 @@
     <string name="forgot">Forgot</string>
     <string name="login_now">Login Now</string>
     <string name="your_order">Your Order</string>
-    <string name="coupen">Coupon</string>
+    <string name="coupen">Coupen</string>
     <string name="online_payment">Online Payment</string>
     <string name="_121_cresent_avenue_drybeck">121 Cresent Avenue, DRYBECK</string>
     <string name="submit">Submit</string>
@@ -93,6 +93,7 @@
     <string name="lunch">Lunch</string>
     <string name="payment_mode">Payment Mode</string>
     <string name="plac_order">place order</string>
+    <string name="additional_charges_if_any">Additional Charges (If any)</string>
     <string name="additional_charges_if_any">Additional Charges (If any)</string>
     <string name="terms_conditions"><![CDATA[TERMS & CONDITIONS]]></string>
     <string name="item_total">Item Total</string>

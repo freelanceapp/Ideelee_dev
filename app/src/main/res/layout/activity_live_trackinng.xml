@@ -4,15 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/tool_lay"
-        layout="@layout/toolbar_child" />
+    <include layout="@layout/toolbar_child"
+        android:id="@+id/tool_lay"/>
 
     <RelativeLayout
         android:id="@+id/lay"
+        android:layout_below="@+id/tool_lay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tool_lay"
         android:padding="@dimen/extra_small">
 
         <LinearLayout
@@ -23,7 +22,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/regular"
                 android:padding="@dimen/extra_small"
                 android:text="Katani Sweets and Restaurants"
                 android:textColor="@color/black"
@@ -32,7 +30,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/regular"
                 android:padding="@dimen/extra_small"
                 android:text="@string/_121_cresent_avenue_drybeck"
                 android:textColor="@color/black"
@@ -45,7 +42,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
-            android:fontFamily="@font/regular"
             android:padding="@dimen/small_padding"
             android:text="View order summery"
             android:textColor="@color/colorPrimaryDark"
@@ -54,9 +50,9 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_below="@+id/lay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lay">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,15 +82,14 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
+           <RelativeLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+               <android.support.v7.widget.RecyclerView
+                   android:id="@+id/rv_list"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" />
+           </RelativeLayout>
 
             <ImageView
                 android:layout_width="match_parent"

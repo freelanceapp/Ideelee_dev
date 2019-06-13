@@ -23,7 +23,7 @@ TextView place_order;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        setContentView(R.layout.cart_new);
         backbutton1=(ImageView)findViewById(R.id.backbutton1);
         title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
         place_order=(TextView) findViewById(R.id.place_order);

@@ -48,7 +48,7 @@
             android:id="@+id/status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/regular"
+            android:fontFamily="sans-serif"
             android:text="Order Accepted"
             android:textColor="@color/black"
             android:textSize="@dimen/normal_text" />
@@ -57,7 +57,7 @@
             android:id="@+id/msg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/regular"
+            android:fontFamily="sans-serif"
             android:text="11:40 am "
             android:textColor="@color/txt_light"
             android:textSize="@dimen/small_txt" />
