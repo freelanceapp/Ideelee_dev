@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -15,23 +16,26 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.livetracking.TrackerAdapter;
 import snow.app.ideelee.livetracking.TrackerM;
 
 public class LiveTracking extends AppCompatActivity implements OnMapReadyCallback {
     SupportMapFragment mapFragment;
-    TextView title_bookingappointement;
+    @BindView(R.id.title_bookingappointement) TextView title_bookingappointement;
     TrackerAdapter trackerAdapter;
-     RecyclerView rv_list;
+   @BindView(R.id.rv_list)  RecyclerView rv_list;
+   @BindView(R.id.backbutton1)
+   ImageView backbutton1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_trackinng);
-        title_bookingappointement = findViewById(R.id.title_bookingappointement);
-        rv_list = findViewById(R.id.rv_list);
-        findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
+        ButterKnife.bind(this);
+        backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

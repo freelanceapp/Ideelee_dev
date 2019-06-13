@@ -15,14 +15,15 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class Splash extends Activity {
 
     private ProgressBar mProgress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-      /*  mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
-        */
+        /*  mProgress = (ProgressBar) findViewById(R.id.splash_screen_progress_bar);
+         */
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -41,10 +42,10 @@ public class Splash extends Activity {
     }
 
     private void doWork() {
-        for (int progress=0; progress<100; progress+=10) {
+        for (int progress = 0; progress < 100; progress += 10) {
             try {
                 Thread.sleep(100);
-               // mProgress.setProgress(progress);
+                // mProgress.setProgress(progress);
             } catch (Exception e) {
                 e.printStackTrace();
 

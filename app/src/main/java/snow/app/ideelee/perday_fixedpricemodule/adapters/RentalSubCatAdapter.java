@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
@@ -88,22 +90,23 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.tag_group)
         TagGroup mTagGroup;
-        TextView textViewTitle, distance;
+        @BindView(R.id.textViewTitle)
+        TextView textViewTitle;
+        @BindView(R.id.distance)
+        TextView distance;
+        @BindView(R.id.ux_img_user)
         ImageView imageView;
+        @BindView(R.id.ratingbar)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar);
-            distance = itemView.findViewById(R.id.distance);
-
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
-            mTagGroup = (TagGroup) itemView.findViewById(R.id.tag_group);
+            ButterKnife.bind(this, itemView);
             mTagGroup.setTags(new String[]{"Plumber", "Electrician", "Carpenter",});
             mTagGroup.submitTag();
-            imageView = itemView.findViewById(R.id.ux_img_user);
-
             itemView.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
@@ -114,7 +117,6 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
             });
         }
     }
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -131,7 +133,7 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
         p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
         p.dimAmount = 0.6f;
         wm.updateViewLayout(container, p);
-        RecyclerView  recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
+        RecyclerView recyclerView = (RecyclerView) layout.findViewById(R.id.rv_tagitem);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(mCtx, LinearLayoutManager.HORIZONTAL, false));
         ArrayList<String> list_tag = new ArrayList<>();
@@ -153,6 +155,7 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
 
 
                 Intent intent = new Intent(mCtx, RentalBookingPerDay.class);
+
                 Toast.makeText(mCtx, "click", Toast.LENGTH_SHORT).show();
                 mCtx.startActivity(intent);
 
@@ -164,7 +167,6 @@ public class RentalSubCatAdapter extends RecyclerView.Adapter<RentalSubCatAdapte
         pw.setFocusable(true);
         pw.showAsDropDown(v, 0, 0);
     }
-
 
 
 }

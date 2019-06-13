@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
 
@@ -37,77 +39,76 @@ public class TrackerAdapter extends RecyclerView.Adapter<TrackerAdapter.MyViewHo
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.tracker_row, parent, false);
 
-          return new MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
 
-
         // status= 1 order accepted
         // status= 2 order preparing
         // status= 3 order out for delivery
         // status= 4 order Delivered
-        if (statuss==1){
-            if (position!=0){
-                holder.top.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.btm.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.gray_track));
+        if (statuss == 1) {
+            if (position != 0) {
+                holder.top.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.btm.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gray_track));
             }
-        }else if (statuss==2){
-            if (position!=0&&position!=1){
-                holder.top.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.btm.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.gray_track));
+        } else if (statuss == 2) {
+            if (position != 0 && position != 1) {
+                holder.top.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.btm.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gray_track));
             }
-            if (position==1){
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.orange_track));
+            if (position == 1) {
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.orange_track));
             }
-        }else if (statuss==3){
-            if (position!=0&&position!=1&position!=2){
-                holder.top.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.btm.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.gray_track));
+        } else if (statuss == 3) {
+            if (position != 0 && position != 1 & position != 2) {
+                holder.top.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.btm.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gray_track));
             }
-            if (position==2){
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.orange_track));
+            if (position == 2) {
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.orange_track));
             }
-        }else if (statuss==4){
-            if (position!=0&&position!=1&&position!=2&&position!=3){
-                holder.top.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.btm.setBackgroundColor(ContextCompat.getColor(context,R.color.gray));
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.gray_track));
+        } else if (statuss == 4) {
+            if (position != 0 && position != 1 && position != 2 && position != 3) {
+                holder.top.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.btm.setBackgroundColor(ContextCompat.getColor(context, R.color.gray));
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.gray_track));
             }
-            if (position==2){
-                holder.img.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.green_track));
+            if (position == 2) {
+                holder.img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.green_track));
             }
         }
 
         if (position == getItemCount() - 1) {
             holder.btm.setVisibility(View.INVISIBLE);
         }
-        if (position ==0) {
+        if (position == 0) {
             holder.top.setVisibility(View.INVISIBLE);
         }
 
 
-        TrackerM m=dataList.get(position);
-        if (m.getOrderStatus().equals("1")){
+        TrackerM m = dataList.get(position);
+        if (m.getOrderStatus().equals("1")) {
             holder.status.setText("Order Accepted");
 
-        }else if(m.getOrderStatus().equals("2")){
+        } else if (m.getOrderStatus().equals("2")) {
             holder.status.setText("Order Preparing");
 
-        }else if(m.getOrderStatus().equals("3")){
+        } else if (m.getOrderStatus().equals("3")) {
             holder.status.setText("Order out for delivery");
 
-        }else if(m.getOrderStatus().equals("4")){
+        } else if (m.getOrderStatus().equals("4")) {
             holder.status.setText("Order Delivered");
 
         }
 
-        holder.msg.setText(m.getTime()+" Lorem ipsum dolor sit amet");
+        holder.msg.setText(m.getTime() + " Lorem ipsum dolor sit amet");
 
     }
 
@@ -119,19 +120,21 @@ public class TrackerAdapter extends RecyclerView.Adapter<TrackerAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
+        @BindView
+                (R.id.status)
         TextView status;
+        @BindView(R.id.msg)
         TextView msg;
+        @BindView(R.id.img)
         ImageView img;
-        View top,btm;
+        @BindView(R.id.top)
+        View top;
+        @BindView(R.id.btm)
+        View btm;
 
         public MyViewHolder(View view) {
             super(view);
-
-            status = (TextView) itemView.findViewById(R.id.status);
-            msg = (TextView) itemView.findViewById(R.id.msg);
-            img = (ImageView) itemView.findViewById(R.id.img);
-            top = (View) itemView.findViewById(R.id.top);
-            btm = (View) itemView.findViewById(R.id.btm);
+            ButterKnife.bind(this, itemView);
 
 
         }

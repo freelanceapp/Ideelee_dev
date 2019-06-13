@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Adapters.CompletedJobAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceJobAdapter;
@@ -29,22 +31,24 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class ServiceProfile extends AppCompatActivity {
     List<String> serviceproviderlist;
-    TagGroup mTagGroup;
-    RecyclerView recyclerView;
-    ImageView backbutton1;
-    Button btn_back,book;
-    TextView title_bookingappointement;
-    RatingBar ratingBar;
+@BindView(R.id.rv_serviceprofile)
+RecyclerView recyclerView;
+  @BindView(R.id.backbutton1)  ImageView backbutton1;
+    Button btn_back;
+    @BindView(R.id.ux_btn_book) Button book;
+   @BindView(R.id.title_bookingappointement) TextView title_bookingappointement;
+   @BindView(R.id.ratingbar_service) RatingBar ratingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_profile);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_serviceprofile);
+        ButterKnife.bind(this);
+
         serviceproviderlist = new ArrayList<>();
         recyclerView.setNestedScrollingEnabled(false);
-        ratingBar=findViewById(R.id.ratingbar_service);
+
         ratingBar.setRating(5);
-        book=findViewById(R.id.ux_btn_book);
+
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +62,8 @@ public class ServiceProfile extends AppCompatActivity {
        serviceproviderlist.add("dfd");
         ServiceJobAdapter adapter = new ServiceJobAdapter(ServiceProfile.this, serviceproviderlist);
         recyclerView.setAdapter(adapter);
-        backbutton1=findViewById(R.id.backbutton1);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
+
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

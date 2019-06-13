@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Adapters.CompletedJobAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.ServiceProviderCategoryAdapter;
@@ -25,14 +28,14 @@ import snow.app.ideelee.R;
 public class CompletedJobFragment extends Fragment {
 
     List<CompletedJobModal> serviceproviderlist;
-    TagGroup mTagGroup;
-    RecyclerView recyclerView;
-
+    @BindView(R.id.recyclerView_completedjob) RecyclerView recyclerView;
+private Unbinder unbinder;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_completed_job, container, false);
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_completedjob);
+        unbinder= ButterKnife.bind(this,v);
+
         serviceproviderlist = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, true));
@@ -50,4 +53,9 @@ public class CompletedJobFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import snow.app.ideelee.HomeScreen.Adapters.CurrentBookingAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.WalletPagerAdapter;
 
@@ -17,19 +20,23 @@ import snow.app.ideelee.HomeScreen.Adapters.WalletPagerAdapter;
 public class WalletFragment extends Fragment {
 
     WalletPagerAdapter adapter;
+    @BindView
+            (R.id.pager_wallet)
     ViewPager viewPager;
-
+@BindView(R.id.tab_layout) TabLayout tabLayout;
+    private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_wallet_fragmen, container, false);
-        TabLayout tabLayout = (TabLayout) v.findViewById(R.id.tab_layout);
+        unbinder = ButterKnife.bind(this, v);
+
         tabLayout.addTab(tabLayout.newTab().setText("PAYMENT"));
         tabLayout.addTab(tabLayout.newTab().setText("PENDING"));
 //        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        viewPager = (ViewPager) v.findViewById(R.id.pager_wallet);
+
         adapter = new WalletPagerAdapter
                 (getActivity().getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -53,5 +60,9 @@ public class WalletFragment extends Fragment {
         return v;
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

@@ -18,20 +18,35 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay">
 
+            <RelativeLayout
+                android:id="@+id/not"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_neg_24dp"
                 android:background="@drawable/rectangle_edittext"
                 android:drawableLeft="@drawable/logo_36"
                 android:drawablePadding="@dimen/margin_4dp"
                 android:hint="@string/search"
+                android:layout_toLeftOf="@+id/notification"
+
                 android:layout_gravity="center"
                 android:padding="@dimen/margin_4dp"
                 android:textColor="@color/black"
-                android:textColorHint="@color/gray" />
+                android:textColorHint="@color/gray"/>
+                <ImageView
+                    android:id="@+id/notification"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="@dimen/margin_8dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_height="wrap_content"
 
+                    android:src="@drawable/notification_24" />
+            </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import snow.app.ideelee.HomeScreen.Modals.CompletedJobModal;
-import snow.app.ideelee.HomeScreen.Modals.WalletPaymentModal;
+
 import snow.app.ideelee.R;
 
 public class WalletPaymentAdapter extends RecyclerView.Adapter<WalletPaymentAdapter.ProductViewHolder> {

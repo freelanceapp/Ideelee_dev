@@ -11,20 +11,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PaymentDetailsActivity extends Activity {
-Button btn_pay;
-ImageView backbutton1;
-TextView title_bookingappointement;
+@BindView(R.id.ux_btn_pay) Button btn_pay;
+@BindView(R.id.backbutton1) ImageView backbutton1;
+@BindView(R.id.title_bookingappointement) TextView title_bookingappointement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_details);
+        ButterKnife.bind(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        btn_pay=findViewById(R.id.ux_btn_pay);
-        backbutton1=findViewById(R.id.backbutton1);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
+
+
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

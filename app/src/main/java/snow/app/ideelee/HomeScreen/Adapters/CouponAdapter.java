@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.CouponDetails;
 import snow.app.ideelee.R;
 
@@ -67,11 +69,12 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ProductVie
 
         TextView name, status, address, payment, servicetype, edit, txt_ratenow;
         RatingBar ratingBar;
-        ImageView imageView;
+       @BindView
+      (R.id.img_coupon) ImageView imageView;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.img_coupon);
+            ButterKnife.bind(this,itemView);
         }
     }
 }

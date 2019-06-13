@@ -7,17 +7,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PaymentMethodActivity extends AppCompatActivity {
-TextView title_bookingappointement;
-ImageView backbutton1;
+    @BindView(R.id.title_bookingappointement)
+    TextView title_bookingappointement;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_method);
-        backbutton1=findViewById(R.id.backbutton1);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

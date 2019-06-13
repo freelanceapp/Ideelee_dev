@@ -10,21 +10,25 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeFragment;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class PaymentSuccessfulActivity extends Activity {
-    Button btn_rate;
-    ImageView backbutton1;
-    TextView title_bookingappointement, back;
+   @BindView
+  (R.id.ux_btn_rate) Button btn_rate;
+   @BindView(R.id.backbutton1) ImageView backbutton1;
+  @BindView(R.id.title_bookingappointement)  TextView title_bookingappointement;
+  @BindView(R.id.txt_back)  TextView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_successful);
-        btn_rate = findViewById(R.id.ux_btn_rate);
-        back = findViewById(R.id.txt_back);
+        ButterKnife.bind(this);
+
         if (getIntent().hasExtra("key")) {
             if (getIntent().getStringExtra("key").equals("Done")) {
                 btn_rate.setText("Done");
@@ -52,8 +56,8 @@ public class PaymentSuccessfulActivity extends Activity {
                 }
             });
 
-        backbutton1 = findViewById(R.id.backbutton1);
-        title_bookingappointement = (TextView) findViewById(R.id.title_bookingappointement);
+
+
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

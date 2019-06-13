@@ -37,6 +37,7 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/parentView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_16dp"
@@ -46,6 +47,7 @@
 
                     <CalendarView
                         android:id="@+id/calendarView"
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         style="@style/CalenderViewCustom"
                         android:backgroundTint="@color/colorPrimary"
@@ -54,6 +56,7 @@
 
 
                 </LinearLayout>
+
 
                 <Button
                     android:id="@+id/book"
@@ -111,6 +114,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/regular"
                         android:gravity="center"
+                        android:id="@+id/txt"
                         android:padding="@dimen/margin_4dp"
                         android:text="$ 15.00 Per KM"
                         android:textColor="@color/black"

@@ -13,6 +13,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
 
@@ -49,24 +51,26 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView
+                (R.id.img)
         ImageView img;
+        @BindView(R.id.parent)
         LinearLayout parent;
 
         public MyViewHolder(View view) {
             super(view);
-            img = (ImageView) view.findViewById(R.id.img);
-            parent = (LinearLayout) view.findViewById(R.id.parent);
+            ButterKnife.bind(this, itemView);
             Picasso.with(context)
                     .load("https://stmedia.stimg.co/KING6.JPG")
                     .resize(width / 5, width / 5)
                     .centerCrop()
                     .into(img);
-                 parent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        context.startActivity(new Intent(context, RestDetailsActivity.class));
-                    }
-                });
+            parent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, RestDetailsActivity.class));
+                }
+            });
 
         }
     }

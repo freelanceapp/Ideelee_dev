@@ -13,22 +13,25 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersAdapter;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersM;
 import snow.app.ideelee.R;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class MyOrders extends Activity {
-    RecyclerView rv_orders;
+   @BindView
+  (R.id.rv_orders) RecyclerView rv_orders;
     OrdersAdapter ordersAdapter;
-    TextView title;
-    ImageView backbutton;
+   @BindView(R.id.title_bookingappointement) TextView title;
+   @BindView(R.id.backbutton1) ImageView backbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
-        rv_orders = (RecyclerView) findViewById(R.id.rv_orders);
+        ButterKnife.bind(this);
         rv_orders.setLayoutManager(new LinearLayoutManager(this));
         ArrayList<OrdersM> data = new ArrayList<>();
         data.add(new OrdersM("","Burger King","1 x Burger, 2 x Fries","21 Apr, 2019 11:40","#110","1","1"));
@@ -45,8 +48,6 @@ public class MyOrders extends Activity {
         int width = displayMetrics.widthPixels;
         ordersAdapter = new OrdersAdapter(data, this,width);
         rv_orders.setAdapter(ordersAdapter);
-        title = (TextView) findViewById(R.id.title_bookingappointement);
-        backbutton = (ImageView) findViewById(R.id.backbutton1);
         title.setText("My Orders");
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override

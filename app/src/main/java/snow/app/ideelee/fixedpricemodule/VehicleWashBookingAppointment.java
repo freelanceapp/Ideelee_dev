@@ -14,19 +14,24 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.BookingActivity;
 import snow.app.ideelee.R;
 
 public class VehicleWashBookingAppointment extends Activity {
-TagGroup mTagGroup;
-Button makecustomslot;
+
+    @BindView(R.id.ux_btn_makecustomslot)
+    Button makecustomslot;
+    @BindView(R.id.title_bookingappointement)
+    TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehiclewashbookingappointment);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        makecustomslot=findViewById(R.id.ux_btn_makecustomslot);
+        ButterKnife.bind(this);
         makecustomslot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,8 +39,6 @@ Button makecustomslot;
             }
         });
 //        setSupportActionBar(toolbar);
-
-        TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Jack Harry Vehicle Service Station");
 
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -51,19 +54,20 @@ Button makecustomslot;
 //        }
 //    });
     }
-    public void initiatePopupwindow(View v){
 
-        LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.make_customslot,(ViewGroup) v.findViewById(R.id.linearlayout_customslot));
-        final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        pw.showAtLocation(v, Gravity.CENTER,0,0);
-        View container= (View) pw.getContentView().getRootView();
-        WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
-        p.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        p.dimAmount=0.6f;
-        wm.updateViewLayout(container,p);
-        Button btn_continue_loginPage= layout.findViewById(R.id.ux_btn_done);
+    public void initiatePopupwindow(View v) {
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.make_customslot, (ViewGroup) v.findViewById(R.id.linearlayout_customslot));
+        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        pw.showAtLocation(v, Gravity.CENTER, 0, 0);
+        View container = (View) pw.getContentView().getRootView();
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
+        Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn_done);
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,29 +76,31 @@ Button makecustomslot;
         });
 
     }
-    public void confirmbooking(){
-        LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.confirm_booking_dialog,(ViewGroup) findViewById(R.id.linearlayout_confirmbooking));
-        final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        pw.showAtLocation( layout,Gravity.CENTER,0,0);
-        View container= (View) pw.getContentView().getRootView();
-        WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
-        p.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        p.dimAmount=0.6f;
-        wm.updateViewLayout(container,p);
 
-        Button btn_continue_loginPage= layout.findViewById(R.id.ux_btn_booknow);
+    public void confirmbooking() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.confirm_booking_dialog, (ViewGroup) findViewById(R.id.linearlayout_confirmbooking));
+        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+        View container = (View) pw.getContentView().getRootView();
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
+
+        Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn_booknow);
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(VehicleWashBookingAppointment.this,VehicleWashBookingActivity.class);
+                Intent intent = new Intent(VehicleWashBookingAppointment.this, VehicleWashBookingActivity.class);
 
                 startActivity(intent);
             }
         });
 
     }
+
     @Override
     public boolean onNavigateUp() {
         return super.onNavigateUp();

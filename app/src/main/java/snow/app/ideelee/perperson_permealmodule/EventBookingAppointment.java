@@ -11,33 +11,51 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.R;
 import snow.app.ideelee.perhour_fixpricemodule.TeachingBookingActivity;
 
 public class EventBookingAppointment extends Activity {
-TagGroup mTagGroup;
-Button makecustomslot;
+    TagGroup mTagGroup;
+    @BindView
+            (R.id.txt)
+    TextView txt;
+    @BindView(R.id.ux_btn_makecustomslot)
+    Button makecustomslot;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_booking_appointment);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        makecustomslot=findViewById(R.id.ux_btn_makecustomslot);
+        ButterKnife.bind(this);
         makecustomslot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 initiatePopupwindow(v);
             }
         });
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 //        setSupportActionBar(toolbar);
 
-        TextView textView = (TextView)toolbar.findViewById(R.id.title_bookingappointement);
+        TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Event Services");
-
+        txt.setText(getIntent().getStringExtra("key"));
 //        getSupportActionBar().setDisplayShowTitleEnabled(false);
 //        mTagGroup = (TagGroup)findViewById(R.id.tag_group_bookingapp);
 //        mTagGroup.setTags(new String[]{"12-01 AM", "12-01 AM", "12-01 AM",
@@ -51,19 +69,20 @@ Button makecustomslot;
 //        }
 //    });
     }
-    public void initiatePopupwindow(View v){
 
-        LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.make_customslot,(ViewGroup) v.findViewById(R.id.linearlayout_customslot));
-        final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        pw.showAtLocation(v, Gravity.CENTER,0,0);
-        View container= (View) pw.getContentView().getRootView();
-        WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
-        p.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        p.dimAmount=0.6f;
-        wm.updateViewLayout(container,p);
-        Button btn_continue_loginPage= layout.findViewById(R.id.ux_btn_done);
+    public void initiatePopupwindow(View v) {
+
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.make_customslot, (ViewGroup) v.findViewById(R.id.linearlayout_customslot));
+        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        pw.showAtLocation(v, Gravity.CENTER, 0, 0);
+        View container = (View) pw.getContentView().getRootView();
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
+        Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn_done);
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,29 +91,31 @@ Button makecustomslot;
         });
 
     }
-    public void confirmbooking(){
-        LayoutInflater inflater=(LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        View layout=inflater.inflate(R.layout.confirm_booking_dialog,(ViewGroup) findViewById(R.id.linearlayout_confirmbooking));
-        final PopupWindow pw=new PopupWindow(layout,ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-        pw.showAtLocation( layout,Gravity.CENTER,0,0);
-        View container= (View) pw.getContentView().getRootView();
-        WindowManager wm=(WindowManager)getSystemService(Context.WINDOW_SERVICE);
-        WindowManager.LayoutParams p=(WindowManager.LayoutParams)container.getLayoutParams();
-        p.flags=WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        p.dimAmount=0.6f;
-        wm.updateViewLayout(container,p);
 
-        Button btn_continue_loginPage= layout.findViewById(R.id.ux_btn_booknow);
+    public void confirmbooking() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.confirm_booking_dialog, (ViewGroup) findViewById(R.id.linearlayout_confirmbooking));
+        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
+        View container = (View) pw.getContentView().getRootView();
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        WindowManager.LayoutParams p = (WindowManager.LayoutParams) container.getLayoutParams();
+        p.flags = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+        p.dimAmount = 0.6f;
+        wm.updateViewLayout(container, p);
+
+        Button btn_continue_loginPage = layout.findViewById(R.id.ux_btn_booknow);
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(EventBookingAppointment.this,BookingRequirements.class);
+                Intent intent = new Intent(EventBookingAppointment.this, BookingRequirements.class);
 
                 startActivity(intent);
             }
         });
 
     }
+
     @Override
     public boolean onNavigateUp() {
         return super.onNavigateUp();

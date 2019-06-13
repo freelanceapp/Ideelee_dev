@@ -5,26 +5,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.adapters.HandymanCatAdapter;
 import snow.app.ideelee.perday_fixedpricemodule.adapters.RentalCatAdapter;
 
 public class HandymanCategories extends AppCompatActivity {
-RecyclerView recyclerView;
-ArrayList<String> vehicle_cat;
+    @BindView
+            (R.id.rv_vehicle_cat)
+    RecyclerView recyclerView;
+    ArrayList<String> vehicle_cat;
+    @BindView(R.id.title_bookingappointement)
+    TextView tv;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental_cat);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
-        vehicle_cat=new ArrayList<>();
-        TextView tv=findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
+        vehicle_cat = new ArrayList<>();
+
         tv.setText("Handyman Services");
-        findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
+        backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
@@ -36,6 +46,8 @@ ArrayList<String> vehicle_cat;
 
         vehicle_cat.add("Painting");
         vehicle_cat.add("Carpentry");
+        vehicle_cat.add("Electrical Work");
+
 
         HandymanCatAdapter adapter = new HandymanCatAdapter(HandymanCategories.this, vehicle_cat);
 

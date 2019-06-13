@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
@@ -14,7 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_4dp"
+            android:id="@+id/search_bar"
+            android:layout_toLeftOf="@+id/notification"
             android:fontFamily="@font/regular"
             android:background="@drawable/rectangle_edittext" />
+        <ImageView
+            android:id="@+id/notification"
+            android:layout_width="wrap_content"
+           android:layout_marginRight="8dp"
+            android:layout_marginLeft="@dimen/margin_8dp"
+           android:layout_centerVertical="true"
+           android:layout_alignParentRight="true"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/notification_24" />
     </RelativeLayout>
 </android.support.v7.widget.Toolbar>

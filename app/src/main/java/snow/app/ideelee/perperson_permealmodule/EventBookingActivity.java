@@ -22,28 +22,27 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.R;
 
 public class EventBookingActivity extends Activity {
-    TextView txt_note;
-    Button btn_confirmbooking;
-    ImageView backbutton1;
-    TextView timeslot,timeslotvalue;
-
+   @BindView
+  (R.id.textview_note) TextView txt_note;
+   @BindView(R.id.ux_btn_confirmbooking) Button btn_confirmbooking;
+   @BindView(R.id.backbutton1) ImageView backbutton1;
+   @BindView(R.id.timeslot) TextView timeslot;
+   @BindView(R.id.timeslotvalue) TextView timeslotvalue;
+@BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_booking);
-        txt_note = findViewById(R.id.textview_note);
-        backbutton1 = findViewById(R.id.backbutton1);
-        btn_confirmbooking = findViewById(R.id.ux_btn_confirmbooking);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         TextView textView = (TextView) toolbar.findViewById(R.id.title_bookingappointement);
         textView.setText("Booking");
-        timeslot=findViewById(R.id.timeslot);
-        timeslotvalue=findViewById(R.id.timeslotvalue);
         Date c = Calendar.getInstance().getTime();
         System.out.println("Current time => " + c);
 

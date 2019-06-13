@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Modals.CompletedJobModal;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
@@ -72,19 +74,28 @@ public class CompletedJobAdapter extends RecyclerView.Adapter<CompletedJobAdapte
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView name, status, address, payment, servicetype, edit, txt_ratenow;
+        @BindView
+                (R.id.name)
+        TextView name;
+        @BindView(R.id.status)
+        TextView status;
+        @BindView(R.id.address)
+        TextView address;
+        @BindView(R.id.payment)
+        TextView payment;
+        @BindView(R.id.servicetype)
+        TextView servicetype;
+        @BindView(R.id.edit)
+        TextView edit;
+        @BindView(R.id.ux_txt_ratenow)
+        TextView txt_ratenow;
+        @BindView(R.id.ratingbar_completed)
         RatingBar ratingBar;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ratingBar = itemView.findViewById(R.id.ratingbar_completed);
-            status = itemView.findViewById(R.id.status);
-            name = itemView.findViewById(R.id.name);
-            edit = itemView.findViewById(R.id.edit);
-            servicetype = itemView.findViewById(R.id.servicetype);
-            address = itemView.findViewById(R.id.address);
-            payment = itemView.findViewById(R.id.payment);
-            txt_ratenow = itemView.findViewById(R.id.ux_txt_ratenow);
+            ButterKnife.bind(this, itemView);
+
 
         }
     }

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Adapters.CategoriesAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.MainCategory;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
@@ -19,28 +21,30 @@ import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
 
 public class Categories extends AppCompatActivity {
     CategoriesAdapter adapterViewAndroid;
+    @BindView
+            (R.id.grid_view_categories)
     GridView gridView_category;
+    @BindView(R.id.back)
     ImageView backbutton1;
-    TextView title_bookingappointement;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        ButterKnife.bind(this);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-        backbutton1=findViewById(R.id.back);
-        title_bookingappointement=(TextView) findViewById(R.id.title_bookingappointement);
-        gridView_category = (GridView) findViewById(R.id.grid_view_categories);
         final String[] gridViewString = {
                 getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar), getString(R.string.homepainting),
-                getString(R.string.electrician) ,getString(R.string.maids), getString(R.string.carwash),
+                getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar), getString(R.string.homepainting),
                 getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar), getString(R.string.homepainting),
-                getString(R.string.electrician) ,getString(R.string.maids), getString(R.string.carwash),
+                getString(R.string.electrician), getString(R.string.maids), getString(R.string.carwash),
                 getString(R.string.massage), getString(R.string.babysitting), getString(R.string.towing),
                 getString(R.string.carpentar), getString(R.string.homepainting),
 
@@ -48,13 +52,13 @@ public class Categories extends AppCompatActivity {
         int[] gridViewImageId = {
                 R.drawable.electrician, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
-                R.drawable.carpanter, R.drawable.painting,R.drawable.electrician ,
+                R.drawable.carpanter, R.drawable.painting, R.drawable.electrician,
                 R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter, R.drawable.painting,
                 R.drawable.electrician, R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
-                R.drawable.carpanter, R.drawable.painting,R.drawable.electrician ,
+                R.drawable.carpanter, R.drawable.painting, R.drawable.electrician,
                 R.drawable.maids, R.drawable.car_wash, R.drawable.massage,
                 R.drawable.baby_sitting, R.drawable.towing,
                 R.drawable.carpanter, R.drawable.painting,
@@ -72,12 +76,12 @@ public class Categories extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int i, long id) {
 
-                    startActivity(new Intent(Categories.this, RestaurantsList.class));
+                startActivity(new Intent(Categories.this, RestaurantsList.class));
 
-                    Toast.makeText(Categories.this, "GridView Item: " + gridViewString[+i],
-                            Toast.LENGTH_LONG).show();
+                Toast.makeText(Categories.this, "GridView Item: " + gridViewString[+i],
+                        Toast.LENGTH_LONG).show();
 
-                }
+            }
         });
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override

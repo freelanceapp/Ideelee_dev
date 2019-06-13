@@ -5,26 +5,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fixedpricemodule.adapters.VehicleWashAdapter;
 import snow.app.ideelee.vehical_module.vehicle.adapters.VehicleCategoriesAdapter;
 
 public class VehiclewashCategories extends AppCompatActivity {
-RecyclerView recyclerView;
-ArrayList<String> vehicle_cat;
+    @BindView(R.id.rv_vehicle_cat) RecyclerView recyclerView;
+    ArrayList<String> vehicle_cat;
+    @BindView(R.id.title_bookingappointement) TextView tv;
+    @BindView(R.id.backbutton1) ImageView backbutton1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehiclewash_categories);
-        recyclerView = (RecyclerView) findViewById(R.id.rv_vehicle_cat);
-        vehicle_cat=new ArrayList<>();
-        TextView tv=findViewById(R.id.title_bookingappointement);
+        ButterKnife.bind(this);
+        vehicle_cat = new ArrayList<>();
         tv.setText("Vehicle Wash");
-        findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
+        backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 
 public class TagItemAdapter extends RecyclerView.Adapter<TagItemAdapter.ProductViewHolder> {
@@ -60,11 +62,12 @@ public class TagItemAdapter extends RecyclerView.Adapter<TagItemAdapter.ProductV
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewTitle;
+      @BindView
+    (R.id.textViewTitle)  TextView textViewTitle;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            ButterKnife.bind(this,itemView);
 
 
 

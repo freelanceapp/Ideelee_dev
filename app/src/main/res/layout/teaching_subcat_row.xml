@@ -157,7 +157,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/perhour"
-                                android:text="@string/per_hour"
+                                android:fontFamily="@font/semibold"
+                                android:textSize="@dimen/text_size_15sp"
+                                android:text="Per Hour"
                                 android:textColor="@color/black" />
                         </LinearLayout>
                     </RelativeLayout>

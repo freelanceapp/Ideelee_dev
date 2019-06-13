@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.gujun.android.taggroup.TagGroup;
 import snow.app.ideelee.HomeScreen.Adapters.ActiveJobAdapter;
 import snow.app.ideelee.HomeScreen.Adapters.CompletedJobAdapter;
@@ -24,16 +27,19 @@ public class ActiveJobFragment extends Fragment {
 
     List<ActiveJobModal> serviceproviderlist;
     TagGroup mTagGroup;
+    @BindView
+            (R.id.recyclerView_activejob)
     RecyclerView recyclerView;
+    private Unbinder unbinder;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_active_job, container, false);
+        View v = inflater.inflate(R.layout.fragment_active_job, container, false);
+        unbinder = ButterKnife.bind(this, v);
 
 
-        recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView_activejob);
         serviceproviderlist = new ArrayList<>();
 
         recyclerView.setHasFixedSize(true);
@@ -59,7 +65,9 @@ public class ActiveJobFragment extends Fragment {
         return v;
     }
 
-
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
+    }
 }

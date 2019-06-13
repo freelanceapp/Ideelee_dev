@@ -12,19 +12,28 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.squareup.timessquare.CalendarPickerView;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.R;
+import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.metre_square_module.HandymanBookingRequirements;
 import snow.app.ideelee.perday_fixedpricemodule.RentalBookingActivity;
 
-public class CarrierBookingPerDay extends AppCompatActivity {
+public class CarrierBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -35,12 +44,22 @@ public class CarrierBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
+    @BindView(R.id.txt)
+
+    TextView txt;
+
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
+    @BindView(R.id.backbutton1)
+    ImageView backbutton1;
+    CalendarPickerView calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carrier_booking_day);
         ButterKnife.bind(this);
+
 
         textView.setText("Carrier Services");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
@@ -54,7 +73,7 @@ public class CarrierBookingPerDay extends AppCompatActivity {
                 //Toast.makeText(getApplicationContext(), "Selected Date:\n" + "Day = " + i2 + "\n" + "Month = " + i1 + "\n" + "Year = " + i, Toast.LENGTH_LONG).show();
             }
         });
-
+        txt.setText(getIntent().getStringExtra("key"));
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +82,14 @@ public class CarrierBookingPerDay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        backbutton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {
@@ -103,7 +130,7 @@ public class CarrierBookingPerDay extends AppCompatActivity {
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CarrierBookingPerDay.this, RentalBookingActivity.class);
+                Intent intent = new Intent(CarrierBookingPerDay.this, CarrierBookingRequirements.class);
 
                 startActivity(intent);
             }
@@ -119,4 +146,5 @@ public class CarrierBookingPerDay extends AppCompatActivity {
 //        calendarView.setDateSelected(CalendarDay.today(), true);
 //        calendarView.setDateSelected(CalendarDay.from(2017, 3, 19), true);
     }
+
 }

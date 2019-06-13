@@ -52,9 +52,6 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyView
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
-
-
-        LinearLayout parent;
             public MyViewHolder(View view) {
                 super(view);
                /* parent=(LinearLayout)view.findViewById(R.id.parent);

@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.R;
 import snow.app.ideelee.metre_square_module.HandyManListing;
 import snow.app.ideelee.perday_fixedpricemodule.RentalSubCat;
+import snow.app.ideelee.perquantity_fixprice.ElectricworkCategories;
 
 public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.ProductViewHolder> {
 
@@ -34,13 +37,7 @@ public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.
         //inflating and returning our view holder
         LayoutInflater inflater = LayoutInflater.from(mCtx);
         View view = inflater.inflate(R.layout.vehicle_categories_row, null);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              Intent intent=new Intent(mCtx, HandyManListing.class);
-              mCtx.startActivity(intent);
-            }
-        });
+
         return new HandymanCatAdapter.ProductViewHolder(view);
     }
 
@@ -62,14 +59,27 @@ public class HandymanCatAdapter extends RecyclerView.Adapter<HandymanCatAdapter.
 
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_vehicle_cat;
+       @BindView
+      (R.id.txt_vehicle_cat) TextView txt_vehicle_cat;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
 
-            txt_vehicle_cat = itemView.findViewById(R.id.txt_vehicle_cat);
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (txt_vehicle_cat.getText().toString().equals("Electrical Work")) {
+                        Intent intent = new Intent(mCtx, ElectricworkCategories.class);
+                        mCtx.startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(mCtx, HandyManListing.class);
+                        mCtx.startActivity(intent);
+                    }
+                }
+            });
         }
     }
 

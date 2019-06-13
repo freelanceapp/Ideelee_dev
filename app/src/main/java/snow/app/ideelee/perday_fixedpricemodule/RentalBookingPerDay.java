@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -22,8 +23,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.BookingActivity;
 import snow.app.ideelee.R;
+import snow.app.ideelee.extrafiles.BaseActivity;
 
-public class RentalBookingPerDay extends AppCompatActivity {
+public class RentalBookingPerDay extends BaseActivity {
     Button makecustomslot;
     @BindView(R.id.book)
     Button book;
@@ -34,7 +36,8 @@ public class RentalBookingPerDay extends AppCompatActivity {
     TextView textView;
     @BindView(R.id.calendarView)
     CalendarView simpleCalendarView;
-
+    @BindView(R.id.parentView)
+    LinearLayout parentView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +65,7 @@ public class RentalBookingPerDay extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        addCalanderToView(parentView);
     }
 
     public void initiatePopupwindow(View v) {
@@ -109,9 +113,10 @@ public class RentalBookingPerDay extends AppCompatActivity {
         });
 
     }
+
     private void initializeCalendar() {
-       // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
-simpleCalendarView.setMaxDate(3);
+        // simpleCalendarView.setSelectionMode(SELECTION_MODE_MULTIPLE); // Removes onClick functionality
+        simpleCalendarView.setMaxDate(3);
 //        simpleCalendarView.add(Calendar.DATE, -1);
 //        calendarView.setDateSelected(cal.getTime(), true);
 //        calendarView.setDateSelected(CalendarDay.today(), true);

@@ -16,25 +16,26 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restaurantsmod.adapter.RestaurantsAdapter;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class RestaurantsList extends AppCompatActivity {
-ImageView backbutton1;
-TextView title_bookingappointement;
-TextView relevance;
-RecyclerView rv_list;
+   @BindView
+  (R.id.backbutton1) ImageView backbutton1;
+   @BindView(R.id.title_bookingappointement) TextView title_bookingappointement;
+   @BindView(R.id.relevance) TextView relevance;
+   @BindView(R.id.rv_list) RecyclerView rv_list;
     RestaurantsAdapter restaurantsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants_list);
-        backbutton1=(ImageView)findViewById(R.id.backbutton1);
-        title_bookingappointement=(TextView)findViewById(R.id.title_bookingappointement);
-        relevance=(TextView)findViewById(R.id.relevance);
-        rv_list=(RecyclerView)findViewById(R.id.rv_list);
+        ButterKnife.bind(this);
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,8 +49,8 @@ RecyclerView rv_list;
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
         rv_list.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<String>data= new ArrayList<>();
-        restaurantsAdapter= new RestaurantsAdapter(data,this,width);
+        ArrayList<String> data = new ArrayList<>();
+        restaurantsAdapter = new RestaurantsAdapter(data, this, width);
         rv_list.setAdapter(restaurantsAdapter);
         relevance.setOnClickListener(new View.OnClickListener() {
             @Override
