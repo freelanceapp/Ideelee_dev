@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/regular"
+        android:id="@+id/hname"
         android:gravity="center"
         android:text="Jessica Ruby"
         android:textColor="@color/black"

@@ -1,16 +1,12 @@
 package snow.app.ideelee;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -19,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.chaos.view.PinView;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -31,55 +26,68 @@ import com.sinch.verification.SinchVerification;
 import com.sinch.verification.Verification;
 import com.sinch.verification.VerificationListener;
 
-
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
+import snow.app.ideelee.api_request_retrofit.ApiService;
+import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.AppConstants;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
+import snow.app.ideelee.responses.confirmotpresponse.ConfirmOtpRes;
 
-public class OTP extends Activity {
-   @BindView(R.id.ux_btn_continue_otpPage) Button btn_continue_otpPage;
+import static snow.app.ideelee.extrafiles.AppConstants.LoginProcess.mUserIdForActivationAccountAfterOTPVerification;
+
+public class OTP extends BaseActivity {
     private static final String TAG = "ScreenEnterOtp";
-
     private static final String[] SMS_PERMISSIONS = {
             Manifest.permission.READ_SMS,
             Manifest.permission.SEND_SMS};
+    @BindView(R.id.ux_btn_continue_otpPage)
+    Button btn_continue_otpPage;
+    @BindView(R.id.pinview_otp)
+    PinView pinviewOtp;
+    @BindView(R.id.txt_Resend)
+    TextView mTextResendCode;
+    ApiService apiService;
+    HashMap<String, String> map;
+    String userid, device_token;
     private Verification mVerification;
     private KProgressHUD mKProgressHUD, mKProgressHUDWithText;
     private boolean mShouldFallback = true;
     private boolean mIsVerified;
     private String mPhoneNumber;
-    @BindView(R.id.pinview_otp)
-    PinView pinviewOtp;
-    @BindView(R.id.txt_Resend)
-    TextView mTextResendCode;
+SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         ButterKnife.bind(this);
-        btn_continue_otpPage.setOnClickListener(new View.OnClickListener() {
+        device_token = getDeviceToken(OTP.this);
+        apiService = ApiClient.getClient(getApplicationContext())
+                .create(ApiService.class);
+
+        userid = getIntent().getStringExtra("userid");
+
+        // initialisation
+        init();
+
+        mTextResendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_continue=new Intent(OTP.this, HomeNavigation.class);
-                startActivity(intent_continue);
+                Toast.makeText(OTP.this, "Resending...", Toast.LENGTH_SHORT).show();
+                requestPermissions();
             }
         });
-
-    //  init();
-
-//        mTextResendCode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(OTP.this, "Resending...", Toast.LENGTH_SHORT).show();
-//                requestPermissions();
-//            }
-//        });
     }
 
     private void init() {
@@ -215,9 +223,117 @@ public class OTP extends Activity {
         if (!code.isEmpty()) {
             if (mVerification != null) {
                 mVerification.verify(code);
-                showIOSProgress();
+                createProgressDialog();
+
+
             }
         }
+    }
+
+    @OnClick(R.id.ux_btn_continue_otpPage)
+    public void onViewClicked() {
+        //goForHomeFromLeftToRight(ScreenLogin.class);
+
+        onSubmitClicked();
+    }
+
+    public void showIOSProgress() {
+        try {
+            mKProgressHUD = KProgressHUD.create(this)
+                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                    //  .setLabel("Please wait")
+                    //  .setDetailsLabel(msg)
+                    .setCancellable(true)
+                    .setAnimationSpeed(1)
+                    .setDimAmount(.2f)
+                    .show();
+        } catch (Exception ex) {
+            Log.wtf("IOS_error_starting", ex.getCause());
+        }
+    }
+
+    public void dismissIOSProgress() {
+        try {
+            if (mKProgressHUD != null) {
+                if (mKProgressHUD.isShowing()) {
+                    mKProgressHUD.dismiss();
+                }
+            }
+        } catch (Exception ex) {
+            Log.wtf("IOS_error_dismiss", ex.getCause());
+        }
+
+
+    }
+
+    private void handleConfirmOtp() {
+
+        createProgressDialog();
+
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("userid", mUserIdForActivationAccountAfterOTPVerification);
+        map.put("signup_type", "1");
+        map.put("device_type", "Android");
+        map.put("device_token", device_token);
+        map.put("usertype", "1");
+
+        confirmOtp(map);
+
+
+    }
+
+    public void confirmOtp(HashMap<String, String> map) {
+        createProgressDialog();
+
+        Observer<ConfirmOtpRes> observer = apiService.confirmOtp(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<ConfirmOtpRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ConfirmOtpRes res) {
+
+                        if (res.getStatus()) {
+
+                            SharedPreferences.Editor editor = getSharedPreferences("Login", MODE_PRIVATE).edit();
+                            editor.putString("userid", res.getUserdata().getId());
+                            editor.putString("token", res.getUserdata().getToken());
+                            editor.putString("name", res.getUserdata().getName());
+                            editor.putString("contact", res.getUserdata().getContactNo());
+                            editor.putString("address", res.getUserdata().getAddress().toString());
+                            editor.putString("email", res.getUserdata().getEmail());
+                            editor.commit();
+//                            sessionManager.createLoginSession(res.getUserdata().getName(),
+//                                    res.getUserdata().getEmail(),res.getUserdata().getPassword(),res.getUserdata().getContactNo(),res.getUserdata().getId(),
+//                                    res.getUserdata().getStatus(),res.getUserdata().getAddress().toString(),res.getUserdata().getProfileImage().toString(),
+//                                    res.getUserdata().getType(),res.getUserdata().getToken());
+
+                            Toast.makeText(OTP.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intent_continue = new Intent(OTP.this, HomeNavigation.class);
+                            startActivity(intent_continue);
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissProgressDialog();
+
+                    }
+                });
+
+
     }
 
     class MyVerificationListener implements VerificationListener {
@@ -235,7 +351,6 @@ public class OTP extends Activity {
 
             if (exception instanceof InvalidInputException) {
                 // Incorrect number provided
-              //  showToast("Incorrect number");
                 Toast.makeText(OTP.this, "Incorrect number", Toast.LENGTH_SHORT).show();
             } else if (exception instanceof ServiceErrorException) {
                 // Verification initiation aborted due to early reject feature,
@@ -244,9 +359,12 @@ public class OTP extends Activity {
                 fallbackIfNecessary();
             } else {
                 // Other system error, such as UnknownHostException in case of network error
+
                 Toast.makeText(OTP.this, "System error", Toast.LENGTH_SHORT).show();
+
             }
         }
+
 
         @Override
         public void onVerificationFallback() {
@@ -267,7 +385,7 @@ public class OTP extends Activity {
             mIsVerified = true;
             Log.d(TAG, "Verified!");
             dismissIOSProgress();
-
+            handleConfirmOtp();
             showCompleted();
         }
 
@@ -280,44 +398,11 @@ public class OTP extends Activity {
             dismissIOSProgress();
 
             Log.wtf(TAG, "Verification failed: " + exception.getMessage());
-           // showToastLong("Verification failed: Enter Correct OTP");
             Toast.makeText(OTP.this, "Verification failed: Enter Correct OTP", Toast.LENGTH_SHORT).show();
+
         }
 
     }
 
 
-    @OnClick(R.id.ux_btn_continue_otpPage)
-    public void onViewClicked() {
-        //goForHomeFromLeftToRight(ScreenLogin.class);
-
-        onSubmitClicked();
-    }
-    public void showIOSProgress() {
-        try {
-            mKProgressHUD = KProgressHUD.create(this)
-                    .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-                    //  .setLabel("Please wait")
-                    //  .setDetailsLabel(msg)
-                    .setCancellable(true)
-                    .setAnimationSpeed(1)
-                    .setDimAmount(.2f)
-                    .show();
-        } catch (Exception ex) {
-            Log.wtf("IOS_error_starting", ex.getCause());
-        }
-    }
-    public void dismissIOSProgress() {
-        try {
-            if (mKProgressHUD != null) {
-                if (mKProgressHUD.isShowing()) {
-                    mKProgressHUD.dismiss();
-                }
-            }
-        } catch (Exception ex) {
-            Log.wtf("IOS_error_dismiss", ex.getCause());
-        }
-
-
-    }
 }

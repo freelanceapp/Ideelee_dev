@@ -1,55 +1,50 @@
 package snow.app.ideelee;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatEditText;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.rilixtech.Country;
-import com.rilixtech.CountryCodePicker;
+
+import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
-import snow.app.ideelee.Responses.LoginResponse.LoginRes;
-import snow.app.ideelee.Responses.opertaorres.OperatorRes;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.AppConstants;
+import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.OneTimeLogin;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.forgot.ForgotPassword;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
+import snow.app.ideelee.responses.loginres.LoginRes;
 
-import static android.provider.ContactsContract.Intents.Insert.EMAIL;
-
-public class Login extends Activity {
+public class Login extends BaseActivity {
 
 
+    private static final String EMAIL = "email";
     @BindView
             (R.id.ux_txt_registernow_loginPage)
     TextView txt_registernow_loginPage;
@@ -66,20 +61,22 @@ public class Login extends Activity {
     @BindView(R.id.password)
     EditText et_pass;
     CallbackManager callbackManager;
-    private static final String EMAIL = "email";
     ApiService apiService;
     String device_token;
     HashMap<String, String> map;
+    OneTimeLogin oneTimeLogin;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        device_token = Settings.Secure.getString(Login.this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        System.out.println("device toekn--" + device_token);
+        oneTimeLogin = new OneTimeLogin(Login.this);
+        device_token = getDeviceToken(Login.this);
         apiService = ApiClient.getClient(getApplicationContext())
                 .create(ApiService.class);
+
         txt_registernow_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,14 +84,13 @@ public class Login extends Activity {
                 startActivity(intent_register);
             }
         });
-        getOperatortype();
+        //  getOperatortype();
 
         btn_continue_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                handleSignup();
-                Intent intent_continue = new Intent(Login.this, OTP.class);
-                startActivity(intent_continue);
+                handleLogin();
+
             }
         });
 
@@ -105,7 +101,11 @@ public class Login extends Activity {
                 startActivity(intent_continue);
             }
         });
-
+        if (!oneTimeLogin.isFirstTimeLaunch()) {
+            Intent intent_continue = new Intent(Login.this, HomeNavigation.class);
+            startActivity(intent_continue);
+            finish();
+        }
 
         /***
          * login retrofit
@@ -132,9 +132,25 @@ public class Login extends Activity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+                AccessToken accessToken = loginResult.getAccessToken();
+
                 // App code
-                Intent intent_continue = new Intent(Login.this, OTP.class);
-                startActivity(intent_continue);
+                GraphRequest request = GraphRequest.newMeRequest(
+                        accessToken,
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(
+                                    JSONObject object,
+                                    GraphResponse response) {
+                                System.out.println("res--" + response);
+                            }
+                        });
+//                Bundle parameters = new Bundle();
+//                parameters.putString("fields", "id,name,link");
+//                request.setParameters(parameters);
+//                request.executeAsync();
+
 
             }
 
@@ -148,26 +164,28 @@ public class Login extends Activity {
                 // App code
             }
         });
-
-        callbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
+//
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        LoginManager.getInstance().registerCallback(callbackManager,
+//                new FacebookCallback<LoginResult>() {
+//                    @Override
+//                    public void onSuccess(LoginResult loginResult) {
+//                        // App code
+//
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancel() {
+//                        // App code
+//                    }
+//
+//                    @Override
+//                    public void onError(FacebookException exception) {
+//                        // App code
+//                    }
+//                });
 
 /**
  * facebook login
@@ -176,7 +194,7 @@ public class Login extends Activity {
     }
 
     public void loginUser(HashMap<String, String> map) {
-        // showProgress();
+        createProgressDialog();
 
         Observer<LoginRes> observer = apiService.loginUser(map)
                 .subscribeOn(Schedulers.io())
@@ -189,59 +207,59 @@ public class Login extends Activity {
 
                     @Override
                     public void onNext(LoginRes res) {
-                        Log.e("company data", res.getData().getCompanyData().getCompanyAddress() +
-                                res.getData().getFirstName() + res.getData().getLastName());
 
-                        Intent intent_continue = new Intent(Login.this, OTP.class);
-                        startActivity(intent_continue);
-                    }
+                        if (res.getStatus()) {
 
-                    @Override
-                    public void onError(Throwable e) {
+                            if (res.getMessage().equals("User is not active")) {
+                                AppConstants.LoginProcess.mUserIdForActivationAccountAfterOTPVerification =
+                                        String.valueOf(res.getUserdata().getId());
+                                AppConstants.LoginProcess.mMobileNumber = "+" + res.getUserdata().getContactNo();
 
-                    }
+                                // after successfull  register then hit otp confirmation mobile verification
+                                openActivity(AppConstants.LoginProcess.mMobileNumber, AppConstants.OTPVerification.INTENT_METHOD);
 
-                    @Override
-                    public void onComplete() {
+                            } else {
 
-                    }
-                });
+                                oneTimeLogin.setFirstTimeLaunch(false);
+                                SharedPreferences.Editor editor = getSharedPreferences("Login", MODE_PRIVATE).edit();
+                                editor.putString("userid", res.getUserdata().getId());
+                                editor.putString("token", res.getUserdata().getToken());
+                                editor.putString("name", res.getUserdata().getName());
+                                editor.putString("contact", res.getUserdata().getContactNo());
+                                editor.putString("address", res.getUserdata().getAddress().toString());
+                                editor.putString("email", res.getUserdata().getEmail());
+
+                               editor.commit();
 
 
-    }
+//                                sessionManager.createLoginSession(res.getUserdata().getName(),
+//                                        res.getUserdata().getEmail(), res.getUserdata().getPassword(), res.getUserdata().getContactNo(), res.getUserdata().getId(),
+//                                        res.getUserdata().getStatus(), res.getUserdata().getAddress(), res.getUserdata().getProfileImage(),
+//                                        res.getUserdata().getType(), res.getUserdata().getToken());
+//
 
+                                Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent_continue = new Intent(Login.this, HomeNavigation.class);
+                                startActivity(intent_continue);
+                                finish();
 
-    public void getOperatortype() {
-        // showProgress();
+                            }
 
-        Observer<OperatorRes> observer = apiService.getOperatorlist()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<OperatorRes>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(OperatorRes res) {
-
-                        for (int i = 0; i < res.getData().size(); i++) {
-                            Log.e("operator data", String.valueOf(res.getData().get(i).getId()));
                         }
-
-
-//                        Intent intent_continue = new Intent(Login.this, OTP.class);
-//                        startActivity(intent_continue);
+                        else {
+                            Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        dismissProgressDialog();
 
                     }
 
                     @Override
                     public void onComplete() {
+                        dismissProgressDialog();
 
                     }
                 });
@@ -249,7 +267,14 @@ public class Login extends Activity {
 
     }
 
-    private void handleSignup() {
+    private void openActivity(String phoneNumber, String method) {
+        Intent verification = new Intent(this, OTP.class);
+        verification.putExtra(AppConstants.OTPVerification.INTENT_PHONENUMBER, phoneNumber);
+        verification.putExtra(AppConstants.OTPVerification.INTENT_METHOD, method);
+        startActivity(verification);
+    }
+
+    private void handleLogin() {
         String email = et_email.getText().toString();
         //  String l_name = edt_last_name.getText().toString();
 
@@ -260,27 +285,27 @@ public class Login extends Activity {
         } else if (pass.isEmpty()) {
             et_pass.setError("Enter password");
         } else {
-//            HashMap<String, String> map = new HashMap<>();
-//            map.put("first_name", f_name);
-//            map.put("last_name", l_name);
-//            map.put("email", email);
-//            map.put("phone_number", String.valueOf(ccp.getSelectedCountryCode()) + "" + phone_);
-//            map.put("op_type", SELECTED_ROLE);
-//            map.put("password", pass);
 
-            //  registerCall(map);
+
+            createProgressDialog();
             map = new HashMap<>();
             map.put("email", et_email.getText().toString());
             map.put("password", et_pass.getText().toString());
+            map.put("device_type", "Android");
             map.put("device_token", device_token);
+            map.put("usertype", "1");
+
             Log.e("params login", et_email.getText().toString() + et_pass.getText().toString() + device_token);
             loginUser(map);
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+
+
     }
 
     public void onClick(View v) {

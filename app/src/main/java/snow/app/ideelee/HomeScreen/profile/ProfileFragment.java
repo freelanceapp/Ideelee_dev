@@ -2,8 +2,8 @@ package snow.app.ideelee.HomeScreen.profile;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -39,24 +39,32 @@ import butterknife.Unbinder;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.R;
 import snow.app.ideelee.extrafiles.ImagePickerActivity;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
 
 
 public class ProfileFragment extends Fragment {
 
 
-    public ProfileFragment() {
-    }
-
+    public static final int REQUEST_IMAGE = 100;
+    private static final String TAG = ProfileFragment.class.getSimpleName();
     @BindView(R.id.img)
     ImageView img;
+    @BindView(R.id.email)
+    EditText ed_email;
+    @BindView(R.id.phone)
+    EditText ed_phone;
+    @BindView(R.id.address)
+    EditText ed_address;
+    @BindView(R.id.name)
+    EditText ed_name;
     @BindView(R.id.parent)
     RelativeLayout parent;
     private Unbinder unbinder;
-    private static final String TAG = ProfileFragment.class.getSimpleName();
-    public static final int REQUEST_IMAGE = 100;
+    public ProfileFragment() {
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -67,8 +75,17 @@ public class ProfileFragment extends Fragment {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
+        SharedPreferences prefs = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
+        String userid = prefs.getString("userid", "0");
+        String name = prefs.getString("name", "");
+        String contact = prefs.getString("contact", "");
+        String address = prefs.getString("address", "");
+        String email = prefs.getString("email", "");
 
-
+        ed_name.setText(name);
+        ed_email.setText(email);
+        ed_address.setText(address);
+        ed_phone.setText(contact);
         Picasso.with(getActivity())
                 .load("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg")
                 .resize(width / 4, width / 4)
@@ -168,6 +185,7 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+
     private void loadProfile(String url) {
         Log.d(TAG, "Image cache path: " + url);
 

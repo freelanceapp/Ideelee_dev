@@ -53,8 +53,7 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
-import snow.app.ideelee.R;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 
 public class AddAddress extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,

@@ -2,6 +2,7 @@ package snow.app.ideelee.HomeScreen.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProvider;
 import snow.app.ideelee.R;
+import snow.app.ideelee.responses.homescreenres.PopularProfile;
 
 public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<ServiceProviderCategoryAdapter.ProductViewHolder> {
 
@@ -25,11 +27,11 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
     private Context mCtx;
 
     //we are storing all the products in a list
-    private List<ServiceProvider> productList;
+    private List<PopularProfile> productList;
     int width=0;
 
     //getting the context and product list with constructor
-    public ServiceProviderCategoryAdapter(Context mCtx, List<ServiceProvider> productList,int width) {
+    public ServiceProviderCategoryAdapter(Context mCtx, List<PopularProfile> productList,int width) {
         this.mCtx = mCtx;
         this.productList = productList;
         this.width = width;
@@ -49,13 +51,18 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the product of the specified position
-        ServiceProvider product = productList.get(position);
+        PopularProfile product = productList.get(position);
+
+
+
+        String name=product.getName();
+        Log.e("name---",name);
         //binding the data with the viewholder views
-        holder.textViewTitle.setText(product.getTitle());
-        holder.ratingBar.setRating((float) product.getRating());
-        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
-        Picasso.with(mCtx).load("https://icon2.kisspng.com/20180419/foq/kisspng-electrician-electrical-contractor-electricity-arch-5ad8e6e9a7cab2.2418352215241643296873.jpg").
-                resize(width/3,width/3).into(holder.imageView);
+        holder.textViewTitle.setText(product.getName());
+       holder.ratingBar.setRating(  product.getRating());
+//        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
+         Picasso.with(mCtx).load(product.getProfileImage()).
+                 into(holder.imageView);
 
 
 
