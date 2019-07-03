@@ -2,6 +2,7 @@ package snow.app.ideelee.HomeScreen;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,13 +30,19 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.CouponActivity;
@@ -44,8 +52,14 @@ import snow.app.ideelee.HomeScreen.help.HelpActivity;
 import snow.app.ideelee.HomeScreen.invites.InviteActivity;
 import snow.app.ideelee.HomeScreen.orders.MyOrders;
 import snow.app.ideelee.HomeScreen.profile.ProfileFragment;
+import snow.app.ideelee.Login;
 import snow.app.ideelee.R;
 import snow.app.ideelee.WalletFragment;
+import snow.app.ideelee.api_request_retrofit.ApiService;
+import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.extrafiles.OneTimeLogin;
+import snow.app.ideelee.responses.loginres.LoginRes;
+import snow.app.ideelee.responses.logoutres.LogoutRes;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HomeNavigation extends AppCompatActivity
@@ -84,6 +98,12 @@ public class HomeNavigation extends AppCompatActivity
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 ImageView img;
+
+TextView h_name;
+    ApiService apiService;
+    String device_token,userid,name,token;
+    HashMap<String, String> map;
+    OneTimeLogin oneTimeLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,11 +115,39 @@ ImageView img;
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
+
+        oneTimeLogin =new OneTimeLogin(HomeNavigation.this);
+        apiService = ApiClient.getClient(getApplicationContext())
+                .create(ApiService.class);
         toggle.syncState();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+
+
+
+
+        //shared pref user details
+        SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
+          userid = prefs.getString("userid", "0");
+          token = prefs.getString("token", "0");
+          name = prefs.getString("name", "0");
+
+
+        //set user details in nav header
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.hname);
+        navUsername.setText(name);
+
+
+
+
+
+
+
+
+
         Fragment fragment = null;
         if (getIntent().hasExtra("key")) {
             if (getIntent().getStringExtra("key").equals("wallet")) {
@@ -269,6 +317,8 @@ ImageView img;
             startActivity(new Intent(HomeNavigation.this, MyOrders.class));
         } else if (id == R.id.logout) {
 
+            handleLogout();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -283,6 +333,70 @@ ImageView img;
                 .replace(R.id.content_frame, fragment, title);
         fragmentTransaction.commit();
     }
+
+
+
+    public void logoutUser(HashMap<String, String> map) {
+        // showProgress();
+
+        Observer<LogoutRes> observer = apiService.logoutUser(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<LogoutRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(LogoutRes res) {
+
+
+                            oneTimeLogin.setFirstTimeLaunch(true);
+
+                            Intent intent_continue = new Intent(HomeNavigation.this, Login.class);
+                            startActivity(intent_continue);
+                            finishAffinity();
+
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        Intent intent_continue = new Intent(HomeNavigation.this, Login.class);
+                        startActivity(intent_continue);
+                        finish();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+
+                    }
+                });
+
+
+    }
+
+
+    private void handleLogout() {
+
+
+//        if (userid != null) {
+//
+//        }
+
+
+            map = new HashMap<>();
+            map.put("userid",userid);
+            map.put("token", token);
+
+
+            logoutUser(map);
+        }
+
+
+
+
 }
 
 

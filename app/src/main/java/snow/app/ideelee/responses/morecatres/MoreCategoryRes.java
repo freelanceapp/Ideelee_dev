@@ -1,10 +1,11 @@
 
-package snow.app.ideelee.Responses.LoginResponse;
+package snow.app.ideelee.responses.morecatres;
 
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginRes {
+public class MoreCategoryRes {
 
     @SerializedName("status")
     @Expose
@@ -12,9 +13,9 @@ public class LoginRes {
     @SerializedName("message")
     @Expose
     private String message;
-    @SerializedName("data")
+    @SerializedName("parentcatdata")
     @Expose
-    private Data data;
+    private List<Parentcatdatum> parentcatdata = null;
 
     public Boolean getStatus() {
         return status;
@@ -32,12 +33,12 @@ public class LoginRes {
         this.message = message;
     }
 
-    public Data getData() {
-        return data;
+    public List<Parentcatdatum> getParentcatdata() {
+        return parentcatdata;
     }
 
-    public void setData(Data data) {
-        this.data = data;
+    public void setParentcatdata(List<Parentcatdatum> parentcatdata) {
+        this.parentcatdata = parentcatdata;
     }
 
 }

@@ -13,16 +13,18 @@ import android.widget.RelativeLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import snow.app.ideelee.HomeScreen.HomeNavigation;
 import snow.app.ideelee.R;
+import snow.app.ideelee.responses.homescreenres.Banner;
 
 public class ViewPagerHome extends PagerAdapter {
     private LayoutInflater layoutInflater;
     Activity activity;
-    ArrayList<String> image_arraylist;
+    List<Banner> image_arraylist;
 
-    public ViewPagerHome(Activity activity, ArrayList<String> image_arraylist) {
+    public ViewPagerHome(Activity activity, List<Banner> image_arraylist) {
         this.activity = activity;
         this.image_arraylist = image_arraylist;
     }
@@ -30,13 +32,16 @@ public class ViewPagerHome extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.viewpager_item_home, container, false);
-     /* ImageView im_slider = (ImageView) view.findViewById(R.id.im_slider);
+      ImageView im_slider = (ImageView) view.findViewById(R.id.im_slider);
         Picasso.with(activity.getApplicationContext())
-                .load(R.drawable.home_banner)
-                .placeholder(R.drawable.home_banner) // optional
-                .error(R.drawable.home_banner)         // optional
+                .load(image_arraylist.get(position).getBanner())
+                 // optional
+                   // optional
                 .into(im_slider);
-                */
+
+
+
+
         container.addView(view);
         return view;
 
