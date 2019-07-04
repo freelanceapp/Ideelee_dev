@@ -117,4 +117,5 @@
     <string name="material_calendar_friday">Fri</string>
     <string name="material_calendar_saturday">Sat</string>
     <string name="material_calendar_sunday">Sun</string>
+    <string name="continue_with_google">Continue with Google</string>
 </resources>

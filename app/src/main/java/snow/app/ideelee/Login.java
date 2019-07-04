@@ -1,8 +1,12 @@
 package snow.app.ideelee;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +23,14 @@ import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
 
@@ -41,9 +53,11 @@ import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.forgot.ForgotPassword;
 import snow.app.ideelee.responses.loginres.LoginRes;
 
+import static snow.app.ideelee.AddAddress.TAG;
+
 public class Login extends BaseActivity {
 
-
+    static final int RC_SIGN_IN = 1;
     private static final String EMAIL = "email";
     @BindView
             (R.id.ux_txt_registernow_loginPage)
@@ -54,8 +68,14 @@ public class Login extends BaseActivity {
     TextView forgot;
     @BindView(R.id.fblogin)
     Button fblogin;
+
+    @BindView(R.id.glogin)
+    Button glogin;
     @BindView(R.id.login_button)
     LoginButton loginButton;
+
+    @BindView(R.id.sign_in_button)
+    SignInButton signInButton;
     @BindView(R.id.email)
     EditText et_email;
     @BindView(R.id.password)
@@ -66,7 +86,9 @@ public class Login extends BaseActivity {
     HashMap<String, String> map;
     OneTimeLogin oneTimeLogin;
     SessionManager sessionManager;
+    GoogleSignInOptions gso;
 
+    GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +115,15 @@ public class Login extends BaseActivity {
 
             }
         });
+
+        initGoogle();
+       glogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateUI(null);
+            }
+        });
+
 
         forgot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +224,43 @@ public class Login extends BaseActivity {
 
     }
 
+    private void initGoogle() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // Build a GoogleSignInClient with the options specified by gso.
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+    }
+    private void updateUI(GoogleSignInAccount account) {
+        if (account==null){
+            account = GoogleSignIn.getLastSignedInAccount(this);
+        }
+
+        if (account!=null){
+            new AlertDialog.Builder(this)
+                    .setTitle("Fetched Details")
+                    .setMessage("Email\n\n"+account.getEmail()+"\n\n"+"Name \n"+account.getDisplayName()+"\n\n"+
+                            "You are already logged in, do you wish to logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    signOut();
+                }
+            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }).show();
+
+        }else {
+            signIn();
+        }
+    }
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
     public void loginUser(HashMap<String, String> map) {
         createProgressDialog();
 
@@ -300,18 +368,65 @@ public class Login extends BaseActivity {
         }
     }
 
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
 
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            // The Task returned from this call is always completed, no need to attach
+            // a listener.
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
 
     }
 
+//    public void onClick(View v) {
+//        if (v == fblogin) {
+//            loginButton.performClick();
+//        }
+//
+//
+//    }
+//    @Override
     public void onClick(View v) {
-        if (v == fblogin) {
-            loginButton.performClick();
+        switch (v.getId()) {
+
+
+            case R.id.fblogin :
+                loginButton.performClick();
+                break;
+
+            // ...
         }
+    }
+
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+            updateUI(account);
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("Main Activity ", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(Login.this, "User logged out", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 }
