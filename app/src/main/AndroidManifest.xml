@@ -29,7 +29,7 @@ android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCXTaGfar2xqDZpGrZRSY96l5fw6mYF4sI" />
+            android:value="AIzaSyDIm5kTcimNwFFZYl0JZrrLnJCUPgzqBJo" />
         <activity android:name=".perperson_permealmodule.BookingRequirements"></activity>
         <activity android:name=".extrafiles.PermissionsActivity"></activity>
         <activity
