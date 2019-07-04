@@ -99,6 +99,18 @@ public class Login extends BaseActivity {
         apiService = ApiClient.getClient(getApplicationContext())
                 .create(ApiService.class);
 
+
+
+
+        // Configure sign-in to request the user's ID, email address, and basic
+// profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestIdToken("985013897309-tgqd1at1e1a0al0dsds98atg8pf4kvqt.apps.googleusercontent.com")
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         txt_registernow_loginPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,11 +128,13 @@ public class Login extends BaseActivity {
             }
         });
 
-        initGoogle();
+
+
        glogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUI(null);
+                signIn();
+
             }
         });
 
@@ -220,43 +234,7 @@ public class Login extends BaseActivity {
 
     }
 
-    private void initGoogle() {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-    }
-    private void updateUI(GoogleSignInAccount account) {
-        if (account==null){
-            account = GoogleSignIn.getLastSignedInAccount(this);
-        }
-
-        if (account!=null){
-            new AlertDialog.Builder(this)
-                    .setTitle("Fetched Details")
-                    .setMessage("Email\n\n"+account.getEmail()+"\n\n"+"Name \n"+account.getDisplayName()+"\n\n"+
-                            "You are already logged in, do you wish to logout?").setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    signOut();
-                }
-            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            }).show();
-
-        }else {
-            signIn();
-        }
-    }
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
     public void loginUser(HashMap<String, String> map) {
         createProgressDialog();
 
@@ -370,15 +348,33 @@ public class Login extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-            callbackManager.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
+        }else {
+            callbackManager.onActivityResult(requestCode, resultCode, data);
+
         }
 
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+
+
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.wtf(TAG, "signInResult:failed code=" + e.getStatusCode());
+
+
+        }
     }
 
 //    public void onClick(View v) {
@@ -401,28 +397,9 @@ public class Login extends BaseActivity {
         }
     }
 
-
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
-        } catch (ApiException e) {
-            // The ApiException status code indicates the detailed failure reason.
-            // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.w("Main Activity ", "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
-        }
-    }
-    private void signOut() {
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(Login.this, "User logged out", Toast.LENGTH_SHORT).show();
-                    }
-                });
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
 }
