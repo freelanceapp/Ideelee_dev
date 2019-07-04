@@ -143,10 +143,6 @@ public class Login extends BaseActivity {
          */
 
 
-/**
- *
- * login retrofit
- */
         /**
          * facebook login
          */
