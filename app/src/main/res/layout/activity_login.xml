@@ -156,19 +156,8 @@
 
 
 
-                <FrameLayout
-                    android:id="@+id/FrameLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-                    <com.google.android.gms.common.SignInButton
-                        android:id="@+id/sign_in_button"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_marginLeft="20dp"
-                        android:visibility="gone"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+
+
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -188,7 +177,6 @@
                         android:drawableLeft="@drawable/fb" />
 
 
-                </FrameLayout>
 
 
 

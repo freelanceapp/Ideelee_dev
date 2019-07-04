@@ -73,9 +73,6 @@ public class Login extends BaseActivity {
     Button glogin;
     @BindView(R.id.login_button)
     LoginButton loginButton;
-
-    @BindView(R.id.sign_in_button)
-    SignInButton signInButton;
     @BindView(R.id.email)
     EditText et_email;
     @BindView(R.id.password)
@@ -106,7 +103,9 @@ public class Login extends BaseActivity {
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
-                .requestIdToken("985013897309-tgqd1at1e1a0al0dsds98atg8pf4kvqt.apps.googleusercontent.com")
+/*
+                .requestIdToken("985013897309-tgqd1at1e1a0al0dsds98atg8pf4kvqt.apps.getClientoogleusercontent.com")
+*/
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
@@ -366,7 +365,7 @@ public class Login extends BaseActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-
+            Log.wtf(TAG, "signInResult" + account.getDisplayName()+"=="+account.getEmail());
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
