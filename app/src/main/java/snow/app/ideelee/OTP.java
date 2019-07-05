@@ -384,18 +384,20 @@ SessionManager sessionManager;
         public void onVerified() {
             mIsVerified = true;
             Log.d(TAG, "Verified!");
-            dismissIOSProgress();
+            dismissProgressDialog();
             handleConfirmOtp();
             showCompleted();
         }
 
         @Override
         public void onVerificationFailed(Exception exception) {
+            dismissProgressDialog();
             if (mIsVerified) {
+
                 return;
             }
 
-            dismissIOSProgress();
+
 
             Log.wtf(TAG, "Verification failed: " + exception.getMessage());
             Toast.makeText(OTP.this, "Verification failed: Enter Correct OTP", Toast.LENGTH_SHORT).show();

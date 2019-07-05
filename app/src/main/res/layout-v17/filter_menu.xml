@@ -177,6 +177,13 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_filteration"
+
+            android:layout_width="match_parent"
+            android:focusableInTouchMode="true"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" />
 
         <Button
             android:layout_width="match_parent"

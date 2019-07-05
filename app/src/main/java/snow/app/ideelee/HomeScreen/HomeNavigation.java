@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -60,6 +61,7 @@ import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.OneTimeLogin;
 import snow.app.ideelee.responses.loginres.LoginRes;
 import snow.app.ideelee.responses.logoutres.LogoutRes;
+import snow.app.ideelee.search.SearchActivity;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public class HomeNavigation extends AppCompatActivity
@@ -93,6 +95,9 @@ public class HomeNavigation extends AppCompatActivity
     @BindView(R.id.bookings)
     TextView booking;
 
+    @BindView(R.id.ed_search)
+    EditText ed_search;
+
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
     @BindView(R.id.toolbar)
@@ -111,6 +116,8 @@ TextView h_name;
 
         setSupportActionBar(toolbar);
         ButterKnife.bind(this);
+
+
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -145,6 +152,12 @@ TextView h_name;
 
 
 
+        ed_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+startActivity(new Intent(HomeNavigation.this, SearchActivity.class));
+            }
+        });
 
 
 

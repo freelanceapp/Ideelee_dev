@@ -1,6 +1,7 @@
 package snow.app.ideelee.HomeScreen.Adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +23,7 @@ import snow.app.ideelee.responses.homescreenres.PopularProfile;
 
 public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<ServiceProviderCategoryAdapter.ProductViewHolder> {
 
-
+    String   uri;
     //this context we will use to inflate the layout
     private Context mCtx;
 
@@ -57,13 +58,29 @@ public class ServiceProviderCategoryAdapter extends RecyclerView.Adapter<Service
 
         String name=product.getName();
         Log.e("name---",name);
+        Log.e("logo---",product.getProfileImage());
         //binding the data with the viewholder views
         holder.textViewTitle.setText(product.getName());
        holder.ratingBar.setRating(  product.getRating());
 //        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage()));
+
+
+
+
+         uri = productList.get(position).getProfileImage();
+        if (uri.equals("")) {
+
+
+            Picasso.with(mCtx).load(R.drawable.profile).
+                    into(holder.imageView);        } else {
+
+
+
+
+
          Picasso.with(mCtx).load(product.getProfileImage()).
                  into(holder.imageView);
-
+        }
 
 
     }

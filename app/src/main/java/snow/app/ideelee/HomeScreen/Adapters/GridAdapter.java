@@ -20,21 +20,12 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.Categories;
-import snow.app.ideelee.CouponActivity;
-import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
-import snow.app.ideelee.camping.CampingCategories;
 import snow.app.ideelee.coupons.SelectCouponCat;
-import snow.app.ideelee.fixedpricemodule.VehiclewashCategories;
-import snow.app.ideelee.metre_square_module.HandymanCategories;
+import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
 import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
 import snow.app.ideelee.perday_perweek_permonthmodule.GardeningCategories;
-import snow.app.ideelee.perhour_fixpricemodule.TeachingCategories;
-import snow.app.ideelee.perperson_permealmodule.EventServicesCategories;
-import snow.app.ideelee.perquantityperfloor.MovingliftingCategories;
 import snow.app.ideelee.responses.homescreenres.ParentCatArray;
-import snow.app.ideelee.shoppingservices.ShoppingCategories;
-import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
 
@@ -76,10 +67,9 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
         holder.textViewAndroid.setText(parentCatArrays.get(position).getName());
 
 
-
-        if (position==parentCatArrays.size()-1){
-            Log.e("name in last positin--",parentCatArrays.get(position).getName());
-             holder.imageViewAndroid.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.car));
+        if (position == parentCatArrays.size() - 1) {
+            Log.e("name in last positin--", parentCatArrays.get(position).getName());
+            holder.imageViewAndroid.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.car));
 
 //            Picasso.with(mContext)
 //                    .load(R.drawable.more)
@@ -92,21 +82,38 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position==parentCatArrays.size()-1){
+                if (position == parentCatArrays.size() - 1) {
                     mContext.startActivity(new Intent(mContext, Categories.class));
-                    holder.imageViewAndroid.setImageDrawable(ContextCompat.getDrawable(mContext,R.drawable.more));
-                 } else if (position == 1) {
+                    holder.imageViewAndroid.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.more));
+                } else if (position == 0) {
 //
-                    mContext.startActivity(new Intent(mContext, VehiclewashCategories.class));
+                    Intent intent = new Intent(mContext, SelectCouponCat.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
+                } else if (position == 1) {
+
+                    Intent intent = new Intent(mContext, VehicleCategories.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
                 } else if (position == 2) {
 
-                    mContext.startActivity(new Intent(mContext, RentalCategories.class));
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
                 } else if (position == 3) {
-
-                    mContext.startActivity(new Intent(mContext, GardeningCategories.class));
-                }else if (position == 4) {
-
-                    mContext.startActivity(new Intent(mContext, VehicleCategories.class));
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
                 }
             }
         });

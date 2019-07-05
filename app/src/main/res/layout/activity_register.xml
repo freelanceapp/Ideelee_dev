@@ -105,8 +105,11 @@
                         android:background="@color/white"
                         app:ccp_defaultNameCode="IN"  />
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/margin_4dp"
+                    android:paddingRight="@dimen/margin_4dp"
+
                     android:layout_marginBottom="@dimen/med_padding"
                     android:backgroundTint="@android:color/transparent"
                  android:layout_centerVertical="true"

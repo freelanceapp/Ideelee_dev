@@ -11,6 +11,9 @@ public class AppConstants {
     public static final String FORGOT_PASSWORD = PATH + "forgetpassword";
     public static final String HOME_SCREEN_DATA = PATH_HOME + "homeScreenData";
     public static final String MORE_CAT_API = PATH_HOME + "moreCategories";
+    public static final String MORE_SUB_CAT_API = PATH_HOME + "getSubCategories";
+    public static final String  GET_ONDEMAND_SERVICEPROVIDER_LIST = PATH_HOME + "getOnDemandProvidersList";
+    public static final String  SUB_SUB_CAT_FILTERATION_LIST = PATH_HOME + "getAllSubSubCategories";
 
 
 

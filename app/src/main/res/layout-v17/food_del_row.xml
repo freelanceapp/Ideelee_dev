@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/parent"
 
@@ -36,6 +37,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
+                android:id="@+id/name"
+                android:textColor="@color/black"
                 android:fontFamily="@font/regular"
                 android:text="Burger King"
                 android:textSize="@dimen/normal_text" />
@@ -51,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:id="@+id/rating"
                     android:progressTint="@color/orange"
                     android:progress="5"
                     android:stepSize="0.1"
@@ -62,14 +66,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="$100 min order"
+            android:id="@+id/minordervalue"
+            android:text=""
             android:textSize="@dimen/small_txt" />
 
-        <LinearLayout
+   <!--     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingTop="@dimen/margin_4dp">
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,9 +105,14 @@
                 android:padding="@dimen/extra_small"
                 android:text="Desserts"
                 android:textSize="@dimen/small_txt" />
-        </LinearLayout>
+        </LinearLayout>-->
 
-
+        <me.gujun.android.taggroup.TagGroup
+            android:id="@+id/tag_group"
+            style="@style/TagGroup"
+            android:layout_marginTop="@dimen/margin_8dp"
+            app:atg_borderColor="@color/gray"
+            app:atg_textColor="@color/orange" />
     </LinearLayout>
 </LinearLayout>
 
@@ -116,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="6"
             android:padding="@dimen/extra_small"
+            android:visibility="invisible"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"
             android:drawableStart="@drawable/offer"
@@ -132,12 +144,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:textSize="@dimen/normal_text"
-                android:text="@string/open_now"
+                android:text=""
                 android:drawablePadding="@dimen/small_padding"
+                android:id="@+id/status"
                 android:gravity="end"
                 android:textColor="@color/green"
                 android:layout_gravity="end"
-                android:drawableStart="@drawable/ic_brightness_1_black_24dp"
+
                 android:padding="@dimen/extra_small"/>
         </LinearLayout>
 
