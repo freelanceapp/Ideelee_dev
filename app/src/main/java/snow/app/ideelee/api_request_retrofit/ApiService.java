@@ -16,9 +16,6 @@ import snow.app.ideelee.responses.morecatres.MoreCategoryRes;
 import snow.app.ideelee.responses.registerres.RegisterRes;
 import static snow.app.ideelee.extrafiles.AppConstants.*;
 
-
-
-
 public interface ApiService {
 
 
@@ -43,8 +40,6 @@ public interface ApiService {
     @POST(LOGOUT)
     @FormUrlEncoded
     Observable<LogoutRes> logoutUser(@FieldMap HashMap<String, String> params);
-
-
 
     //forgot password api
     @POST(FORGOT_PASSWORD)
