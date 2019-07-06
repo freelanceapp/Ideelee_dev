@@ -97,8 +97,6 @@ public class Login extends BaseActivity {
                 .create(ApiService.class);
 
 
-
-
         // Configure sign-in to request the user's ID, email address, and basic
 // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -106,7 +104,7 @@ public class Login extends BaseActivity {
 /*
                 .requestIdToken("985013897309-tgqd1at1e1a0al0dsds98atg8pf4kvqt.apps.getClientoogleusercontent.com")
 */
-                .build();
+.build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
@@ -123,10 +121,8 @@ public class Login extends BaseActivity {
             @Override
             public void onClick(View v) {
                 handleLogin();
-
             }
         });
-
 
 
        glogin.setOnClickListener(new View.OnClickListener() {
@@ -139,6 +135,7 @@ public class Login extends BaseActivity {
 
 
         forgot.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intent_continue = new Intent(Login.this, ForgotPassword.class);
@@ -146,9 +143,11 @@ public class Login extends BaseActivity {
             }
         });
         if (!oneTimeLogin.isFirstTimeLaunch()) {
+
             Intent intent_continue = new Intent(Login.this, HomeNavigation.class);
             startActivity(intent_continue);
             finish();
+
         }
 
         /***

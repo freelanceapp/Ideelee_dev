@@ -6,14 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.R;
+import snow.app.ideelee.responses.ondemandservicessubcatres.ServicesDetail;
 import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 
 public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCategoriesAdapter.ProductViewHolder> {
@@ -23,12 +26,12 @@ public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCatego
     private Context mCtx;
 
     //we are storing all the products in a list
-    private List<String> productList;
+    ArrayList<ServicesDetail> servicesDetailArrayList;
 
     //getting the context and product list with constructor
-    public VehicleCategoriesAdapter(Context mCtx, List<String> productList) {
+    public VehicleCategoriesAdapter(Context mCtx, ArrayList<ServicesDetail> servicesDetailArrayList) {
         this.mCtx = mCtx;
-        this.productList = productList;
+        this.servicesDetailArrayList = servicesDetailArrayList;
     }
 
     @Override
@@ -39,8 +42,7 @@ public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCatego
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mCtx, VehicalListing.class);
-                mCtx.startActivity(intent);
+
             }
         });
         return new VehicleCategoriesAdapter.ProductViewHolder(view);
@@ -49,17 +51,25 @@ public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCatego
     @Override
     public void onBindViewHolder(VehicleCategoriesAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
-
+ServicesDetail servicesDetail=servicesDetailArrayList.get(position);
         //binding the data with the viewholder views
-        holder.txt_vehicle_cat.setText(productList.get(position));
+        holder.txt_vehicle_cat.setText(servicesDetail.getName());
 
-
+holder.parent.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(mCtx, VehicalListing.class);
+        intent.putExtra("parentid",servicesDetail.getParentCategory());
+        intent.putExtra("subparentid",servicesDetail.getId());
+        mCtx.startActivity(intent);
+    }
+});
     }
 
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return servicesDetailArrayList.size();
     }
 
 
@@ -67,7 +77,8 @@ public class VehicleCategoriesAdapter extends RecyclerView.Adapter<VehicleCatego
         @BindView
                 (R.id.txt_vehicle_cat)
         TextView txt_vehicle_cat;
-
+        @BindView(R.id.parent)
+        LinearLayout parent;
 
         public ProductViewHolder(View itemView) {
             super(itemView);

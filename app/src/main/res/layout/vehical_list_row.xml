@@ -45,6 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+
                         android:fontFamily="@font/semibold"
                         android:textSize="@dimen/text_size_17sp"
                         android:textColor="@color/black" />
@@ -92,6 +93,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="$ 15.00"
                                 android:textSize="@dimen/text_size_17sp"
+                                android:id="@+id/price"
                                 android:fontFamily="@font/semibold"
                                 android:textColor="@color/colorPrimary" />
 
@@ -100,7 +102,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/perhour"
-                                android:text="Per Hour"
+android:textSize="@dimen/text_size_13sp"
+                                android:text=""
                                 android:textColor="@color/black" />
                         </LinearLayout>
                     </RelativeLayout>
@@ -121,6 +124,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_13sp"
             android:layout_margin="@dimen/margin_4dp"
+            android:id="@+id/des"
             android:text="@string/lipsum"
             />
     </LinearLayout>

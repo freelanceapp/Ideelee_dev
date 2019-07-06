@@ -91,12 +91,15 @@
                         android:layout_width="wrap_content"
                         android:src="@drawable/call_reg"
                         android:id="@+id/img"
-                        android:paddingLeft="@dimen/margin_10dp"
+                        android:paddingStart="@dimen/margin_10dp"
                         android:layout_centerVertical="true"
                         android:layout_height="wrap_content" />
                     <com.rilixtech.CountryCodePicker
                         android:id="@+id/ccp"
-android:layout_toRightOf="@+id/img"
+android:layout_toEndOf="@+id/img"
+                        android:paddingLeft="@dimen/margin_4dp"
+                        android:paddingRight="@dimen/margin_4dp"
+
                         android:layout_centerVertical="true"
                         android:layout_width="100dp"
                         app:ccp_textSize="@dimen/text_size_13sp"
@@ -104,11 +107,11 @@ android:layout_toRightOf="@+id/img"
                         android:background="@color/white"
                         app:ccp_defaultNameCode="IN"  />
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/med_padding"
                     android:backgroundTint="@android:color/transparent"
-                    android:layout_toRightOf="@+id/ccp"
+                    android:layout_toEndOf="@+id/ccp"
                     android:background="@drawable/blue_divider"
                  android:layout_centerVertical="true"
                     android:drawablePadding="@dimen/margin_8dp"

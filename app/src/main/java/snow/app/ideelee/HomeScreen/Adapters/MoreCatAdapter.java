@@ -2,6 +2,7 @@ package snow.app.ideelee.HomeScreen.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -82,45 +83,35 @@ public class MoreCatAdapter extends RecyclerView.Adapter<MoreCatAdapter.ProductV
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position == 0) {
-                    mContext.startActivity(new Intent(mContext, RestaurantsList.class));
-                } else if (position == 11) {
-                    mContext.startActivity(new Intent(mContext, RestaurantsList.class));
+                 if (position == 0) {
+
+                    Intent intent = new Intent(mContext, SelectCouponCat.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
                 } else if (position == 1) {
 
-                    mContext.startActivity(new Intent(mContext, RestaurantsList.class));
+                    Intent intent = new Intent(mContext, VehicleCategories.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
                 } else if (position == 2) {
 
-                    mContext.startActivity(new Intent(mContext, RestaurantsList.class));
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
                 } else if (position == 3) {
-
-                    mContext.startActivity(new Intent(mContext, RestaurantsList.class));
-                } else if (position == 4) {
-
-                    mContext.startActivity(new Intent(mContext, GardeningCategories.class));
-                } else if (position == 5) {
-
-                    mContext.startActivity(new Intent(mContext, EventServicesCategories.class));
-                } else if (position == 6) {
-
-                    mContext.startActivity(new Intent(mContext, ShoppingCategories.class));
-                } else if (position == 7) {
-
-                    mContext.startActivity(new Intent(mContext, HandymanCategories.class));
-                } else if (position == 8) {
-
-                    mContext.startActivity(new Intent(mContext, MovingliftingCategories.class));
-                } else if (position == 9) {
-
-                    mContext.startActivity(new Intent(mContext, TeachingCategories.class));
-                } else if (position == 10) {
-
-                    mContext.startActivity(new Intent(mContext, CampingCategories.class));
-                } else {
-                    mContext.startActivity(new Intent(mContext, ServiceActivity.class));
-/*
-                    Toast.makeText(getActivity(), "GridView Item: " + gridViewString[+i],
-                            Toast.LENGTH_LONG).show();*/
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
                 }
             }
         });

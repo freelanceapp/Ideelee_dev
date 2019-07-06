@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
-        android:id="@+id/cancel"
+        android:id="@+id/cat_img"
         android:scaleType="fitXY"
         android:src="@drawable/vehicle_img"
         android:layout_height="wrap_content" />

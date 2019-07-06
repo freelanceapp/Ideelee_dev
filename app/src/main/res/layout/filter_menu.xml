@@ -204,6 +204,18 @@
 
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_17sp" />
+
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_filteration"
+
+                android:layout_width="match_parent"
+                android:focusableInTouchMode="true"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
         </LinearLayout>
 
     </LinearLayout>

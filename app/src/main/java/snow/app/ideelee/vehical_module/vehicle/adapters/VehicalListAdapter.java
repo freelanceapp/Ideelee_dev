@@ -20,7 +20,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -30,6 +33,8 @@ import snow.app.ideelee.BookingAppointment;
 import snow.app.ideelee.HomeScreen.Modals.ServiceProviderList;
 import snow.app.ideelee.R;
 import snow.app.ideelee.bookings.BookingPerDay;
+import snow.app.ideelee.responses.ondemandserviceproviderlistres.Servicelist;
+import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 import snow.app.ideelee.vehical_module.vehicle.dialog.TagItemAdapter;
 
 public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.ProductViewHolder> {
@@ -39,10 +44,10 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
     private Context mCtx;
 
     //we are storing all the products in a list
-    private List<ServiceProviderList> productList;
+    private List<Servicelist> productList;
 
     //getting the context and product list with constructor
-    public VehicalListAdapter(Context mCtx, List<ServiceProviderList> productList) {
+    public VehicalListAdapter(Context mCtx, List<Servicelist> productList) {
         this.mCtx = mCtx;
         this.productList = productList;
     }
@@ -69,16 +74,33 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
     @Override
     public void onBindViewHolder(VehicalListAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
-        ServiceProviderList product = productList.get(position);
+        Servicelist product = productList.get(position);
 
         //binding the data with the viewholder views
-        holder.textViewTitle.setText(product.getName());
+        holder.textViewTitle.setText(product.getTitle());
         holder.ratingBar.setRating((float) product.getRating());
-        holder.distance.setText(product.getDistance());
-        holder.imageView.setImageDrawable(ContextCompat.getDrawable(mCtx, product.getImage()));
-        if (position == 1) {
-            holder.perhour.setText("Per Day");
+
+        String distance=product.getDistance();
+        if (distance.equals("NA")){
+            holder.distance.setText("0"+" KM");
+        }else{
+            holder.distance.setText(product.getDistance()+" KM");
         }
+
+        holder.price.setText(product.getPrice()+ " $");
+        holder.des.setText(product.getDescription());
+String currentString=product.getOtherservices();
+        holder.mTagGroup.setTags(Arrays.asList(currentString.split("\\s*,\\s*")));
+        holder.mTagGroup.submitTag();
+
+        Picasso.with(mCtx).
+                load(product.getServiceImage()).into(holder.imageView);
+
+        holder.perhour.setText(product.getPayType());
+
+       /* if (position == 1) {
+            holder.perhour.setText("Per Day");
+        }*/
 
     }
 
@@ -99,6 +121,13 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
         TextView distance;
         @BindView(R.id.perhour)
         TextView perhour;
+
+        @BindView(R.id.des)
+        TextView des;
+
+        @BindView(R.id.price)
+        TextView price;
+
         @BindView(R.id.ux_img_user)
         ImageView imageView;
         @BindView(R.id.ratingbar)
@@ -107,8 +136,7 @@ public class VehicalListAdapter extends RecyclerView.Adapter<VehicalListAdapter.
         public ProductViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            mTagGroup.setTags(new String[]{"Car Rental", "Truck Rental", "Car Rental",});
-            mTagGroup.submitTag();
+
 
 
             itemView.setOnClickListener(new View.OnClickListener() {

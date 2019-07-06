@@ -14,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.R;
+import snow.app.ideelee.responses.couponcatres.Couponcategorydatum;
 
 
 public class CouponCatAdapter extends RecyclerView.Adapter<CouponCatAdapter.ProductViewHolder> {
@@ -23,12 +24,13 @@ public class CouponCatAdapter extends RecyclerView.Adapter<CouponCatAdapter.Prod
     private Context mCtx;
 
     //we are storing all the products in a list
-    private List<String> productList;
+    List<Couponcategorydatum> couponcategorydatumList;
+
 
     //getting the context and product list with constructor
-    public CouponCatAdapter(Context mCtx, List<String> productList) {
+    public CouponCatAdapter(Context mCtx,  List<Couponcategorydatum> couponcategorydatumList) {
         this.mCtx = mCtx;
-        this.productList = productList;
+        this.couponcategorydatumList = couponcategorydatumList;
     }
 
     @Override
@@ -42,14 +44,14 @@ public class CouponCatAdapter extends RecyclerView.Adapter<CouponCatAdapter.Prod
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the product of the specified position
-
-        holder.cat.setText(productList.get(position));
+        Couponcategorydatum product = couponcategorydatumList.get(position);
+        holder.cat.setText(product.getCategoryName());
     }
 
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return couponcategorydatumList.size();
     }
 
 
