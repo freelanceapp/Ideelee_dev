@@ -20,6 +20,8 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -31,14 +33,24 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.AppUtils.CircleTransform;
 import snow.app.ideelee.R;
+import snow.app.ideelee.api_request_retrofit.ApiService;
+import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.extrafiles.ImagePickerActivity;
+import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
@@ -61,7 +73,15 @@ public class ProfileFragment extends Fragment {
     EditText ed_name;
     @BindView(R.id.parent)
     RelativeLayout parent;
+
+    @BindView(R.id.changeaddress)
+    TextView changeaddress;
+    ApiService apiService;
+    String userid, token, servicetype;
+    HashMap<String, String> map;
+    SharedPreferences prefs;
     private Unbinder unbinder;
+
     public ProfileFragment() {
     }
 
@@ -75,29 +95,44 @@ public class ProfileFragment extends Fragment {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        SharedPreferences prefs = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
-        String userid = prefs.getString("userid", "0");
-        String name = prefs.getString("name", "");
-        String contact = prefs.getString("contact", "");
-        String address = prefs.getString("address", "");
-        String email = prefs.getString("email", "");
+          prefs = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
+        userid = prefs.getString("userid", "0");
+        token = prefs.getString("token", "0");
 
-        ed_name.setText(name);
-        ed_email.setText(email);
-        ed_address.setText(address);
-        ed_phone.setText(contact);
+
+        Log.e("userid--",userid+token);
+        apiService = ApiClient.getClient(getActivity())
+                .create(ApiService.class);
+/*
         Picasso.with(getActivity())
                 .load("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg")
                 .resize(width / 4, width / 4)
                 .transform(new CircleTransform())
                 .centerCrop()
-                .into(img);
+                .into(img);*/
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onProfileImageClick();
             }
         });
+      /*  ed_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), AddAddress.class);
+                startActivity(intent);
+            }
+        });
+
+        changeaddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), AddAddress.class);
+                startActivity(intent);
+            }
+        });*/
+
+        handlegetUserProfileData();
         return v;
     }
 
@@ -188,10 +223,171 @@ public class ProfileFragment extends Fragment {
 
     private void loadProfile(String url) {
         Log.d(TAG, "Image cache path: " + url);
-
         Glide.with(this).load(url).apply(RequestOptions.circleCropTransform())
                 .into(img);
         img.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.transparent));
     }
+
+
+    public void getUserProfileData(HashMap<String, String> map) {
+        //  createProgressDialog();
+
+        Observer<GetUserProfileRes> observer = apiService.getUserProfiledata(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<GetUserProfileRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(GetUserProfileRes res) {
+                        if (res.getStatus()) {
+                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                            ed_name.setText(res.getServicedata().getName());
+                            ed_address.setText(res.getServicedata().getAddress());
+                            ed_phone.setText(res.getServicedata().getContactNo());
+                            ed_email.setText(res.getServicedata().getEmail());
+
+
+
+                            Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
+                                    .apply(new RequestOptions().override(300, 300))
+                                    .apply(RequestOptions.circleCropTransform())
+                                    .into(img);
+
+/*
+
+                            Picasso.with(getActivity())
+                                    .load(res.getServicedata().getProfileImage())
+//                                    .resize(width / 4, width / 4)
+                                    .transform(new CircleTransform())
+                                    .centerCrop()
+                                    .into(img);
+*/
+
+                        } else {
+                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //  dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        // dismissProgressDialog();
+
+                    }
+                });
+
+
+    }
+
+
+    private void handlegetUserProfileData() {
+        map = new HashMap<>();
+        map.put("userid", userid);
+        map.put("token", token);
+        getUserProfileData(map);
+    }
+
+
+
+
+    //update---user profile
+
+
+
+
+
+
+    public void updateUserProfileData(HashMap<String, String> map) {
+        //  createProgressDialog();
+
+        Observer<GetUserProfileRes> observer = apiService.getUserProfiledata(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<GetUserProfileRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(GetUserProfileRes res) {
+                        if (res.getStatus()) {
+                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                            ed_name.setText(res.getServicedata().getName());
+                            ed_address.setText(res.getServicedata().getAddress());
+                            ed_phone.setText(res.getServicedata().getContactNo());
+                            ed_email.setText(res.getServicedata().getEmail());
+
+
+
+                            Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
+                                    .apply(new RequestOptions().override(300, 300))
+                                    .apply(RequestOptions.circleCropTransform())
+                                    .into(img);
+
+/*
+
+                            Picasso.with(getActivity())
+                                    .load(res.getServicedata().getProfileImage())
+//                                    .resize(width / 4, width / 4)
+                                    .transform(new CircleTransform())
+                                    .centerCrop()
+                                    .into(img);
+*/
+
+                        } else {
+                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //  dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        // dismissProgressDialog();
+
+                    }
+                });
+
+
+    }
+
+
+    private void handleupdateUserProfileData() {
+        map = new HashMap<>();
+        map.put("userid", userid);
+        map.put("token", token);
+        map.put("name", ed_name.getText().toString());
+        map.put("email", ed_email.getText().toString());
+        map.put("phone", ed_phone.getText().toString());
+        map.put("address", ed_address.getText().toString());
+        map.put("latitude", token);
+        map.put("longitude", token);
+        map.put("profile_image", token);
+        getUserProfileData(map);
+    }
+
+
+
+
+
+
+
+
+
+
 
 }

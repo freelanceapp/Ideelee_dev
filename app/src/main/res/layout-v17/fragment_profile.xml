@@ -100,6 +100,7 @@
                         android:layout_alignParentEnd="true"
                         android:padding="@dimen/extra_small"
                         android:text="Change"
+                        android:id="@+id/changeaddress"
                         android:drawableStart="@drawable/location"
                         android:drawablePadding="@dimen/extra_small"
                         android:textSize="@dimen/normal_text" />
@@ -135,6 +136,8 @@
                     android:background="@drawable/square_border"
                     android:fontFamily="@font/regular"
                     android:id="@+id/email"
+                    android:editable="false"
+                    android:clickable="false"
                     android:hint="johan.doe@example.com"
                     android:padding="@dimen/small_padding" />
 

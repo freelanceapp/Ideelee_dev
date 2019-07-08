@@ -1,6 +1,7 @@
 package snow.app.ideelee;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,7 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +34,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -53,34 +52,42 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
+import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 
 
 public class AddAddress extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
+    public static final String TAG = "AutoCompleteActivity";
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 2;
     SupportMapFragment mapFragment;
     @BindView
             (R.id.addmoredetails)
     TextView addmoredetails;
+
+
+    @BindView
+            (R.id.ux_btn1)
+    TextView ux_btn1;
     @BindView(R.id.txt_confirmlocation)
     TextView txt_confirmlocation;
     @BindView(R.id.title_bookingappointement)
     TextView title_bookingappointement;
     @BindView(R.id.address)
     EditText address;
-    public static final String TAG = "AutoCompleteActivity";
-    private static final int AUTOCOMPLETE_REQUEST_CODE = 2;
-
     List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
     GoogleApiClient mGoogleApiClient;
     Boolean mTimerIsRunning;
-
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
     LocationRequest mLocationRequest;
     MarkerOptions markerOptions;
     Location mLastLocation;
     Marker mCurrLocationMarker;
+    LatLng latLng;
+    LatLng markerLocation;
+    String intentofVL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +106,40 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
             }
         });
+        if (
+                getIntent().hasExtra("intentofVL")) {
 
+            intentofVL = getIntent().getStringExtra("intentofVL");
+
+        }
+
+        Log.e("int---", intentofVL);
+
+
+        ux_btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(AddAddress.this, intentofVL, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddAddress.this, "clicked", Toast.LENGTH_SHORT).show();
+                if (intentofVL.equals("1")) {
+                    Intent intent = new Intent(AddAddress.this, VehicalListing.class);
+                    intent.putExtra("lat", String.valueOf(markerLocation.latitude));
+                    intent.putExtra("lng", String.valueOf(markerLocation.longitude));
+                    intent.putExtra("intentofVL", "1");
+                 //   startActivity(intent);
+
+                    setResult(2,intent);
+                    finish();//finishing activity
+
+
+
+
+                    Toast.makeText(AddAddress.this, markerLocation.latitude + "," + markerLocation.longitude, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 //
 //         autocompleteFragment = (PlaceAutocompleteFragment)
 //                getFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
@@ -133,12 +173,12 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 new Intent(AddAddress.this, HomeNavigation.class);
             }
         });
-        findViewById(R.id.ux_btn1).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.ux_btn1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Intent(AddAddress.this, HomeNavigation.class);
             }
-        });
+        });*/
         findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -228,6 +268,11 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
         }
     }
 
+
+
+
+
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -274,7 +319,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
         }
 
         //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        latLng = new LatLng(location.getLatitude(), location.getLongitude());
         markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         //  markerOptions.position(latLng);
@@ -321,7 +366,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
             public void onMarkerDragStart(Marker arg0) {
                 // TODO Auto-generated method stub
                 Log.d("Marker", "Started");
-                LatLng markerLocation = mCurrLocationMarker.getPosition();
+                markerLocation = mCurrLocationMarker.getPosition();
                 getaddressfromlat(markerLocation.latitude, markerLocation.longitude);
             }
         });
@@ -379,8 +424,6 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
             /////////////////////////////////
         }
     }
-
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)

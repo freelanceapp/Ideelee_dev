@@ -14,6 +14,8 @@ public class AppConstants {
     public static final String MORE_SUB_CAT_API = PATH_HOME + "getSubCategories";
     public static final String  GET_ONDEMAND_SERVICEPROVIDER_LIST = PATH_HOME + "getOnDemandProvidersList";
     public static final String  SUB_SUB_CAT_FILTERATION_LIST = PATH_HOME + "getAllSubSubCategories";
+    public static final String  GET_USER_PROFILE = PATH_HOME + "getuserprofile";
+    public static final String  GET_HELP_CAT = PATH_HOME + "getHelpCategories";
 
 
 

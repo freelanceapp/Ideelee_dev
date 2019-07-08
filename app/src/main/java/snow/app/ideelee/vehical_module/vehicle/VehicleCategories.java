@@ -1,8 +1,6 @@
 package snow.app.ideelee.vehical_module.vehicle;
 
 import android.content.SharedPreferences;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,9 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
-import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.extrafiles.BaseActivity;
-import snow.app.ideelee.responses.couponcatres.CouponCatRes;
 import snow.app.ideelee.responses.ondemandservicessubcatres.OnDemandSubCatRes;
 import snow.app.ideelee.responses.ondemandservicessubcatres.ServicesDetail;
 import snow.app.ideelee.vehical_module.vehicle.adapters.VehicleCategoriesAdapter;
@@ -38,7 +34,7 @@ public class VehicleCategories extends BaseActivity {
     ArrayList<ServicesDetail> servicesDetailArrayList;
     @BindView(R.id.title_bookingappointement)
     TextView tv;
-    String userid,token,servicetype,cat_id;
+    String userid, token, servicetype, cat_id;
     HashMap<String, String> map;
     ApiService apiService;
     @BindView(R.id.backbutton1)
@@ -46,6 +42,7 @@ public class VehicleCategories extends BaseActivity {
     @BindView(R.id.cat_img)
     ImageView cat_img;
     VehicleCategoriesAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,13 +50,12 @@ public class VehicleCategories extends BaseActivity {
         ButterKnife.bind(this);
 
 
-
-        servicesDetailArrayList=new ArrayList<>();
-        servicetype=getIntent().getStringExtra("servicetype");
-        cat_id=getIntent().getStringExtra("cat");
+        servicesDetailArrayList = new ArrayList<>();
+        servicetype = getIntent().getStringExtra("servicetype");
+        cat_id = getIntent().getStringExtra("cat");
         apiService = ApiClient.getClient(VehicleCategories.this)
                 .create(ApiService.class);
-        SharedPreferences prefs =  getSharedPreferences("Login", MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
         userid = prefs.getString("userid", "0");
         token = prefs.getString("token", "0");
         backbutton1.setOnClickListener(new View.OnClickListener() {
@@ -73,15 +69,12 @@ public class VehicleCategories extends BaseActivity {
                 false));
 
 
-
-          adapter = new VehicleCategoriesAdapter(VehicleCategories.this, servicesDetailArrayList);
+        adapter = new VehicleCategoriesAdapter(VehicleCategories.this, servicesDetailArrayList);
 
         //setting adapter to recyclerview
         recyclerView.setAdapter(adapter);
         handleHomeSceenData();
     }
-
-
 
 
     public void getCouponCatData(HashMap<String, String> map) {
@@ -99,28 +92,22 @@ public class VehicleCategories extends BaseActivity {
                     @Override
                     public void onNext(OnDemandSubCatRes res) {
                         if (res.getStatus()) {
-                            Toast.makeText( VehicleCategories.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VehicleCategories.this, res.getMessage(), Toast.LENGTH_SHORT).show();
 
                             //  for (int i = 0; i < res.getHomescreendata().getParentCatArray().size(); i++) {
 
                             Picasso.with(VehicleCategories.this).
                                     load(res.getServicesdata().getParentdetail().getBannerImage()).into(cat_img);
-tv.setText(res.getServicesdata().getParentdetail().getName());
-                              servicesDetailArrayList.addAll(res.getServicesdata().getServicesDetail());
+                            tv.setText(res.getServicesdata().getParentdetail().getName());
+                            servicesDetailArrayList.addAll(res.getServicesdata().getServicesDetail());
 
                             adapter.notifyDataSetChanged();
 
                             //add more on  the last the position
 
 
-
-
-
-
-
-
                         } else {
-                            Toast.makeText( VehicleCategories.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(VehicleCategories.this, res.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
 

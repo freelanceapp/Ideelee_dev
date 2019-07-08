@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -83,6 +84,38 @@ public class MoreCatAdapter extends RecyclerView.Adapter<MoreCatAdapter.ProductV
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String type = parentCatArrays.get(position).getServiceType();
+
+
+                if (type.equals("delivery")) {
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+                } else if (type.equals("coupon")) {
+                    Intent intent = new Intent(mContext, SelectCouponCat.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
+                } else if (type.equals("ondemand")) {
+                    Intent intent = new Intent(mContext, VehicleCategories.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "Undefined", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+/*
+
+
+
                  if (position == 0) {
 
                     Intent intent = new Intent(mContext, SelectCouponCat.class);
@@ -113,6 +146,7 @@ public class MoreCatAdapter extends RecyclerView.Adapter<MoreCatAdapter.ProductV
                     Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
                     mContext.startActivity(intent);
                 }
+*/
             }
         });
 

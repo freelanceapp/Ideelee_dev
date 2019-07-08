@@ -10,7 +10,5 @@
     <item
         android:id="@+id/three"
         android:title="Distance"/>
-    <item
-        android:id="@+id/four"
-        android:title="Availability"/>
+
 </menu>

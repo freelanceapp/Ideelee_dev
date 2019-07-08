@@ -23,8 +23,6 @@ import snow.app.ideelee.Categories;
 import snow.app.ideelee.R;
 import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
-import snow.app.ideelee.perday_fixedpricemodule.RentalCategories;
-import snow.app.ideelee.perday_perweek_permonthmodule.GardeningCategories;
 import snow.app.ideelee.responses.homescreenres.ParentCatArray;
 import snow.app.ideelee.vehical_module.vehicle.VehicleCategories;
 
@@ -82,10 +80,40 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                String type = parentCatArrays.get(position).getServiceType();
+
                 if (position == parentCatArrays.size() - 1) {
                     mContext.startActivity(new Intent(mContext, Categories.class));
                     holder.imageViewAndroid.setImageDrawable(ContextCompat.getDrawable(mContext, R.drawable.more));
-                } else if (position == 0) {
+
+
+                } else if (type.equals("delivery")) {
+                    Intent intent = new Intent(mContext, RestaurantsList.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+                } else if (type.equals("coupon")) {
+                    Intent intent = new Intent(mContext, SelectCouponCat.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+
+                } else if (type.equals("ondemand")) {
+                    Intent intent = new Intent(mContext, VehicleCategories.class);
+                    intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
+                    intent.putExtra("cat", parentCatArrays.get(position).getId());
+                    Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
+                    mContext.startActivity(intent);
+                } else {
+                    Toast.makeText(mContext, "Undefined", Toast.LENGTH_SHORT).show();
+                }
+
+
+          /*      else if (position == 0) {
 //
                     Intent intent = new Intent(mContext, SelectCouponCat.class);
                     intent.putExtra("servicetype", parentCatArrays.get(position).getServiceType());
@@ -114,7 +142,7 @@ public class GridAdapter extends RecyclerView.Adapter<GridAdapter.ProductViewHol
                     intent.putExtra("cat", parentCatArrays.get(position).getId());
                     Log.e("servicetype--", parentCatArrays.get(position).getServiceType());
                     mContext.startActivity(intent);
-                }
+                }*/
             }
         });
 //        holder.parent.setOnClickListener(new View.OnClickListener() {

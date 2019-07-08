@@ -11,6 +11,8 @@ import snow.app.ideelee.responses.confirmotpresponse.ConfirmOtpRes;
 import snow.app.ideelee.responses.couponcatres.CouponCatRes;
 import snow.app.ideelee.responses.deliverysubcatres.DeliverySubCatRes;
 import snow.app.ideelee.responses.forgotpassword.ForgotPassRes;
+import snow.app.ideelee.responses.gethelpcat.GetHelpCatRes;
+import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
 import snow.app.ideelee.responses.loginres.LoginRes;
 import snow.app.ideelee.responses.logoutres.LogoutRes;
@@ -19,6 +21,8 @@ import snow.app.ideelee.responses.ondemandserviceproviderlistres.GetOnDemandProv
 import snow.app.ideelee.responses.ondemandservicessubcatres.OnDemandSubCatRes;
 import snow.app.ideelee.responses.registerres.RegisterRes;
 import snow.app.ideelee.responses.subsubcatfileration.SubSubCatFilterationRes;
+import snow.app.ideelee.responses.updateuseraddressres.UpdateUserAddressRes;
+import snow.app.ideelee.responses.updateuserprofileres.UpdateUserProfileRes;
 
 import static snow.app.ideelee.extrafiles.AppConstants.*;
 
@@ -90,5 +94,28 @@ public interface ApiService {
     @POST(SUB_SUB_CAT_FILTERATION_LIST)
     @FormUrlEncoded
     Observable<SubSubCatFilterationRes> getSubSubCatFilterationList(@FieldMap HashMap<String, String> params);
+
+
+    //get user profile  API
+    @POST(GET_USER_PROFILE)
+    @FormUrlEncoded
+    Observable<GetUserProfileRes> getUserProfiledata(@FieldMap HashMap<String, String> params);
+
+    //user profile update    API
+    @POST(SUB_SUB_CAT_FILTERATION_LIST)
+    @FormUrlEncoded
+    Observable<UpdateUserProfileRes> updateuserprofiledata(@FieldMap HashMap<String, String> params);
+
+
+  //user addrss update   API
+    @POST(SUB_SUB_CAT_FILTERATION_LIST)
+    @FormUrlEncoded
+    Observable<UpdateUserAddressRes> updateuseraddressdata(@FieldMap HashMap<String, String> params);
+
+
+  //get help cat   API
+    @POST(GET_HELP_CAT)
+    @FormUrlEncoded
+    Observable<GetHelpCatRes> getHelpCat(@FieldMap HashMap<String, String> params);
 
 }

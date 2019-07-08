@@ -31,7 +31,7 @@
                 android:textSize="@dimen/normal_text"
                 android:textStyle="bold" />
 
-            <TextView
+         <!--   <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/small_padding"
@@ -42,7 +42,25 @@
                 android:padding="@dimen/small_padding"
                 android:text="About Food"
                 android:textColor="@color/black"
-                android:textSize="@dimen/normal_text" />
+                android:textSize="@dimen/normal_text" />-->
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="@dimen/margin_10dp"
+                android:background="@drawable/bg_grey"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/spinner"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"></Spinner>
+            </RelativeLayout>
+
 
             <EditText
                 android:layout_width="match_parent"
