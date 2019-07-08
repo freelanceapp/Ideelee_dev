@@ -347,11 +347,6 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
     }
 
-
-
-
-
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         rating = parent.getItemAtPosition(position).toString();
