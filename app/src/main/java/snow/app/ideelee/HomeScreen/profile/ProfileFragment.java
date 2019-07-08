@@ -3,13 +3,15 @@ package snow.app.ideelee.HomeScreen.profile;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
- import android.graphics.Bitmap;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.CursorLoader;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
@@ -31,8 +33,8 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -44,18 +46,18 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import snow.app.ideelee.AddAddress;
-import snow.app.ideelee.AppUtils.CircleTransform;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
-import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.extrafiles.ImagePickerActivity;
 import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
+import snow.app.ideelee.responses.sendhelpmsgres.SendHelpMsgRes;
 import snow.app.ideelee.responses.updateuserprofileres.UpdateUserProfileRes;
 
-import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
 
 
@@ -84,16 +86,17 @@ public class ProfileFragment extends Fragment {
     Button update;
 
 
-
     ApiService apiService;
     String userid, token, servicetype;
     HashMap<String, String> map;
-
-    private Unbinder unbinder;
     SessionManager sessionManager;
+    String PROFILE_IMAGE = "";
+    private Unbinder unbinder;
+
+    Uri IMAGE_URI=null;
+
     public ProfileFragment() {
     }
-    String PROFILE_IMAGE="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,12 +108,12 @@ public class ProfileFragment extends Fragment {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-          sessionManager= new SessionManager(getActivity());
+        sessionManager = new SessionManager(getActivity());
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
 
-        PROFILE_IMAGE=sessionManager.getKeyProfileImage();
-        Log.e("userid--",userid+token);
+        PROFILE_IMAGE = sessionManager.getKeyProfileImage();
+        Log.e("userid--", userid + token);
         apiService = ApiClient.getClient(getActivity())
                 .create(ApiService.class);
 
@@ -127,29 +130,29 @@ public class ProfileFragment extends Fragment {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String,String>data= new HashMap<>();
+                HashMap<String, String> data = new HashMap<>();
 
-                if (ed_name.getText().toString().isEmpty()){
+                if (ed_name.getText().toString().isEmpty()) {
                     ed_name.setError("Required");
-                }else if (!Patterns.EMAIL_ADDRESS.matcher(ed_email.getText().toString()).matches()){
+                } else if (!Patterns.EMAIL_ADDRESS.matcher(ed_email.getText().toString()).matches()) {
                     ed_email.setError("Invalid");
-                }else if (ed_phone.getText().toString().isEmpty()){
+                } else if (ed_phone.getText().toString().isEmpty()) {
                     ed_phone.setError("Required");
-                }else if (ed_phone.getText().toString().length()<10){
+                } else if (ed_phone.getText().toString().length() < 10) {
                     ed_phone.setError("Invalid");
-                }else if (ed_address.getText().toString().isEmpty()){
+                } else if (ed_address.getText().toString().isEmpty()) {
                     ed_address.setError("Required");
-                }else {
-                    data.put("userid",userid);
-                    data.put("token",token);
-                    data.put("name",ed_name.getText().toString());
-                    data.put("email",ed_email.getText().toString());
-                    data.put("phone",ed_phone.getText().toString());
-                    data.put("address",ed_address.getText().toString());
-                    data.put("latitude",sessionManager.getKeyLat());
-                    data.put("longitude",sessionManager.getKeyLng());
-                    data.put("Profile_image",PROFILE_IMAGE);
-                    updateProfile(data);
+                } else {
+                    data.put("userid", userid);
+                    data.put("token", token);
+                    data.put("name", ed_name.getText().toString());
+                    data.put("email", ed_email.getText().toString());
+                    data.put("phone", ed_phone.getText().toString());
+                    data.put("address", ed_address.getText().toString());
+                    data.put("latitude", sessionManager.getKeyLat());
+                    data.put("longitude", sessionManager.getKeyLng());
+                    data.put("Profile_image", PROFILE_IMAGE);
+                    uploadFile(data);
                 }
 
             }
@@ -234,7 +237,7 @@ public class ProfileFragment extends Fragment {
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-
+                    IMAGE_URI=uri;
                     // loading profile image from local cache
                     loadProfile(uri.toString());
                 } catch (IOException e) {
@@ -301,6 +304,7 @@ public class ProfileFragment extends Fragment {
         map.put("token", token);
         getUserProfileData(map);
     }
+
     public void updateProfile(HashMap<String, String> map) {
         Observer<UpdateUserProfileRes> observer = apiService.updateUser(map)
                 .subscribeOn(Schedulers.io())
@@ -314,7 +318,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onNext(UpdateUserProfileRes res) {
 
-                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -335,28 +339,64 @@ public class ProfileFragment extends Fragment {
     }
 
 
-    private void handleupdateUserProfileData() {
-        map = new HashMap<>();
-        map.put("userid", userid);
-        map.put("token", token);
-        map.put("name", ed_name.getText().toString());
-        map.put("email", ed_email.getText().toString());
-        map.put("phone", ed_phone.getText().toString());
-        map.put("address", ed_address.getText().toString());
-        map.put("latitude", token);
-        map.put("longitude", token);
-        map.put("profile_image", token);
-        getUserProfileData(map);
+
+
+    private void uploadFile( HashMap<String,String >map) {
+        MultipartBody.Part profile_image=null;
+        if (IMAGE_URI!=null){
+            File file = new File(getRealPathFromURI(IMAGE_URI));
+            RequestBody requestFile =RequestBody.create(MediaType.parse("multipart/form-data"), file);
+             profile_image = MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
+
+        }
+        RequestBody userid = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("userid"));
+        RequestBody token = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("token"));
+        RequestBody name = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("name"));
+        RequestBody email = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("email"));
+        RequestBody phone = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("phone"));
+        RequestBody address = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("address"));
+        RequestBody latitude = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("latitude"));
+        RequestBody longitude = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("longitude"));
+
+        apiService.updateProfile(userid, token, name, email,phone,address,latitude,longitude, profile_image).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<SendHelpMsgRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(SendHelpMsgRes res) {
+
+                        Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //  dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        // dismissProgressDialog();
+
+                    }
+                });
     }
 
 
-
-
-
-
-
-
-
-
+    private String getRealPathFromURI(Uri contentUri) {
+        String[] proj = {MediaStore.Images.Media.DATA};
+        CursorLoader loader = new CursorLoader(getActivity(), contentUri, proj, null, null, null);
+        Cursor cursor = loader.loadInBackground();
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        String result = cursor.getString(column_index);
+        cursor.close();
+        return result;
+    }
 
 }

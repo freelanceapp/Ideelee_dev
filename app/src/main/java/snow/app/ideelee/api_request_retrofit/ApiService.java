@@ -3,10 +3,14 @@ package snow.app.ideelee.api_request_retrofit;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
+import retrofit2.http.Part;
 import snow.app.ideelee.responses.confirmotpresponse.ConfirmOtpRes;
 import snow.app.ideelee.responses.couponcatres.CouponCatRes;
 import snow.app.ideelee.responses.coupondetails.CouponDetailRes;
@@ -138,5 +142,18 @@ public interface ApiService {
     @POST(GET_COUPON_DETAILS)
     @FormUrlEncoded
     Observable<CouponDetailRes> getCouponDetails(@FieldMap HashMap<String, String> params);
+
+    @Multipart
+    @POST(UPDATE_USER_PROFILE)
+    Observable<SendHelpMsgRes> updateProfile(@Part("userid") RequestBody userid,
+                                             @Part("token") RequestBody token,
+                                             @Part("name") RequestBody name,
+                                             @Part("email") RequestBody email,
+                                             @Part("phone") RequestBody phone,
+                                             @Part("address") RequestBody address,
+                                             @Part("latitude") RequestBody latitude,
+                                             @Part("longitude") RequestBody longitude,
+                                             @Part MultipartBody.Part image);
+
 
 }
