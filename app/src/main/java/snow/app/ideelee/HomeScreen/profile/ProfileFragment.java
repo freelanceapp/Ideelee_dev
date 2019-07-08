@@ -305,46 +305,18 @@ public class ProfileFragment extends Fragment {
         getUserProfileData(map);
     }
 
-    public void updateProfile(HashMap<String, String> map) {
-        Observer<UpdateUserProfileRes> observer = apiService.updateUser(map)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<UpdateUserProfileRes>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(UpdateUserProfileRes res) {
-
-                        Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        //  dismissProgressDialog();
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        // dismissProgressDialog();
-
-                    }
-                });
-
-
-    }
-
-
 
 
     private void uploadFile( HashMap<String,String >map) {
         MultipartBody.Part profile_image=null;
         if (IMAGE_URI!=null){
-            File file = new File(getRealPathFromURI(IMAGE_URI));
+
+            Uri uri = IMAGE_URI;
+            File file = new File(uri.getPath());//create path from uri
+
+
+
+            // File file = new File(getRealPathFromURI(IMAGE_URI));
             RequestBody requestFile =RequestBody.create(MediaType.parse("multipart/form-data"), file);
              profile_image = MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
 
