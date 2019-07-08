@@ -232,4 +232,7 @@ public class BaseActivity extends Activity {
         return add;
 
     }
+
+
+
 }

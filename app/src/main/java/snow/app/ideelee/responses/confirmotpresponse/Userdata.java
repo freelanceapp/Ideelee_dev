@@ -14,7 +14,7 @@ public class Userdata {
     private String oauthProvider;
     @SerializedName("oauth_uid")
     @Expose
-    private Object oauthUid;
+    private String oauthUid;
     @SerializedName("name")
     @Expose
     private String name;
@@ -29,13 +29,13 @@ public class Userdata {
     private String contactNo;
     @SerializedName("address")
     @Expose
-    private Object address;
+    private String address;
     @SerializedName("type")
     @Expose
     private String type;
     @SerializedName("profile_image")
     @Expose
-    private Object profileImage;
+    private String profileImage;
     @SerializedName("status")
     @Expose
     private String status;
@@ -44,7 +44,7 @@ public class Userdata {
     private String createdOn;
     @SerializedName("updated_on")
     @Expose
-    private Object updatedOn;
+    private String updatedOn;
     @SerializedName("token")
     @Expose
     private String token;
@@ -65,11 +65,11 @@ public class Userdata {
         this.oauthProvider = oauthProvider;
     }
 
-    public Object getOauthUid() {
+    public String getOauthUid() {
         return oauthUid;
     }
 
-    public void setOauthUid(Object oauthUid) {
+    public void setOauthUid(String oauthUid) {
         this.oauthUid = oauthUid;
     }
 
@@ -105,11 +105,11 @@ public class Userdata {
         this.contactNo = contactNo;
     }
 
-    public Object getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Object address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 
@@ -121,11 +121,11 @@ public class Userdata {
         this.type = type;
     }
 
-    public Object getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(Object profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
     }
 
@@ -145,11 +145,11 @@ public class Userdata {
         this.createdOn = createdOn;
     }
 
-    public Object getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Object updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 

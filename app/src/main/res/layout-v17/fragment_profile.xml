@@ -142,7 +142,7 @@
                     android:padding="@dimen/small_padding" />
 
                 <Button
-                    android:id="@+id/ux_btn_continue_loginPage"
+                    android:id="@+id/update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/big_margin"

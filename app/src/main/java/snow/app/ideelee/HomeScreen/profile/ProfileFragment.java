@@ -3,8 +3,7 @@ package snow.app.ideelee.HomeScreen.profile;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
+ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -50,7 +50,9 @@ import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.extrafiles.ImagePickerActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
+import snow.app.ideelee.responses.updateuserprofileres.UpdateUserProfileRes;
 
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.Context.WINDOW_SERVICE;
@@ -76,10 +78,16 @@ public class ProfileFragment extends Fragment {
 
     @BindView(R.id.changeaddress)
     TextView changeaddress;
+
+    @BindView(R.id.update)
+    Button update;
+
+
+
     ApiService apiService;
     String userid, token, servicetype;
     HashMap<String, String> map;
-    SharedPreferences prefs;
+
     private Unbinder unbinder;
 
     public ProfileFragment() {
@@ -95,44 +103,47 @@ public class ProfileFragment extends Fragment {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-          prefs = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
+        SessionManager sessionManager= new SessionManager(getActivity());
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
 
 
         Log.e("userid--",userid+token);
         apiService = ApiClient.getClient(getActivity())
                 .create(ApiService.class);
-/*
-        Picasso.with(getActivity())
-                .load("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg")
-                .resize(width / 4, width / 4)
-                .transform(new CircleTransform())
-                .centerCrop()
-                .into(img);*/
+
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onProfileImageClick();
             }
         });
-      /*  ed_address.setOnClickListener(new View.OnClickListener() {
+
+
+        handlegetUserProfileData();
+
+        update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), AddAddress.class);
-                startActivity(intent);
+                HashMap<String,String>data= new HashMap<>();
+
+
+
+                data.put("userid",userid);
+                data.put("token",token);
+                data.put("name",ed_name.getText().toString());
+                data.put("email",ed_email.getText().toString());
+                data.put("phone",ed_phone.getText().toString());
+                data.put("address",ed_address.getText().toString());
+                data.put("latitude","");
+                data.put("longitude","");
+                data.put("Profile_image","");
+
+                updateProfile(data);
             }
         });
 
-        changeaddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), AddAddress.class);
-                startActivity(intent);
-            }
-        });*/
 
-        handlegetUserProfileData();
         return v;
     }
 
@@ -244,8 +255,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onNext(GetUserProfileRes res) {
                         if (res.getStatus()) {
-                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
-                            ed_name.setText(res.getServicedata().getName());
+                             ed_name.setText(res.getServicedata().getName());
                             ed_address.setText(res.getServicedata().getAddress());
                             ed_phone.setText(res.getServicedata().getContactNo());
                             ed_email.setText(res.getServicedata().getEmail());
@@ -256,16 +266,6 @@ public class ProfileFragment extends Fragment {
                                     .apply(new RequestOptions().override(300, 300))
                                     .apply(RequestOptions.circleCropTransform())
                                     .into(img);
-
-/*
-
-                            Picasso.with(getActivity())
-                                    .load(res.getServicedata().getProfileImage())
-//                                    .resize(width / 4, width / 4)
-                                    .transform(new CircleTransform())
-                                    .centerCrop()
-                                    .into(img);
-*/
 
                         } else {
                             Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
@@ -306,47 +306,23 @@ public class ProfileFragment extends Fragment {
 
 
 
-    public void updateUserProfileData(HashMap<String, String> map) {
+    public void updateProfile(HashMap<String, String> map) {
         //  createProgressDialog();
 
-        Observer<GetUserProfileRes> observer = apiService.getUserProfiledata(map)
+        Observer<UpdateUserProfileRes> observer = apiService.updateUser(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<GetUserProfileRes>() {
+                .subscribeWith(new Observer<UpdateUserProfileRes>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(GetUserProfileRes res) {
-                        if (res.getStatus()) {
+                    public void onNext(UpdateUserProfileRes res) {
+
                             Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
-                            ed_name.setText(res.getServicedata().getName());
-                            ed_address.setText(res.getServicedata().getAddress());
-                            ed_phone.setText(res.getServicedata().getContactNo());
-                            ed_email.setText(res.getServicedata().getEmail());
 
-
-
-                            Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
-                                    .apply(new RequestOptions().override(300, 300))
-                                    .apply(RequestOptions.circleCropTransform())
-                                    .into(img);
-
-/*
-
-                            Picasso.with(getActivity())
-                                    .load(res.getServicedata().getProfileImage())
-//                                    .resize(width / 4, width / 4)
-                                    .transform(new CircleTransform())
-                                    .centerCrop()
-                                    .into(img);
-*/
-
-                        } else {
-                            Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
                     }
 
                     @Override

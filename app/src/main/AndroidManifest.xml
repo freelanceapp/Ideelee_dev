@@ -32,8 +32,9 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyAVvAbAsuXfnkrJFQs9v4ZasjeN_1ldLUA" />
-        <activity android:name=".perperson_permealmodule.BookingRequirements"></activity>
-        <activity android:name=".extrafiles.PermissionsActivity"></activity>
+        <activity android:name=".perperson_permealmodule.BookingRequirements"/>
+        <activity android:name=".extrafiles.PermissionsActivity"/>
+
         <activity
             android:name=".bookings.BookingPerDay"
             android:windowSoftInputMode="adjustPan" />

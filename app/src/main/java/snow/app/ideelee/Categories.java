@@ -1,8 +1,5 @@
 package snow.app.ideelee;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -33,6 +30,7 @@ import snow.app.ideelee.HomeScreen.Adapters.MoreCatAdapter;
 import snow.app.ideelee.HomeScreen.ServiceActivity;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.fooddelivery.restaurantsmod.RestaurantsList;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
 import snow.app.ideelee.responses.homescreenres.ParentCatArray;
@@ -59,9 +57,9 @@ String userid,token;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         recyclerView_grid.setHasFixedSize(true);
 
-        SharedPreferences prefs =  Categories.this.getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
+         SessionManager sessionManager= new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
 
         parentCatArrayArrayList = new ArrayList<>();
         apiService = ApiClient.getClient( Categories.this)

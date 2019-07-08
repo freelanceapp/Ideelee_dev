@@ -1,7 +1,7 @@
 package snow.app.ideelee.coupons;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +27,7 @@ import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.coupons.adapters.CouponCatAdapter;
 import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.couponcatres.CouponCatRes;
 import snow.app.ideelee.responses.couponcatres.Couponcategorydatum;
 
@@ -56,9 +57,9 @@ public class SelectCouponCat extends BaseActivity {
         servicetype=getIntent().getStringExtra("servicetype");
         apiService = ApiClient.getClient(SelectCouponCat.this)
                 .create(ApiService.class);
-        SharedPreferences prefs =  getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
+        SessionManager sessionManager= new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

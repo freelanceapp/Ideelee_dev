@@ -2,7 +2,7 @@ package snow.app.ideelee.HomeScreen;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -59,6 +59,7 @@ import snow.app.ideelee.WalletFragment;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.OneTimeLogin;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.loginres.LoginRes;
 import snow.app.ideelee.responses.logoutres.LogoutRes;
 import snow.app.ideelee.search.SearchActivity;
@@ -130,14 +131,10 @@ TextView h_name;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
-
-
-
-        //shared pref user details
-        SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
-          userid = prefs.getString("userid", "0");
-          token = prefs.getString("token", "0");
-          name = prefs.getString("name", "0");
+         SessionManager sessionManager= new SessionManager(this);
+           userid =sessionManager.getKeyId();
+          token = sessionManager.getKeyToken();
+          name = sessionManager.getKeyName();
 
 
         //set user details in nav header

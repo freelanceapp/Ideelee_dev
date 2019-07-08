@@ -1,12 +1,8 @@
 package snow.app.ideelee;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,9 +23,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import org.json.JSONObject;
@@ -86,6 +80,7 @@ public class Login extends BaseActivity {
     GoogleSignInOptions gso;
 
     GoogleSignInClient mGoogleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +99,7 @@ public class Login extends BaseActivity {
 /*
                 .requestIdToken("985013897309-tgqd1at1e1a0al0dsds98atg8pf4kvqt.apps.getClientoogleusercontent.com")
 */
-.build();
+                .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
@@ -125,7 +120,7 @@ public class Login extends BaseActivity {
         });
 
 
-       glogin.setOnClickListener(new View.OnClickListener() {
+        glogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
@@ -261,22 +256,17 @@ public class Login extends BaseActivity {
                             } else {
 
                                 oneTimeLogin.setFirstTimeLaunch(false);
-                                SharedPreferences.Editor editor = getSharedPreferences("Login", MODE_PRIVATE).edit();
-                                editor.putString("userid", res.getUserdata().getId());
-                                editor.putString("token", res.getUserdata().getToken());
-                                editor.putString("name", res.getUserdata().getName());
-                                editor.putString("contact", res.getUserdata().getContactNo());
-                                editor.putString("address", res.getUserdata().getAddress().toString());
-                                editor.putString("email", res.getUserdata().getEmail());
-
-                               editor.commit();
 
 
-//                                sessionManager.createLoginSession(res.getUserdata().getName(),
-//                                        res.getUserdata().getEmail(), res.getUserdata().getPassword(), res.getUserdata().getContactNo(), res.getUserdata().getId(),
-//                                        res.getUserdata().getStatus(), res.getUserdata().getAddress(), res.getUserdata().getProfileImage(),
-//                                        res.getUserdata().getType(), res.getUserdata().getToken());
-//
+                                SessionManager sessionManager = new SessionManager(Login.this);
+                                sessionManager.createLoginSession(String.valueOf(res.getUserdata().getId()), res.getUserdata().getName()
+                                        , res.getUserdata().getEmail()
+                                        , res.getUserdata().getPassword(), res.getUserdata().getOauthProvider()
+                                        , res.getUserdata().getContactNo(), res.getUserdata().getProfileImage()
+                                        , res.getUserdata().getAddress(), res.getUserdata().getToken());
+
+
+
 
                                 Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
                                 Intent intent_continue = new Intent(Login.this, HomeNavigation.class);
@@ -285,8 +275,7 @@ public class Login extends BaseActivity {
 
                             }
 
-                        }
-                        else {
+                        } else {
                             Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -341,7 +330,6 @@ public class Login extends BaseActivity {
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -352,7 +340,7 @@ public class Login extends BaseActivity {
             // a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
-        }else {
+        } else {
             callbackManager.onActivityResult(requestCode, resultCode, data);
 
         }
@@ -364,7 +352,7 @@ public class Login extends BaseActivity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            Log.wtf(TAG, "signInResult" + account.getDisplayName()+"=="+account.getEmail());
+            Log.wtf(TAG, "signInResult" + account.getDisplayName() + "==" + account.getEmail());
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -375,7 +363,7 @@ public class Login extends BaseActivity {
         }
     }
 
-//    public void onClick(View v) {
+    //    public void onClick(View v) {
 //        if (v == fblogin) {
 //            loginButton.performClick();
 //        }
@@ -387,7 +375,7 @@ public class Login extends BaseActivity {
         switch (v.getId()) {
 
 
-            case R.id.fblogin :
+            case R.id.fblogin:
                 loginButton.performClick();
                 break;
 

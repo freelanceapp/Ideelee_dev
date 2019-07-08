@@ -1,7 +1,6 @@
 package snow.app.ideelee.HomeScreen.help;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
+ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +24,7 @@ import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.gethelpcat.GetHelpCatRes;
 
 public class HelpActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
@@ -40,7 +40,7 @@ public class HelpActivity extends BaseActivity implements AdapterView.OnItemSele
     ApiService apiService;
     String userid, token, servicetype;
     HashMap<String, String> map;
-    SharedPreferences prefs;
+
     String item;
 ArrayList<String> gethelpcat=new ArrayList<>();
     ArrayAdapter<String> dataAdapter;
@@ -50,12 +50,9 @@ ArrayList<String> gethelpcat=new ArrayList<>();
         setContentView(R.layout.activity_help);
         ButterKnife.bind(this);
         title.setText("Help");
-
-
-        prefs = getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
-
+        SessionManager sessionManager= new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
 
         Log.e("userid--", userid + token);
         apiService = ApiClient.getClient(this)

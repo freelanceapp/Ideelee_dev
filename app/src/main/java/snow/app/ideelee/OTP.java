@@ -2,7 +2,7 @@ package snow.app.ideelee;
 
 import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -300,18 +300,14 @@ SessionManager sessionManager;
 
                         if (res.getStatus()) {
 
-                            SharedPreferences.Editor editor = getSharedPreferences("Login", MODE_PRIVATE).edit();
-                            editor.putString("userid", res.getUserdata().getId());
-                            editor.putString("token", res.getUserdata().getToken());
-                            editor.putString("name", res.getUserdata().getName());
-                            editor.putString("contact", res.getUserdata().getContactNo());
-                            editor.putString("address", res.getUserdata().getAddress().toString());
-                            editor.putString("email", res.getUserdata().getEmail());
-                            editor.commit();
-//                            sessionManager.createLoginSession(res.getUserdata().getName(),
-//                                    res.getUserdata().getEmail(),res.getUserdata().getPassword(),res.getUserdata().getContactNo(),res.getUserdata().getId(),
-//                                    res.getUserdata().getStatus(),res.getUserdata().getAddress().toString(),res.getUserdata().getProfileImage().toString(),
-//                                    res.getUserdata().getType(),res.getUserdata().getToken());
+
+                            SessionManager sessionManager = new SessionManager(OTP.this);
+                            sessionManager.createLoginSession(String.valueOf(res.getUserdata().getId()), res.getUserdata().getName()
+                                    , res.getUserdata().getEmail()
+                                    , res.getUserdata().getPassword(), res.getUserdata().getOauthProvider()
+                                    , res.getUserdata().getContactNo(), res.getUserdata().getProfileImage()
+                                    , res.getUserdata().getAddress(), res.getUserdata().getToken());
+
 
                             Toast.makeText(OTP.this, res.getMessage(), Toast.LENGTH_SHORT).show();
                             Intent intent_continue = new Intent(OTP.this, HomeNavigation.class);

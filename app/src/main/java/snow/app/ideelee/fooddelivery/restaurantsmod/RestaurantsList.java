@@ -1,7 +1,7 @@
 package snow.app.ideelee.fooddelivery.restaurantsmod;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,6 +31,7 @@ import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.coupons.SelectCouponCat;
 import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.fooddelivery.restaurantsmod.adapter.RestaurantsAdapter;
 import snow.app.ideelee.responses.couponcatres.CouponCatRes;
 import snow.app.ideelee.responses.couponcatres.Couponcategorydatum;
@@ -69,9 +70,11 @@ public class RestaurantsList extends BaseActivity {
         cat_id=getIntent().getStringExtra("cat");
         apiService = ApiClient.getClient( RestaurantsList.this)
                 .create(ApiService.class);
-        SharedPreferences prefs =  getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
+
+        SessionManager sessionManager= new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
+
         title_bookingappointement.setText("Restaurants");
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();

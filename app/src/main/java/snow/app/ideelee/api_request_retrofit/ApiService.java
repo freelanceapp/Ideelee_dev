@@ -102,9 +102,9 @@ public interface ApiService {
     Observable<GetUserProfileRes> getUserProfiledata(@FieldMap HashMap<String, String> params);
 
     //user profile update    API
-    @POST(SUB_SUB_CAT_FILTERATION_LIST)
+    @POST(UPDATE_USER_PROFILE)
     @FormUrlEncoded
-    Observable<UpdateUserProfileRes> updateuserprofiledata(@FieldMap HashMap<String, String> params);
+    Observable<UpdateUserProfileRes> updateUser(@FieldMap HashMap<String, String> params);
 
 
   //user addrss update   API

@@ -3,7 +3,7 @@ package snow.app.ideelee.vehical_module.vehicle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
@@ -61,6 +61,7 @@ import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.filter.SubSubCatFilterationAdapter;
 import snow.app.ideelee.responses.ondemandserviceproviderlistres.GetOnDemandProvidersListRes;
 import snow.app.ideelee.responses.ondemandserviceproviderlistres.Servicelist;
@@ -119,10 +120,9 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         Places.initialize(getApplicationContext(), "AIzaSyCXTaGfar2xqDZpGrZRSY96l5fw6mYF4sI");
         apiService1 = ApiClient.getClient(VehicalListing.this)
                 .create(ApiService.class);
-        SharedPreferences prefs = getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
-
+        SessionManager sessionManager= new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
         parentid = getIntent().getStringExtra("parentid");
         subparentid = getIntent().getStringExtra("subparentid");
 

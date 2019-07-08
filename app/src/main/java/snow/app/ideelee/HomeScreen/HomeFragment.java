@@ -1,6 +1,6 @@
 package snow.app.ideelee.HomeScreen;
 
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -42,6 +42,7 @@ import snow.app.ideelee.HomeScreen.Adapters.ViewPagerHome;
 import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.responses.homescreenres.Banner;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
 import snow.app.ideelee.responses.homescreenres.ParentCatArray;
@@ -90,9 +91,9 @@ public class HomeFragment extends Fragment {
         unbinder = ButterKnife.bind(this, v);
 
 
-        SharedPreferences prefs = getActivity().getSharedPreferences("Login", MODE_PRIVATE);
-        userid = prefs.getString("userid", "0");
-        token = prefs.getString("token", "0");
+         SessionManager sessionManager = new SessionManager(getActivity());
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
         parentCatArrayArrayList = new ArrayList<>();
         apiService = ApiClient.getClient(getActivity())
                 .create(ApiService.class);
