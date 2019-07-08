@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,9 +90,10 @@ public class ProfileFragment extends Fragment {
     HashMap<String, String> map;
 
     private Unbinder unbinder;
-
+    SessionManager sessionManager;
     public ProfileFragment() {
     }
+    String PROFILE_IMAGE="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -103,11 +105,11 @@ public class ProfileFragment extends Fragment {
         wm.getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        SessionManager sessionManager= new SessionManager(getActivity());
+          sessionManager= new SessionManager(getActivity());
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
 
-
+        PROFILE_IMAGE=sessionManager.getKeyProfileImage();
         Log.e("userid--",userid+token);
         apiService = ApiClient.getClient(getActivity())
                 .create(ApiService.class);
@@ -127,19 +129,29 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 HashMap<String,String>data= new HashMap<>();
 
+                if (ed_name.getText().toString().isEmpty()){
+                    ed_name.setError("Required");
+                }else if (!Patterns.EMAIL_ADDRESS.matcher(ed_email.getText().toString()).matches()){
+                    ed_email.setError("Invalid");
+                }else if (ed_phone.getText().toString().isEmpty()){
+                    ed_phone.setError("Required");
+                }else if (ed_phone.getText().toString().length()<10){
+                    ed_phone.setError("Invalid");
+                }else if (ed_address.getText().toString().isEmpty()){
+                    ed_address.setError("Required");
+                }else {
+                    data.put("userid",userid);
+                    data.put("token",token);
+                    data.put("name",ed_name.getText().toString());
+                    data.put("email",ed_email.getText().toString());
+                    data.put("phone",ed_phone.getText().toString());
+                    data.put("address",ed_address.getText().toString());
+                    data.put("latitude",sessionManager.getKeyLat());
+                    data.put("longitude",sessionManager.getKeyLng());
+                    data.put("Profile_image",PROFILE_IMAGE);
+                    updateProfile(data);
+                }
 
-
-                data.put("userid",userid);
-                data.put("token",token);
-                data.put("name",ed_name.getText().toString());
-                data.put("email",ed_email.getText().toString());
-                data.put("phone",ed_phone.getText().toString());
-                data.put("address",ed_address.getText().toString());
-                data.put("latitude","");
-                data.put("longitude","");
-                data.put("Profile_image","");
-
-                updateProfile(data);
             }
         });
 
@@ -242,25 +254,21 @@ public class ProfileFragment extends Fragment {
 
     public void getUserProfileData(HashMap<String, String> map) {
         //  createProgressDialog();
-
         Observer<GetUserProfileRes> observer = apiService.getUserProfiledata(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new Observer<GetUserProfileRes>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
                     public void onNext(GetUserProfileRes res) {
                         if (res.getStatus()) {
-                             ed_name.setText(res.getServicedata().getName());
+                            ed_name.setText(res.getServicedata().getName());
                             ed_address.setText(res.getServicedata().getAddress());
                             ed_phone.setText(res.getServicedata().getContactNo());
                             ed_email.setText(res.getServicedata().getEmail());
-
-
 
                             Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
                                     .apply(new RequestOptions().override(300, 300))
@@ -284,8 +292,6 @@ public class ProfileFragment extends Fragment {
 
                     }
                 });
-
-
     }
 
 
@@ -295,20 +301,7 @@ public class ProfileFragment extends Fragment {
         map.put("token", token);
         getUserProfileData(map);
     }
-
-
-
-
-    //update---user profile
-
-
-
-
-
-
     public void updateProfile(HashMap<String, String> map) {
-        //  createProgressDialog();
-
         Observer<UpdateUserProfileRes> observer = apiService.updateUser(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

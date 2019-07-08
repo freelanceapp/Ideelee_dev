@@ -14,7 +14,7 @@ public class Userdata {
     private String oauthProvider;
     @SerializedName("oauth_uid")
     @Expose
-    private Object oauthUid;
+    private String oauthUid;
     @SerializedName("name")
     @Expose
     private String name;
@@ -44,7 +44,7 @@ public class Userdata {
     private String createdOn;
     @SerializedName("updated_on")
     @Expose
-    private Object updatedOn;
+    private String updatedOn;
     @SerializedName("token")
     @Expose
     private String token;
@@ -65,11 +65,11 @@ public class Userdata {
         this.oauthProvider = oauthProvider;
     }
 
-    public Object getOauthUid() {
+    public String getOauthUid() {
         return oauthUid;
     }
 
-    public void setOauthUid(Object oauthUid) {
+    public void setOauthUid(String oauthUid) {
         this.oauthUid = oauthUid;
     }
 
@@ -145,11 +145,11 @@ public class Userdata {
         this.createdOn = createdOn;
     }
 
-    public Object getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Object updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 

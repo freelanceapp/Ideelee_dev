@@ -22,6 +22,8 @@ public class SessionManager {
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_TOKEN = "token";
      public static final String KEY_EMAIL = "email";
+     public static final String KEY_LAT = "lat";
+     public static final String KEY_LNG = "lng";
     public static final String KEY_TYPE = "type";   //1= USER    2= SERVICE PROVIDER
     // Sharedpref file name
     // All Shared Preferences Keys
@@ -117,6 +119,25 @@ public class SessionManager {
         return pref.getString(KEY_PROFILE_IMAGE, "");
     }
 
+
+
+    public   String getKeyLat() {
+        return pref.getString(KEY_LAT, "0");
+    }
+
+    public   String getKeyLng() {
+        return pref.getString(KEY_LNG, "0");
+    }
+
+    public   void setKeyLat(String lat) {
+        editor.putString(KEY_LAT,lat);
+        editor.commit();
+    }
+
+    public   void setKeyLng(String lat) {
+        editor.putString(KEY_LNG,lat);
+        editor.commit();
+    }
 
     /**
      * Quick check for login
