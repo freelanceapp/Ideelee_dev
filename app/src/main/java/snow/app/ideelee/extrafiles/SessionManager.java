@@ -123,10 +123,12 @@ public class SessionManager {
 
     public   String getKeyLat() {
         return pref.getString(KEY_LAT, "0");
+
     }
 
     public   String getKeyLng() {
         return pref.getString(KEY_LNG, "0");
+
     }
 
     public   void setKeyLat(String lat) {
