@@ -139,6 +139,11 @@ public class SessionManager {
         editor.commit();
     }
 
+    public   void setKeyProfileImage(String lat) {
+        editor.putString(KEY_PROFILE_IMAGE,lat);
+        editor.commit();
+    }
+
     public   void setKeyLng(String lat) {
         editor.putString(KEY_LNG,lat);
         editor.commit();

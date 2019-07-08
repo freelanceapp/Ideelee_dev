@@ -3,7 +3,6 @@ package snow.app.ideelee.vehical_module.vehicle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-
 import android.graphics.Point;
 import android.location.Address;
 import android.location.Geocoder;
@@ -33,18 +32,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
-import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.widget.Autocomplete;
-import com.google.android.libraries.places.widget.AutocompleteActivity;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -94,7 +87,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     Toolbar toolbar;
     VehicalListAdapter adapter;
     String userid, token, parentid, subparentid, minprice = "", maxprice = "", rating = "", sorting = "",
-            userlatitude = "", userlongitude = "", item="";
+            userlatitude = "", userlongitude = "", item = "";
     HashMap<String, String> map;
     ApiService apiService;
     ApiService apiService1;
@@ -103,8 +96,12 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     Place place;
     Spinner spinner;
     PopupWindow pw;
-    SubSubCatFilterationAdapter adapter_filter=null;
+    SubSubCatFilterationAdapter adapter_filter = null;
     SessionManager sessionManager;
+
+
+    int spinner_selectedindex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +117,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         Places.initialize(getApplicationContext(), "AIzaSyCXTaGfar2xqDZpGrZRSY96l5fw6mYF4sI");
         apiService1 = ApiClient.getClient(VehicalListing.this)
                 .create(ApiService.class);
-          sessionManager= new SessionManager(this);
+        sessionManager = new SessionManager(this);
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
         parentid = getIntent().getStringExtra("parentid");
@@ -198,7 +195,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
                         }
 
 
-                      //  Toast.makeText(VehicalListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        //  Toast.makeText(VehicalListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
                         handleOnDemandServiceProviderList();
 
                         return true;
@@ -216,7 +213,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
             }
         });
         handleOnDemandServiceProviderList();
-        handleGetSubSubCatFilterationList( );
+        handleGetSubSubCatFilterationList();
 
     }
 
@@ -230,7 +227,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.filter_menu, (ViewGroup) v.findViewById(R.id.linearlayout_filter));
-            pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+        pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
         pw.showAtLocation(v, Gravity.RIGHT, 0, 0);
         View container = (View) pw.getContentView().getRootView();
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -243,6 +240,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         ed_maxprice = layout.findViewById(R.id.maxprice);
         ed_location = layout.findViewById(R.id.location);
         spinner = layout.findViewById(R.id.spinner);
+
         ed_minprice.setText(minprice);
         ed_maxprice.setText(maxprice);
         if (userlatitude.equals("") && (userlongitude.equals(""))) {
@@ -252,7 +250,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
             getaddressfromlat1(Double.parseDouble(userlatitude), Double.parseDouble(userlongitude));
         }
 
-        Log.e("sorting---", sorting+" k");
+        Log.e("sorting---", sorting + " k");
 
         ed_maxprice.addTextChangedListener(new TextWatcher() {
 
@@ -312,23 +310,32 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
         // attaching data adapter to spinner
         spinner.setAdapter(dataAdapter);
+        spinner.setSelection(spinner_selectedindex);
+
+     /*   for(int i = 0; i < dataAdapter.getCount(); i++)
+        {
+            if (dataAdapter.getItemId(i) == myID )
+            {
+                spinner.setSelection(i, false); //(false is optional)
+                break;
+            }
+        }*/
 
 
         Button btn = layout.findViewById(R.id.btn_apply);
         Button clearfilter = layout.findViewById(R.id.clearfilter);
 
 
-
         clearfilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                minprice="";
-                maxprice="";
-                userlatitude="";
-                userlongitude="";
-                rating="";
-                sorting="";
-                subserviceids="";
+                minprice = "";
+                maxprice = "";
+                userlatitude = "";
+                userlongitude = "";
+                rating = "";
+                sorting = "";
+                subserviceids = "";
                 subserviceidslist.clear();
                 handleOnDemandServiceProviderList();
                 pw.dismiss();
@@ -369,7 +376,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 */
                 Intent addressIntent = new Intent(VehicalListing.this, AddAddress.class);
                 addressIntent.putExtra("from", "vl");
-               startActivityForResult(addressIntent,2);
+                startActivityForResult(addressIntent, 2);
             }
         });
         //  ed_location.setText(place.getName());
@@ -379,8 +386,11 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         rating = parent.getItemAtPosition(position).toString();
+        spinner_selectedindex = position;
 
-        // Showing selected spinner item
+
+        Log.e("inde", String.valueOf(spinner_selectedindex));
+
     }
 
     @Override
@@ -463,7 +473,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         map.put("subserviceids", subserviceids);
 
         Log.e("mapp on dmand---", map.toString());
-  getOnDemandserviceproviderList(map);
+        getOnDemandserviceproviderList(map);
     }
 
 
@@ -541,18 +551,16 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         }*/
 
         if (resultCode == Activity.RESULT_OK) {
-            if(requestCode==2)
-            {
+            if (requestCode == 2) {
            /* String message=data.getStringExtra("MESSAGE");
             textView1.setText(message);*/
 
-                userlongitude=data.getStringExtra("lng");
-                userlatitude=data.getStringExtra("lat");
+                userlongitude = data.getStringExtra("lng");
+                userlatitude = data.getStringExtra("lat");
 
-                getaddressfromlat1(Double.parseDouble(userlatitude),Double.parseDouble(userlongitude));
-                Log.e("latandln",userlatitude+"--"+userlongitude);
+                getaddressfromlat1(Double.parseDouble(userlatitude), Double.parseDouble(userlongitude));
+                Log.e("latandln", userlatitude + "--" + userlongitude);
                 /*intentVL=data.getStringExtra("from");*/
-
 
 
                 //  Log.e("latlng in vl--",userlatitude+userlongitude);
@@ -562,10 +570,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         }
 
 
-
     }
-
-
 
 
     public void getaddressfromlat1(double lat, double lng) {
@@ -586,7 +591,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
                         + "," + country);
 
 
-             }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

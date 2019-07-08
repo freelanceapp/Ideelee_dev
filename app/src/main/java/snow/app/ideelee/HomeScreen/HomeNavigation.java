@@ -3,6 +3,7 @@ package snow.app.ideelee.HomeScreen;
 import android.content.Context;
 import android.content.Intent;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,6 +35,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -104,8 +108,8 @@ public class HomeNavigation extends AppCompatActivity
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 ImageView img;
+    SessionManager sessionManager;
 
-TextView h_name;
     ApiService apiService;
     String device_token,userid,name,token;
     HashMap<String, String> map;
@@ -129,9 +133,13 @@ TextView h_name;
                 .create(ApiService.class);
         toggle.syncState();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
 
-
-         SessionManager sessionManager= new SessionManager(this);
+           sessionManager= new SessionManager(this);
            userid =sessionManager.getKeyId();
           token = sessionManager.getKeyToken();
           name = sessionManager.getKeyName();
@@ -142,11 +150,24 @@ TextView h_name;
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.hname);
-        navUsername.setText(name);
+        navUsername.setText(sessionManager.getKeyName());
+
+        img = (ImageView) headerView.findViewById(R.id.img);
+
+        if (sessionManager.getKeyProfileImage()==null){
 
 
+        }else {
+            String profile=sessionManager.getKeyProfileImage();
+            Glide.with(this).load(profile).apply(RequestOptions.circleCropTransform())
+                    .apply(new RequestOptions().override(width/3))
+                    .into(img);
 
 
+            Log.e("imgggg--",profile);
+        }
+
+Log.e("imgggg--",sessionManager.getKeyProfileImage());
 
 
         ed_search.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +198,9 @@ startActivity(new Intent(HomeNavigation.this, SearchActivity.class));
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
-        img = (ImageView) view.findViewById(R.id.img);
+
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment, "Home");
@@ -249,7 +272,7 @@ startActivity(new Intent(HomeNavigation.this, SearchActivity.class));
                 fragmentTransaction.commit();
             }
         });
-
+/*
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
@@ -260,7 +283,7 @@ startActivity(new Intent(HomeNavigation.this, SearchActivity.class));
                 .resize(width / 4, width / 4)
                 .transform(new CircleTransform())
                 .centerCrop()
-                .into(img);
+                .into(img);*/
     }
 
 

@@ -145,7 +145,7 @@ public interface ApiService {
 
     @Multipart
     @POST(UPDATE_USER_PROFILE)
-    Observable<SendHelpMsgRes> updateProfile(@Part("userid") RequestBody userid,
+    Observable<UpdateUserProfileRes> updateProfile(@Part("userid") RequestBody userid,
                                              @Part("token") RequestBody token,
                                              @Part("name") RequestBody name,
                                              @Part("email") RequestBody email,

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,6 +16,7 @@ import android.support.v4.content.CursorLoader;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import snow.app.ideelee.Login;
 import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
@@ -85,7 +88,7 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.update)
     Button update;
 
-
+int height,width;
     ApiService apiService;
     String userid, token, servicetype;
     HashMap<String, String> map;
@@ -106,8 +109,8 @@ public class ProfileFragment extends Fragment {
         WindowManager wm = (WindowManager) getActivity().getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
+          height = displayMetrics.heightPixels;
+          width = displayMetrics.widthPixels;
         sessionManager = new SessionManager(getActivity());
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
@@ -157,7 +160,6 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
 
         return v;
     }
@@ -250,6 +252,7 @@ public class ProfileFragment extends Fragment {
     private void loadProfile(String url) {
         Log.d(TAG, "Image cache path: " + url);
         Glide.with(this).load(url).apply(RequestOptions.circleCropTransform())
+                .apply(new RequestOptions().override(width/3))
                 .into(img);
         img.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.transparent));
     }
@@ -274,9 +277,16 @@ public class ProfileFragment extends Fragment {
                             ed_email.setText(res.getServicedata().getEmail());
 
                             Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
-                                    .apply(new RequestOptions().override(300, 300))
+                                    .apply(new RequestOptions().override(width/3))
                                     .apply(RequestOptions.circleCropTransform())
                                     .into(img);
+
+
+
+
+
+
+
 
                         } else {
                             Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
@@ -332,17 +342,24 @@ public class ProfileFragment extends Fragment {
 
         apiService.updateProfile(userid, token, name, email,phone,address,latitude,longitude, profile_image).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new Observer<SendHelpMsgRes>() {
+                .subscribeWith(new Observer<UpdateUserProfileRes>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(SendHelpMsgRes res) {
+                    public void onNext(UpdateUserProfileRes res) {
 
                         Toast.makeText(getActivity(), res.getMessage(), Toast.LENGTH_SHORT).show();
+                        SessionManager sessionManager = new SessionManager(getActivity());
+                        sessionManager.createLoginSession(String.valueOf(res.getData().getId()), res.getData().getName()
+                                , res.getData().getEmail()
+                                , res.getData().getPassword(), res.getData().getOauthProvider()
+                                , res.getData().getContactNo(), res.getData().getProfileImage()
+                                , res.getData().getAddress(), sessionManager.getKeyToken());
 
+getActivity().finish();
                     }
 
                     @Override
@@ -361,6 +378,9 @@ public class ProfileFragment extends Fragment {
 
 
     private String getRealPathFromURI(Uri contentUri) {
+
+
+        Log.e("content uri----","cu---"+contentUri.toString());
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getActivity(), contentUri, proj, null, null, null);
         Cursor cursor = loader.loadInBackground();

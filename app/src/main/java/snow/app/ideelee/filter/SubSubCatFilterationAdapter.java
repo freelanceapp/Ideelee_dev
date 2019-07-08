@@ -1,7 +1,6 @@
 package snow.app.ideelee.filter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,16 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import snow.app.ideelee.CouponActivity;
 import snow.app.ideelee.R;
-import snow.app.ideelee.responses.couponcatres.Couponcategorydatum;
 import snow.app.ideelee.responses.subsubcatfileration.Subcatdatum;
 import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 
@@ -26,11 +22,10 @@ import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
 public class SubSubCatFilterationAdapter extends RecyclerView.Adapter<SubSubCatFilterationAdapter.ProductViewHolder> {
 
 
-    //this context we will use to inflate the layout
-    private Context mCtx;
-
     //we are storing all the products in a list
     List<Subcatdatum> couponcategorydatumList;
+    //this context we will use to inflate the layout
+    private Context mCtx;
 
 
     //getting the context and product list with constructor
@@ -48,10 +43,19 @@ public class SubSubCatFilterationAdapter extends RecyclerView.Adapter<SubSubCatF
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(final ProductViewHolder holder, int position) {
         //getting the product of the specified position
-        Subcatdatum product = couponcategorydatumList.get(position);
+        final Subcatdatum product = couponcategorydatumList.get(position);
         holder.cat.setText(product.getName());
+
+        Log.e("subserviceidslist.size", String.valueOf(VehicalListing.subserviceidslist.size()));
+
+
+        if (VehicalListing.subserviceidslist.contains(couponcategorydatumList.get(position).getId())) {
+            holder.cat.setChecked(true);
+        } else {
+            holder.cat.setChecked(false);
+        }
 
 
         holder.cat.setOnClickListener(new View.OnClickListener() {
@@ -59,14 +63,13 @@ public class SubSubCatFilterationAdapter extends RecyclerView.Adapter<SubSubCatF
             public void onClick(View v) {
 
 
-
-                if (holder.cat.isChecked()){
+                if (holder.cat.isChecked()) {
 //                    if (VehicalListing.subserviceidslist.contains(String.valueOf(product.getId()))){
 
-                        VehicalListing.subserviceidslist.add(String.valueOf(product.getId()));
+                    VehicalListing.subserviceidslist.add(String.valueOf(product.getId()));
 
 //                    }
-                }else {
+                } else {
 
                     VehicalListing.subserviceidslist.remove(String.valueOf(product.getId()));
                 }
@@ -79,7 +82,7 @@ public class SubSubCatFilterationAdapter extends RecyclerView.Adapter<SubSubCatF
 
                     VehicalListing.subserviceidslist.add(String.valueOf(product.getId()));
                 }*/
-                Log.e("subserviceidslist----",VehicalListing.subserviceidslist.toString());
+                Log.e("subserviceidslist----", VehicalListing.subserviceidslist.toString());
             }
         });
     }
@@ -99,7 +102,7 @@ public class SubSubCatFilterationAdapter extends RecyclerView.Adapter<SubSubCatF
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
 
         }
