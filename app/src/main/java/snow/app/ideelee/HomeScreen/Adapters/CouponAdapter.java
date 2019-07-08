@@ -10,12 +10,16 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import snow.app.ideelee.CouponDetails;
+import snow.app.ideelee.HomeScreen.Modals.CompletedJobModal;
 import snow.app.ideelee.R;
+import snow.app.ideelee.responses.getcouponsres.Coupondatum;
 
 public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ProductViewHolder> {
 
@@ -24,13 +28,12 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ProductVie
     private Context mCtx;
 
     //we are storing all the products in a list
-    private List<String> productList;
-    int[] gridViewImageId;
+    List<Coupondatum> serviceproviderlist;
 
     //getting the context and product list with constructor
-    public CouponAdapter(Context mCtx, int[] gridViewImageId) {
+    public CouponAdapter(Context mCtx, List<Coupondatum> serviceproviderlist) {
         this.mCtx = mCtx;
-        this.gridViewImageId = gridViewImageId;
+        this.serviceproviderlist = serviceproviderlist;
     }
 
     @Override
@@ -45,13 +48,18 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ProductVie
     @Override
     public void onBindViewHolder(CouponAdapter.ProductViewHolder holder, int position) {
         //getting the product of the specified position
-        // CompletedJobModal product = productList.get(position);
-        holder.imageView.setImageResource(gridViewImageId[position]);
+          final Coupondatum product = serviceproviderlist.get(position);
+        Picasso.with(mCtx.getApplicationContext())
+                .load(product.getBanner())
+                // optional
+                // optional
+                .into(holder.imageView);
         //binding the data with the viewholder views
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mCtx, CouponDetails.class);
+                intent.putExtra("couponid",product.getId());
                 mCtx.startActivity(intent);
             }
         });
@@ -61,7 +69,7 @@ public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ProductVie
 
     @Override
     public int getItemCount() {
-        return gridViewImageId.length;
+        return serviceproviderlist.size();
     }
 
 

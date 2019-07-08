@@ -97,8 +97,8 @@
                     <com.rilixtech.CountryCodePicker
                         android:id="@+id/ccp"
 android:layout_toEndOf="@+id/img"
-                        android:paddingLeft="@dimen/margin_4dp"
-                        android:paddingRight="@dimen/margin_4dp"
+                        android:paddingStart="@dimen/margin_4dp"
+                        android:paddingEnd="@dimen/margin_4dp"
 
                         android:layout_centerVertical="true"
                         android:layout_width="100dp"

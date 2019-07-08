@@ -100,6 +100,9 @@ public class SessionManager {
     public String getKeyId() {
         return pref.getString(KEY_ID, "");
     }
+    public String getKeyAddress() {
+        return pref.getString(KEY_ADDRESS, "");
+    }
 
     public String getKeyToken() {
         return pref.getString(KEY_TOKEN, "");
@@ -138,6 +141,9 @@ public class SessionManager {
 
     public   void setKeyLng(String lat) {
         editor.putString(KEY_LNG,lat);
+        editor.commit();
+    }  public   void setKeyAddress(String lat) {
+        editor.putString(KEY_ADDRESS,lat);
         editor.commit();
     }
 

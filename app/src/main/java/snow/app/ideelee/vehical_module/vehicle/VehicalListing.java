@@ -102,9 +102,9 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     EditText ed_location, ed_minprice, ed_maxprice;
     Place place;
     Spinner spinner;
-
+    PopupWindow pw;
     SubSubCatFilterationAdapter adapter_filter=null;
-
+    SessionManager sessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +120,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         Places.initialize(getApplicationContext(), "AIzaSyCXTaGfar2xqDZpGrZRSY96l5fw6mYF4sI");
         apiService1 = ApiClient.getClient(VehicalListing.this)
                 .create(ApiService.class);
-        SessionManager sessionManager= new SessionManager(this);
+          sessionManager= new SessionManager(this);
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
         parentid = getIntent().getStringExtra("parentid");
@@ -129,6 +129,11 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+
+
+
+
 
         /*if (getIntent().hasExtra("lat")) {
             userlatitude = getIntent().getStringExtra("lat");
@@ -193,7 +198,9 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
                         }
 
 
-                        Toast.makeText(VehicalListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(VehicalListing.this, "You Clicked : " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        handleOnDemandServiceProviderList();
+
                         return true;
                     }
                 });
@@ -223,7 +230,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.filter_menu, (ViewGroup) v.findViewById(R.id.linearlayout_filter));
-        final PopupWindow pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
+            pw = new PopupWindow(layout, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true);
         pw.showAtLocation(v, Gravity.RIGHT, 0, 0);
         View container = (View) pw.getContentView().getRootView();
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
@@ -236,7 +243,8 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
         ed_maxprice = layout.findViewById(R.id.maxprice);
         ed_location = layout.findViewById(R.id.location);
         spinner = layout.findViewById(R.id.spinner);
-
+        ed_minprice.setText(minprice);
+        ed_maxprice.setText(maxprice);
         if (userlatitude.equals("") && (userlongitude.equals(""))) {
         } else {
 
@@ -244,7 +252,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
             getaddressfromlat1(Double.parseDouble(userlatitude), Double.parseDouble(userlongitude));
         }
 
-        Log.e("sorting---", sorting);
+        Log.e("sorting---", sorting+" k");
 
         ed_maxprice.addTextChangedListener(new TextWatcher() {
 
@@ -288,6 +296,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
         // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
+        spinner.setPrompt("Select Rating");
         categories.add("1");
         categories.add("2");
         categories.add("3");
@@ -306,6 +315,25 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
 
         Button btn = layout.findViewById(R.id.btn_apply);
+        Button clearfilter = layout.findViewById(R.id.clearfilter);
+
+
+
+        clearfilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                minprice="";
+                maxprice="";
+                userlatitude="";
+                userlongitude="";
+                rating="";
+                sorting="";
+                subserviceids="";
+                subserviceidslist.clear();
+                handleOnDemandServiceProviderList();
+                pw.dismiss();
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,6 +341,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
                 Log.e("list of serices--", subserviceidslist.toString());
                 handleOnDemandServiceProviderList();
+                pw.dismiss();
             }
         });
         RecyclerView recyclerView_filter;
@@ -555,7 +584,9 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
 
                 ed_location.setText("" + subLocality + "," + state
                         + "," + country);
-            }
+
+
+             }
         } catch (IOException e) {
             e.printStackTrace();
         }

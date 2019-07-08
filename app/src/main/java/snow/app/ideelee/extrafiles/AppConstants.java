@@ -16,7 +16,11 @@ public class AppConstants {
     public static final String  SUB_SUB_CAT_FILTERATION_LIST = PATH_HOME + "getAllSubSubCategories";
     public static final String  GET_USER_PROFILE = PATH_HOME + "getuserprofile";
     public static final String  GET_HELP_CAT = PATH_HOME + "getHelpCategories";
+    public static final String  SEND_HELP_MSG = PATH_HOME + "sendHelpMessage";
+    public static final String  GET_COUPONS = PATH_HOME + "getCoupons";
     public static final String  UPDATE_USER_PROFILE = PATH_HOME + "updateUserdata";
+    public static final String  UPDATE_USER_ADDRESS = PATH_HOME + "updateUserAddress";
+    public static final String  GET_COUPON_DETAILS = PATH_HOME + "singleCouponDetail";
 
 
 

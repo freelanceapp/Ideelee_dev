@@ -9,8 +9,10 @@ import retrofit2.http.POST;
 
 import snow.app.ideelee.responses.confirmotpresponse.ConfirmOtpRes;
 import snow.app.ideelee.responses.couponcatres.CouponCatRes;
+import snow.app.ideelee.responses.coupondetails.CouponDetailRes;
 import snow.app.ideelee.responses.deliverysubcatres.DeliverySubCatRes;
 import snow.app.ideelee.responses.forgotpassword.ForgotPassRes;
+import snow.app.ideelee.responses.getcouponsres.GetCouponsRes;
 import snow.app.ideelee.responses.gethelpcat.GetHelpCatRes;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
@@ -20,6 +22,7 @@ import snow.app.ideelee.responses.morecatres.MoreCategoryRes;
 import snow.app.ideelee.responses.ondemandserviceproviderlistres.GetOnDemandProvidersListRes;
 import snow.app.ideelee.responses.ondemandservicessubcatres.OnDemandSubCatRes;
 import snow.app.ideelee.responses.registerres.RegisterRes;
+import snow.app.ideelee.responses.sendhelpmsgres.SendHelpMsgRes;
 import snow.app.ideelee.responses.subsubcatfileration.SubSubCatFilterationRes;
 import snow.app.ideelee.responses.updateuseraddressres.UpdateUserAddressRes;
 import snow.app.ideelee.responses.updateuserprofileres.UpdateUserProfileRes;
@@ -108,7 +111,7 @@ public interface ApiService {
 
 
   //user addrss update   API
-    @POST(SUB_SUB_CAT_FILTERATION_LIST)
+    @POST(UPDATE_USER_ADDRESS)
     @FormUrlEncoded
     Observable<UpdateUserAddressRes> updateuseraddressdata(@FieldMap HashMap<String, String> params);
 
@@ -117,5 +120,23 @@ public interface ApiService {
     @POST(GET_HELP_CAT)
     @FormUrlEncoded
     Observable<GetHelpCatRes> getHelpCat(@FieldMap HashMap<String, String> params);
+
+
+  //get help cat   API
+    @POST(SEND_HELP_MSG)
+    @FormUrlEncoded
+    Observable<SendHelpMsgRes> sendHelpMsg(@FieldMap HashMap<String, String> params);
+
+
+  //getCoupons   API
+    @POST(GET_COUPONS)
+    @FormUrlEncoded
+    Observable<GetCouponsRes> getCoupons(@FieldMap HashMap<String, String> params);
+
+
+  //Coupons Details   API
+    @POST(GET_COUPON_DETAILS)
+    @FormUrlEncoded
+    Observable<CouponDetailRes> getCouponDetails(@FieldMap HashMap<String, String> params);
 
 }

@@ -12,6 +12,7 @@ import android.os.Bundle;
 /*import android.widget.CalendarView;*/
 import android.provider.Settings;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -45,7 +46,7 @@ import java.util.Set;
 import snow.app.ideelee.Login;
 import snow.app.ideelee.R;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends AppCompatActivity {
  //  CalendarPickerView  calendar;
     CalendarView calendarView;
     ProgressDialog dialog ;
@@ -208,7 +209,7 @@ public class BaseActivity extends Activity {
 
         return device_token;
     }
-    public String getaddressfromlat(double lat, double lng) {
+   /* public String getaddressfromlat(double lat, double lng) {
         Geocoder geocoder = new Geocoder(getApplicationContext(),
                 Locale.getDefault());
         String add="";
@@ -231,7 +232,7 @@ public class BaseActivity extends Activity {
         }
         return add;
 
-    }
+    }*/
 
 
 

@@ -68,6 +68,7 @@
                 android:fontFamily="@font/regular"
                 android:gravity="center_vertical"
                 android:hint="@string/email"
+                android:id="@+id/email"
                 android:padding="@dimen/small_padding"
                 android:textColor="@color/black"
                 android:textSize="@dimen/normal_text" />
@@ -78,6 +79,7 @@
                 android:layout_marginBottom="@dimen/small_padding"
                 android:background="@drawable/bg_grey"
                 android:fontFamily="@font/regular"
+                android:id="@+id/phone"
                 android:gravity="center_vertical"
                 android:hint="@string/phone"
                 android:padding="@dimen/small_padding"
@@ -92,6 +94,7 @@
                 android:fontFamily="@font/regular"
                 android:gravity="top"
                 android:hint="Message"
+                android:id="@+id/msg"
                 android:minLines="3"
                 android:padding="@dimen/small_padding"
                 android:textColor="@color/black"

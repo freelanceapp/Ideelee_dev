@@ -1,7 +1,6 @@
 package snow.app.ideelee;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,7 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -46,16 +44,25 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import snow.app.ideelee.HomeScreen.HomeNavigation;
-import snow.app.ideelee.vehical_module.vehicle.VehicalListing;
+import snow.app.ideelee.api_request_retrofit.ApiService;
+import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
+import snow.app.ideelee.responses.updateuseraddressres.UpdateUserAddressRes;
 
 
-public class AddAddress extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
+public class AddAddress extends BaseActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     public static final String TAG = "AutoCompleteActivity";
@@ -86,8 +93,12 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LatLng latLng;
-    LatLng markerLocation=null;
+    LatLng markerLocation = null;
+    SessionManager sessionManager;
+    ApiService apiService;
+    HashMap<String, String> map;
 
+    String add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +106,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
         setContentView(R.layout.activity_add_address);
         ButterKnife.bind(this);
         Places.initialize(getApplicationContext(), "AIzaSyCXTaGfar2xqDZpGrZRSY96l5fw6mYF4sI");
-
+        sessionManager = new SessionManager(AddAddress.this);
         address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,34 +118,45 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
             }
         });
 
-
-
-
+        apiService = ApiClient.getClient(AddAddress.this)
+                .create(ApiService.class);
         ux_btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-
-                Toast.makeText(AddAddress.this, "clicked", Toast.LENGTH_SHORT).show();
-
-                if (getIntent().hasExtra("from")){
-                    if (getIntent().getStringExtra("from").equals("vl")){
-                        if (markerLocation!=null) {
+                if (getIntent().hasExtra("from")) {
+                    if (getIntent().getStringExtra("from").equals("vl")) {
+                        if (markerLocation != null) {
                             Intent returnIntent = new Intent();
 
                             returnIntent.putExtra("lat", String.valueOf(markerLocation.latitude));
                             returnIntent.putExtra("lng", String.valueOf(markerLocation.longitude));
                             setResult(RESULT_OK, returnIntent);
                             finish();
-                        }else {
+                        } else {
                             Toast.makeText(AddAddress.this, "Fetching Details. Please try again!", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 } else {
-                    startActivity(new Intent(AddAddress.this, HomeNavigation.class));
+
+                    if (markerLocation != null) {
+                        sessionManager.setKeyLat(String.valueOf(markerLocation.latitude));
+                        sessionManager.setKeyLng(String.valueOf(markerLocation.longitude));
+                        sessionManager.setKeyAddress(add);
+
+
+                        handleUpdateUserAddressRes();
+
+
+                    } else {
+                        Toast.makeText(AddAddress.this, "Fetching Details. Please try again!", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
+
+
             }
         });
 //
@@ -251,7 +273,10 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 address.setText(place.getName());
-                markerLocation=place.getLatLng();
+
+
+                add=place.getName();
+                markerLocation = place.getLatLng();
 
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
@@ -263,19 +288,16 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
     }
 
 
-
-
-
-
     @Override
     protected void onPause() {
         super.onPause();
-        try{
+        try {
             if (mGoogleApiClient != null) {
                 LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
             }
-        }catch (Exception e){}
-        
+        } catch (Exception e) {
+        }
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -317,7 +339,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
 
         //Place current location marker
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        markerLocation=latLng;
+        markerLocation = latLng;
         markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         //  markerOptions.position(latLng);
@@ -366,6 +388,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 Log.d("Marker", "Started");
                 markerLocation = mCurrLocationMarker.getPosition();
                 getaddressfromlat(markerLocation.latitude, markerLocation.longitude);
+
+
             }
         });
 
@@ -516,6 +540,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
 //            mCurrLocationMarker.setTitle(""+ subLocality + "," + state
 //                    + "," + country);
                 address.setText(listAddresses.get(0).getAddressLine(0));
+
+                add=listAddresses.get(0).getAddressLine(0);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -545,10 +571,70 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
 //                    + "," + country);
                 address.setText("" + subLocality + "," + state
                         + "," + country);
+
+                add="" + subLocality + "," + state
+                        + "," + country;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+    public void updateuseraddressdata(HashMap<String, String> map) {
+        createProgressDialog();
+
+        Observer<UpdateUserAddressRes> observer = apiService.updateuseraddressdata(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<UpdateUserAddressRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UpdateUserAddressRes res) {
+                        if (res.getStatus()) {
+
+
+                            startActivity(new Intent(AddAddress.this, HomeNavigation.class));
+
+                        } else {
+                            Toast.makeText(AddAddress.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissProgressDialog();
+
+                    }
+                });
+
+
+    }
+
+
+    private void handleUpdateUserAddressRes() {
+
+        map = new HashMap<>();
+
+        map.put("userid", sessionManager.getKeyId());
+        map.put("token", sessionManager.getKeyToken());
+        map.put("address", sessionManager.getKeyAddress());
+        map.put("latitude", sessionManager.getKeyLat());
+        map.put("longitude", sessionManager.getKeyLng());
+
+
+        updateuseraddressdata(map);
+    }
+
 
 }
