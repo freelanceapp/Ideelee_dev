@@ -1,5 +1,6 @@
 package snow.app.ideelee.vehical_module.vehicle;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,8 +36,10 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.Status;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -90,7 +93,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     Toolbar toolbar;
     VehicalListAdapter adapter;
     String userid, token, parentid, subparentid, minprice = "", maxprice = "", rating = "", sorting = "",
-            userlatitude = "", userlongitude = "", item;
+            userlatitude = "", userlongitude = "", item="";
     HashMap<String, String> map;
     ApiService apiService;
     ApiService apiService1;
@@ -98,10 +101,8 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
     EditText ed_location, ed_minprice, ed_maxprice;
     Place place;
     Spinner spinner;
-    List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
-String intentVL;
-    public VehicalListing() {
-    }
+
+    SubSubCatFilterationAdapter adapter_filter=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,6 +209,7 @@ String intentVL;
             }
         });
         handleOnDemandServiceProviderList();
+        handleGetSubSubCatFilterationList( );
 
     }
 
@@ -317,33 +319,30 @@ String intentVL;
         recyclerView_filter = layout.findViewById(R.id.rv_filteration);
         recyclerView_filter.setHasFixedSize(true);
         recyclerView_filter.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        SubSubCatFilterationAdapter adapter = new SubSubCatFilterationAdapter(VehicalListing.this, subcatdatumList);
-        recyclerView_filter.setAdapter(adapter);
-
-        handleGetSubSubCatFilterationList(adapter);
+        adapter_filter = new SubSubCatFilterationAdapter(VehicalListing.this, subcatdatumList);
+        recyclerView_filter.setAdapter(adapter_filter);
+        adapter_filter.notifyDataSetChanged();
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pw.dismiss();
             }
         });
-
-      /*  ed_location.setOnClickListener(new View.OnClickListener() {
+        ed_location.setHint("Location");
+        ed_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               *//* Intent intent = new Autocomplete.IntentBuilder(
+               /* Intent intent = new Autocomplete.IntentBuilder(
                         AutocompleteActivityMode.FULLSCREEN, fields)
                         .setTypeFilter(TypeFilter.ADDRESS)
                         .build(VehicalListing.this);
-                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);*//*
-
-
-                Intent intent = new Intent(VehicalListing.this, AddAddress.class);
-              intent.putExtra("intentofVL", "1");
-               startActivityForResult(intent,2);
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+*/
+                Intent addressIntent = new Intent(VehicalListing.this, AddAddress.class);
+                addressIntent.putExtra("from", "vl");
+               startActivityForResult(addressIntent,2);
             }
         });
-*/
         //  ed_location.setText(place.getName());
 
     }
@@ -358,8 +357,6 @@ String intentVL;
         rating = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + rating, Toast.LENGTH_LONG).show();
-
     }
 
     @Override
@@ -446,8 +443,8 @@ String intentVL;
     }
 
 
-    public void getSubSubCatFilterationList(HashMap<String, String> map, SubSubCatFilterationAdapter adapter_filter) {
-        createProgressDialog();
+    public void getSubSubCatFilterationList(HashMap<String, String> map) {
+
 
         Observer<SubSubCatFilterationRes> observer = apiService1.getSubSubCatFilterationList(map)
                 .subscribeOn(Schedulers.io())
@@ -461,16 +458,10 @@ String intentVL;
                     @Override
                     public void onNext(SubSubCatFilterationRes res) {
                         if (res.getStatus()) {
-                            Toast.makeText(VehicalListing.this, res.getMessage(), Toast.LENGTH_SHORT).show();
-
                             //  for (int i = 0; i < res.getHomescreendata().getParentCatArray().size(); i++) {
                             subcatdatumList.clear();
 
-                            adapter_filter.notifyDataSetChanged();
-
                             subcatdatumList.addAll(res.getSubcatdata());
-
-                            adapter_filter.notifyDataSetChanged();
 
                             //add more on  the last the position
 
@@ -482,13 +473,11 @@ String intentVL;
 
                     @Override
                     public void onError(Throwable e) {
-                        dismissProgressDialog();
 
                     }
 
                     @Override
                     public void onComplete() {
-                        dismissProgressDialog();
 
                     }
                 });
@@ -497,7 +486,7 @@ String intentVL;
     }
 
 
-    private void handleGetSubSubCatFilterationList(SubSubCatFilterationAdapter adapter_filter) {
+    private void handleGetSubSubCatFilterationList() {
         map = new HashMap<>();
 
 
@@ -507,12 +496,12 @@ String intentVL;
         map.put("subparentid", subparentid);
 
 
-        getSubSubCatFilterationList(map, adapter_filter);
+        getSubSubCatFilterationList(map);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+   /*     if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 place = Autocomplete.getPlaceFromIntent(data);
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
@@ -523,21 +512,37 @@ String intentVL;
             } else if (resultCode == RESULT_CANCELED) {
                 // The user canceled the operation.
             }
-        }else     if(requestCode==2)
-        {
+        }else
+
+        }*/
+
+        if (resultCode == Activity.RESULT_OK) {
+            if(requestCode==2)
+            {
            /* String message=data.getStringExtra("MESSAGE");
             textView1.setText(message);*/
 
-           userlongitude=data.getStringExtra("lng");
-           userlatitude=data.getStringExtra("lat");
-           intentVL=data.getStringExtra("intentofVL");
+                userlongitude=data.getStringExtra("lng");
+                userlatitude=data.getStringExtra("lat");
+
+                getaddressfromlat1(Double.parseDouble(userlatitude),Double.parseDouble(userlongitude));
+                Log.e("latandln",userlatitude+"--"+userlongitude);
+                /*intentVL=data.getStringExtra("from");*/
 
 
 
-         //  Log.e("latlng in vl--",userlatitude+userlongitude);
+                //  Log.e("latlng in vl--",userlatitude+userlongitude);
+
+            }
 
         }
+
+
+
     }
+
+
+
 
     public void getaddressfromlat1(double lat, double lng) {
         Geocoder geocoder = new Geocoder(getApplicationContext(),

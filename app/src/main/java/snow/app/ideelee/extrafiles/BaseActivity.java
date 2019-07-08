@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 /*import android.widget.CalendarView;*/
 import android.provider.Settings;
@@ -29,6 +31,7 @@ import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 
 import com.squareup.timessquare.CalendarPickerView;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import snow.app.ideelee.Login;
@@ -204,5 +208,28 @@ public class BaseActivity extends Activity {
 
         return device_token;
     }
+    public String getaddressfromlat(double lat, double lng) {
+        Geocoder geocoder = new Geocoder(getApplicationContext(),
+                Locale.getDefault());
+        String add="";
+        try {
 
+            List<Address> listAddresses = geocoder.getFromLocation(lat,
+                    lng, 1);
+            if (null != listAddresses && listAddresses.size() > 0) {
+// Here we are finding , whatever we want our marker to show when
+                //
+                String state = listAddresses.get(0).getAdminArea();
+                String country = listAddresses.get(0).getCountryName();
+                String subLocality = listAddresses.get(0).getSubLocality();
+
+                add=   listAddresses.get(0).getAddressLine(0 );
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "N/A";
+        }
+        return add;
+
+    }
 }

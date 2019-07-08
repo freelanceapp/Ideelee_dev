@@ -86,8 +86,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LatLng latLng;
-    LatLng markerLocation;
-    String intentofVL;
+    LatLng markerLocation=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +106,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
             }
         });
-        if (
-                getIntent().hasExtra("intentofVL")) {
 
-            intentofVL = getIntent().getStringExtra("intentofVL");
 
-        }
-
-        Log.e("int---", intentofVL);
 
 
         ux_btn1.setOnClickListener(new View.OnClickListener() {
@@ -121,22 +115,25 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
             public void onClick(View v) {
 
 
-                Toast.makeText(AddAddress.this, intentofVL, Toast.LENGTH_SHORT).show();
+
                 Toast.makeText(AddAddress.this, "clicked", Toast.LENGTH_SHORT).show();
-                if (intentofVL.equals("1")) {
-                    Intent intent = new Intent(AddAddress.this, VehicalListing.class);
-                    intent.putExtra("lat", String.valueOf(markerLocation.latitude));
-                    intent.putExtra("lng", String.valueOf(markerLocation.longitude));
-                    intent.putExtra("intentofVL", "1");
-                 //   startActivity(intent);
 
-                    setResult(2,intent);
-                    finish();//finishing activity
+                if (getIntent().hasExtra("from")){
+                    if (getIntent().getStringExtra("from").equals("vl")){
+                        if (markerLocation!=null) {
+                            Intent returnIntent = new Intent();
 
+                            returnIntent.putExtra("lat", String.valueOf(markerLocation.latitude));
+                            returnIntent.putExtra("lng", String.valueOf(markerLocation.longitude));
+                            setResult(RESULT_OK, returnIntent);
+                            finish();
+                        }else {
+                            Toast.makeText(AddAddress.this, "Fetching Details. Please try again!", Toast.LENGTH_SHORT).show();
+                        }
 
-
-
-                    Toast.makeText(AddAddress.this, markerLocation.latitude + "," + markerLocation.longitude, Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    startActivity(new Intent(AddAddress.this, HomeNavigation.class));
                 }
             }
         });
@@ -173,12 +170,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 new Intent(AddAddress.this, HomeNavigation.class);
             }
         });
-       /* findViewById(R.id.ux_btn1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Intent(AddAddress.this, HomeNavigation.class);
-            }
-        });*/
+
         findViewById(R.id.backbutton1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -259,6 +251,8 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 address.setText(place.getName());
+                markerLocation=place.getLatLng();
+
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Log.i(TAG, status.getStatusMessage());
@@ -276,9 +270,12 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
     @Override
     protected void onPause() {
         super.onPause();
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
+        try{
+            if (mGoogleApiClient != null) {
+                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+            }
+        }catch (Exception e){}
+        
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -320,6 +317,7 @@ public class AddAddress extends AppCompatActivity implements OnMapReadyCallback,
 
         //Place current location marker
         latLng = new LatLng(location.getLatitude(), location.getLongitude());
+        markerLocation=latLng;
         markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         //  markerOptions.position(latLng);
