@@ -71,6 +71,7 @@
                             android:gravity="center_vertical"
                             android:paddingLeft="@dimen/small_padding"
                             android:paddingRight="@dimen/small_padding"
+                            android:id="@+id/rating_"
                             android:text="@string/ratingvalue"
                             android:textColor="@color/white"
                             android:textSize="@dimen/text_size_13sp" />
@@ -138,6 +139,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/margin_4dp"
+                                android:id="@+id/phone"
                                 android:text="530-225-3426"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/small_txt" />
@@ -171,6 +173,7 @@
                                     android:layout_alignParentLeft="true"
                                     android:padding="@dimen/extra_small"
                                     android:text="@string/breakfast"
+                                    android:id="@+id/cat"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/normal_text" />
 
@@ -284,6 +287,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:id="@+id/price"
                     android:text="1 item\n$20.00"
                     android:textColor="@color/white" />
             </LinearLayout>

@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="end"
                 android:text="Filter"
+                android:id="@+id/filter"
                 android:textColor="@color/colorPrimaryDark" />
 
             <TextView

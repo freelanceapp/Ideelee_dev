@@ -184,6 +184,9 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     public boolean onMenuItemClick(MenuItem item) {
 
+
+                        serviceproviderlist.clear();
+
                         if (item.getTitle().equals("Name (a to z)")) {
                             sorting = "name";
                         } else if (item.getTitle().equals("Rating")) {
@@ -336,6 +339,7 @@ public class VehicalListing extends BaseActivity implements AdapterView.OnItemSe
                 rating = "";
                 sorting = "";
                 subserviceids = "";
+                spinner_selectedindex=1;
                 subserviceidslist.clear();
                 handleOnDemandServiceProviderList();
                 pw.dismiss();

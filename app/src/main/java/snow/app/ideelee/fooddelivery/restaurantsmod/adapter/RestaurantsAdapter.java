@@ -121,6 +121,19 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             holder.status.setTextColor(ContextCompat.getColor(context,R.color.green));
             holder.status.setCompoundDrawables(ContextCompat.getDrawable(context,R.drawable.ic_brightness_1_black_24dp),null,null,null);
         }
+
+
+
+
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,RestDetailsActivity.class);
+                intent.putExtra("storeid", storesDetail.getId());
+                context.startActivity(intent);
+
+            }
+        });
     }
 
     @Override
@@ -151,12 +164,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             super(view);
             ButterKnife.bind(this, itemView);
 
-            parent.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.startActivity(new Intent(context, RestDetailsActivity.class));
-                }
-            });
+
 
         }
     }

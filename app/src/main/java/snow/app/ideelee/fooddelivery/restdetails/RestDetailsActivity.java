@@ -1,41 +1,48 @@
 package snow.app.ideelee.fooddelivery.restdetails;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import snow.app.ideelee.AppUtils.RoundedTransformation;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.R;
+import snow.app.ideelee.api_request_retrofit.ApiService;
+import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
+import snow.app.ideelee.extrafiles.BaseActivity;
+import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.fooddelivery.cart.CartActivity;
 import snow.app.ideelee.fooddelivery.restdetails.adapters.FoodItemAdapter;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import snow.app.ideelee.responses.getstoredetailsres.GetStoreDetailsRes;
+import snow.app.ideelee.responses.getstoredetailsres.Product;
 
-public class RestDetailsActivity extends AppCompatActivity {
+
+public class RestDetailsActivity extends BaseActivity {
 
     @BindView
             (R.id.breakfast_rv)
@@ -56,6 +63,29 @@ public class RestDetailsActivity extends AppCompatActivity {
     @BindView(R.id.view_cart)
     TextView view_cart;
 
+    @BindView(R.id.rating_)
+    TextView rating_;
+
+    @BindView(R.id.phone)
+    TextView phone;
+
+    @BindView(R.id.address)
+    TextView address;
+
+    @BindView(R.id.cat)
+    TextView cat;
+    @BindView(R.id.price)
+    TextView price;
+
+    ApiService apiService;
+    HashMap<String, String> map;
+    List<Product> couponcategorydatumList;
+
+
+    String userid, token, storeid;
+    SessionManager sessionManager;
+    int size, width, height;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,22 +100,32 @@ public class RestDetailsActivity extends AppCompatActivity {
         lunch_rv.setAdapter(foodItemAdapter1);
         /*breakfast_rv.setNestedScrollingEnabled(false);
         lunch_rv.setNestedScrollingEnabled(false);*/
-        title_.setText("The Pepper Mockingbird");
+
+
+        apiService = ApiClient.getClient(RestDetailsActivity.this)
+                .create(ApiService.class);
+
+        sessionManager = new SessionManager(this);
+        userid = sessionManager.getKeyId();
+        token = sessionManager.getKeyToken();
         WindowManager wm = (WindowManager) getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        Picasso.with(this)
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+       /* Picasso.with(this)
                 .load("https://cdn.pixabay.com/photo/2015/04/08/13/13/food-712665_960_720.jpg")
                 .resize(width, width / 2)
                 .transform(new RoundedTransformation(15, 15))
 
-                .into(img);
+                .into(img);*/
+
+
+        handlegetStoreDetails();
         backbutton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
         menu.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +141,22 @@ public class RestDetailsActivity extends AppCompatActivity {
                 startActivity(new Intent(RestDetailsActivity.this, CartActivity.class));
             }
         });
+
+
+        address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RestDetailsActivity.this, AddAddress.class);
+                intent.putExtra("from", "rda");
+                startActivityForResult(intent, 3);
+
+
+            }
+        });
+        phone.setText(sessionManager.getKeyContactNumber());
+
+
+
     }
 
     public void initiatePopupwindow(View v) {
@@ -140,9 +196,95 @@ public class RestDetailsActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+
+        if (requestCode == 3) {
+            setAddress();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
         super.onBackPressed();
     }
 
+    public void getStoreDetails(HashMap<String, String> map) {
+        createProgressDialog();
+
+        Observer<GetStoreDetailsRes> observer = apiService.getStoreDetails(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<GetStoreDetailsRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(GetStoreDetailsRes res) {
+                        if (res.getStatus()) {
+                            Toast.makeText(RestDetailsActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+
+                            Glide.with(RestDetailsActivity.this).load(res.getStoredata().getStoreImage())
+                                    .apply(new RequestOptions().override(width / 4))
+                                    .into(img);
+                            title_.setText(res.getStoredata().getStoreName());
+
+
+                            rating_.setText(res.getStoredata().getRating());
+                            //  foodItemAdapter.notifyDataSetChanged();
+                          //  price.setText();
+
+                        } else {
+                            Toast.makeText(RestDetailsActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissProgressDialog();
+
+                    }
+                });
+
+
+    }
+
+
+    private void handlegetStoreDetails() {
+
+
+        if (getIntent().hasExtra("storeid")) {
+            storeid = getIntent().getStringExtra("storeid");
+        }
+
+        map = new HashMap<>();
+        map.put("userid", userid);
+        map.put("token", token);
+        map.put("storeid", storeid);
+
+        getStoreDetails(map);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAddress();
+    }
+
+
+    public void setAddress() {
+
+        address.setText(sessionManager.getKeyAddress());
+
+
+    }
 }

@@ -70,6 +70,7 @@
                             android:background="@drawable/round_corner_orange"
                             android:gravity="center_vertical"
                             android:paddingStart="@dimen/small_padding"
+                            android:id="@+id/rating_"
                             android:paddingEnd="@dimen/small_padding"
                             android:text="@string/ratingvalue"
                             android:textColor="@color/white"
@@ -138,6 +139,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:padding="@dimen/margin_4dp"
+                                android:id="@+id/phone"
                                 android:text="530-225-3426"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/small_txt" />
@@ -171,6 +173,7 @@
                                     android:layout_alignParentStart="true"
                                     android:padding="@dimen/extra_small"
                                     android:text="@string/breakfast"
+                                    android:id="@+id/cat"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/normal_text" />
 
@@ -285,6 +288,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1 item\n$20.00"
+                    android:id="@+id/price"
                     android:textColor="@color/white" />
             </LinearLayout>
 

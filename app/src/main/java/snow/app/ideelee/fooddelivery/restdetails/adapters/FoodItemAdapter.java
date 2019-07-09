@@ -15,10 +15,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
 import snow.app.ideelee.HomeScreen.orders.OrderDetails.OrderDetailActivity;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersM;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
+
 
 public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyViewHolder> {
 
@@ -52,6 +54,14 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyView
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
+
+
+        @BindView(R.id.price)
+        TextView price;
+
+        @BindView(R.id.name)
+        TextView name;
+
             public MyViewHolder(View view) {
                 super(view);
                /* parent=(LinearLayout)view.findViewById(R.id.parent);

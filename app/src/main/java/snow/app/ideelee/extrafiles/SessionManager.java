@@ -121,6 +121,9 @@ public class SessionManager {
     public   String getKeyProfileImage() {
         return pref.getString(KEY_PROFILE_IMAGE, "");
     }
+    public   String getKeyContactNumber() {
+        return pref.getString(KEY_CONTACT_NUMBER, "");
+    }
 
 
 

@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,7 +15,6 @@ import android.support.v4.content.CursorLoader;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,14 +49,14 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import snow.app.ideelee.Login;
+import snow.app.ideelee.AddAddress;
 import snow.app.ideelee.R;
 import snow.app.ideelee.api_request_retrofit.ApiService;
 import snow.app.ideelee.api_request_retrofit.retrofit_client.ApiClient;
 import snow.app.ideelee.extrafiles.ImagePickerActivity;
 import snow.app.ideelee.extrafiles.SessionManager;
+import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
-import snow.app.ideelee.responses.sendhelpmsgres.SendHelpMsgRes;
 import snow.app.ideelee.responses.updateuserprofileres.UpdateUserProfileRes;
 
 import static android.content.Context.WINDOW_SERVICE;
@@ -88,15 +86,14 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.update)
     Button update;
 
-int height,width;
+    int height, width;
     ApiService apiService;
     String userid, token, servicetype;
     HashMap<String, String> map;
     SessionManager sessionManager;
     String PROFILE_IMAGE = "";
+    Uri IMAGE_URI = null;
     private Unbinder unbinder;
-
-    Uri IMAGE_URI=null;
 
     public ProfileFragment() {
     }
@@ -109,8 +106,8 @@ int height,width;
         WindowManager wm = (WindowManager) getActivity().getSystemService(WINDOW_SERVICE);
         final DisplayMetrics displayMetrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(displayMetrics);
-          height = displayMetrics.heightPixels;
-          width = displayMetrics.widthPixels;
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
         sessionManager = new SessionManager(getActivity());
         userid = sessionManager.getKeyId();
         token = sessionManager.getKeyToken();
@@ -129,6 +126,15 @@ int height,width;
 
 
         handlegetUserProfileData();
+/*
+        changeaddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddAddress.class);
+                intent.putExtra("from", "rda");
+                startActivityForResult(intent, 3);
+            }
+        });*/
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,20 +245,30 @@ int height,width;
                 try {
                     // You can update this bitmap to your server
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uri);
-                    IMAGE_URI=uri;
+                    IMAGE_URI = uri;
                     // loading profile image from local cache
                     loadProfile(uri.toString());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+
+
+
+
+
+          /*  if (requestCode == 3) {
+
+                ed_address.setText(sessionManager.getKeyAddress());
+
+            }*/
         }
     }
 
     private void loadProfile(String url) {
         Log.d(TAG, "Image cache path: " + url);
         Glide.with(this).load(url).apply(RequestOptions.circleCropTransform())
-                .apply(new RequestOptions().override(width/3))
+                .apply(new RequestOptions().override(width / 3))
                 .into(img);
         img.setColorFilter(ContextCompat.getColor(getActivity(), android.R.color.transparent));
     }
@@ -277,15 +293,9 @@ int height,width;
                             ed_email.setText(res.getServicedata().getEmail());
 
                             Glide.with(getActivity()).load(res.getServicedata().getProfileImage())
-                                    .apply(new RequestOptions().override(width/3))
+                                    .apply(new RequestOptions().override(width / 3))
                                     .apply(RequestOptions.circleCropTransform())
                                     .into(img);
-
-
-
-
-
-
 
 
                         } else {
@@ -316,19 +326,17 @@ int height,width;
     }
 
 
-
-    private void uploadFile( HashMap<String,String >map) {
-        MultipartBody.Part profile_image=null;
-        if (IMAGE_URI!=null){
+    private void uploadFile(HashMap<String, String> map) {
+        MultipartBody.Part profile_image = null;
+        if (IMAGE_URI != null) {
 
             Uri uri = IMAGE_URI;
             File file = new File(uri.getPath());//create path from uri
 
 
-
             // File file = new File(getRealPathFromURI(IMAGE_URI));
-            RequestBody requestFile =RequestBody.create(MediaType.parse("multipart/form-data"), file);
-             profile_image = MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            profile_image = MultipartBody.Part.createFormData("profile_image", file.getName(), requestFile);
 
         }
         RequestBody userid = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("userid"));
@@ -340,7 +348,7 @@ int height,width;
         RequestBody latitude = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("latitude"));
         RequestBody longitude = RequestBody.create(MediaType.parse("multipart/form-data"), map.get("longitude"));
 
-        apiService.updateProfile(userid, token, name, email,phone,address,latitude,longitude, profile_image).subscribeOn(Schedulers.io())
+        apiService.updateProfile(userid, token, name, email, phone, address, latitude, longitude, profile_image).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new Observer<UpdateUserProfileRes>() {
                     @Override
@@ -359,7 +367,7 @@ int height,width;
                                 , res.getData().getContactNo(), res.getData().getProfileImage()
                                 , res.getData().getAddress(), sessionManager.getKeyToken());
 
-getActivity().finish();
+                        getActivity().finish();
                     }
 
                     @Override
@@ -380,7 +388,7 @@ getActivity().finish();
     private String getRealPathFromURI(Uri contentUri) {
 
 
-        Log.e("content uri----","cu---"+contentUri.toString());
+        Log.e("content uri----", "cu---" + contentUri.toString());
         String[] proj = {MediaStore.Images.Media.DATA};
         CursorLoader loader = new CursorLoader(getActivity(), contentUri, proj, null, null, null);
         Cursor cursor = loader.loadInBackground();
@@ -390,5 +398,7 @@ getActivity().finish();
         cursor.close();
         return result;
     }
+
+
 
 }

@@ -37,6 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:id="@+id/filter"
                 android:text="Filter"
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -45,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/small_padding"
+
                 android:text="Relevance"
                 android:drawableRight="@drawable/arrow_down"
                 android:drawablePadding="@dimen/small_padding"

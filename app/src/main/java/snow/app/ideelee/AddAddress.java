@@ -138,7 +138,18 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
                             Toast.makeText(AddAddress.this, "Fetching Details. Please try again!", Toast.LENGTH_SHORT).show();
                         }
 
+                    }else {
+                        if (markerLocation != null) {
+                            sessionManager.setKeyLat(String.valueOf(markerLocation.latitude));
+                            sessionManager.setKeyLng(String.valueOf(markerLocation.longitude));
+                            sessionManager.setKeyAddress(add);
+
+
+                            handleUpdateUserAddressRes();
+
+                        }
                     }
+
                 } else {
 
                     if (markerLocation != null) {
@@ -275,7 +286,7 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
                 address.setText(place.getName());
 
 
-                add=place.getName();
+                add = place.getName();
                 markerLocation = place.getLatLng();
 
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
@@ -284,7 +295,10 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
             } else if (resultCode == RESULT_CANCELED) {
                 // The user canceled the operation.
             }
+
+
         }
+
     }
 
 
@@ -541,7 +555,7 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
 //                    + "," + country);
                 address.setText(listAddresses.get(0).getAddressLine(0));
 
-                add=listAddresses.get(0).getAddressLine(0);
+                add = listAddresses.get(0).getAddressLine(0);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -572,7 +586,7 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
                 address.setText("" + subLocality + "," + state
                         + "," + country);
 
-                add="" + subLocality + "," + state
+                add = "" + subLocality + "," + state
                         + "," + country;
             }
         } catch (IOException e) {
@@ -597,8 +611,12 @@ public class AddAddress extends BaseActivity implements OnMapReadyCallback, Goog
                     public void onNext(UpdateUserAddressRes res) {
                         if (res.getStatus()) {
 
+                            if (getIntent().getStringExtra("from").equals("rda")) {
+                                finish();
+                            } else {
+                                startActivity(new Intent(AddAddress.this, HomeNavigation.class));
+                            }
 
-                            startActivity(new Intent(AddAddress.this, HomeNavigation.class));
 
                         } else {
                             Toast.makeText(AddAddress.this, res.getMessage(), Toast.LENGTH_SHORT).show();

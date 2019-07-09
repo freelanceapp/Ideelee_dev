@@ -18,6 +18,7 @@ import snow.app.ideelee.responses.deliverysubcatres.DeliverySubCatRes;
 import snow.app.ideelee.responses.forgotpassword.ForgotPassRes;
 import snow.app.ideelee.responses.getcouponsres.GetCouponsRes;
 import snow.app.ideelee.responses.gethelpcat.GetHelpCatRes;
+import snow.app.ideelee.responses.getstoredetailsres.GetStoreDetailsRes;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
 import snow.app.ideelee.responses.loginres.LoginRes;
@@ -154,6 +155,13 @@ public interface ApiService {
                                              @Part("latitude") RequestBody latitude,
                                              @Part("longitude") RequestBody longitude,
                                              @Part MultipartBody.Part image);
+
+
+
+    //Store Details   API
+    @POST(GET_STORE_DETAILS)
+    @FormUrlEncoded
+    Observable<GetStoreDetailsRes> getStoreDetails(@FieldMap HashMap<String, String> params);
 
 
 }
