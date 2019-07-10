@@ -45,6 +45,7 @@ import snow.app.ideelee.extrafiles.BaseActivity;
 import snow.app.ideelee.extrafiles.OneTimeLogin;
 import snow.app.ideelee.extrafiles.SessionManager;
 import snow.app.ideelee.forgot.ForgotPassword;
+import snow.app.ideelee.responses.googleloginres.GetGoogleLoginRes;
 import snow.app.ideelee.responses.loginres.LoginRes;
 
 import static snow.app.ideelee.AddAddress.TAG;
@@ -73,12 +74,12 @@ public class Login extends BaseActivity {
     EditText et_pass;
     CallbackManager callbackManager;
     ApiService apiService;
-    String device_token;
+    String device_token,email_google;
     HashMap<String, String> map;
     OneTimeLogin oneTimeLogin;
     SessionManager sessionManager;
     GoogleSignInOptions gso;
-
+ String name;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -354,6 +355,18 @@ public class Login extends BaseActivity {
             // Signed in successfully, show authenticated UI.
             Log.wtf(TAG, "signInResult" + account.getDisplayName() + "==" + account.getEmail());
 
+
+            createProgressDialog();
+            map = new HashMap<>();
+            map.put("email",account.getEmail());
+
+            map.put("device_type", "Android");
+            map.put("device_token", device_token);
+            map.put("usertype", "1");
+            map.put("name",account.getDisplayName());
+
+            googleLogin(map);
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
@@ -386,6 +399,95 @@ public class Login extends BaseActivity {
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
+
+
+    public void googleLogin(HashMap<String, String> map) {
+        createProgressDialog();
+
+        Observer<GetGoogleLoginRes> observer = apiService.getGoogleLogin(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Observer<GetGoogleLoginRes>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(GetGoogleLoginRes res) {
+
+                        if (res.getStatus()) {
+
+                            if (res.getMessage().equals("User is not active")) {
+                                AppConstants.LoginProcess.mUserIdForActivationAccountAfterOTPVerification =
+                                        String.valueOf(res.getUserdata().getId());
+                                AppConstants.LoginProcess.mMobileNumber = "+" + res.getUserdata().getContactNo();
+
+                                // after successfull  register then hit otp confirmation mobile verification
+                                openActivity(AppConstants.LoginProcess.mMobileNumber, AppConstants.OTPVerification.INTENT_METHOD);
+
+                            } else {
+
+                                oneTimeLogin.setFirstTimeLaunch(false);
+
+
+                                SessionManager sessionManager = new SessionManager(Login.this);
+                                sessionManager.createLoginSession(String.valueOf(res.getUserdata().getId()), res.getUserdata().getName()
+                                        , res.getUserdata().getEmail()
+                                        , res.getUserdata().getPassword(), res.getUserdata().getOauthProvider()
+                                        , res.getUserdata().getContactNo(), res.getUserdata().getProfileImage()
+                                        , res.getUserdata().getAddress(), res.getUserdata().getToken());
+
+
+
+
+                                Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                                Intent intent_continue = new Intent(Login.this, HomeNavigation.class);
+                                startActivity(intent_continue);
+                                finish();
+
+                            }
+
+                        } else {
+
+
+                            Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                            Intent intent_continue = new Intent(Login.this, Register.class);
+                            intent_continue.putExtra("name",map.get("name"));
+                            intent_continue.putExtra("email",map.get("email"));
+                            startActivity(intent_continue);
+                            finish();
+                            Toast.makeText(Login.this, res.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        dismissProgressDialog();
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        dismissProgressDialog();
+
+                    }
+                });
+
+
+    }
+
+    /*private void openActivity(String phoneNumber, String method) {
+        Intent verification = new Intent(this, OTP.class);
+        verification.putExtra(AppConstants.OTPVerification.INTENT_PHONENUMBER, phoneNumber);
+        verification.putExtra(AppConstants.OTPVerification.INTENT_METHOD, method);
+        startActivity(verification);
+    }*/
+
+    private void handleGoogleLogin() {
     }
 
 }

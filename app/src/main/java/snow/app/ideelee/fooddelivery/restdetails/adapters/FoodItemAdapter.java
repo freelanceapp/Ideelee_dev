@@ -16,19 +16,21 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import snow.app.ideelee.HomeScreen.orders.OrderDetails.OrderDetailActivity;
 import snow.app.ideelee.HomeScreen.orders.adapter.OrdersM;
 import snow.app.ideelee.R;
 import snow.app.ideelee.fooddelivery.restdetails.RestDetailsActivity;
+import snow.app.ideelee.responses.getstoredetailsres.ProductsDetail;
 
 
 public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyViewHolder> {
 
     Context context;
-    private List<String> dataList;
+    private List<ProductsDetail> dataList;
     int  width;
 
-    public FoodItemAdapter(List<String> dataList, Context context, int width) {
+    public FoodItemAdapter(List<ProductsDetail> dataList, Context context, int width) {
         this.dataList = dataList;
         this.context = context;
         this.width = width;
@@ -50,7 +52,7 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyView
     }
         @Override
         public int getItemCount () {
-            return /*dataList.size()*/5;
+            return dataList.size();
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +66,7 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.MyView
 
             public MyViewHolder(View view) {
                 super(view);
+                ButterKnife.bind(view);
                /* parent=(LinearLayout)view.findViewById(R.id.parent);
                 parent.setOnClickListener(new View.OnClickListener() {
                     @Override

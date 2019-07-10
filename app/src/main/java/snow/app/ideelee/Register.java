@@ -66,6 +66,10 @@ public class Register extends BaseActivity {
 
             }
         });
+        if (getIntent().hasExtra("name")){
+            edt_first_name.setText(getIntent().getStringExtra("name"));
+            edt_email.setText(getIntent().getStringExtra("email"));
+        }
 
 
 //        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {

@@ -22,6 +22,7 @@ public class AppConstants {
     public static final String  UPDATE_USER_ADDRESS = PATH_HOME + "updateUserAddress";
     public static final String  GET_COUPON_DETAILS = PATH_HOME + "singleCouponDetail";
     public static final String  GET_STORE_DETAILS = PATH_HOME + "getStoreDetail";
+    public static final String  GOOGLE_LOGIN = PATH + "checkGoogleEmail";
 
 
 

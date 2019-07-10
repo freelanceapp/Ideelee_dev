@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,17 +41,12 @@ import snow.app.ideelee.fooddelivery.cart.CartActivity;
 import snow.app.ideelee.fooddelivery.restdetails.adapters.FoodItemAdapter;
 import snow.app.ideelee.responses.getstoredetailsres.GetStoreDetailsRes;
 import snow.app.ideelee.responses.getstoredetailsres.Product;
+import snow.app.ideelee.responses.getstoredetailsres.ProductsDetail;
 
 
 public class RestDetailsActivity extends BaseActivity {
 
-    @BindView
-            (R.id.breakfast_rv)
-    RecyclerView breakfast_rv;
-    @BindView(R.id.lunch_rv)
-    RecyclerView lunch_rv;
-    FoodItemAdapter foodItemAdapter;
-    FoodItemAdapter foodItemAdapter1;
+
     @BindView(R.id.title_bookingappointement)
     TextView title_;
     @BindView(R.id.menu)
@@ -72,35 +68,32 @@ public class RestDetailsActivity extends BaseActivity {
     @BindView(R.id.address)
     TextView address;
 
-    @BindView(R.id.cat)
-    TextView cat;
+
+    @BindView(R.id.recyclers)
+    LinearLayout recyclers;
     @BindView(R.id.price)
     TextView price;
 
     ApiService apiService;
     HashMap<String, String> map;
-    List<Product> couponcategorydatumList;
+    List<Product> productList;
 
 
     String userid, token, storeid;
     SessionManager sessionManager;
     int size, width, height;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest_details);
         ButterKnife.bind(this);
-        lunch_rv.setLayoutManager(new LinearLayoutManager(this));
-        breakfast_rv.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<String> data = new ArrayList<>();
-        foodItemAdapter = new FoodItemAdapter(data, this, 0);
-        foodItemAdapter1 = new FoodItemAdapter(data, this, 0);
-        breakfast_rv.setAdapter(foodItemAdapter);
-        lunch_rv.setAdapter(foodItemAdapter1);
+        mContext = this;
+
         /*breakfast_rv.setNestedScrollingEnabled(false);
         lunch_rv.setNestedScrollingEnabled(false);*/
-
+        productList = new ArrayList<>();
 
         apiService = ApiClient.getClient(RestDetailsActivity.this)
                 .create(ApiService.class);
@@ -156,7 +149,6 @@ public class RestDetailsActivity extends BaseActivity {
         phone.setText(sessionManager.getKeyContactNumber());
 
 
-
     }
 
     public void initiatePopupwindow(View v) {
@@ -210,9 +202,9 @@ public class RestDetailsActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+
     public void getStoreDetails(HashMap<String, String> map) {
         createProgressDialog();
-
         Observer<GetStoreDetailsRes> observer = apiService.getStoreDetails(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -227,15 +219,37 @@ public class RestDetailsActivity extends BaseActivity {
                         if (res.getStatus()) {
                             Toast.makeText(RestDetailsActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();
 
-                            Glide.with(RestDetailsActivity.this).load(res.getStoredata().getStoreImage())
+                            Glide.with(RestDetailsActivity.this)
+                                    .load(res.getStoredata().getStoreImage())
                                     .apply(new RequestOptions().override(width / 4))
                                     .into(img);
                             title_.setText(res.getStoredata().getStoreName());
-
-
                             rating_.setText(res.getStoredata().getRating());
-                            //  foodItemAdapter.notifyDataSetChanged();
-                          //  price.setText();
+                            ArrayList<String> cats = new ArrayList<>();
+                            for (int i = 0; i < res.getStoredata().getProducts().size(); i++) {
+                                cats.add(res.getStoredata().getProducts().get(i).getCategoryName());
+                                View child = getLayoutInflater().inflate(R.layout.row_recycler_store, null);
+                                TextView title = (TextView) child.findViewById(R.id.title);
+                                ImageView hide = (ImageView) child.findViewById(R.id.hide);
+                                RecyclerView rv = (RecyclerView) child.findViewById(R.id.rv);
+                                rv.setLayoutManager(new LinearLayoutManager(mContext));
+                                rv.setNestedScrollingEnabled(false);
+                                title.setText(res.getStoredata().getProducts().get(i).getCategoryName());
+                                ArrayList<ProductsDetail> data = new ArrayList<>();
+                                try{
+                                    data.addAll(res.getStoredata().getProducts().get(i).getProductsDetails());
+                                    FoodItemAdapter foodItemAdapter = new FoodItemAdapter(data, mContext, 0);
+                                    rv.setAdapter(foodItemAdapter);
+                                    rv.setAdapter(foodItemAdapter);
+                                    recyclers.addView(child);
+                                }catch (Exception e){
+
+                                }
+
+
+
+                            }
+
 
                         } else {
                             Toast.makeText(RestDetailsActivity.this, res.getMessage(), Toast.LENGTH_SHORT).show();

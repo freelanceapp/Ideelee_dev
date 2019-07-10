@@ -20,7 +20,7 @@ public class ProductsDetail {
     private String categoryId;
     @SerializedName("image")
     @Expose
-    private Object image;
+    private String image;
     @SerializedName("description")
     @Expose
     private String description;
@@ -35,7 +35,10 @@ public class ProductsDetail {
     private String createdOn;
     @SerializedName("updated_on")
     @Expose
-    private Object updatedOn;
+    private String updatedOn;
+    @SerializedName("category_name")
+    @Expose
+    private String categoryName;
 
     public String getId() {
         return id;
@@ -69,11 +72,11 @@ public class ProductsDetail {
         this.categoryId = categoryId;
     }
 
-    public Object getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Object image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -109,12 +112,20 @@ public class ProductsDetail {
         this.createdOn = createdOn;
     }
 
-    public Object getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Object updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
 }

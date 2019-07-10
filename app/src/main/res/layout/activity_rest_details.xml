@@ -152,88 +152,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/small_padding"
+                        android:id="@+id/recyclers"
                         android:background="@color/white"
                         android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
 
-                            <RelativeLayout
-                                android:id="@+id/break_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/grey_divider">
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:padding="@dimen/extra_small"
-                                    android:text="@string/breakfast"
-                                    android:id="@+id/cat"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:src="@drawable/ic_remove_black_24dp"
-                                    android:tint="@color/black" />
-
-
-                            </RelativeLayout>
-
-                            <android.support.v7.widget.RecyclerView
-                                android:id="@+id/breakfast_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/break_title"
-                                android:padding="@dimen/small_padding" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <RelativeLayout
-                                android:id="@+id/lunch_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:background="@drawable/grey_divider">
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentLeft="true"
-                                    android:padding="@dimen/extra_small"
-                                    android:text="Lunch"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/normal_text" />
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:src="@drawable/ic_remove_black_24dp"
-                                    android:tint="@color/black" />
-
-
-                            </RelativeLayout>
-
-                            <android.support.v7.widget.RecyclerView
-                                android:id="@+id/lunch_rv"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/lunch_title"
-                                android:padding="@dimen/small_padding" />
-                        </RelativeLayout>
 
                     </LinearLayout>
                 </LinearLayout>

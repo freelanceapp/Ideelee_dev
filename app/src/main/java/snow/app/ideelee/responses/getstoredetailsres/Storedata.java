@@ -54,7 +54,7 @@ public class Storedata {
     private String createdOn;
     @SerializedName("updated_on")
     @Expose
-    private Object updatedOn;
+    private String updatedOn;
     @SerializedName("category_name")
     @Expose
     private String categoryName;
@@ -182,11 +182,11 @@ public class Storedata {
         this.createdOn = createdOn;
     }
 
-    public Object getUpdatedOn() {
+    public String getUpdatedOn() {
         return updatedOn;
     }
 
-    public void setUpdatedOn(Object updatedOn) {
+    public void setUpdatedOn(String updatedOn) {
         this.updatedOn = updatedOn;
     }
 

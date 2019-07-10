@@ -20,6 +20,7 @@ import snow.app.ideelee.responses.getcouponsres.GetCouponsRes;
 import snow.app.ideelee.responses.gethelpcat.GetHelpCatRes;
 import snow.app.ideelee.responses.getstoredetailsres.GetStoreDetailsRes;
 import snow.app.ideelee.responses.getuserprofileres.GetUserProfileRes;
+import snow.app.ideelee.responses.googleloginres.GetGoogleLoginRes;
 import snow.app.ideelee.responses.homescreenres.HomeScreenRes;
 import snow.app.ideelee.responses.loginres.LoginRes;
 import snow.app.ideelee.responses.logoutres.LogoutRes;
@@ -162,6 +163,11 @@ public interface ApiService {
     @POST(GET_STORE_DETAILS)
     @FormUrlEncoded
     Observable<GetStoreDetailsRes> getStoreDetails(@FieldMap HashMap<String, String> params);
+
+    //Google Login   API
+    @POST(GOOGLE_LOGIN)
+    @FormUrlEncoded
+    Observable<GetGoogleLoginRes> getGoogleLogin(@FieldMap HashMap<String, String> params);
 
 
 }
